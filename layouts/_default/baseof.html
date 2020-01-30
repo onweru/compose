@@ -4,12 +4,12 @@
   {{- partial "head.html" . }}
 </head>
 <body class="page-{{ .Kind }}">
-  <header>
+  <header class="nav_header">
     {{- partial "nav.html" . }}
   </header>
   <main class="main wrap pt-4">
     {{- if eq .Section "docs" }}
-    {{- partial "docs.html" . }}
+    {{- partial "document.html" . }}
     {{- else }}
     {{- block "main" . }}{{ end }}
     {{- end }}

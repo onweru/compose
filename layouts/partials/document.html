@@ -4,12 +4,12 @@
   </div>
   <div class="content">
     {{- .Content }}
-    <div class="pager" id="to-bottom">
+    <div class="pager">
       {{- with .Prev }}
-      <a href="{{ .Permalink }}#to-bottom" id="prev">{{ .Title }} {{ .Weight }}</a>
+      <a href="{{ .Permalink }}" id="prev">{{ .Title }}</a>
       {{ end }}
       {{- with .Next }}
-      <a href="{{ .Permalink }}#to-bottom" id="next">{{ .Title }} {{ .Weight }}</a>
+      <a href="{{ .Permalink }}" id="next">{{ .Title }}</a>
       {{- end }}
     </div>
   </div>

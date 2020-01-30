@@ -1,5 +1,5 @@
 <nav class="wrap nav">
-	<a class="navbar-brand" href="{{ .Site.Home.RelPermalink }}"><img src = "/images/compose.svg"></span>
+	<a class="navbar-brand" href="{{ .Site.BaseURL }}"><img src='{{ absURL "/images/compose.svg" }}'></span>
 	</a>
 	{{- partial "search.html" . }}
 	<ul class="nav_body">
@@ -11,9 +11,13 @@
 			{{- $active = or $active ( $.IsDescendant .)  }}
 			{{- end }}
 			{{- $url := urls.Parse .URL }}
-			{{- $baseurl := urls.Parse $.Site.Params.Baseurl }}
-			<a class="nav-link{{if $active }} active{{end}}" href="{{ with .Page }}{{ .RelPermalink }}{{ else }}{{ .URL | relLangURL }}{{ end }}" {{ if ne $url.Host $baseurl.Host }}target="_blank" {{ end }}><span{{if $active }} class="active"{{end}}>{{ .Name }}</span></a>
+			{{- $baseurl := $.Site.BaseURL }}
+			<a class="nav-link{{if $active }} active{{end}}" href="{{ with .Page }}{{ $baseurl }}{{ .Permalink }}{{ else }}{{ $baseurl }}{{ .URL }}{{ end }}"><span{{if $active }} class="active"{{end}}>{{ .Name }}</span></a>
 		</li>
 		{{- end }}
+		{{ $repo := .Site.Params.source }}
+		<li class="nav-item">
+			<a class="nav-link" href="{{ $repo.url }}" target="_blank">{{ $repo.name }}</a>
+		</li>
 	</ul>
 </nav>

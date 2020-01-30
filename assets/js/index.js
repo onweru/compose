@@ -136,15 +136,17 @@ function loadActions() {
       tocs.forEach(function(toc){
         toc.id = "";
         pushClass(toc, 'toc');
-        const tocItems = Array.from(toc.children[0].children);
-
-        const previousHeading = toc.previousElementSibling;
-        previousHeading.matches('.active') ? pushClass(toc, tocActive) : false;
+        if(toc.children.length >= 1) {
+          const tocItems = Array.from(toc.children[0].children);
   
-        tocItems.forEach(function(item){
-          pushClass(item, 'toc_item');
-          pushClass(item.firstElementChild, 'toc_link');
-        })
+          const previousHeading = toc.previousElementSibling;
+          previousHeading.matches('.active') ? pushClass(toc, tocActive) : false;
+    
+          tocItems.forEach(function(item){
+            pushClass(item, 'toc_item');
+            pushClass(item.firstElementChild, 'toc_link');
+          })
+        }
       });
 
       const currentToc = elem(`.${tocActive}`);

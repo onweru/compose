@@ -7,7 +7,7 @@ const idx = lunr(function () {
   {{ range $index, $page := .Site.Pages }}
   this.add({
     "id": "{{ $index }}",
-    "link": "{{ .RelPermalink }}",
+    "link": "{{ .Permalink }}",
     "title": "{{ .Title }}",
     "body": "{{ .PlainWords }}",
   });
@@ -18,7 +18,7 @@ const simpleIndex = [
   {{ range $index, $page := .Site.Pages }}
    {
      id: {{ $index }},
-     link: "{{ .RelPermalink }}",
+     link: "{{ .Permalink }}",
      title: "{{ .Title }}",
    },
   {{ end }}
