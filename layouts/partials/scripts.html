@@ -1,0 +1,12 @@
+{{- $lunrPath := "js/lunr.js" }}
+{{- $lunr := resources.Get $lunrPath | resources.ExecuteAsTemplate $lunrPath . }}
+
+{{- $searchPath := "js/search.js" }}
+{{- $search := resources.Get $searchPath | resources.ExecuteAsTemplate $searchPath . }}
+
+
+{{- $mainScriptPath := "js/index.js" }}
+{{- $main := resources.Get $mainScriptPath | resources.ExecuteAsTemplate $mainScriptPath . }}
+
+{{- $bundle := slice $lunr $search $main | resources.Concat "js/bundle.js" | resources.Minify | resources.Fingerprint "sha512" }}
+<script src = '{{ $bundle.Permalink }}'></script>

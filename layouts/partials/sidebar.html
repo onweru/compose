@@ -1,0 +1,24 @@
+<aside class="aside">
+  {{- template "tree" (dict "page" . "section" .FirstSection)  }}
+  {{- define "tree" }}
+  {{- $s := .section }}
+  {{- $p := .page }}
+  {{- $permalink := $p.RelPermalink }}
+  <section class="section">
+    <h2 class="section_title{{ if eq $s.RelPermalink $permalink }} active{{ end }}"><a  href="{{ $s.RelPermalink }}" class="group">{{ $s.Title }}</a></h2>
+      {{- $pages := $s.Pages }}
+      {{- with $pages }}
+      <section class="" id="docs-{{ anchorize $s.Title }}">
+        {{- range . }}
+        {{- if .IsPage }}
+        <h3 class="section_link{{ if eq .RelPermalink $permalink }} active{{ end }}"><a id="docs-{{ anchorize .Title }}" href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+        {{- .TableOfContents }}
+        {{- else }}
+        {{- template "tree" (dict "page" $p "section" .) }}
+        {{- end }}
+        {{- end }}
+      </section>
+      {{- end }}
+  </section>
+  {{- end }}
+</aside>

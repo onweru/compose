@@ -1,0 +1,9 @@
+{{- $links := .Site.Params.links }}
+<footer class="mt-2 pt-2 pb-2">
+  <div class="wrap">
+    <div class="">
+      {{- with .Site.Params.copyright }}<small class="">&copy; {{ now.Year}} {{ .}} {{ T "footer_all_rights_reserved" }}</small>{{ end }}
+      {{ with .Site.Params.privacy_policy }}<small class=""><a href="{{ . }}" target="_blank">{{ T "footer_privacy_policy" }}</a></small>{{ end }}
+    </div>
+  </div>
+</footer>
