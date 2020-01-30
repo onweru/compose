@@ -1,8 +1,6 @@
 # Compose
 
-Compose is a [Hugo](https://gohugo.io/) theme for technical documentation sets, providing simple navigation, site structure, and more.
-
-This is not an officially supported Google product. This project is actively being maintained.
+Compose is a [Hugo](https://gohugo.io/) theme for documentation sites, that provide simple navigation & structure.
 
 ## Prerequisites
 
