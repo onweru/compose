@@ -16,4 +16,10 @@ Note that the theme is built with simplicity in mind. This way, if a suggestion 
 {{< button "/docs/" "Read the Docs" >}} {{< button "https://github.com/onweru/compose" "Download Theme" >}}
 
 {{< /column >}}
+{{< column >}}
+![diy](/images/diy-2.jpeg)
+
+<!-- Photo by [Jasmin Schreiber](https://unsplash.com/@lavievagabonde?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on Unsplash -->
+
+{{< /column >}}
 {{< /block >}}
