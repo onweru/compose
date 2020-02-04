@@ -1,0 +1,46 @@
+.section
+  &_title
+    font-size: 1.1rem
+  &_link
+    font-size: 1rem
+    font-weight: 400
+
+.sidebar
+  &-link
+    display: grid
+    padding: 0.2rem 0
+
+.toc
+  border-left: 2px solid var(--theme)
+  padding: 0 1rem
+  height: 0
+  overflow: hidden
+  &_active
+    height: initial
+.search
+  flex: 1
+  display: flex
+  justify-content: flex-end
+  &_field
+    padding: 0.5rem 1.5rem
+    border-radius: 1.5rem
+    outline: none
+    border: none
+    box-shadow: 0 1rem 4rem rgba(0,0,0,0.17)
+  &_result
+
+.button
+  background-color: var(--dark)
+  color: var(--light)
+  border-radius: 0.25rem
+  display: inline-grid
+  padding: 0.75rem 1.5rem
+  text-align: center
+  &:hover
+    opacity: 0.84
+  & + &
+    background-color: var(--haze)
+    color: var(--dark)
+    @media screen and (min-width: 20rem)
+      margin-left: 0.5rem
+

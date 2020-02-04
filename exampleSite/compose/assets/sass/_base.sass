@@ -1,0 +1,162 @@
+*
+  box-sizing: border-box
+  -webkit-appearance: none
+  margin: 0
+  padding: 0
+
+body, html 
+  scroll-behavior: smooth
+
+body
+  font-family: var(--font)
+  background-color: var(--bg)
+  color: var(--text)
+  font-size: 16px
+  line-height: 1.5
+  max-width: 1440px
+  margin: 0 auto
+  position: relative
+  font-kerning: normal
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  min-height: 100vh
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+
+a
+  text-decoration: none
+  color: inherit
+p
+  padding: 1rem 0
+li 
+  padding: 0.25rem 0
+  p
+    padding: 0.5rem 0
+blockquote 
+  opacity: 0.8
+  padding: 1rem
+  position: relative
+  quotes: '\201C''\201D''\2018''\2019'
+  margin: 0.75rem 0
+  display: flex
+  flex-flow: row wrap
+  background-repeat: no-repeat
+  background-size: 5rem
+  background-position: 50% 50%
+  position: relative
+  &::before 
+    content: ""
+    padding: 1px
+    position: absolute
+    top: 0
+    bottom: 0
+    left: 0
+    background: var(--theme)
+  
+  p
+    padding-left: 0.5rem 0 !important
+    font-size: 1.1rem !important
+    width: 100%
+    font-weight: 300
+    font-style: italic
+
+h1,h2,h3,h4,h5
+  font-family: inherit
+  font-weight: 500
+  padding: 0.33rem 0
+  color: inherit
+  line-height: 1.35
+
+h1
+  font-size: 200%
+h2
+  font-size: 175%
+h3
+  font-size: 150%
+h4
+  font-size: 125%
+h5
+  font-size: 120%
+h6
+  font-size: 100%
+
+img, svg, figure
+  max-width: 100%
+  vertical-align: middle
+img 
+  height: auto
+  margin: 1rem auto
+  padding: 0
+
+main
+  padding-bottom: 45px
+  flex: 1
+
+
+ol, ul
+  list-style: none
+
+b, strong 
+  font-weight: 500
+
+hr 
+  border: none
+  padding: 0.5px
+  background: var(--text)
+  opacity: 0.5
+  margin: 1rem 0
+
+aside 
+  position: sticky
+  top: 7rem
+  h3
+    position: relative
+  ul
+    padding: 0
+    list-style: none
+
+th, td 
+  padding: 0.5rem
+  font-weight: 400 !important
+  &:not(:first-child) 
+    padding-left: 1.5rem
+
+thead
+  background: var(--theme)
+  color: var(--light)
+  font-weight: 400 
+  text-align: left
+
+tbody 
+  tr 
+    &:nth-child(even) 
+      background-color: var(--gray)
+      box-shadow: 0 1rem 0.75rem -0.75rem rgba(0,0,0,0.07)
+    
+table
+  margin: 1.5rem 0
+  width:  100%
+
+.main
+  flex: 1
+
+.page
+  &-home
+    h1
+      font-weight: 300
+  &r
+    display: flex
+    justify-content: space-between
+    margin: 2.5rem 0
+
+.content
+  ul, ol
+    padding-left: 1.1rem
+  ul
+    list-style: initial
+  ol
+    list-style: decimal
+
+::placeholder
+  font-size: 1rem
