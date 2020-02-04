@@ -2,11 +2,11 @@ name = "Compose"
 license = "MIT"
 licenselink = "https://github.com/google/compose/blob/master/LICENSE"
 description = "A Hugo theme for technical documentation sites"
-homepage = "https://compose.netlify.com"
-tags = ["documentation", "simple", "customizable", "responsive", "docs"]
-features = []
-min_version = 0.53
+homepage = "https://compose-docs.netlify.com"
+tags = ["documentation", "simple", "customizable", "docs"]
+features = ["docs", "search"]
+min_version = 0.61
 
 [author]
   name = "Weru"
-  homepage = "https://compose.netlify.com"
+  homepage = "https://compose-docs.netlify.com"
