@@ -1,0 +1,49 @@
+baseURL = "/"
+title = "Compose"
+enableRobotsTXT = true
+theme = "compose"
+enableGitInfo = true
+
+disableKinds = ["taxonomy", "taxonomyTerm"]
+
+#  menu items
+[[menu.main]]
+    name = "Docs"
+    weight = 2
+    url = "/docs/"
+
+[[menu.main]]
+    name = "Example"
+    weight = 3
+    url = "/"
+
+[[menu.main]]
+    name = "GitHub"
+    icon = "github.svg"
+    weight = 4
+    url = "https://github.com/onweru/compose/"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = false
+    hl_Lines = ""
+    lineNoStart = 1
+    lineNos = true
+    lineNumbersInTable = true
+    noClasses = false
+    style = "monokai"
+    tabWidth = 2
+
+# Everything below this are Site Params
+
+[params]
+copyright = "Weru"
+searchPlaceholder = "Search the docs ..."
+repo = "https://github.com/onweru/compose"
+
+time_format_blog = "Monday, January 02, 2006"
+time_format_default = "January 2, 2006"
