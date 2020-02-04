@@ -12,12 +12,13 @@ The following are basic prerequisites for using compose in your site:
 
 ## Example and usage
 
-You can find an example project that uses Compose in the [Compose Example Project repo](https://github.com/onweru/compose). The Compose Example Project is hosted at [https://example.Compose.dev/](https://example.Compose.dev/).
+You can find an example project that uses Compose in the [Compose Example Project repo](https://github.com/onweru/compose-userguide). 
 
+The Compose Example Project is hosted at [https://compose-docs.netlify.com](https://compose-docs.netlify.com). This project also stands as the theme's user guide.
 
-## Documentation
+> This guide covers the necessary bits. As the project evolves, the userguide will get more comprehensive
 
-Compose has its own user guide (using Compose, of course!) with lots more information about using the theme, which you can find at [https://compose-docs.netlify.com](https://compose-docs.netlify.com). Alternatively you can use Hugo to generate and serve a local copy of the guide (also useful for testing local theme changes), making sure you have installed all the prerequisites listed above:
+You can use Hugo to generate and serve a local copy of the guide (also useful for testing local theme changes), making sure you have installed all the prerequisites listed above:
 
 ```
 git clone --recurse-submodules --depth 1 https://github.com/onweru/compose.git
