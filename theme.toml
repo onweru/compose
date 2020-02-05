@@ -1,7 +1,7 @@
 name = "Compose"
 license = "MIT"
 licenselink = "https://github.com/onweru/compose/blob/master/LICENSE"
-description = "A hugo docs theme inspired by forestry.io's docs page"
+description = "A hugo theme for documentation sites. It's inspired by forestry.io's docs page"
 homepage = "https://compose-docs.netlify.com"
 tags = ["simple", "docs"]
 features = ["docs", "search"]
