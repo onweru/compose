@@ -1,3 +1,3 @@
 ## Guide
 
-This guide is in beta. 
+This guide covers the necessary bits. As the project evolves, it will only become more comprehensive
