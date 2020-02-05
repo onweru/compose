@@ -12,11 +12,6 @@ disableKinds = ["taxonomy", "taxonomyTerm"]
     weight = 2
     url = "/docs/"
 
-[[menu.main]]
-    name = "Example"
-    weight = 3
-    url = "/"
-
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]
@@ -35,7 +30,7 @@ disableKinds = ["taxonomy", "taxonomyTerm"]
 # Everything below this are Site Params
 
 [params]
-  copyright = "Weru"
+  author = "Weru"
   searchPlaceholder = "Search the docs ..."
   repo = "https://github.com/onweru/compose"
 
