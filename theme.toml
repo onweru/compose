@@ -5,7 +5,7 @@ description = "A hugo theme for documentation sites. It's inspired by forestry.i
 homepage = "https://compose-docs.netlify.com"
 tags = ["simple", "docs"]
 features = ["docs", "search"]
-min_version = 0.61
+min_version = "0.53.0"
 
 [author]
   name = "Weru"
