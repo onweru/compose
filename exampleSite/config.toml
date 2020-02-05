@@ -10,7 +10,7 @@ disableKinds = ["taxonomy", "taxonomyTerm"]
 [[menu.main]]
     name = "Docs"
     weight = 2
-    url = "/docs/"
+    url = "docs/"
 
 [markup]
   [markup.goldmark]
