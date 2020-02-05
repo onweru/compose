@@ -1,8 +1,6 @@
 # Compose
 
-Compose is a [Hugo](https://gohugo.io/) docs theme, inspired by [forestry.io](forestry.io)'s. 
-
-The theme provides a simple navigation & structure.
+Compose is a [Hugo](https://gohugo.io/) docs theme, inspired by [forestry.io](forestry.io)'s. The theme provides a simple navigation & structure.
 
 ![Hugo Compose Theme](https://github.com/onweru/compose/blob/master/images/screenshot.png)
 
