@@ -5,10 +5,10 @@
   <div class="content">
     {{- .Content }}
     <div class="pager">
-      {{- with .Prev }}
+      {{- with .Next }}
       <a href="{{ .Permalink }}" id="prev">{{ .Title }}</a>
       {{ end }}
-      {{- with .Next }}
+      {{- with .Prev }}
       <a href="{{ .Permalink }}" id="next">{{ .Title }}</a>
       {{- end }}
     </div>
