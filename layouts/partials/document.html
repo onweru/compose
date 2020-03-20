@@ -2,7 +2,8 @@
   <div>
     {{- partial "sidebar.html" . }}
   </div>
-  <div class="content">
+  <section class="content">
+    <h1>{{ .Title }}</h1>
     {{- .Content }}
     <div class="pager">
       {{- with .Next }}
@@ -12,5 +13,5 @@
       <a href="{{ .Permalink }}" id="next">{{ .Title }}</a>
       {{- end }}
     </div>
-  </div>
+  </section>
 </div>
