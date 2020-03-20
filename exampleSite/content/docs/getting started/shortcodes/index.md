@@ -63,3 +63,15 @@ This adds a styled link (styled like a button). It takes two no-optional paramet
 ```
   {{</* button url="/" label="doe nu mee" */>}}
 ```
+
+### Picture
+
+You want to use darkmode images when darkmode is enabled on a device and a regular image on lightmode? It takes 3 positional parameter
+
+Store these images in the `static/images` directory. 
+
+```
+...
+{{</* picture "lightModeImage.png" "darkModeImage.png" "Image alt text" */>}}
+...
+```
