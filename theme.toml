@@ -3,8 +3,8 @@ license = "MIT"
 licenselink = "https://github.com/onweru/compose/blob/master/LICENSE"
 description = "A hugo theme for documentation sites. It's inspired by forestry.io's docs page"
 homepage = "https://compose-docs.netlify.com"
-tags = ["simple", "docs"]
-features = ["docs", "search"]
+tags = ["simple", "docs", "dark", "customizable"]
+features = ["docs", "search", "dark", "customizable"]
 min_version = "0.53.0"
 
 [author]
