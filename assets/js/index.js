@@ -97,6 +97,24 @@ function closestInt(goal, collection) {
   return closest
 }
 
+function hasClasses(el) {
+  if(isObj(el)) {
+    const classes = el.classList;
+    return classes.length
+  }
+}
+
+(function markInlineCodeTags(){
+  const codeBlocks = elems('code');
+  if(codeBlocks) {
+    codeBlocks.forEach(function(codeBlock){
+      if(!hasClasses(codeBlock)) {
+        codeBlock.children.length ? false : pushClass(codeBlock, 'noClass');
+      } 
+    });
+  }
+})();
+
 function activeHeading(position, listLinks) {
   let active = 'active';
 
@@ -110,8 +128,6 @@ function activeHeading(position, listLinks) {
   linksToModify.new = listLinks.filter(function(link){
     return parseInt(link.dataset.position) === position
   })[0];
-
-  console.log(linksToModify.new)
 
   if (linksToModify.active != linksToModify.new) {
     linksToModify.active ? deleteClass(linksToModify.active, active): false;
@@ -167,13 +183,11 @@ function loadActions() {
         pageInternalLinks.forEach(function(link, index){
           link.dataset.position = linkPositions[index]
         });
-        console.log(linkPositions);
 
         window.addEventListener('scroll', function(e) {
           // this.setTimeout(function(){
           let position = window.scrollY;
           let active = closestInt(position, linkPositions);
-          console.log(active);
           activeHeading(active, pageInternalLinks);
           // }, 1500)
         });
@@ -204,7 +218,6 @@ function loadActions() {
     
     if (searchField) {
       searchField.addEventListener('input', function() {
-        console.log('typing')
         let rawResults = idx.search(`${ this.value }`).slice(0,6);
         let refs = rawResults.map(function(ref){
           // return id and score in a single string
