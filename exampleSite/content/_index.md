@@ -7,7 +7,7 @@ title = "Compose"
 
 # Compose your Docs with __Ease__.
 
-Compose is a lean theme for the _Hugo_, inspired by [forestry.io](https://forestry.io). 
+Compose is a lean theme for the `Hugo`, inspired by [forestry.io](https://forestry.io). 
 
 We do a [Pull Request](https://github.com/onweru/compose/pulls) contributions workflow on **GitHub**. Also feel free to raise any issues or feature suggestions.
 

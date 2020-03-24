@@ -7,6 +7,22 @@ description: >
 
 ### Using blocks, columns & buttons
 
+```markdown
+{{</* block "grid-2" */>}}
+{{</* column */>}}
+#### Coumn 1 
+
+Lorem ipsum dolor sit amet, 
+...
+
+{{</* button "https://github.com/onweru/compose" "Download Theme" */>}}
+
+{{</* /column */>}}
+{{</* column */>}}
+
+<!-- generates 👇 -->
+```
+
 {{< block "grid-2" >}}
 {{< column >}}
 #### Coumn 1 
@@ -41,9 +57,18 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
 
 ### Youtube
 
+```markdown
+{{</* youtube "q0hyYWKXF0Q" */>}}
+<!-- generates 👇 -->
+```
+
 {{< youtube "q0hyYWKXF0Q" >}}
 
 ## Picture
 
+```markdown
+{{</* picture "compose.svg" "compose-light.svg" "Compose Logo" */>}} 
+<!-- generates 👇 -->
+```
+
 {{< picture "compose.svg" "compose-light.svg" "Compose Logo" >}}
-...
