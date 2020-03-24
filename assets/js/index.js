@@ -137,6 +137,9 @@ function activeHeading(position, listLinks) {
 
 function loadActions() {
 
+  const parentURL = '{{ absURL "" }}';
+  const doc = document.documentElement;
+
   (function updateDate() {
     const date = new Date();
     const year = date.getFullYear();
@@ -244,6 +247,116 @@ function loadActions() {
       });
     }
     
+  })();
+
+  (function makeExternalLinks(){
+    let links = elems('a');
+    if(links) {
+      Array.from(links).forEach(function(link){
+        let target, rel, blank, noopener, attr1, attr2, url, isExternal;
+        url = elemAttribute(link, 'href');
+        isExternal = (url && typeof url == 'string' && url.startsWith('http')) && !url.startsWith(parentURL) ? true : false;
+        if(isExternal) {
+          target = 'target';
+          rel = 'rel';
+          blank = '_blank';
+          noopener = 'noopener';
+          attr1 = elemAttribute(link, target);
+          attr2 = elemAttribute(link, noopener);
+
+          attr1 ? false : elemAttribute(link, target, blank);
+          attr2 ? false : elemAttribute(link, rel, noopener);
+        }
+      });
+    }
+  })();
+
+  let headingNodes = [], results, link, icon, current, id,
+  tags = ['h2', 'h3', 'h4', 'h5', 'h6'];
+
+  current = document.URL;
+
+  tags.forEach(function(tag){
+    results = document.getElementsByTagName(tag);
+    Array.prototype.push.apply(headingNodes, results);
+  });
+  
+  function sanitizeURL(url) {
+    // removes any existing id on url
+    const hash = '#';
+    const positionOfHash = url.indexOf(hash);
+    if(positionOfHash > -1 ) {
+      const id = url.substr(positionOfHash, url.length - 1);
+      url = url.replace(id, '');
+    }
+    return url
+  }
+
+  headingNodes.forEach(function(node){
+    link = createEl('a');
+    icon = createEl('img');
+    icon.src = '{{ absURL "icons/link.svg" }}';
+    link.className = 'link icon';
+    link.appendChild(icon);
+    id = node.getAttribute('id');
+    if(id) {
+      link.href = `${sanitizeURL(current)}#${id}`;
+      node.appendChild(link);
+      pushClass(node, 'link_owner');
+    }
+  });
+
+  const copyToClipboard = str => {
+    let copy, selection, selected;
+    copy = createEl('textarea');
+    copy.value = str;
+    copy.setAttribute('readonly', '');
+    copy.style.position = 'absolute';
+    copy.style.left = '-9999px';
+    selection = document.getSelection();
+    doc.appendChild(copy);
+    // check if there is any selected content
+    selected = selection.rangeCount > 0 ? selection.getRangeAt(0) : false;
+    copy.select();
+    document.execCommand('copy');
+    doc.removeChild(copy);
+    if (selected) { // if a selection existed before copying
+      selection.removeAllRanges(); // unselect existing selection
+      selection.addRange(selected); // restore the original selection
+    }
+  }
+
+
+  function copyFeedback(parent) {
+    const copyText = document.createElement('div');
+    const yanked = 'link_yanked';
+    copyText.classList.add(yanked);
+    copyText.innerText = 'Link Copied';
+    if(!elem(`.${yanked}`, parent)) {
+      parent.appendChild(copyText);
+      setTimeout(function() { 
+        // parent.removeChild(copyText)
+      }, 3000);
+    }
+  }
+
+  (function copyHeadingLink() {
+    let deeplink, deeplinks, newLink, parent, target;
+    deeplink = 'link';
+    deeplinks = elems(`.${deeplink}`);
+    if(deeplinks) {
+      document.addEventListener('click', function(event)
+      {
+        target = event.target;
+        parent = target.parentNode;
+        if (target && containsClass(target, deeplink) || containsClass(parent, deeplink)) {
+          event.preventDefault();
+          newLink = target.href != undefined ? target.href : target.parentNode.href;
+          copyToClipboard(newLink);
+          target.href != undefined ?  copyFeedback(target) : copyFeedback(target.parentNode);
+        }
+      });
+    }
   })();
 }
 
