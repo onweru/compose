@@ -12,7 +12,9 @@
         {{- range . }}
         {{- if .IsPage }}
         <h3 class="section_link{{ if eq .RelPermalink $permalink }} active{{ end }}"><a id="docs-{{ anchorize .Title }}" href="{{ .Permalink }}">{{ .Title }}</a></h3>
-        {{- .TableOfContents }}
+        {{- if ne (print .TableOfContents) ""}}
+          {{- .TableOfContents }}
+        {{- end }}
         {{- else }}
         {{- template "tree" (dict "page" $page "section" .) }}
         {{- end }}
