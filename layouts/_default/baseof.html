@@ -1,20 +1,20 @@
 <!doctype html>
 <html lang="{{ .Site.Language.Lang }}">
 <head>
-  {{- partial "head.html" . }}
+  {{- partial "head" . }}
 </head>
 <body class="page-{{ .Kind }}">
   <header class="nav_header">
-    {{- partial "nav.html" . }}
+    {{- partial "nav" . }}
   </header>
   <main class="main wrap pt-4">
     {{- if eq .Section "docs" }}
-    {{- partial "document.html" . }}
+    {{- partial "document" . }}
     {{- else }}
     {{- block "main" . }}{{ end }}
     {{- end }}
   </main>
-  {{- partial "footer.html" . }}
-  {{- partial "scripts.html" . }}
+  {{- partial "footer" . }}
+  {{- partial "scripts" . }}
 </body>
 </html>
