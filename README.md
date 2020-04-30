@@ -25,3 +25,12 @@ hugo server --themesDir ../..
 ```
 
 Note that you need the `themesDir` flag when running Hugo because the site files are inside the theme repo.
+
+## From the same creator
+
+1. [Swift Theme](https://github.com/onweru/hugo-swift-theme)
+2. [Newsroom Theme](https://github.com/onweru/newsroom)
+
+## License
+
+This theme is available under the [MIT license](https://github.com/onweru/compose/blob/master/LICENSE.md).
