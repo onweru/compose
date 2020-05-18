@@ -22,7 +22,7 @@
 			{{- end }}
 			{{- $url := urls.Parse .URL }}
 			{{- $baseurl := $.Site.BaseURL }}
-			<a class="nav-link{{if $active }} active{{end}}" href="{{ with .Page }}{{ $baseurl }}{{ .RelPermalink }}{{ else }}{{ $baseurl }}{{ .URL }}{{ end }}"><span{{if $active }} class="active"{{end}}>{{ .Name }}</span></a>
+			<a class="nav-link{{if $active }} active{{end}}" href="{{ with .Page }}{{ $baseurl }}{{ .RelPermalink }}{{ else }}{{ .URL }}{{ end }}"><span{{if $active }} class="active"{{end}}>{{ .Name }}</span></a>
 		</li>
 		{{- end }}
 		{{ $repo := .Site.Params.source }}
