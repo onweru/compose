@@ -2,8 +2,8 @@
 	<a href="{{ .Site.BaseURL }}">
 		<picture>
 			{{- $logos := .Site.Params.logo }}
-			{{- $normalPath := absURL (printf "images/%s" $logos.lightMode) }}
-			{{- $darkPath := absURL (printf "images/%s" $logos.darkMode) }}
+			{{- $normalPath := relURL (printf "images/%s" $logos.lightMode) }}
+			{{- $darkPath := relURL (printf "images/%s" $logos.darkMode) }}
 			
 			<source srcset = '{{ $darkPath }}' media="(prefers-color-scheme: dark)">
 			<img srcset = '{{ $normalPath }}' alt = '{{ .Site.Title }} Logo'>

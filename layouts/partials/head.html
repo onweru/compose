@@ -2,14 +2,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {{- hugo.Generator }}
 {{- $iconsPath := "/favicons/" }}
-<link rel="apple-touch-icon" sizes="180x180" href='{{ absURL (printf "%sapple-touch-icon.png" $iconsPath) }}'>
-<link rel="icon" type="image/png" sizes="32x32" href='{{ absURL (printf "%sfavicon-32x32.png" $iconsPath) }}'>
-<link rel="icon" type="image/png" sizes="16x16" href='{{ absURL (printf "%sfavicon-16x16.png" $iconsPath) }}'>
-<link rel="manifest" href='{{ absURL (printf "%ssite.webmanifest" $iconsPath) }}'>
-<link rel="mask-icon" href='{{ absURL (printf "%ssafari-pinned-tab.svg" $iconsPath) }}'  color="#004750">
-<link rel="shortcut icon" href='{{ absURL (printf "%sfavicon.ico" $iconsPath) }}'>
+<link rel="apple-touch-icon" sizes="180x180" href='{{ relURL (printf "%sapple-touch-icon.png" $iconsPath) }}'>
+<link rel="icon" type="image/png" sizes="32x32" href='{{ relURL (printf "%sfavicon-32x32.png" $iconsPath) }}'>
+<link rel="icon" type="image/png" sizes="16x16" href='{{ relURL (printf "%sfavicon-16x16.png" $iconsPath) }}'>
+<link rel="manifest" href='{{ relURL (printf "%ssite.webmanifest" $iconsPath) }}'>
+<link rel="mask-icon" href='{{ relURL (printf "%ssafari-pinned-tab.svg" $iconsPath) }}'  color="#004750">
+<link rel="shortcut icon" href='{{ relURL (printf "%sfavicon.ico" $iconsPath) }}'>
 <meta name="msapplication-TileColor" content="#ffffff">
-<meta name="msapplication-config" content='{{ absURL (printf "%sbrowserconfig.xml" $iconsPath) }}'>
+<meta name="msapplication-config" content='{{ relURL (printf "%sbrowserconfig.xml" $iconsPath) }}'>
 <meta name="theme-color" content="#ffffff">
 
 <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ with .Title }}{{ . }} | {{ end }}{{ .Site.Title }}{{ end }}</title>
