@@ -104,6 +104,13 @@ function hasClasses(el) {
   }
 }
 
+(function calcNavHeight(){
+  const nav = elem('.nav_header');
+  const navHeight = nav.offsetHeight;
+  const docContent = elem('main');
+  docContent.style.paddingTop = `${navHeight + 20}px`;
+})();
+
 (function markInlineCodeTags(){
   const codeBlocks = elems('code');
   if(codeBlocks) {
