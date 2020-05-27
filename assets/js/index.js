@@ -94,7 +94,7 @@ function closestInt(goal, collection) {
   const closest = collection.reduce(function(prev, curr) {
     return (Math.abs(curr - goal) < Math.abs(prev - goal) ? curr : prev);
   });
-  return closest
+  return closest;
 }
 
 function hasClasses(el) {
@@ -109,6 +109,7 @@ function hasClasses(el) {
   const navHeight = nav.offsetHeight;
   const docContent = elem('main');
   docContent.style.paddingTop = `${navHeight + 20}px`;
+  return navHeight + 20;
 })();
 
 (function markInlineCodeTags(){
