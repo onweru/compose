@@ -1,4 +1,4 @@
-baseURL = "https://compose-docs.netlify.com/"
+baseURL = "https://example.com/"
 title = "Compose Docs"
 enableRobotsTXT = true
 theme = "compose"
