@@ -106,10 +106,10 @@ function hasClasses(el) {
 
 (function calcNavHeight(){
   const nav = elem('.nav_header');
-  const navHeight = nav.offsetHeight;
-  const docContent = elem('main');
-  docContent.style.paddingTop = `${navHeight + 20}px`;
-  return navHeight + 20;
+  const navHeight = nav.offsetHeight + 25;
+  const docContent = elem('main'); 
+  docContent.style.paddingTop = `${navHeight}px`;
+  return navHeight;
 })();
 
 (function markInlineCodeTags(){
