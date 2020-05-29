@@ -257,24 +257,25 @@ function loadActions() {
     
   })();
 
-  (function makeExternalLinks(){
+  (function markExternalLinks(){
     let links = elems('a');
     if(links) {
-      Array.from(links).forEach(function(link){
+      Array.from(links).forEach(function(link, index){
         let target, rel, blank, noopener, attr1, attr2, url, isExternal;
         url = elemAttribute(link, 'href');
         isExternal = (url && typeof url == 'string' && url.startsWith('http')) && !url.startsWith(parentURL) ? true : false;
-        if(isExternal) {
-          target = 'target';
-          rel = 'rel';
-          blank = '_blank';
-          noopener = 'noopener';
-          attr1 = elemAttribute(link, target);
-          attr2 = elemAttribute(link, noopener);
+        index === 1 ?console.log(parentURL) : false;
+        // if(isExternal) {
+        //   target = 'target';
+        //   rel = 'rel';
+        //   blank = '_blank';
+        //   noopener = 'noopener';
+        //   attr1 = elemAttribute(link, target);
+        //   attr2 = elemAttribute(link, noopener);
 
-          attr1 ? false : elemAttribute(link, target, blank);
-          attr2 ? false : elemAttribute(link, rel, noopener);
-        }
+        //   attr1 ? false : elemAttribute(link, target, blank);
+        //   attr2 ? false : elemAttribute(link, rel, noopener);
+        // }
       });
     }
   })();
