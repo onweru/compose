@@ -70,8 +70,22 @@ You want to use darkmode images when darkmode is enabled on a device and a regul
 
 Store these images in the `static/images` directory. 
 
-```
+```sh
 ...
 {{</* picture "lightModeImage.png" "darkModeImage.png" "Image alt text" */>}}
+...
+```
+
+### Gallery
+
+Include inline galleries within your articles. These galleries can contain `N` number of images. It take 2 positional parameters. 
+
+The 1st parameter is required. It is _comma-separated list_ (`,`) of your images' paths.
+
+The 2nd parameter is optional. It is _double-collon-separated list_ (`::`) of your images' alt/description/captions text. It's always a good SEO practice to include alt text for your images.
+
+```sh
+...
+{{</* gallery "images/diy.jpeg,images/diy-2.jpeg,images/diy.jpeg" "Gallery Image 1::gallery image 2::gallery image 1 copy" */>}}
 ...
 ```

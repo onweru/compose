@@ -7,7 +7,7 @@ description: >
 
 ### Using blocks, columns & buttons
 
-```markdown
+```sh
 {{</* block "grid-2" */>}}
 {{</* column */>}}
 #### Coumn 1 
@@ -57,7 +57,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
 
 ### Youtube
 
-```markdown
+```sh
 {{</* youtube "q0hyYWKXF0Q" */>}}
 <!-- generates 👇 -->
 ```
@@ -66,9 +66,26 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
 
 ## Picture
 
-```markdown
+```sh
 {{</* picture "compose.svg" "compose-light.svg" "Compose Logo" */>}} 
 <!-- generates 👇 -->
 ```
 
 {{< picture "compose.svg" "compose-light.svg" "Compose Logo" >}}
+
+## Gallery
+
+Include inline galleries within your articles. These galleries can contain `N` number of images. It take 2 positional parameters. 
+
+The 1st parameter is required. It is _comma-separated list_ (`,`) of your images' paths.
+
+The 2nd parameter is optional. It is _double-collon-separated list_ (`::`) of your images' alt/description/captions text. It's always a good SEO practice to include alt text for your images.
+
+```sh
+{{</* gallery "images/diy.jpeg,images/diy-2.jpeg,images/diy.jpeg" "Gallery Image 1::gallery image 2::gallery image 1 copy" */>}}
+# generates 👇
+```
+
+{{< gallery "images/diy.jpeg,images/diy-2.jpeg,images/diy.jpeg" "Gallery Image 1::gallery image 2::gallery image 1 copy" >}}
+
+> For legibility, you may include a space after the delimiters `,` & `::`
