@@ -78,11 +78,11 @@ Store these images in the `static/images` directory.
 
 ### Gallery
 
-Include inline galleries within your articles. These galleries can contain `N` number of images. It take 2 positional parameters. 
+Include inline galleries within your articles. These galleries can contain `N` number of images. It takes 2 positional parameters. 
 
-The 1st parameter is required. It is _comma-separated list_ (`,`) of your images' paths.
+The 1st parameter is required. It's a _comma-separated list_ (`,`) of your images' paths.
 
-The 2nd parameter is optional. It is _double-collon-separated list_ (`::`) of your images' alt/description/captions text. It's always a good SEO practice to include alt text for your images.
+The 2nd parameter is optional. It's a _double-collon-separated list_ (`::`) of your images' alt/description/captions text. It's always a good SEO practice to include alt text for your images.
 
 ```sh
 ...
