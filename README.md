@@ -10,9 +10,7 @@ Install a recent release of the Hugo "extended" version; ideally versions `>= 0.
 
 ## Example 
 
-You can find an example project that uses Compose in the [Compose Userguide](https://github.com/onweru/compose-userguide). 
-
-The Compose Example Project is hosted at [https://compose-docs.netlify.com](https://compose-docs.netlify.com). This project also stands as the theme's user guide.
+You can find an example project that uses Compose in the [Compose Userguide](https://github.com/onweru/compose-userguide), which also stands as the theme's user guide.
 
 > This guide covers the necessary bits. As the project evolves, the userguide will get more comprehensive
 
