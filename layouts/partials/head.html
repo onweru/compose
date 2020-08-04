@@ -12,7 +12,7 @@
 <meta name="msapplication-config" content='{{ absURL (printf "%sbrowserconfig.xml" $iconsPath) }}'>
 <meta name="theme-color" content="#ffffff">
 
-<title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ with .Title }}{{ . }} | {{ end }}{{ .Site.Title }}{{ end }}</title>
+<title>{{ if and .Title (ne (trim (lower .Site.Title) "") (trim (lower .Title) "")) }} | {{ end }}{{ .Site.Title }}{{ end }}</title>
 
 {{- partial "opengraph" . }}
 
