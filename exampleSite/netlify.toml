@@ -3,7 +3,7 @@ base = "exampleSite" # remove or uncomment line if your content is at the root o
 publish = "public"
 
 # command = "hugo --gc --minify"
-command = "hugo --gc --minify --themesDir ../.."
+command = "hugo --gc --minify --themesDir /opt/build/repo/"
 
 [context.production.environment]
 HUGO_VERSION = "0.74.3"
