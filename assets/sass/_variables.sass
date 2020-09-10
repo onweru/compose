@@ -11,14 +11,6 @@ html
   --theme: #20c997
   --font: 'Metropolis', sans-serif
   --border-color: #eee
-  &::after
-    content: ""
-    height: 15vh
-    position: fixed
-    bottom: 0
-    width: 100vw
-    z-index: 9999
-    background: linear-gradient(to top, var(--bg), transparent)
 
   @media (prefers-color-scheme: dark)
     --bg: var(--dark)
@@ -27,10 +19,8 @@ html
     --overlay: var(--bubble)
     --border-color: transparent
     *
-      box-shadow: none !important 
-    &::after
-      background: linear-gradient(to top, var(--bg), transparent)
+      box-shadow: none !important
 
-%narrow 
+%narrow
   max-width: 750px
   margin: 0 auto
