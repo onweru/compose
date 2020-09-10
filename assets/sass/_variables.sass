@@ -11,15 +11,15 @@ html
   --theme: #20c997
   --font: 'Metropolis', sans-serif
   --border-color: #eee
-
-  @media (prefers-color-scheme: dark)
-    --bg: var(--dark)
-    --text: var(--light)
-    --accent: var(--bubble)
-    --overlay: var(--bubble)
-    --border-color: transparent
-    *
-      box-shadow: none !important
+  &.has_magic // when darkmode is enabled via config
+    @media (prefers-color-scheme: dark)
+      --bg: var(--dark)
+      --text: var(--light)
+      --accent: var(--bubble)
+      --overlay: var(--bubble)
+      --border-color: transparent
+      *
+        box-shadow: none !important
 
 %narrow
   max-width: 750px

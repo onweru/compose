@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ .Site.Language.Lang }}">
+<html lang="{{ .Site.Language.Lang }}"{{ with .Site.Params.darkmode }} class="has_magic"{{ end }}>
 <head>
   {{- partial "head" . }}
 </head>

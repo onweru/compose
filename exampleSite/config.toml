@@ -36,6 +36,7 @@ disableKinds = ["taxonomy", "taxonomyTerm"]
 
   time_format_blog = "Monday, January 02, 2006"
   time_format_default = "January 2, 2006"
+  darkMode = true # set to false to disable darkmode by default
   [params.logo]
     lightMode = "compose.svg"
     darkMode = "compose-light.svg"

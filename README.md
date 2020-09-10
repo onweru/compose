@@ -30,6 +30,10 @@ hugo server --themesDir ../..
 
 Note that you need the `themesDir` flag when running Hugo because the site files are inside the theme repo.
 
+### How do I disable dark mode?
+
+Under `params` add `darkMode = false` to your `config.toml` file. If your site is based on the exampleSite, the value is already included; you only need to uncomment it.
+
 ## From the same creator
 
 1. [Swift Theme](https://github.com/onweru/hugo-swift-theme)

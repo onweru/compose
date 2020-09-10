@@ -4,8 +4,9 @@
 			{{- $logos := .Site.Params.logo }}
 			{{- $normalPath := absURL (printf "images/%s" $logos.lightMode) }}
 			{{- $darkPath := absURL (printf "images/%s" $logos.darkMode) }}
-			
+			{{ with .Site.Params.darkmode }}
 			<source srcset = '{{ $darkPath }}' media="(prefers-color-scheme: dark)">
+			{{ end }}
 			<img srcset = '{{ $normalPath }}' alt = '{{ .Site.Title }} Logo'>
 		</picture>
 	</a>
