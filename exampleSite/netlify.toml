@@ -1,7 +1,9 @@
 [build]
-base = "exampleSite" # remove or uncomment line if your content is at the root of your repo
+base = "exampleSite" # remove or uncomment line if your content is at the root of your repo. While you're at it, uncomment line 5 and comment line 6.
 publish = "public"
-command = "hugo --gc --minify"
+
+# command = "hugo --gc --minify"
+command = "hugo --gc --minify --themesDir ../.."
 
 [context.production.environment]
 HUGO_VERSION = "0.74.3"
