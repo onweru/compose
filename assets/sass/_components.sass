@@ -93,7 +93,7 @@
   justify-content: center
   align-items: center
   margin: 0 0.5rem
-  
+
 .link
   opacity: 0
   position: relative
@@ -136,3 +136,75 @@
     margin: 0 0 1rem
   &_image
     margin: 0 auto
+
+.pager
+  display: flex
+  justify-content: space-between
+  align-items: center
+  padding-top: 2rem
+  margin: 2rem 0
+  svg
+    filter: opacity(0.75)
+    width: 1.25rem
+    height: 1rem
+    transform-origin: 50% 50%
+
+  &_lean
+    justify-content: flex-end
+
+  &_label
+    max-width: 100%
+    overflow: hidden
+    white-space: nowrap
+    text-overflow: ellipsis
+
+  &_link
+    padding: 0.5rem 1rem
+    border-radius: 0.25rem
+    width: 12.5rem
+    max-width: initial
+    position: relative
+    display: flex
+    align-items: center
+    text-align: center
+    justify-content: center
+    &::before, &::after
+      background-image: url(../images/next.svg)
+      height: 0.8rem
+      width: 0.8rem
+      background-size: 100%
+      background-repeat: no-repeat
+      transform-origin: 50% 50%
+
+  &_item
+    display: flex
+    flex-direction: column
+    flex: 1
+    max-width: 48%
+    filter: opacity(0.5)
+    &.prev
+      align-items: flex-start
+
+    &.next
+      align-items: flex-end
+      &::after
+        content: ""
+
+  &_item.prev &_link
+    &::before
+      content: ""
+      transform: rotate(180deg)
+      margin-right: 0.67rem
+
+  &_item.next &_link
+    &::after
+      content: ""
+      margin-left: 0.67rem
+
+  &_item.next &_link
+    grid-template-columns: 1fr 1.5rem
+
+  &_meta
+    margin: 0.5rem 0;
+    &.prev
+      filter: grayscale(0.5)
