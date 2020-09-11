@@ -221,8 +221,6 @@ numerare, arma Bacche, est natum tetendi quod, volucrum, aquas convulso tofis,
 coeunt. Eripere antiquas doloris aeraque puero neque omni moveri timeo
 contendere fuit Trinacriam.
 
-## Title ABC
-
 Ausoniis sed duos quodque his nomina flecti et tauri concurrit [poterat
 renarrant nervis](http://futuros-et.com/). Omnia hominem odoribus spinea paratu
 o indicio dolore. Lucidus quae ore, gravis appellantque patria rursus loci motus
