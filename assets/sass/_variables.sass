@@ -1,5 +1,4 @@
-// #161d21; // #1F2A2F; // #132433; // #24292e;
-html 
+html
   --light: #fff
   --dark: rgb(28,28,30)
   --haze: #f2f5f2
@@ -8,11 +7,14 @@ html
   --bg: var(--light)
   --overlay: var(--light)
   --text: var(--dark)
-  --theme: #20c997
   --font: 'Metropolis', sans-serif
   --border-color: #eee
-  &.has_magic // when darkmode is enabled via config
+  --theme: rgb(52,199,89)
+  // --theme:rgb(52,199,89)
+
+  &.has_magic
     @media (prefers-color-scheme: dark)
+      --theme: rgb(48,209,88)
       --bg: var(--dark)
       --text: var(--light)
       --accent: var(--bubble)
