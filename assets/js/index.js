@@ -257,30 +257,6 @@ function loadActions() {
     
   })();
 
-  (function markExternalLinks(){
-    let links = elems('a');
-    const contentWrapperClass = '.content';
-    if(links) {
-      Array.from(links).forEach(function(link, index){
-        let target, rel, blank, noopener, attr1, attr2, url, isExternal;
-        url = elemAttribute(link, 'href');
-        isExternal = (url && typeof url == 'string' && url.startsWith('http')) && !url.startsWith(parentURL) && link.closest(contentWrapperClass);
-        index === 1 ? console.log(parentURL) : false;
-        if(isExternal) {
-          target = 'target';
-          rel = 'rel';
-          blank = '_blank';
-          noopener = 'noopener';
-          attr1 = elemAttribute(link, target);
-          attr2 = elemAttribute(link, noopener);
-
-          attr1 ? false : elemAttribute(link, target, blank);
-          attr2 ? false : elemAttribute(link, rel, noopener);
-        }
-      });
-    }
-  })();
-
   let headingNodes = [], results, link, icon, current, id,
   tags = ['h2', 'h3', 'h4', 'h5', 'h6'];
 
