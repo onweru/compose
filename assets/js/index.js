@@ -368,15 +368,6 @@ function loadActions() {
       });
     }
   })();
-
-  (function lazyLoadImages() {
-    const images = elems('img');
-    images.forEach(function(image){
-      // supported natively by most modern browsers. 
-      image.loading = "lazy";
-    });
- })();
-
 }
 
 window.addEventListener('load', loadActions());
