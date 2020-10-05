@@ -1,5 +1,5 @@
 <nav class="wrap nav">
-	<a href="{{ .Site.BaseURL }}">
+	<a href="{{ .Site.BaseURL }}" class="nav_brand">
 		<picture>
 			{{- $logos := .Site.Params.logo }}
 			{{- $normalPath := absURL (printf "images/%s" $logos.lightMode) }}
@@ -9,11 +9,12 @@
 			{{ end }}
 			<img srcset = '{{ $normalPath }}' alt = '{{ .Site.Title }} Logo'>
 		</picture>
+		<label class="nav_toggle">Menu</label>
 	</a>
-	{{ if .Site.Params.enableSearch | default true }}
-	{{- partial "search.html" . }}
-	{{ end }}
 	<ul class="nav_body">
+		<li>
+			{{- partial "search.html" . }}
+		</li>
 		{{- $p := . }}
 		{{- range .Site.Menus.main }}
 		<li class="nav-item">
