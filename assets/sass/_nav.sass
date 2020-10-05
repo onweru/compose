@@ -1,10 +1,15 @@
 .nav
   display: grid
-  grid-template-columns: 10rem 1fr 1fr
   grid-gap: 1rem
   padding: 0 1.5rem !important
   align-items: center
   background-color: var(--bg)
+  @media screen and (min-width: 992px)
+    grid-template-columns: 10rem 1fr
+  &_brand
+    position: relative
+    picture, img
+      max-width: 10rem
   &_header
     position: fixed
     top: 0
@@ -13,9 +18,28 @@
     background-color: var(--bg)
     z-index: 999999
     border-bottom: 1px solid var(--border-color)
-
+  &_toggle
+    position: absolute
+    top: 0
+    bottom: 0
+    width: 3rem
+    display: grid
+    align-items: center
+    text-align: center
+    right: 0
+    color: var(--text)
+    @media screen and (min-width: 992px)
+      display: none
   &_body
     display: flex
+    position: fixed
+    height: 100vh
+    transform: translateX(-101vw)
+    @media screen and (min-width: 992px)
+      transform: translateX(0)
+      position: relative
+      height: initial
+      justify-content: flex-end
   &-link
     display: inline-flex
     padding: 0.5rem 1rem
