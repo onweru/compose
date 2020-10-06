@@ -22,9 +22,11 @@
 			{{- with .Page }}
 			{{- $active = or $active ( $.IsDescendant .)  }}
 			{{- end }}
-			{{- $url := urls.Parse .URL }}
-			{{- $baseurl := $.Site.BaseURL }}
-			<a class="nav-link{{if $active }} active{{end}}" href="{{ with .Page }}{{ $baseurl }}{{ .Permalink }}{{ else }}{{ $baseurl }}{{ .URL }}{{ end }}"><span{{if $active }} class="active"{{end}}>{{ .Name }}</span></a>
+			{{- $url := absURL .URL }}
+			{{- if or (hasPrefix .URL "http") (hasPrefix .URL "www.") }}
+				{{- $url = .URL }}
+			{{- end }}
+			<a class="nav-link{{if $active }} active{{end}}" href="{{ $url }}"><span{{if $active }} class="active"{{end}}>{{ .Name }}</span></a>
 		</li>
 		{{- end }}
 		{{ $repo := .Site.Params.source }}
