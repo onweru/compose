@@ -34,16 +34,7 @@ hugo server
 
 You can neutralize that drawback by forking the repo instead and following the same approach. Be sure the edit the `theme = ["github.com/onweru/compose"]` from the config.toml file appropriately.
 
-> :warn: If you choose __Option 2__ or __Option 3__ below, ensure you edit the following lines in the `config.toml` file ad advised on the comments
-
-```bash
-...
-# this example loads the theme as hugo module
-# comment out line below, and uncomment the line after it if you prefer to load the theme normally
-theme = ["github.com/onweru/compose"] # edit this if you'ld rather use a fork of this repo
-# theme = "compose"
-...
-```
+> ⚠️ If you choose __Option 2__ or __Option 3__ below, ensure you edit [these lines in the config.toml file](https://github.com/onweru/compose/blob/b3e30e0816621223224897edc45eeeabd0d9cd16/exampleSite/config.toml#L4-L7) as advised on the comments
 
 ### Option 2 (recommended)
 
@@ -75,7 +66,7 @@ cd compose/exampleSite/
 hugo server --themesDir ../..
 ```
 
-> Although, option 2 is great for quick testing, it is somewhat problematic when you want to update your theme. You would need to be careful not to overwrite your changes.
+> Although, option 3 is great for quick testing, it is somewhat problematic when you want to update your theme. You would need to be careful not to overwrite your changes.
 
 Once set, jump over to the `config.toml` file and start [configuring](#configuration) your site.
 
