@@ -12,6 +12,11 @@ disableKinds = ["taxonomy", "taxonomyTerm"]
     weight = 2
     url = "docs/"
 
+[[menu.main]]
+    name = "Example"
+    weight = 3
+    url = "https://compose-docs.netlify.app/"
+
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]
