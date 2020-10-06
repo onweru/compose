@@ -28,6 +28,8 @@
     width: 13.5rem
     outline: none
     border: none
+    background: transparent
+    color: var(--text)
     box-shadow: 0 1rem 4rem rgba(0,0,0,0.17)
     font-size: 1rem
   &_label
@@ -42,6 +44,7 @@
     padding: 0.5rem 1rem
     &:hover
       background-color: var(--theme)
+      color: var(--light)
     &s
       width: 13.5rem
       background-color: var(--overlay)
@@ -56,6 +59,7 @@
   &_title
     padding: 0.5rem 1rem 0.5rem 1rem
     background: var(--theme)
+    color: var(--light)
     font-size: 0.9rem
     opacity: 0.87
     text-transform: uppercase
@@ -168,7 +172,7 @@
     padding: 0.5rem 1rem
     border-radius: 0.25rem
     width: 12.5rem
-    max-width: initial
+    max-width: 40vw
     position: relative
     display: flex
     align-items: center
@@ -190,9 +194,11 @@
     // filter: opacity(0.87)
     &.prev
       align-items: flex-start
+      // margin-right: 0.5rem
 
     &.next
       align-items: flex-end
+      // margin-left: 0.5rem
       &::after
         content: ""
 

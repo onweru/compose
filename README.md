@@ -10,11 +10,11 @@ Compose is a [Hugo](https://gohugo.io/) theme for documentation websites, inspir
 2. Gallery Support (via shortcode)
 3. Native lazy loading of images
 
-## Installation 
+## Installation
 
 Install a recent release of the Hugo "extended" version; ideally versions `>= 0.61.0`. If you install from [hugo releases page](https://github.com/gohugoio/hugo/releases),  download the `_extended` version, which supports sass.
 
-## Example 
+## Example
 
 You can find an example project that uses Compose in the [Compose Userguide](https://github.com/onweru/compose-userguide), which also stands as the theme's user guide.
 
@@ -34,10 +34,13 @@ Note that you need the `themesDir` flag when running Hugo because the site files
 
 Under `params` add `darkMode = false` to your `config.toml` file. If your site is based on the exampleSite, the value is already included; you only need to uncomment it.
 
+> The user will still have the option to activate dark mode, if they so wish
+
 ## From the same creator
 
-1. [Swift Theme](https://github.com/onweru/hugo-swift-theme)
+1. [Clarity Theme](https://github.com/chipzoller/hugo-clarity)
 2. [Newsroom Theme](https://github.com/onweru/newsroom)
+3. [Swift Theme](https://github.com/onweru/hugo-swift-theme)
 
 ## License
 

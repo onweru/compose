@@ -31,6 +31,8 @@
       display: none
   &_body
     display: flex
+    flex-direction: column
+    background: var(--accent)
     position: fixed
     height: 100vh
     transform: translateX(-101vw)
@@ -39,6 +41,8 @@
       position: relative
       height: initial
       justify-content: flex-end
+      background: transparent
+      flex-direction: row
   &-link
     display: inline-flex
     padding: 0.5rem 1rem
