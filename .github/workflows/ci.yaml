@@ -16,6 +16,16 @@ jobs:
     - name: Checkout master branch
       uses: actions/checkout@v2
 
+    # Copy theme files into compose/ dir (do not commit)
+    - name: Copy themes files temporarily
+      id: can_duplicate
+      run: |
+        mkdir compose
+        cp -a assets compose/assets
+        cp -a layouts compose/layouts
+        cp -a static compose/static
+        cp theme.toml compose/theme.toml
+
     - name: Build site with Hugo
       uses: onweru/build-hugo@v0.75.1
 
