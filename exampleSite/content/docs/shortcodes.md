@@ -61,7 +61,7 @@ This adds a styled link (styled like a button). It takes two no-optional paramet
 **Example**
 
 ```
-  {{</* button url="/" label="doe nu mee" */>}}
+  {{</* button "/" "doe nu mee" */>}}
 ```
 
 ### Picture
