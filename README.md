@@ -14,7 +14,66 @@ Compose is a [Hugo](https://gohugo.io/) theme for documentation websites, inspir
 
 ## Installation
 
-Install a recent release of the Hugo "extended" version; ideally versions `>= 0.61.0`. If you install from [hugo releases page](https://github.com/gohugoio/hugo/releases),  download the `_extended` version, which supports sass.
+Install a recent release of the Hugo "extended" version; ideally versions `>= 0.61.0`. If you install from [hugo releases page](https://github.com/gohugoio/hugo/releases),  __download the `_extended`__ version, which supports sass.
+
+## Run your site with compose theme
+
+You could go with the options right below.
+
+### Option 1 (my favorite)
+
+This option enables you to load compose theme as a hugo module.
+
+```bash
+git clone https://github.com/onweru/compose/
+cd compose/exampleSite/
+hugo server
+```
+
+If you choose __Option 2__ or __Option 3__ below, ensure you edit the following lines in the `config.toml` file ad advised on the comments
+
+```bash
+...
+# this example loads the theme as hugo module
+# comment out line below, and uncomment the line after it if you prefer to load the theme normally
+theme = ["github.com/onweru/compose"]
+# theme = "compose"
+...
+```
+
+### Option 2 (recommended)
+
+Generate a new Hugo site and add this theme as a Git submodule inside your themes folder:
+
+```bash
+hugo new site yourSiteName
+cd yourSiteName
+git init
+git submodule add https://github.com/onweru/compose/ themes/compose
+cp -a themes/compose/exampleSite/* .
+```
+
+Then run
+
+```bash
+hugo server
+```
+
+Hurray!
+
+### Option 3 (Great for testing quickly)
+
+You can run your site directly from the `exampleSite`. To do so, use the following commands:
+
+```bash
+git clone https://github.com/onweru/compose/
+cd compose/exampleSite/
+hugo server --themesDir ../..
+```
+
+> Although, option 2 is great for quick testing, it is somewhat problematic when you want to update your theme. You would need to be careful not to overwrite your changes.
+
+Once set, jump over to the `config.toml` file and start [configuring](#configuration) your site.
 
 ## ExampleSite
 
@@ -40,7 +99,7 @@ Under `params` add `darkMode = false` to your `config.toml` file. If your site i
 
 ## From the same creator
 
-1. [Clarity Theme](https://github.com/chipzoller/hugo-clarity)
+1. [Clarity Theme](https://github.com/onweru/compose/)
 2. [Newsroom Theme](https://github.com/onweru/newsroom)
 3. [Swift Theme](https://github.com/onweru/hugo-swift-theme)
 
