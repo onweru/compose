@@ -30,16 +30,26 @@ cd compose/exampleSite/
 hugo server
 ```
 
+> There's one drawback to this technique. Your site would always use the most up-to-date version of the theme. This might break your site if there are drastic changes that you don't like.
+
+You can neutralize that drawback by forking the repo instead and following the same approach. Be sure the edit the `theme = ["github.com/onweru/compose"]` from the config.toml file appropriately.
+
+---
+
 If you choose __Option 2__ or __Option 3__ below, ensure you edit the following lines in the `config.toml` file ad advised on the comments
+
+---
 
 ```bash
 ...
 # this example loads the theme as hugo module
 # comment out line below, and uncomment the line after it if you prefer to load the theme normally
-theme = ["github.com/onweru/compose"]
+theme = ["github.com/onweru/compose"] # edit this if you'ld rather use a fork of this repo
 # theme = "compose"
 ...
 ```
+
+---
 
 ### Option 2 (recommended)
 
