@@ -1,7 +1,10 @@
 baseURL = "https://example.com/"
 title = "Compose Docs"
 enableRobotsTXT = true
-theme = "compose"
+# this example loads the theme as hugo module
+# comment out line below, and uncomment the line after it if you prefer to load the theme normally
+theme = ["github.com/onweru/compose"]
+# theme = "compose"
 enableGitInfo = true
 
 disableKinds = ["taxonomy", "taxonomyTerm"]
