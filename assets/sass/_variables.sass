@@ -1,4 +1,5 @@
 html
+  --color-mode: "lit"
   --light: #fff
   --dark:  rgb(28,28,30)
   --haze: #f2f5f2
@@ -11,16 +12,27 @@ html
   --border-color: #eee
   --theme: rgb(52,199,89)
 
-  &.has_magic
+  @mixin darkmode
+    --color-mode: "dim"
+    --theme: rgb(48,209,88)
+    --bg: var(--dark)
+    --text: #eee
+    --accent: var(--bubble)
+    --overlay: var(--bubble)
+    --border-color: transparent
+    *
+      box-shadow: none !important
+
+  &[data-mode="dim"]
+    @include darkmode
+    .color
+      &_choice
+        &::after
+          transform: translateX(1.75rem) scale(1.67)
+
+  &.has_magic:not(.nodarkmode):not([data-mode="lit"])
     @media (prefers-color-scheme: dark)
-      --theme: rgb(48,209,88)
-      --bg: var(--dark)
-      --text: #eee
-      --accent: var(--bubble)
-      --overlay: var(--bubble)
-      --border-color: transparent
-      *
-        box-shadow: none !important
+      @include darkmode
 
 %narrow
   max-width: 750px

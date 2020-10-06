@@ -212,3 +212,48 @@
 
   &_meta
     margin: 0.5rem 0
+
+.color
+  &_mode
+    height: 1.5rem
+    display: grid
+    grid-template-columns: 1fr 3rem
+    align-items: center
+    margin: 0 1.5rem
+
+  &_choice
+    outline: none
+    border: none
+    -webkit-appearance: none
+    height: 1rem
+    position: relative
+    &::before, &::after
+      content: ""
+      top: 0
+      bottom: 0
+      left: 0
+      position: absolute
+      height: 1rem
+      background: var(--theme)
+
+    &, &::before
+      width: 2.75rem
+      border-radius: 1rem
+      cursor: pointer
+      transition: transform 0.5s cubic-bezier(0.075, 0.82, 0.165, 1)
+      box-shadow: 0 0.25rem 1rem rgba(0,0,0,0.15)
+
+    &::before
+      box-shadow: 0 1rem 2rem rgba(0,0,0,0.17)
+      z-index: 2
+      right: 0
+      filter: brightness(0.75)
+
+    &::after
+      width: 1rem
+      border-radius: 50%
+      z-index: 3
+      transform: scale(1.67)
+      transform-origin: 50% 50%
+      transition: transform 0.5s cubic-bezier(.19,1,.22,1)
+      will-change: transform

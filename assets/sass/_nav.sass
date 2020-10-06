@@ -11,13 +11,12 @@
     picture, img
       max-width: 10rem
   &_header
-    position: fixed
+    position: absolute
     top: 0
     left: 0
     width: 100%
     background-color: var(--bg)
     z-index: 999999
-    border-bottom: 1px solid var(--border-color)
   &_toggle
     position: absolute
     top: 0
@@ -43,3 +42,9 @@
   &-link
     display: inline-flex
     padding: 0.5rem 1rem
+  &-item
+    display: grid
+    align-items: center
+    .search
+      @media screen and (min-width: 992px)
+        margin-right: 1.5rem

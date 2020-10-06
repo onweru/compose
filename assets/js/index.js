@@ -207,13 +207,74 @@ function loadActions() {
     }
   })();
 
-  (function lazyLoadImages() {
-    const images = elems('img');
-    images.forEach(function(image){
-      // supported natively by most modern browsers.
-      image.loading = "lazy";
+  const light = 'lit';
+  const dark = 'dim';
+  const storageKey = 'colorMode';
+  const key = '--color-mode';
+  const data = 'data-mode';
+  const bank = window.localStorage;
+
+  function currentMode() {
+    let acceptableChars = light + dark;
+    acceptableChars = [...acceptableChars];
+    let mode = getComputedStyle(doc).getPropertyValue(key).replace(/\"/g, '').trim();
+
+    mode = [...mode].filter(function(letter){
+      return acceptableChars.includes(letter);
     });
- })();
+
+    return mode.join('');
+  }
+
+  function changeMode(isDarkMode) {
+    if(isDarkMode) {
+      bank.setItem(storageKey, light)
+      elemAttribute(doc, data, light);
+    } else {
+      bank.setItem(storageKey, dark);
+      elemAttribute(doc, data, dark);
+    }
+  }
+
+  (function lazy() {
+    function lazyLoadMedia(element) {
+      let mediaItems = elems(element);
+      if(mediaItems) {
+        Array.from(mediaItems).forEach(function(item) {
+          item.loading = "lazy";
+        });
+      }
+    }
+    lazyLoadMedia('iframe');
+    lazyLoadMedia('img');
+  })();
+
+  function setUserColorMode(mode = false) {
+    const isDarkMode = currentMode() == dark;
+    const storedMode = bank.getItem(storageKey);
+    if(storedMode) {
+      if(mode) {
+        changeMode(isDarkMode);
+      } else {
+        elemAttribute(doc, data, storedMode);
+      }
+    } else {
+      if(mode === true) {
+        changeMode(isDarkMode)
+      }
+    }
+  }
+
+  setUserColorMode();
+
+  doc.addEventListener('click', function(event) {
+    let target = event.target;
+    let modeClass = 'color_choice';
+    let isModeToggle = containsClass(target, modeClass);
+    if(isModeToggle) {
+      setUserColorMode(true);
+    }
+  });
 }
 
 window.addEventListener('load', loadActions());
