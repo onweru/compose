@@ -16,9 +16,9 @@ Compose is a [Hugo](https://gohugo.io/) theme for documentation websites, inspir
 
 Install a recent release of the Hugo "extended" version; ideally versions `>= 0.61.0`. If you install from [hugo releases page](https://github.com/gohugoio/hugo/releases),  download the `_extended` version, which supports sass.
 
-## Example
+## ExampleSite
 
-You can find an example project that uses Compose in the [Compose Userguide](https://github.com/onweru/compose-userguide), which also stands as the theme's user guide.
+The [exampleSite](https://github.com/onweru/compose/exampleSite), as the theme's user guide.
 
 > This guide covers the necessary bits. As the project evolves, the userguide will get more comprehensive
 
