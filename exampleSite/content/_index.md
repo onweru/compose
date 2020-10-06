@@ -18,8 +18,5 @@ Note that the theme is built with simplicity in mind. This way, if a suggestion 
 {{< /column >}}
 {{< column >}}
 ![diy](/images/diy.jpeg)
-
-<!-- Photo by [Jasmin Schreiber](https://unsplash.com/@lavievagabonde?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on Unsplash -->
-
 {{< /column >}}
 {{< /block >}}

@@ -1,5 +1,5 @@
 <div class="pager{{ if .Next }}{{ else }} pager_lean{{ end }}">
-  {{ with .Next }}
+  {{ with .Site.RegularPages.Next . }}
   <div class="pager_item prev">
     <span class="pager_meta">PREVIOUS</span>
     <a href="{{ .Permalink }}" class="pager_link button" title="{{ .Title }}">
@@ -8,7 +8,7 @@
   </div>
   {{ end }}
 
-  {{ with .Prev }}
+  {{ with .Site.RegularPages.Prev . }}
   <div class="pager_item next">
     <span class="pager_meta">NEXT</span>
     <a href="{{ .Permalink }}" class="pager_link button" title="{{ .Title }}">
