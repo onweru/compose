@@ -25,6 +25,9 @@ jobs:
         cp -a layouts compose/layouts
         cp -a static compose/static
         cp theme.toml compose/theme.toml
+        git add compose
+        commit_message=$(git commit -m "duplicate temp." -a | tr -d '\n' || true)
+        echo "::set-output name=commit_message::$commit_message"
 
     - name: Build site with Hugo
       uses: onweru/build-hugo@v0.75.1
