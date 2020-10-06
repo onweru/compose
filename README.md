@@ -34,11 +34,7 @@ hugo server
 
 You can neutralize that drawback by forking the repo instead and following the same approach. Be sure the edit the `theme = ["github.com/onweru/compose"]` from the config.toml file appropriately.
 
----
-
-If you choose __Option 2__ or __Option 3__ below, ensure you edit the following lines in the `config.toml` file ad advised on the comments
-
----
+> :warn: If you choose __Option 2__ or __Option 3__ below, ensure you edit the following lines in the `config.toml` file ad advised on the comments
 
 ```bash
 ...
@@ -48,8 +44,6 @@ theme = ["github.com/onweru/compose"] # edit this if you'ld rather use a fork of
 # theme = "compose"
 ...
 ```
-
----
 
 ### Option 2 (recommended)
 
