@@ -17,6 +17,6 @@ Note that the theme is built with simplicity in mind. This way, if a suggestion 
 
 {{< /column >}}
 {{< column >}}
-![diy](/images/diy.jpeg)
+![diy](/images/scribble.jpg)
 {{< /column >}}
 {{< /block >}}
