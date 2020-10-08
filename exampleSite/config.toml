@@ -36,6 +36,10 @@ disableKinds = ["taxonomy", "taxonomyTerm"]
     noClasses = false
     style = "monokai"
     tabWidth = 2
+  [markup.tableOfContents]
+    endLevel = 4
+    ordered = false
+    startLevel = 2
 
 # Everything below this are Site Params
 

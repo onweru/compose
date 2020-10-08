@@ -5,7 +5,6 @@ description: >
   Use hugo shortcodes to quickly compose site pages.
 ---
 
-
 Why shortcodes? While markdown is sufficient to produce simple pages, it's insufficient where complex page structures are needed. Thusly, whenever we need special styling, shortcodes compliment the shortcomings of markdown.
 
 This way, you can side step complex html and css boilerplate in your content files. 
