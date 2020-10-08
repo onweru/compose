@@ -7,7 +7,7 @@ description: >
 
 ## Prerequisites and installation
 
-### Install Hugo 
+### Install Hugo
 
 You need a [recent **extended** version](https://github.com/gohugoio/hugo/releases) (we recommend version 0.61 or later) of [Hugo](https://gohugo.io/) to do local builds and previews of sites (like this one) that uses this theme.
 
@@ -21,7 +21,7 @@ You could go with the options right below.
 
 ### Option 1 (my favorite)
 
-This option enables you to load compose theme as a hugo module.
+This option enables you to load compose theme as a hugo module. First things first, ensure you have `go` binary [installed on your machine](https://golang.org/doc/install).
 
 ```bash
 git clone https://github.com/onweru/compose/
@@ -29,9 +29,7 @@ cd compose/exampleSite/
 hugo server
 ```
 
-> There's one drawback to this technique. Your site would always use the most up-to-date version of the theme. This might break your site if there are drastic changes that you don't like.
-
-You can neutralize that drawback by forking the repo instead and following the same approach. Be sure the edit the `theme = ["github.com/onweru/compose"]` from the config.toml file appropriately.
+To pull in theme updates, run `hugo mod get -u ./...` from the theme folder. If unsure, [learn how to update hugo modules](https://gohugo.io/hugo-modules/use-modules/#update-modules)
 
 > ⚠️ If you choose __Option 2__ or __Option 3__ below, ensure you edit [these lines in the config.toml file](https://github.com/onweru/compose/blob/b3e30e0816621223224897edc45eeeabd0d9cd16/exampleSite/config.toml#L4-L7) as advised on the comments
 
