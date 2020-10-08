@@ -3,8 +3,6 @@ title: Features
 Weight: 13
 ---
 
-## Features
-
 * Blog with tagging and category options
 * Deeplinks
 * Native Image Lazy Loading
