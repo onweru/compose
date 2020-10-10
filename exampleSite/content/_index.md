@@ -1,7 +1,7 @@
 +++
 title = "Compose"
-+++
 
++++
 {{< block "grid-2 mt-2" >}}
 {{< column >}}
 
