@@ -14,7 +14,7 @@ fields:
 - type: textarea
   name: description
   label: Summary
-  description: Enter a custom summary (optional)
+  description: Enter a custom summary <em>(optional)</em>
 - name: draft
   type: boolean
   label: Unpublish
