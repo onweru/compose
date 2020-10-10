@@ -5,6 +5,8 @@ admin_path:
 webhook_url: 
 sections:
 - type: heading
+  label: DOCUMENTATION PAGES
+- type: heading
   label: PAGES
 - type: directory
   path: exampleSite/content
