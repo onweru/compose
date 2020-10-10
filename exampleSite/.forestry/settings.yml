@@ -8,7 +8,7 @@ sections:
   label: CONFIG
 - type: document
   path: exampleSite/config.toml
-  label: configure website
+  label: settings
 - type: heading
   label: PAGES
 - type: directory
