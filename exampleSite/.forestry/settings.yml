@@ -4,10 +4,11 @@ auto_deploy: false
 admin_path: 
 webhook_url: 
 sections:
+- type: heading
+  label: CONFIG
 - type: document
   path: exampleSite/config.toml
   label: configure website
-  match: "**/*"
 - type: heading
   label: PAGES
 - type: directory
