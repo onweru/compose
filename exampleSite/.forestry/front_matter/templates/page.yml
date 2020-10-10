@@ -4,10 +4,18 @@ hide_body: false
 fields:
 - type: text
   name: title
-  label: title
+  label: Title
+  config:
+    required: true
 - type: number
   name: weight
-  label: weight
+  label: Page Rank
+  description: Determines the position of the page on the left sidebar <em>(optional)</em>
 - type: textarea
   name: description
-  label: description
+  label: Summary
+  description: Enter a custom summary (optional)
+- name: draft
+  type: boolean
+  label: Unpublish
+  description: Mark as draft
