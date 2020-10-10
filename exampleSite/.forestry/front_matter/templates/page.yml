@@ -11,8 +11,10 @@ fields:
   name: weight
   label: Page Rank
   description: Determines the position of the page on the left sidebar <em>(optional)</em>
-- type: textarea
-  name: description
+- name: description
+  type: text
+  config:
+    required: false
   label: Summary
   description: Enter a custom summary <em>(optional)</em>
 - name: draft
