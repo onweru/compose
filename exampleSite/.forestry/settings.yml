@@ -14,7 +14,7 @@ sections:
   templates:
   - page
 - type: heading
-  label: DOCUMENTATION PAGES
+  label: DOCS PAGES
 - type: directory
   path: exampleSite/content/docs
   label: Docs
