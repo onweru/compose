@@ -9,6 +9,8 @@ sections:
   label: Pages
   create: all
   match: "*"
+  templates:
+  - page
 - type: directory
   path: exampleSite/content/docs
   label: Docs
