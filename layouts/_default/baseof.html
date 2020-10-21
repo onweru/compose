@@ -7,13 +7,13 @@
   <header class="nav_header">
     {{- partial "nav" . }}
   </header>
-  <main class="main wrap pt-4">
+  <div class="main wrap pt-4">
     {{- if eq .Section "docs" }}
     {{- partial "document" . }}
     {{- else }}
     {{- block "main" . }}{{ end }}
     {{- end }}
-  </main>
+  </div>
   {{- partial "footer" . }}
   {{- partial "sprites" . }}
   {{- partial "scripts" . }}
