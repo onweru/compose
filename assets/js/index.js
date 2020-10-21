@@ -2,7 +2,7 @@
   const nav = elem('.nav_header');
   const navHeight = nav.offsetHeight + 25;
   const docContent = elem('main');
-  docContent.style.paddingTop = `${navHeight}px`;
+  // docContent.style.paddingTop = `${navHeight}px`;
   return navHeight;
 })();
 
