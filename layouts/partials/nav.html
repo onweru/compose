@@ -1,13 +1,13 @@
 <nav class="wrap nav">
 	<a href="{{ .Site.BaseURL }}" class="nav_brand">
-		<picture>
-			{{- $logos := .Site.Params.logo }}
-			{{- $normalPath := absURL (printf "images/%s" $logos.lightMode) }}
-			{{- $darkPath := absURL (printf "images/%s" $logos.darkMode) }}
+		{{- $logos := .Site.Params.logo }}
+		{{- $litPath := absURL (printf "images/%s" $logos.lightMode) }}
+		{{- $darkPath := absURL (printf "images/%s" $logos.darkMode) }}
+		<picture data-lit="{{ $litPath }}" data-dark="{{ $darkPath }}">
 			{{ with .Site.Params.darkmode }}
 			<source srcset = '{{ $darkPath }}' media="(prefers-color-scheme: dark)">
 			{{ end }}
-			<img srcset = '{{ $normalPath }}' alt = '{{ .Site.Title }} Logo'>
+			<img srcset = '{{ $litPath }}' alt = '{{ .Site.Title }} Logo'>
 		</picture>
 		<label class="nav_toggle">Menu</label>
 	</a>
