@@ -1,5 +1,5 @@
 html
-  --color-mode: "lit"
+  --color-mode: "light"
   --light: #fff
   --dark:  rgb(28,28,30)
   --haze: #f2f5f7
@@ -13,7 +13,7 @@ html
   --theme: rgb(52,199,89)
 
   @mixin darkmode
-    --color-mode: "dim"
+    --color-mode: "dark"
     --theme: rgb(48,209,88)
     --bg: var(--dark)
     --text: #eee
@@ -23,14 +23,14 @@ html
     *
       box-shadow: none !important
 
-  &[data-mode="dim"]
+  &[data-mode="dark"]
     @include darkmode
     .color
       &_choice
         &::after
           transform: translateX(1.75rem) scale(1.67)
 
-  &.dim:not([data-mode="lit"])
+  &.dark:not([data-mode="light"])
     @media (prefers-color-scheme: dark)
       @include darkmode
 

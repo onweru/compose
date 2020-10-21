@@ -86,7 +86,7 @@ Note that you need the `themesDir` flag when running Hugo because the site files
 
 ### How do I disable dark mode?
 
-Under `params` add `darkMode = false` to your `config.toml` file. If your site is based on the exampleSite, the value is already included; you only need to uncomment it.
+Under `params` add `enableDarkMode = false` to your `config.toml` file. If your site is based on the exampleSite, the value is already included; you only need to uncomment it.
 
 > The user will still have the option to activate dark mode, if they so wish
 

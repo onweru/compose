@@ -1,13 +1,15 @@
+{{- $s := .Site }}
+{{- $sp := $s.Params }}
 <nav class="wrap nav">
-	<a href="{{ .Site.BaseURL }}" class="nav_brand">
-		{{- $logos := .Site.Params.logo }}
+	<a href="{{ $s.BaseURL }}" class="nav_brand">
+		{{- $logos := $sp.logo }}
 		{{- $litPath := absURL (printf "images/%s" $logos.lightMode) }}
 		{{- $darkPath := absURL (printf "images/%s" $logos.darkMode) }}
 		<picture data-lit="{{ $litPath }}" data-dark="{{ $darkPath }}">
-			{{ with .Site.Params.darkmode }}
+			{{ with $sp.enableDarkMode }}
 			<source srcset = '{{ $darkPath }}' media="(prefers-color-scheme: dark)">
 			{{ end }}
-			<img srcset = '{{ $litPath }}' alt = '{{ .Site.Title }} Logo'>
+			<img srcset = '{{ $litPath }}' alt = '{{ $s.Title }} Logo'>
 		</picture>
 		<label class="nav_toggle">Menu</label>
 	</a>
@@ -16,7 +18,7 @@
 			{{- partial "search" . }}
 		</li>
 		{{- $p := . }}
-		{{- range .Site.Menus.main }}
+		{{- range $s.Menus.main }}
 		<li class="nav-item">
 			{{- $active := or ($p.IsMenuCurrent "main" .) ($p.HasMenuCurrent "main" .) }}
 			{{- with .Page }}
@@ -29,7 +31,7 @@
 			<a class="nav-link{{if $active }} active{{end}}" href="{{ $url }}"><span{{if $active }} class="active"{{end}}>{{ .Name }}</span></a>
 		</li>
 		{{- end }}
-		{{ $repo := .Site.Params.source }}
+		{{ $repo := $sp.source }}
 		<li class="nav-item">
 			<a class="nav-link" href="{{ $repo.url }}" target="_blank">{{ $repo.name }}</a>
 		</li>

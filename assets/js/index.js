@@ -207,12 +207,24 @@ function loadActions() {
     }
   })();
 
-  const light = 'lit';
-  const dark = 'dim';
+  const light = 'light';
+  const dark = 'dark';
   const storageKey = 'colorMode';
   const key = '--color-mode';
   const data = 'data-mode';
   const bank = window.localStorage;
+
+  function prefersColor(mode){
+    return `(prefers-color-scheme: ${mode})`;
+  }
+
+  function systemMode() {
+    if (window.matchMedia) {
+      const prefers = prefersColor(dark);
+      return window.matchMedia(prefers).matches ? dark : light;
+    }
+    return light;
+  }
 
   function currentMode() {
     let acceptableChars = light + dark;
@@ -249,6 +261,24 @@ function loadActions() {
     lazyLoadMedia('img');
   })();
 
+  function pickModePicture(user, system, context) {
+    const pictures = elems('picture');
+    if(pictures) {
+      pictures.forEach(function(picture){
+        let source = picture.firstElementChild;
+        if(user == system) {
+          context ? source.media = prefersColor(dark) : false;
+        } else {
+          if(system == light) {
+            source.media = (user === dark) ? prefersColor(light) : prefersColor(dark) ;
+          } else {
+            source.media = (user === dark) ? prefersColor(dark) : prefersColor(light) ;
+          }
+        }
+      });
+    }
+  }
+
   function setUserColorMode(mode = false) {
     const isDarkMode = currentMode() == dark;
     const storedMode = bank.getItem(storageKey);
@@ -263,6 +293,12 @@ function loadActions() {
         changeMode(isDarkMode)
       }
     }
+    const sysMode = systemMode();
+    const userMode = doc.dataset.mode;
+    doc.dataset.systemmode = sysMode;
+    if(userMode) {
+      pickModePicture(userMode,sysMode,mode);
+    }
   }
 
   setUserColorMode();
@@ -275,6 +311,7 @@ function loadActions() {
       setUserColorMode(true);
     }
   });
+
 }
 
 window.addEventListener('load', loadActions());

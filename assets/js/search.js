@@ -58,7 +58,6 @@ function search(){
       if(searchTerm.length >= 3) {
         let rawResults = idx.search(`+${searchTerm}`);
 
-        console.log(rawResults, searchTerm);
 
         if(rawResults.length) {
 
@@ -79,13 +78,9 @@ function search(){
             return (parseFloat(score) * 50).toFixed(0);
           });
 
-          console.log(scores, 'scores is');
-
           let matchedDocuments = simpleIndex.filter(function(doc){
             return ids.includes(doc.id);
           });
-
-          console.log('matches are', matchedDocuments);
 
           matchedDocuments.length >= 1 ? searchResults(matchedDocuments, scores,searchTerm) : false;
         } else {
@@ -100,7 +95,6 @@ function search(){
 }
 
 let alltext = doc.innerHTML;
-console.log(typeof alltext);
 // doc.innerHTML = alltext.replaceAll('is', '<span class="is">is</span>');
 
 
