@@ -110,14 +110,16 @@ hr
   margin: 1rem 0
 
 aside
-  position: sticky
-  top: 2.5rem
   max-height: 80vh
   overflow-y: auto
   background: var(--accent)
   padding: 1rem 1.5rem
   padding-bottom: 2rem
   border-radius: 0.25rem
+  align-self: start
+  @media screen and (min-width: 42rem)
+    position: sticky
+    top: 2.5rem
   h3
     position: relative
   ul
