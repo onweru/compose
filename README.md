@@ -23,7 +23,7 @@ You could go with the options right below.
 This option enables you to load compose theme as a hugo module.
 
 ```bash
-git clone https://github.com/onweru/compose/
+git clone https://github.com/onweru/compose.git
 cd compose/exampleSite/
 hugo server
 ```
@@ -42,7 +42,7 @@ Generate a new Hugo site and add this theme as a Git submodule inside your theme
 hugo new site yourSiteName
 cd yourSiteName
 git init
-git submodule add https://github.com/onweru/compose/ themes/compose
+git submodule add https://github.com/onweru/compose.git themes/compose
 cp -a themes/compose/exampleSite/* .
 ```
 
@@ -59,7 +59,7 @@ Hurray!
 You can run your site directly from the `exampleSite`. To do so, use the following commands:
 
 ```bash
-git clone https://github.com/onweru/compose/
+git clone https://github.com/onweru/compose.git
 cd compose/exampleSite/
 hugo server --themesDir ../..
 ```
