@@ -4,7 +4,7 @@ licenselink = "https://github.com/onweru/compose/blob/master/LICENSE"
 description = "A hugo theme for documentation sites. It's inspired by forestry.io's docs page"
 homepage = "https://docs.neuralvibes.com"
 tags = ["simple", "docs", "dark", "customizable", "search"]
-features = ["simple", "docs", "dark", "customizable", "search"]
+features = ["simple", "docs", "dark", "customizable", "search", "documentation"]
 min_version = "0.53.0"
 
 [author]
