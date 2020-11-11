@@ -1,7 +1,7 @@
 {{- $funcPath := "js/functions.js" }}
 {{- $functions := resources.Get $funcPath | resources.ExecuteAsTemplate $funcPath . }}
 
-{{- $lunrPath := "js/lunr.js" }}
+{{- $lunrPath := "js/fuse.js" }}
 {{- $lunr := resources.Get $lunrPath | resources.ExecuteAsTemplate $lunrPath . }}
 
 {{- $searchPath := "js/search.js" }}

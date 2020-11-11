@@ -1,28 +1,22 @@
-const idx = lunr(function () {
-  this.field('id')
-  this.field('link')
-  this.field('title')
-  this.field('body')
-
-  {{ range $index, $page := .Site.Pages }}
-  this.add({
-    "id": "{{ $index }}",
+const idx = [
+  {{- range .Site.Pages }}
+  {
     "link": "{{ .Permalink }}",
     "title": "{{ .Title }}",
     "body": "{{ .PlainWords }}".toLowerCase(),
-  });
-  {{ end }}
-});
-
-const simpleIndex = [
-  {{ range $index, $page := .Site.Pages }}
-   {
-     id: {{ $index }},
-     link: "{{ .Permalink }}",
-     title: "{{ .Title }}",
-   },
-  {{ end }}
+  },
+  {{- end }}
 ];
+
+const searchKeys = ['title', 'link', 'body', 'id'];
+const searchOptions = {
+  includeScore: true,
+  includeMatches: true,
+  keys: searchKeys,
+  threshold: 0.4
+};
+
+const index = new Fuse(idx, searchOptions);
 
 function searchResults(results=[], order =[],query="") {
   let resultsFragment = new DocumentFragment();
@@ -53,11 +47,16 @@ function search(){
   const searchField = elem('.search_field');
 
   if (searchField) {
-    searchField.addEventListener('input', function(event) {
+    searchField.addEventListener('input', function() {
       const searchTerm = this.value.trim().replaceAll(" ", " +").toLowerCase();
       if(searchTerm.length >= 3) {
-        let rawResults = idx.search(`+${searchTerm}`);
-
+        let rawResults = index.search(`+${searchTerm}`);
+        console.log(rawResults, searchTerm);
+        rawResults = rawResults.map(function(result){
+          return result.item;
+        });
+        // console.log(JSON.stringify(rawResults), searchTerm);
+        console.log(rawResults, searchTerm);
 
         if(rawResults.length) {
 
@@ -77,12 +76,7 @@ function search(){
             score = score.substring((positionOfSeparator + 1), (score.length - 1));
             return (parseFloat(score) * 50).toFixed(0);
           });
-
-          let matchedDocuments = simpleIndex.filter(function(doc){
-            return ids.includes(doc.id);
-          });
-
-          matchedDocuments.length >= 1 ? searchResults(matchedDocuments, scores,searchTerm) : false;
+          searchResults(rawResults, scores,searchTerm);
         } else {
           searchResults();
         }
@@ -94,8 +88,10 @@ function search(){
   }
 }
 
-let alltext = doc.innerHTML;
-// doc.innerHTML = alltext.replaceAll('is', '<span class="is">is</span>');
+// let main = elem('main');
 
+// wrapText("The", main, 'mark');
+
+let alltext = doc.innerHTML;
 
 window.addEventListener('load', () => search());
