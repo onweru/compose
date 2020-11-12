@@ -10,10 +10,11 @@ const idx = [
 
 const searchKeys = ['title', 'link', 'body', 'id'];
 const searchOptions = {
+  ignoreLocation: true,
   includeScore: true,
   includeMatches: true,
   keys: searchKeys,
-  threshold: 0.4
+  threshold: 0.1
 };
 
 const index = new Fuse(idx, searchOptions);
@@ -50,13 +51,10 @@ function search(){
     searchField.addEventListener('input', function() {
       const searchTerm = this.value.trim().replaceAll(" ", " +").toLowerCase();
       if(searchTerm.length >= 3) {
-        let rawResults = index.search(`+${searchTerm}`);
-        console.log(rawResults, searchTerm);
+        let rawResults = index.search(searchTerm);
         rawResults = rawResults.map(function(result){
           return result.item;
         });
-        // console.log(JSON.stringify(rawResults), searchTerm);
-        console.log(rawResults, searchTerm);
 
         if(rawResults.length) {
 
@@ -88,10 +86,21 @@ function search(){
   }
 }
 
-// let main = elem('main');
+function findQuery(query = 'query') {
+  const urlParams = new URLSearchParams(window.location.search);
+  if(urlParams.has(query)){
+    const searchTerm = urlParams.get(query);
+    window.find(searchTerm);
+    return searchTerm;
+  }
+  return "";
+}
 
-// wrapText("The", main, 'mark');
-
-let alltext = doc.innerHTML;
+let main = elem('main');
+if(!main) {
+  main = elem('.main');
+}
+const searchQuery = findQuery();
+wrapText(searchQuery,main,'mark');
 
 window.addEventListener('load', () => search());
