@@ -11,17 +11,18 @@ const idx = [
 const searchKeys = ['title', 'link', 'body', 'id'];
 const searchOptions = {
   ignoreLocation: true,
+  findAllMatches: true,
+  includeScore: true,
   keys: searchKeys,
   threshold: 0.1
 };
 
 const index = new Fuse(idx, searchOptions);
 
-function searchResults(results=[], order =[],query="") {
+function searchResults(results=[], query="") {
   let resultsFragment = new DocumentFragment();
   let showResults = elem('.search_results');
   emptyEl(showResults);
-  let index = 0
   if(results.length) {
     let resultsTitle = createEl('h3');
     resultsTitle.className = 'search_title';
@@ -32,12 +33,11 @@ function searchResults(results=[], order =[],query="") {
       item.href = `${result.link}?query=${query}`;
       item.className = 'search_result';
       item.textContent = result.title;
-      item.style.order = order[index];
+      item.style.order = result.score;
       resultsFragment.appendChild(item);
-      index += 1
     });
   } else {
-    showResults.innerHTML = "";
+    showResults.innerHTML = (query.length >= 3) ? `<span class="search_result">No Results</span>` : "";
   }
   showResults.appendChild(resultsFragment);
 }
@@ -50,38 +50,15 @@ function search(){
       const searchTerm = this.value.trim().toLowerCase();
       if(searchTerm.length >= 3) {
         let rawResults = index.search(searchTerm);
+        // console.log(rawResults);
         rawResults = rawResults.map(function(result){
-          const matches = result.matches;
+          const score = result.score;
           const resultItem = result.item;
-          resultItem.matches = matches;
+          resultItem.score = (parseFloat(score) * 50).toFixed(0);
           return resultItem;
         });
-        console.log(JSON.stringify(rawResults));
-        console.log(rawResults);
-
-        if(rawResults.length) {
-
-          let refs = rawResults.map(function(ref){
-            // return id and score in a single string
-            return `${ref.ref}:${ref.score}`;
-          });
-
-          let ids = refs.map(function(id){
-            let positionOfSeparator = id.indexOf(":");
-            id = id.substring(0,positionOfSeparator)
-            return Number(id);
-          });
-
-          let scores = refs.map(function(score){
-            let positionOfSeparator = score.indexOf(":");
-            score = score.substring((positionOfSeparator + 1), (score.length - 1));
-            return (parseFloat(score) * 50).toFixed(0);
-          });
-          searchResults(rawResults, scores,searchTerm);
-        } else {
-          searchResults();
-        }
-
+        // console.log(rawResults);
+        searchResults(rawResults, searchTerm);
       } else {
         searchResults();
       }
@@ -96,7 +73,6 @@ function findQuery(query = 'query') {
     window.find(c);
     cc = `${c.charAt(0).toUpperCase()}${c.substring(1,c.length)}`;
     window.find(cc);
-    console.log(c.length);
     return [c, cc];
   }
   return ["",""];
@@ -107,8 +83,8 @@ if(!main) {
   main = elem('.main');
 }
 const searchQuery = findQuery();
-console.log(searchQuery);
-wrapText(searchQuery[0],main,'mark');
-wrapText(searchQuery[1],main,'mark');
+// console.log(searchQuery);
+// wrapText(searchQuery[0],main,'mark');
+// wrapText(searchQuery[1],main,'mark');
 
 window.addEventListener('load', () => search());

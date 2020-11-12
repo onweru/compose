@@ -108,14 +108,16 @@ function hasClasses(el) {
 }
 
 function wrapText(text, context, wrapper = 'div') {
-  let c = context.innerHTML;
+  let c = context.textContent;
   let index = c.indexOf(text);
+  console.log(context);
+  // h1, h2, h3, h4, h5, h6, p, code, a,
   if (index >= 0) {
     let stop = index + text.length;
     let s = c.substring(index,stop);
     let before = c.substring(0,index);
     let after = c.substring(stop);
     c = `${before}<${wrapper}>${s}</${wrapper}>${after}`;
-    context.innerHTML = c;
+    context.textContent = c;
   }
 }
