@@ -11,8 +11,6 @@ const idx = [
 const searchKeys = ['title', 'link', 'body', 'id'];
 const searchOptions = {
   ignoreLocation: true,
-  includeScore: true,
-  includeMatches: true,
   keys: searchKeys,
   threshold: 0.1
 };
@@ -49,12 +47,17 @@ function search(){
 
   if (searchField) {
     searchField.addEventListener('input', function() {
-      const searchTerm = this.value.trim().replaceAll(" ", " +").toLowerCase();
+      const searchTerm = this.value.trim().toLowerCase();
       if(searchTerm.length >= 3) {
         let rawResults = index.search(searchTerm);
         rawResults = rawResults.map(function(result){
-          return result.item;
+          const matches = result.matches;
+          const resultItem = result.item;
+          resultItem.matches = matches;
+          return resultItem;
         });
+        console.log(JSON.stringify(rawResults));
+        console.log(rawResults);
 
         if(rawResults.length) {
 
@@ -89,11 +92,14 @@ function search(){
 function findQuery(query = 'query') {
   const urlParams = new URLSearchParams(window.location.search);
   if(urlParams.has(query)){
-    const searchTerm = urlParams.get(query);
-    window.find(searchTerm);
-    return searchTerm;
+    let c = urlParams.get(query);
+    window.find(c);
+    cc = `${c.charAt(0).toUpperCase()}${c.substring(1,c.length)}`;
+    window.find(cc);
+    console.log(c.length);
+    return [c, cc];
   }
-  return "";
+  return ["",""];
 }
 
 let main = elem('main');
@@ -101,6 +107,8 @@ if(!main) {
   main = elem('.main');
 }
 const searchQuery = findQuery();
-wrapText(searchQuery,main,'mark');
+console.log(searchQuery);
+wrapText(searchQuery[0],main,'mark');
+wrapText(searchQuery[1],main,'mark');
 
 window.addEventListener('load', () => search());

@@ -110,10 +110,6 @@ function hasClasses(el) {
 function wrapText(text, context, wrapper = 'div') {
   let c = context.innerHTML;
   let index = c.indexOf(text);
-  if(index >= 0) {
-    const cc = `${c.charAt(0)}${c.substring(1,c.length)}`;
-    index = cc.indexOf(Text);
-  }
   if (index >= 0) {
     let stop = index + text.length;
     let s = c.substring(index,stop);
