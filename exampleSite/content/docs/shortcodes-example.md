@@ -82,10 +82,10 @@ The 1st parameter is required. It is _comma-separated list_ (`,`) of your images
 The 2nd parameter is optional. It is _double-collon-separated list_ (`::`) of your images' alt/description/captions text. It's always a good SEO practice to include alt text for your images.
 
 ```sh
-{{</* gallery "images/diy.jpeg,images/diy-2.jpeg,images/diy.jpeg" "Gallery Image 1::gallery image 2::gallery image 1 copy" */>}}
+{{</* gallery "images/painting.jpg,images/scribble.jpg,images/painting.jpg" "Gallery Image 1::gallery image 2::gallery image 1 copy" */>}}
 # generates 👇
 ```
 
-{{< gallery "images/diy.jpeg,images/diy-2.jpeg,images/diy.jpeg" "Gallery Image 1::gallery image 2::gallery image 1 copy" >}}
+{{< gallery "images/painting.jpg,images/scribble.jpg,images/painting.jpg" "Gallery Image 1::gallery image 2::gallery image 1 copy" >}}
 
 > For legibility, you may include a space after the delimiters `,` & `::`

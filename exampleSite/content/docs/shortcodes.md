@@ -85,6 +85,6 @@ The 2nd parameter is optional. It's a _double-collon-separated list_ (`::`) of y
 
 ```sh
 ...
-{{</* gallery "images/diy.jpeg,images/diy-2.jpeg,images/diy.jpeg" "Gallery Image 1::gallery image 2::gallery image 1 copy" */>}}
+{{</* gallery "images/painting.jpg,images/scribble.jpg,images/painting.jpg" "Gallery Image 1::gallery image 2::gallery image 1 copy" */>}}
 ...
 ```
