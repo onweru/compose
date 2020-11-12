@@ -85,6 +85,6 @@ if(!main) {
 const searchQuery = findQuery();
 // console.log(searchQuery);
 // wrapText(searchQuery[0],main,'mark');
-// wrapText(searchQuery[1],main,'mark');
+wrapText(searchQuery[1],main,'mark');
 
 window.addEventListener('load', () => search());
