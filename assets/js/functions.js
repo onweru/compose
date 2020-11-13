@@ -107,33 +107,49 @@ function hasClasses(el) {
   }
 }
 
-
-function wrapText(text, context, wrapper = 'div') {
-  let c = context.textContent;
-  let index = c.indexOf(text);
-
-  function wrap() {
+function wrapText(text, context) {
+  function wrap(context, wrapper = 'mark') {
+    let c = context.innerHTML;
+    let open = `<${wrapper}>`;
+    let close = `</${wrapper}>`;
+    let index = c.indexOf(text);
     if (index >= 0) {
       let stop = index + text.length;
       let s = c.substring(index,stop);
       let before = c.substring(0,index);
       let after = c.substring(stop);
-      c = `${before}<${wrapper}>${s}</${wrapper}>${after}`;
-      context.textContent = c;
+      c = `${before}${open}${s}${close}${after}`;
+      context.innerHTML = c;
+
+      // add class attribute later if need be
+      const attributes = ["href", "id", "title"];
+      attributes.forEach(function(attr){
+        if(context.hasAttribute(attr)) {
+          let attrValue = context.getAttribute(attr);
+          context.setAttribute(attr, attrValue.replaceAll(`${open}`,"").replaceAll(`${close}`,""));
+        }
+      });
     }
   }
 
-  const contents = ["h1", "h2", "h3", "h4", "h5", "h6", "p", "code"];
-  const attributes = ["href", "title", "class", "id"];
+  const contents = ["h1", "h2", "h3", "h4", "h5", "h6", "p", "code", "td", "pre"];
   const children = ["span", "em", "strong", "b", "a"];
   contents.forEach(function(c){
-    const cs = elems(c);
+    const cs = elems(c, context);
     if(cs.length) {
       cs.forEach(function(cx){
-        // console.log(cx);
+        if(cx.children.length >= 1) {
+          wrap(cx);
+          Array.from(cx.children).forEach(function(child){
+            wrap(child);
+          })
+        } else {
+          wrap(cx);
+        }
         // check if
         // if has children
            // check if childen is in children array above
+           // filter out children if listed in cs array above
            // check if children contain attributes
           // process before replacing
         // else replace and move on

@@ -70,9 +70,9 @@ function findQuery(query = 'query') {
   const urlParams = new URLSearchParams(window.location.search);
   if(urlParams.has(query)){
     let c = urlParams.get(query);
-    window.find(c);
+    // window.find(c);
     cc = `${c.charAt(0).toUpperCase()}${c.substring(1,c.length)}`;
-    window.find(cc);
+    // window.find(cc);
     return [c, cc];
   }
   return ["",""];
@@ -84,7 +84,7 @@ if(!main) {
 }
 const searchQuery = findQuery();
 // console.log(searchQuery);
-// wrapText(searchQuery[0],main,'mark');
-wrapText(searchQuery[1],main,'mark');
+wrapText(searchQuery[0],main);
+wrapText(searchQuery[1],main);
 
 window.addEventListener('load', () => search());
