@@ -13,8 +13,9 @@ const searchOptions = {
   ignoreLocation: true,
   findAllMatches: true,
   includeScore: true,
+  shouldSort: true,
   keys: searchKeys,
-  threshold: 0.1
+  threshold: 0.0
 };
 
 const index = new Fuse(idx, searchOptions);
@@ -28,7 +29,7 @@ function searchResults(results=[], query="") {
     resultsTitle.className = 'search_title';
     resultsTitle.innerText = 'Quick Links';
     resultsFragment.appendChild(resultsTitle);
-    results.slice(0,6).forEach(function(result){
+    results.slice(0,4).forEach(function(result){
       let item = createEl('a');
       item.href = `${result.link}?query=${query}`;
       item.className = 'search_result';

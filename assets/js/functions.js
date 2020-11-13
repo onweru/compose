@@ -107,11 +107,11 @@ function hasClasses(el) {
   }
 }
 
-function wrapText(text, context) {
-  function wrap(context, wrapper = 'mark') {
+function wrapText(text, context, wrapper = 'mark') {
+  let open = `<${wrapper}>`;
+  let close = `</${wrapper}>`;
+  function wrap(context) {
     let c = context.innerHTML;
-    let open = `<${wrapper}>`;
-    let close = `</${wrapper}>`;
     let index = c.indexOf(text);
     if (index >= 0) {
       let stop = index + text.length;
@@ -120,20 +120,11 @@ function wrapText(text, context) {
       let after = c.substring(stop);
       c = `${before}${open}${s}${close}${after}`;
       context.innerHTML = c;
-
-      // add class attribute later if need be
-      const attributes = ["href", "id", "title"];
-      attributes.forEach(function(attr){
-        if(context.hasAttribute(attr)) {
-          let attrValue = context.getAttribute(attr);
-          context.setAttribute(attr, attrValue.replaceAll(`${open}`,"").replaceAll(`${close}`,""));
-        }
-      });
     }
   }
 
   const contents = ["h1", "h2", "h3", "h4", "h5", "h6", "p", "code", "td", "pre"];
-  const children = ["span", "em", "strong", "b", "a"];
+
   contents.forEach(function(c){
     const cs = elems(c, context);
     if(cs.length) {
@@ -146,14 +137,17 @@ function wrapText(text, context) {
         } else {
           wrap(cx);
         }
-        // check if
-        // if has children
-           // check if childen is in children array above
-           // filter out children if listed in cs array above
-           // check if children contain attributes
-          // process before replacing
-        // else replace and move on
+        // sanitize urls and ids
       });
     }
   });
+
+  const hyperLinks = elems('a');
+  if(hyperLinks) {
+    hyperLinks.forEach(function(link){
+      const href = link.href.replaceAll(encodeURI(open), "").replaceAll(encodeURI(close), "");
+      console.log(open, close);
+      link.href = href;
+    });
+  }
 }
