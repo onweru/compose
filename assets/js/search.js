@@ -49,7 +49,10 @@ function search(){
   if (searchField) {
     searchField.addEventListener('input', function() {
       const searchTerm = this.value.trim().toLowerCase();
-      if(searchTerm.length >= 3) {
+      // check if searchTerm can be cast as float
+      const isFloat = parseFloat(searchTerm);
+      const minimumSearchTermLength = isFloat ? 2 : 3;
+      if(searchTerm.length >= minimumSearchTermLength) {
         let rawResults = index.search(searchTerm);
         // console.log(rawResults);
         rawResults = rawResults.map(function(result){
