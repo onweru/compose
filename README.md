@@ -70,7 +70,7 @@ Once set, jump over to the `config.toml` file and start [configuring](#configura
 
 ## ExampleSite
 
-The [exampleSite](https://github.com/onweru/compose/exampleSite), as the theme's user guide.
+The [exampleSite](https://github.com/onweru/compose/tree/master/exampleSite) serves as this theme's user guide (documentation). Please go through [compose docs](https://docs.neuralvibes.com/docs/getting-started/)
 
 > This guide covers the necessary bits. As the project evolves, the userguide will get more comprehensive
 
