@@ -1,6 +1,6 @@
 # Compose
 
-Compose is a [Hugo](https://gohugo.io/) theme for documentation websites, inspired by [forestry.io](forestry.io)'s docs page. The theme provides a simple navigation & structure.
+Compose is a [Hugo](https://gohugo.io/) theme for documentation websites, inspired by [forestry.io](https://forestry.io/docs/welcome/)'s docs page. The theme provides a simple navigation & structure.
 
 ![Hugo Compose Theme](https://github.com/onweru/compose/blob/master/images/screenshot.png)
 
@@ -93,10 +93,10 @@ Under `params` add `enableDarkMode = false` to your `config.toml` file. If your 
 
 ## From the same creator
 
-1. [Clarity Theme](https://github.com/onweru/compose/)
+1. [Clarity Theme]https://github.com/chipzoller/hugo-clarity)
 2. [Newsroom Theme](https://github.com/onweru/newsroom)
 3. [Swift Theme](https://github.com/onweru/hugo-swift-theme)
 
 ## License
 
-This theme is available under the [MIT license](https://github.com/onweru/compose/blob/master/LICENSE.md).
+This theme is available under the [MIT license](https://github.com/onweru/compose/blob/master/LICENSE).
