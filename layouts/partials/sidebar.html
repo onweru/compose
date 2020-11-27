@@ -1,10 +1,13 @@
 <aside class="aside">
+  <div>
+    <label class="aside_toggle toggle" title="Docs Menu" role="button">Docs Menu {{ partial "sprite" (dict "icon" "harmburger") }}</label>
+  </div>
   {{- template "tree" (dict "page" . "section" .FirstSection)  }}
   {{- define "tree" }}
   {{- $section := .section }}
   {{- $page := .page }}
   {{- $permalink := $page.RelPermalink }}
-  <section class="section">
+  <section class="section aside_inner">
     <h2 class="section_title{{ if eq $section.RelPermalink $permalink }} active{{ end }}"><a  href="{{ $section.Permalink }}" class="group">{{ $section.Title }}</a></h2>
       {{- $pages := $section.Pages }}
       {{- with $pages }}

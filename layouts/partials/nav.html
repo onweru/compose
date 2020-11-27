@@ -11,7 +11,9 @@
 			{{ end }}
 			<img srcset = '{{ $litPath }}' alt = '{{ $s.Title }} Logo'>
 		</picture>
-		<label class="nav_toggle">Menu</label>
+		<label class="nav_toggle toggle" title="Site Menu" role="button">
+			{{ partial "sprite" (dict "icon" "harmburger") }}
+		</label>
 	</a>
 	<ul class="nav_body">
 		<li class="nav-item">
