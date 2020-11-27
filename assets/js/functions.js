@@ -1,5 +1,7 @@
 const parentURL = '{{ absURL "" }}';
 const doc = document.documentElement;
+const toggleId = 'toggle';
+const showId = 'show';
 
 function isObj(obj) {
   return (obj && typeof obj === 'object' && obj !== null) ? true : false;

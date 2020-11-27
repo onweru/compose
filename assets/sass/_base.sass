@@ -109,17 +109,35 @@ hr
   opacity: 0.5
   margin: 1rem 0
 
-aside
-  max-height: 80vh
+.aside
   overflow-y: auto
   background: var(--accent)
   padding: 1rem 1.5rem
-  padding-bottom: 2rem
+  // padding-bottom: 2rem
   border-radius: 0.25rem
   align-self: start
+  max-height: 80vh
   @media screen and (min-width: 42rem)
     position: sticky
     top: 2.5rem
+  &_inner
+    height: 0
+    overflow: hidden
+    @media screen and (min-width: 42rem)
+      height: initial
+  &.show &_inner
+    height: initial
+    overflow: visible
+  &_toggle
+    // position: absolute
+    // right: 2.5rem
+    // opacity: 0
+    padding: 1.5rem 0
+    margin: -1.5rem 0
+    display: flex
+    justify-content: space-between
+    @media screen and (min-width: 42rem)
+      display: none
   h3
     position: relative
   ul

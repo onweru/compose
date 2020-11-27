@@ -1,10 +1,19 @@
 (function calcNavHeight(){
   const nav = elem('.nav_header');
   const navHeight = nav.offsetHeight + 25;
-  const docContent = elem('main');
-  // docContent.style.paddingTop = `${navHeight}px`;
   return navHeight;
 })();
+
+function toggleMenu(event) {
+  const target = event.target;
+  const isToggleControl = target.matches(`.${toggleId}`);
+  const isWithToggleControl = target.closest(`.${toggleId}`);
+  if(isToggleControl || isWithToggleControl) {
+    const menu = isWithToggleControl ? isWithToggleControl.parentNode.parentNode : target.parentNode.parentNode;
+    event.preventDefault();
+    modifyClass(menu, showId);
+  }
+}
 
 (function markInlineCodeTags(){
   const codeBlocks = elems('code');
@@ -310,6 +319,7 @@ function loadActions() {
     if(isModeToggle) {
       setUserColorMode(true);
     }
+    toggleMenu(event);
   });
 
 }

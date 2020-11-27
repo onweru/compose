@@ -11,6 +11,7 @@ html
   --font: 'Metropolis', sans-serif
   --border-color: #eee
   --theme: rgb(52,199,89)
+  --ease: ease
 
   @mixin darkmode
     --color-mode: "dark"
@@ -20,8 +21,8 @@ html
     --accent: var(--bubble)
     --overlay: var(--bubble)
     --border-color: transparent
-    *
-      box-shadow: none !important
+    // *
+      // box-shadow: none !important
 
   &[data-mode="dark"]
     @include darkmode
