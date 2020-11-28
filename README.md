@@ -93,7 +93,7 @@ Under `params` add `enableDarkMode = false` to your `config.toml` file. If your 
 
 ## From the same creator
 
-1. [Clarity Theme]https://github.com/chipzoller/hugo-clarity)
+1. [Clarity Theme](https://github.com/chipzoller/hugo-clarity)
 2. [Newsroom Theme](https://github.com/onweru/newsroom)
 3. [Swift Theme](https://github.com/onweru/hugo-swift-theme)
 
