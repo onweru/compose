@@ -13,7 +13,7 @@ Compose is a [Hugo](https://gohugo.io/) theme for documentation websites, inspir
 
 ## Installation
 
-Install a recent release of the Hugo "extended" version; ideally versions `>= 0.61.0`. If you install from [hugo releases page](https://github.com/gohugoio/hugo/releases),  __download the `_extended`__ version, which supports sass.
+Install a recent release of the Hugo "extended" version; ideally versions `>= 0.76.0`. If you install from [hugo releases page](https://github.com/gohugoio/hugo/releases),  __download the `_extended`__ version, which supports sass.
 
 ## Run your site with compose theme
 
