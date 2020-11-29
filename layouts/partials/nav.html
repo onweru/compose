@@ -1,6 +1,6 @@
 {{- $s := .Site }}
 {{- $sp := $s.Params }}
-<nav class="wrap nav">
+<nav class="wrap nav menu">
 	<a href="{{ $s.BaseURL }}" class="nav_brand">
 		{{- $logos := $sp.logo }}
 		{{- $litPath := absURL (printf "images/%s" $logos.lightMode) }}
