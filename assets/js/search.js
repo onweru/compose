@@ -54,14 +54,12 @@ function search(){
       const minimumSearchTermLength = isFloat ? 2 : 3;
       if(searchTerm.length >= minimumSearchTermLength) {
         let rawResults = index.search(searchTerm);
-        // console.log(rawResults);
         rawResults = rawResults.map(function(result){
           const score = result.score;
           const resultItem = result.item;
           resultItem.score = (parseFloat(score) * 50).toFixed(0);
           return resultItem;
         });
-        // console.log(rawResults);
         searchResults(rawResults, searchTerm);
       } else {
         searchResults();
@@ -87,7 +85,6 @@ if(!main) {
   main = elem('.main');
 }
 const searchQuery = findQuery();
-// console.log(searchQuery);
 wrapText(searchQuery[0],main);
 wrapText(searchQuery[1],main);
 

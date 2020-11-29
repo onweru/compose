@@ -8,10 +8,30 @@ function toggleMenu(event) {
   const target = event.target;
   const isToggleControl = target.matches(`.${toggleId}`);
   const isWithToggleControl = target.closest(`.${toggleId}`);
+  const showInstances = elems(`.${showId}`) ? Array.from(elems(`.${showId}`)) : [];
+  const menuInstance = target.closest(`.${menu}`);
+
+  function showOff(target, self = false) {
+    showInstances.forEach(function(showInstance){
+      if(!self) {
+        deleteClass(showInstance, showId);
+      }
+      if(showInstance !== target.closest(`.${menu}`)) {
+        deleteClass(showInstance, showId);
+      }
+    });
+  }
+
   if(isToggleControl || isWithToggleControl) {
     const menu = isWithToggleControl ? isWithToggleControl.parentNode.parentNode : target.parentNode.parentNode;
     event.preventDefault();
     modifyClass(menu, showId);
+  } else {
+    if(!menuInstance) {
+      showOff(target);
+    } else {
+      showOff(target, true);
+    }
   }
 }
 

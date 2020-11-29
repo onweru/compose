@@ -2,6 +2,7 @@ const parentURL = '{{ absURL "" }}';
 const doc = document.documentElement;
 const toggleId = 'toggle';
 const showId = 'show';
+const menu = 'menu';
 
 function isObj(obj) {
   return (obj && typeof obj === 'object' && obj !== null) ? true : false;
@@ -148,7 +149,6 @@ function wrapText(text, context, wrapper = 'mark') {
   if(hyperLinks) {
     hyperLinks.forEach(function(link){
       const href = link.href.replaceAll(encodeURI(open), "").replaceAll(encodeURI(close), "");
-      console.log(open, close);
       link.href = href;
     });
   }
