@@ -9,6 +9,9 @@ const idx = [
 ];
 
 const searchKeys = ['title', 'link', 'body', 'id'];
+
+const searchPageElement = elem('#searchpage');
+
 const searchOptions = {
   ignoreLocation: true,
   findAllMatches: true,
@@ -23,18 +26,37 @@ const index = new Fuse(idx, searchOptions);
 function searchResults(results=[], query="") {
   let resultsFragment = new DocumentFragment();
   let showResults = elem('.search_results');
+  if(searchPageElement) {
+    showResults = searchPageElement;
+  }
   emptyEl(showResults);
   if(results.length) {
     let resultsTitle = createEl('h3');
     resultsTitle.className = 'search_title';
     resultsTitle.innerText = 'Quick Links';
+    if(searchPageElement) {
+      resultsTitle.innerText = 'Search Results';
+    }
     resultsFragment.appendChild(resultsTitle);
     results.slice(0,4).forEach(function(result){
       let item = createEl('a');
       item.href = `${result.link}?query=${query}`;
       item.className = 'search_result';
-      item.textContent = result.title;
       item.style.order = result.score;
+      if(searchPageElement) {
+        pushClass(item, 'passive');
+        let itemTitle = createEl('h3');
+        itemTitle.textContent = result.title;
+        item.appendChild(itemTitle);
+
+        let itemDescription = createEl('p');
+        // position of first search term instance
+        let queryInstance = result.body.indexOf(query);
+        itemDescription.textContent = `... ${result.body.substring(queryInstance, queryInstance + 200)} ...`;
+        item.appendChild(itemDescription);
+      } else {
+        item.textContent = result.title;
+      }
       resultsFragment.appendChild(item);
     });
   } else {
@@ -43,27 +65,35 @@ function searchResults(results=[], query="") {
   showResults.appendChild(resultsFragment);
 }
 
-function search(){
+function search(searchTerm) {
+  // check if searchTerm can be cast as float
+  const isFloat = parseFloat(searchTerm);
+  const minimumSearchTermLength = isFloat ? 2 : 3;
+  if(searchTerm.length >= minimumSearchTermLength) {
+    let rawResults = index.search(searchTerm);
+    rawResults = rawResults.map(function(result){
+      const score = result.score;
+      const resultItem = result.item;
+      resultItem.score = (parseFloat(score) * 50).toFixed(0);
+      return resultItem;
+    });
+    searchResults(rawResults, searchTerm);
+  } else {
+    searchResults();
+  }
+}
+
+function liveSearch() {
   const searchField = elem('.search_field');
 
   if (searchField) {
     searchField.addEventListener('input', function() {
-      const searchTerm = this.value.trim().toLowerCase();
-      // check if searchTerm can be cast as float
-      const isFloat = parseFloat(searchTerm);
-      const minimumSearchTermLength = isFloat ? 2 : 3;
-      if(searchTerm.length >= minimumSearchTermLength) {
-        let rawResults = index.search(searchTerm);
-        rawResults = rawResults.map(function(result){
-          const score = result.score;
-          const resultItem = result.item;
-          resultItem.score = (parseFloat(score) * 50).toFixed(0);
-          return resultItem;
-        });
-        searchResults(rawResults, searchTerm);
-      } else {
-        searchResults();
-      }
+      const searchTerm = searchField.value.trim().toLowerCase();
+      search(searchTerm);
+    });
+    searchField.addEventListener('search', function(){
+      const searchTerm = searchField.value.trim().toLowerCase();
+      window.location.href = `${parentURL}/search/?query=${searchTerm}`;
     });
   }
 }
@@ -80,12 +110,23 @@ function findQuery(query = 'query') {
   return ["",""];
 }
 
+function passiveSearch() {
+  if(searchPageElement) {
+    const searchTerm = findQuery()[0];
+    search(searchTerm);
+  }
+}
+
 let main = elem('main');
 if(!main) {
   main = elem('.main');
 }
-const searchQuery = findQuery();
-wrapText(searchQuery[0],main);
-wrapText(searchQuery[1],main);
 
-window.addEventListener('load', () => search());
+window.addEventListener('load', function() {
+  searchPageElement ? false : liveSearch();
+  passiveSearch();
+
+  const searchQuery = findQuery();
+  wrapText(searchQuery[0],main);
+  wrapText(searchQuery[1],main);
+});
