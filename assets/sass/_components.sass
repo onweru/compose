@@ -45,9 +45,11 @@
       fill: var(--text)
   &_result
     padding: 0.5rem 1rem
-    &:hover
+    &:not(.passive):hover
       background-color: var(--theme)
       color: var(--light)
+    &.passive
+      display: grid
     &s
       width: 13.5rem
       background-color: var(--overlay)
