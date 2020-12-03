@@ -1,6 +1,4 @@
-# Contributor Covenant Code of Conduct
-
-## Our Standards
+# Our Standards
 
 Examples of behavior that contributes to creating a positive environment
 include:
