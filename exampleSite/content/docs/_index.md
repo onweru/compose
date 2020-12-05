@@ -1,8 +1,17 @@
 ---
-title: "Compose Docs"
+title: "Themes' Docs"
 weight: 1
 ---
 
-Welcome to the Compose theme user guide! This guide shows you how to get started creating technical documentation sites using Compose, including site customization and how to use Compose's blocks and templates.
+These docs consists of two parts:
 
-{{< button "./getting-started/" "Get started now" >}}
+1. Hugo Compose Themes docs
+2. Hugo Clarity Theme docs.
+
+Please note that the features listed under each theme are independent of each other. That is to say, some features may only be found in one theme and not in both.
+
+<!-- That content is better than dummy lorem ipsum 2) That content serves a good real-world demo for this theme 3) Publish more structured docs for each theme which are better than long blocky READMEs -->
+
+{{< button "./compose/" "Compose Theme Docs" >}}
+
+{{< button "./clarity/" "Clarity Theme Docs" >}}
