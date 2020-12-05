@@ -60,3 +60,12 @@
     transform-origin: 50% 50%
     transform: scale(1.2)
     cursor: pointer
+
+.scrollable
+  width: 100%
+  overflow-x: hidden
+  max-width: calc(100vw - 48px)
+  @media screen and (min-width: 768px)
+    max-width: 100%
+  &:hover
+    overflow-x: auto
