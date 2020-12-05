@@ -290,6 +290,17 @@ function loadActions() {
     lazyLoadMedia('img');
   })();
 
+  (function makeTablesResponsive(){
+    const tables = elems('table');
+    if (tables) {
+      tables.forEach(function(table){
+        const tableWrapper = createEl();
+        pushClass(tableWrapper, 'scrollable');
+        wrapEl(table, tableWrapper);
+      });
+    }
+  })();
+
   function pickModePicture(user, system, context) {
     const pictures = elems('picture');
     if(pictures) {
