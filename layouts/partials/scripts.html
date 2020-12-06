@@ -1,3 +1,6 @@
+{{- $variablesPath := "js/variables.js" }}
+{{- $variables := resources.Get $variablesPath | resources.ExecuteAsTemplate $variablesPath . }}
+
 {{- $funcPath := "js/functions.js" }}
 {{- $functions := resources.Get $funcPath | resources.ExecuteAsTemplate $funcPath . }}
 
@@ -10,7 +13,7 @@
 {{- $mainScriptPath := "js/index.js" }}
 {{- $main := resources.Get $mainScriptPath | resources.ExecuteAsTemplate $mainScriptPath . }}
 
-{{- $bundle := slice $functions $main | resources.Concat "js/bundle.js" | resources.Minify | resources.Fingerprint "sha512" }}
+{{- $bundle := slice $variables $functions $main | resources.Concat "js/bundle.js" | resources.Minify | resources.Fingerprint "sha512" }}
 {{- $bundle2 := slice $lunr $search | resources.Concat "js/search.js" | resources.Minify | resources.Fingerprint "sha512" }}
 <script src="{{ $bundle.Permalink }}"></script>
 <script src="{{ $bundle2.Permalink }}" async defer></script>
