@@ -1,9 +1,3 @@
-const parentURL = '{{ absURL "" }}';
-const doc = document.documentElement;
-const toggleId = 'toggle';
-const showId = 'show';
-const menu = 'menu';
-
 function isObj(obj) {
   return (obj && typeof obj === 'object' && obj !== null) ? true : false;
 }
@@ -23,7 +17,7 @@ function elem(selector, parent = document){
 }
 
 function elems(selector, parent = document) {
-  let elems = isObj(parent) ?parent.querySelectorAll(selector) : [];
+  let elems = isObj(parent) ? parent.querySelectorAll(selector) : [];
   return elems.length ? elems : false;
 }
 
@@ -120,18 +114,18 @@ function wrapText(text, context, wrapper = 'mark') {
   let close = `</${wrapper}>`;
   function wrap(context) {
     let c = context.innerHTML;
-    let index = c.indexOf(text);
-    if (index >= 0) {
-      let stop = index + text.length;
-      let s = c.substring(index,stop);
-      let before = c.substring(0,index);
-      let after = c.substring(stop);
-      c = `${before}${open}${s}${close}${after}`;
-      context.innerHTML = c;
+    let pattern = new RegExp(text, "gi");
+    let matches = text.length ? c.match(pattern) : null;
+
+    if(matches) {
+      matches.forEach(function(matchStr){
+        c = c.replaceAll(matchStr, `${open}${matchStr}${close}`);
+        context.innerHTML = c;
+      });
     }
   }
 
-  const contents = ["h1", "h2", "h3", "h4", "h5", "h6", "p", "code", "td", "pre"];
+  const contents = ["h1", "h2", "h3", "h4", "h5", "h6", "p", "code", "td"];
 
   contents.forEach(function(c){
     const cs = elems(c, context);
