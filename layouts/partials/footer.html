@@ -1,7 +1,8 @@
 {{ if .Site.Params.enableCopyright | default true }}
 <footer class="pt-2 pb-2">
   <div class="wrap">
-    <p>&copy; {{ now.Year }} {{ .Site.Params.author }}</p>
+    {{- $author := site.Params.author }}
+    <p>&copy; <span class="year">{{ now.Year }}</span>{{ with $author }} <a href ="{{ .url }}" target="_blank" rel="noopener">{{ .name }}</a>{{ end }}</p>
   </div>
 </footer>
 {{ end }}

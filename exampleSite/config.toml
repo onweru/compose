@@ -44,13 +44,14 @@ disableKinds = ["taxonomy", "taxonomyTerm"]
 # Everything below this are Site Params
 
 [params]
-  author = "Weru"
-  searchPlaceholder = "Search the docs ..."
+
   repo = "https://github.com/onweru/compose"
 
   time_format_blog = "Monday, January 02, 2006"
   time_format_default = "January 2, 2006"
   enableDarkMode = true # set to false to disable darkmode by default # user will still have the option to use dark mode
+
+  # Site logo
   [params.logo]
     lightMode = "compose.svg"
     darkMode = "compose-light.svg"
@@ -59,3 +60,9 @@ disableKinds = ["taxonomy", "taxonomyTerm"]
     name = "GitHub"
     icon = "github.svg"
     url = "https://github.com/onweru/compose/"
+
+  # optional
+  # attribution. Feel free to delete this
+  [params.author]
+    name = "Weru"
+    url = "https://neuralvibes.com/author/"
