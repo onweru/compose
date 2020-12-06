@@ -61,7 +61,7 @@ function searchResults(results=[], query="", passive = false) {
       resultsFragment.appendChild(item);
     });
   } else {
-    showResults.innerHTML = (query.length > 1) ? `<span class="search_result">${noMatchesFound}</span>` : `<h3><label for="find" class="search_result">${typeToSearch}</label></h3>`;
+    showResults.innerHTML = (query.length > 1) ? `<span class="search_result">${noMatchesFound}</span>` : `<label for="find" class="search_result">${typeToSearch}</label>`;
   }
   showResults.appendChild(resultsFragment);
 }
