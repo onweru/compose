@@ -23,19 +23,20 @@ const searchOptions = {
 
 const index = new Fuse(idx, searchOptions);
 
-function searchResults(results=[], query="") {
+function searchResults(results=[], query="", passive = false) {
   let resultsFragment = new DocumentFragment();
   let showResults = elem('.search_results');
-  if(searchPageElement) {
+  if(passive) {
     showResults = searchPageElement;
   }
   emptyEl(showResults);
+
   if(results.length) {
     let resultsTitle = createEl('h3');
     resultsTitle.className = 'search_title';
-    resultsTitle.innerText = 'Quick Links';
-    if(searchPageElement) {
-      resultsTitle.innerText = 'Search Results';
+    resultsTitle.innerText = quickLinks;
+    if(passive) {
+      resultsTitle.innerText = searchResultsLabel;
     }
     resultsFragment.appendChild(resultsTitle);
     results.slice(0,4).forEach(function(result){
@@ -43,7 +44,7 @@ function searchResults(results=[], query="") {
       item.href = `${result.link}?query=${query}`;
       item.className = 'search_result';
       item.style.order = result.score;
-      if(searchPageElement) {
+      if(passive) {
         pushClass(item, 'passive');
         let itemTitle = createEl('h3');
         itemTitle.textContent = result.title;
@@ -60,15 +61,13 @@ function searchResults(results=[], query="") {
       resultsFragment.appendChild(item);
     });
   } else {
-    showResults.innerHTML = (query.length >= 3) ? `<span class="search_result">No Results</span>` : "";
+    showResults.innerHTML = (query.length > 1) ? `<span class="search_result">${noMatchesFound}</span>` : `<h3><label for="find" class="search_result">${typeToSearch}</label></h3>`;
   }
   showResults.appendChild(resultsFragment);
 }
 
-function search(searchTerm) {
-  // check if searchTerm can be cast as float
-  const isFloat = parseFloat(searchTerm);
-  const minimumSearchTermLength = isFloat ? 2 : 3;
+function search(searchTerm, passive = false) {
+  const minimumSearchTermLength = 2;
   if(searchTerm.length >= minimumSearchTermLength) {
     let rawResults = index.search(searchTerm);
     rawResults = rawResults.map(function(result){
@@ -77,9 +76,11 @@ function search(searchTerm) {
       resultItem.score = (parseFloat(score) * 50).toFixed(0);
       return resultItem;
     });
-    searchResults(rawResults, searchTerm);
+
+    passive ? searchResults(rawResults, searchTerm, true) : searchResults(rawResults, searchTerm);
+
   } else {
-    searchResults();
+    passive ? searchResults([], "", true) : searchResults();
   }
 }
 
@@ -91,10 +92,15 @@ function liveSearch() {
       const searchTerm = searchField.value.trim().toLowerCase();
       search(searchTerm);
     });
-    searchField.addEventListener('search', function(){
-      const searchTerm = searchField.value.trim().toLowerCase();
-      window.location.href = `${parentURL}/search/?query=${searchTerm}`;
-    });
+
+    if(!searchPageElement) {
+      searchField.addEventListener('search', function(){
+        const searchTerm = searchField.value.trim().toLowerCase();
+        if(searchTerm.length > 1)  {
+          window.location.href = `${parentURL}/search/?query=${searchTerm}`;
+        }
+      });
+    }
   }
 }
 
@@ -102,18 +108,26 @@ function findQuery(query = 'query') {
   const urlParams = new URLSearchParams(window.location.search);
   if(urlParams.has(query)){
     let c = urlParams.get(query);
-    // window.find(c);
-    cc = `${c.charAt(0).toUpperCase()}${c.substring(1,c.length)}`;
-    // window.find(cc);
-    return [c, cc];
+    return c;
   }
-  return ["",""];
+  return "";
 }
 
 function passiveSearch() {
   if(searchPageElement) {
-    const searchTerm = findQuery()[0];
-    search(searchTerm);
+    const searchTerm = findQuery();
+    search(searchTerm, true);
+
+    // search actively after search page has loaded
+    const searchField = elem('.search_field');
+
+    if(searchField) {
+      searchField.addEventListener('input', function() {
+        const searchTerm = searchField.value.trim().toLowerCase();
+        search(searchTerm, true);
+        wrapText(searchTerm, main);
+      });
+    }
   }
 }
 
@@ -126,7 +140,5 @@ window.addEventListener('load', function() {
   searchPageElement ? false : liveSearch();
   passiveSearch();
 
-  const searchQuery = findQuery();
-  wrapText(searchQuery[0],main);
-  wrapText(searchQuery[1],main);
+  wrapText(findQuery(), main);
 });
