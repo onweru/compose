@@ -8,11 +8,13 @@
 <link rel="manifest" href='{{ absURL (printf "%ssite.webmanifest" $iconsPath) }}'>
 <link rel="mask-icon" href='{{ absURL (printf "%ssafari-pinned-tab.svg" $iconsPath) }}'  color="#004750">
 <link rel="shortcut icon" href='{{ absURL (printf "%sfavicon.ico" $iconsPath) }}'>
-<meta name="msapplication-TileColor" content="#ffffff">
 <meta name="msapplication-config" content='{{ absURL (printf "%sbrowserconfig.xml" $iconsPath) }}'>
-<meta name="theme-color" content="#ffffff">
-
-<title>{{ if and .Title (ne (trim (lower .Site.Title) "") (trim (lower .Title) "")) }}{{ .Title }} | {{ end }}{{ .Site.Title }}</title>
+{{- $t := .Title }}
+{{- $s := .Site.Title }}
+{{- if in (lower $s) (lower $t) }}
+  {{- $t = false }}
+{{- end }}
+<title>{{ if and $t (ne (trim (lower $s) "") (trim (lower $t) "")) }}{{ $t }} | {{ end }}{{ $s }}</title>
 
 {{- partial "opengraph" . }}
 
