@@ -39,7 +39,12 @@ function searchResults(results=[], query="", passive = false) {
       resultsTitle.innerText = searchResultsLabel;
     }
     resultsFragment.appendChild(resultsTitle);
-    results.slice(0,4).forEach(function(result){
+    if(!searchPageElement) {
+      results = results.slice(0,8);
+    } else {
+      results = results.slice(0,12);
+    }
+    results.forEach(function(result){
       let item = createEl('a');
       item.href = `${result.link}?query=${query}`;
       item.className = 'search_result';
@@ -61,14 +66,13 @@ function searchResults(results=[], query="", passive = false) {
       resultsFragment.appendChild(item);
     });
   } else {
-    showResults.innerHTML = (query.length > 1) ? `<span class="search_result">${noMatchesFound}</span>` : `<label for="find" class="search_result">${typeToSearch}</label>`;
+    showResults.innerHTML = (query.length) ? `<span class="search_result">${noMatchesFound}</span>` : `<label for="find" class="search_result">${typeToSearch}</label>`;
   }
   showResults.appendChild(resultsFragment);
 }
 
 function search(searchTerm, passive = false) {
-  const minimumSearchTermLength = 2;
-  if(searchTerm.length >= minimumSearchTermLength) {
+  if(searchTerm.length) {
     let rawResults = index.search(searchTerm);
     rawResults = rawResults.map(function(result){
       const score = result.score;
@@ -96,7 +100,7 @@ function liveSearch() {
     if(!searchPageElement) {
       searchField.addEventListener('search', function(){
         const searchTerm = searchField.value.trim().toLowerCase();
-        if(searchTerm.length > 1)  {
+        if(searchTerm.length)  {
           window.location.href = `${parentURL}/search/?query=${searchTerm}`;
         }
       });
@@ -131,6 +135,32 @@ function passiveSearch() {
   }
 }
 
+function hasSearchResults() {
+  const searchResults = elem('.results');
+  const body = searchResults.innerHTML.length;
+  return [searchResults, body]
+}
+
+function clearSearchResults() {
+  let searchResults = hasSearchResults();
+  let actionable = searchResults[1];
+  if(actionable) {
+    searchResults = searchResults[0];
+    searchResults.innerHTML = "";
+    // clear search field
+    const searchField = elem('.search_field');
+    searchField.value = "";
+  }
+}
+
+function onEscape(fn){
+  window.addEventListener('keydown', function(event){
+    if(event.code === "Escape") {
+      fn();
+    }
+  });
+}
+
 let main = elem('main');
 if(!main) {
   main = elem('.main');
@@ -141,4 +171,14 @@ window.addEventListener('load', function() {
   passiveSearch();
 
   wrapText(findQuery(), main);
+
+  onEscape(clearSearchResults);
+});
+
+window.addEventListener('click', function(event){
+  const target = event.target;
+  const isSearch = target.closest('.search') || target.matches('.search');
+  if(!isSearch && !searchPageElement) {
+    clearSearchResults();
+  }
 });
