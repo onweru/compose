@@ -130,12 +130,12 @@ function wrapText(text, context, wrapper = 'mark') {
   contents.forEach(function(c){
     const cs = elems(c, context);
     if(cs.length) {
-      cs.forEach(function(cx){
+      cs.forEach(function(cx, index){
         if(cx.children.length >= 1) {
-          wrap(cx);
           Array.from(cx.children).forEach(function(child){
             wrap(child);
           })
+          wrap(cx);
         } else {
           wrap(cx);
         }

@@ -23,6 +23,14 @@ const searchOptions = {
 
 const index = new Fuse(idx, searchOptions);
 
+function minQueryLen(query) {
+  query = query.trim();
+  const queryIsFloat = parseFloat(query);
+  const minimumQueryLength = queryIsFloat ? 1 : 4;
+  console.log(query, queryIsFloat, minimumQueryLength);
+  return minimumQueryLength;
+}
+
 function searchResults(results=[], query="", passive = false) {
   let resultsFragment = new DocumentFragment();
   let showResults = elem('.search_results');
@@ -31,7 +39,11 @@ function searchResults(results=[], query="", passive = false) {
   }
   emptyEl(showResults);
 
-  if(results.length) {
+  const queryLen = query.length;
+  const requiredQueryLen = minQueryLen(query);
+
+  if(results.length && queryLen >= requiredQueryLen) {
+    console.log('hmm');
     let resultsTitle = createEl('h3');
     resultsTitle.className = 'search_title';
     resultsTitle.innerText = quickLinks;
@@ -65,9 +77,20 @@ function searchResults(results=[], query="", passive = false) {
       }
       resultsFragment.appendChild(item);
     });
-  } else {
-    showResults.innerHTML = (query.length) ? `<span class="search_result">${noMatchesFound}</span>` : `<label for="find" class="search_result">${typeToSearch}</label>`;
   }
+
+  if(queryLen >= requiredQueryLen) {
+    if (!results.length) {
+      showResults.innerHTML = `<span class="search_result">${noMatchesFound}</span>`;
+    }
+  } else {
+    if (queryLen > 1) {
+      showResults.innerHTML = `<label for="find" class="search_result">${shortSearchQuery}</label>`;
+    } else {
+      showResults.innerHTML = `<label for="find" class="search_result">${typeToSearch}</label>`;
+    }
+  }
+
   showResults.appendChild(resultsFragment);
 }
 
