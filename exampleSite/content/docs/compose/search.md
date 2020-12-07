@@ -12,7 +12,9 @@ This occurs only when the user loads the search page i.e `/search/`. They can di
 
 ### 2. Live search
 
-This behaviour will be obvious as the user types a search query on the search field. for any search queries longer than one character, will yield a list of `quick links` or a simple `no matches found`. Else, the user will be prompted to continue typing.
+This behaviour will be obvious as the user types a search query on the search field. All search queries, will yield a list of `quick links` or a simple `no matches found`. Else, the user will be prompted to continue typing.
+
+> Please note that the results under quick links will be a truncated list of the most relevant results. Only a maximum of 8 items will be returned. This number is pragmatic at best if not arbitrary. On the search page, the number is set to 12.
 
 Note that live search on the search page will behave differently than on the other pages. Nonetheles, the pages applies the same live search principle.
 
