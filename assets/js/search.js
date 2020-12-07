@@ -26,7 +26,7 @@ const index = new Fuse(idx, searchOptions);
 function minQueryLen(query) {
   query = query.trim();
   const queryIsFloat = parseFloat(query);
-  const minimumQueryLength = queryIsFloat ? 1 : 4;
+  const minimumQueryLength = queryIsFloat ? 1 : 2;
   console.log(query, queryIsFloat, minimumQueryLength);
   return minimumQueryLength;
 }
