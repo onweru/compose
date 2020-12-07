@@ -12,7 +12,7 @@ This occurs only when the user loads the search page i.e `/search/`. They can di
 
 ### 2. Live search
 
-This behaviour will be obvious as the user types a search query on the search field. All search queries, will yield a list of `quick links` or a simple `no matches found`. Else, the user will be prompted to continue typing.
+This behaviour will be obvious as the user types a search query on the search field. All `valid search queries`, will yield a list of `quick links` or a simple `no matches found`. Else, the user will be prompted to continue typing.
 
 > Please note that the results under quick links will be a truncated list of the most relevant results. Only a maximum of 8 items will be returned. This number is pragmatic at best if not arbitrary. On the search page, the number is set to 12.
 
@@ -30,3 +30,11 @@ I think the other 3 are not only related, but can be for the most part be achiev
 
 (1) multilingual sites
 (2) blog/events sections that are separate from the docs section -->
+
+### What is a valid search query
+
+A valid search query must be long enough. If the search query can be cast as a float, then it only need contain one or more characters.
+
+Else the search query must be at least 2 characters long.
+
+<!-- This behaviour will change. -->
