@@ -8,6 +8,8 @@
   other = "Search the docs ..."
 [search_results_label]
   other = "Search Results"
+[short_search_query]
+  other = "Query is too short"
 [site_menu]
   other = "Site Menu"
 [type_to_search]
