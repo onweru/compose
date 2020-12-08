@@ -124,7 +124,7 @@ function liveSearch() {
       searchField.addEventListener('search', function(){
         const searchTerm = searchField.value.trim().toLowerCase();
         if(searchTerm.length)  {
-          window.location.href = `${parentURL}/search/?query=${searchTerm}`;
+          window.location.href = `${parentURL}search/?query=${searchTerm}`;
         }
       });
     }
