@@ -17,3 +17,5 @@
 {{- $bundle2 := slice $fuse $search | resources.Concat "js/search.js" | resources.Minify | resources.Fingerprint "sha512" }}
 <script src="{{ $bundle.Permalink }}"></script>
 <script src="{{ $bundle2.Permalink }}" async defer></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/reveal.js" integrity="sha512-LGXpHNR8kKb3liBoiowLefRfx9BahbZ0FWE8vfTOV3vU4jD/9SpoyZQ49rc7gBwSzbFTZAaLCsSkpujb6ic+Og==" crossorigin="anonymous"></script>
