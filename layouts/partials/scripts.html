@@ -14,6 +14,7 @@
 {{- $main := resources.Get $mainScriptPath | resources.ExecuteAsTemplate $mainScriptPath . }}
 
 {{- $bundle := slice $variables $functions $main | resources.Concat "js/bundle.js" | resources.Minify | resources.Fingerprint "sha512" }}
-{{- $bundle2 := slice $fuse $search | resources.Concat "js/search.js" | resources.Minify | resources.Fingerprint "sha512" }}
+{{- $bundle2 := slice $fuse $search | resources.Concat "js/search.js" | resources.Fingerprint "sha512" }}
 <script src="{{ $bundle.Permalink }}"></script>
 <script src="{{ $bundle2.Permalink }}" async defer></script>
+<!--  | resources.Minify -->
