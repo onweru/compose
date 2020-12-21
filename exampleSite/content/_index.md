@@ -1,6 +1,12 @@
 +++
 title = "Compose"
-
+# define chart data here
+[data]
+  fileLink = "content/projects.csv" # path to where csv is stored
+  colors = ["#627c62", "#11819b", "#ef7f1a", "#4e1154"] # chart colors
+  columnTitles = ["Section", "Status", "Author"] # optional if no table will be displayed from dataset
+  baseChartOn = 3 # number of column the chart(s) and graph should be drawn from # can be overridden directly via shortcode parameter # it's therefore optional
+  title = "Projects"
 +++
 {{< block "grid-2 mt-2" >}}
 {{< column >}}
@@ -20,3 +26,7 @@ Note that the theme is built with simplicity in mind. This way, if a suggestion 
 ![diy](/images/scribble.jpg)
 {{< /column >}}
 {{< /block >}}
+
+{{< grid "3 mt-2" >}}
+  {{< chart "data" "pie, bar, doughnut" >}}
+{{< /grid >}}
