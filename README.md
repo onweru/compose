@@ -10,6 +10,8 @@ Compose is a [Hugo](https://gohugo.io/) theme for documentation websites, inspir
 2. Gallery Support (via shortcode)
 3. Native lazy loading of images
 4. Live search
+5. Pie, doughnut & bar charts support
+6. Searchable & Sortable tables
 
 ## Installation
 
