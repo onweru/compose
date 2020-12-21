@@ -59,7 +59,7 @@ Firstly define the data you want to display from the front matter:
 
 #### __Show Table at once__
 
-{{< block "mt-2" >}}
+{{< block >}}
   {{< chart "dataset1" "table" >}}
 {{< /block >}}
 
@@ -98,6 +98,6 @@ Firstly define the data you want to display from the front matter:
 
 #### Show table only
 
-{{< grid "3 mt-2" >}}
+{{< grid "3" >}}
   {{< chart "dataset2" "table" >}}
 {{< /grid >}}
