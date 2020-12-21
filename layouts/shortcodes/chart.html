@@ -52,7 +52,6 @@
 {{- $labels = split (delimit  $labels ",") "," }}
 {{- $dataTally := split (delimit $dataCompactData ",") ","  }}
 
-<link rel="stylesheet" href='{{ absURL "js/chart.min.css" }}' />
 <script src='{{ absURL "js/chart.min.js" }}'></script>
 <script>
   Chart.platform.disableCSSInjection = true;
