@@ -25,7 +25,7 @@
 {{- end }}
 
 {{- if in $charts "table" }}
-<script src = '{{ absURL "vendor/w3.js" }}'></script>
+<script src = '{{ absURL "js/w3.js" }}'></script>
 <div class="table_wrap">
   <p>
     <input oninput="w3.filterHTML('#chartTable', '.row', this.value)" class="form_search search_field" placeholder="Filter Table Values">
@@ -53,8 +53,8 @@
 {{- $dataTally := split (delimit $dataCompactData ",") ","  }}
 
 
-<link rel="stylesheet" href='{{ absURL "chart/chart.min.css" }}'/>
-<script src='{{ absURL "vendor/chart.min.js" }}'></script>
+<link rel="stylesheet" href='{{ absURL js/chart.min.css" }}'/>
+<script src='{{ absURL "js/chart.min.js" }}'></script>
 <script>
   Chart.platform.disableCSSInjection = true;
   function getCanvas(id){
