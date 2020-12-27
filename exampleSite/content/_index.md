@@ -19,9 +19,9 @@ We do a [Pull Request](https://github.com/onweru/compose/pulls) contributions wo
 
 Note that the theme is built with simplicity in mind. This way, if a suggestion complicates the usability of the theme, it may be declined. New users are always welcome!
 
-{{< button "docs/" "Read the Docs" >}} {{< button "https://github.com/onweru/compose" "Download Theme" >}}
-
+{{< button "docs/" "Read the Docs" >}}{{< button "https://github.com/onweru/compose" "Download Theme" >}}
 {{< /column >}}
+
 {{< column >}}
 ![diy](/images/scribble.jpg)
 {{< /column >}}
