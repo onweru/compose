@@ -56,6 +56,7 @@ This adds a styled link (styled like a button). It takes two no-optional paramet
 | :---  | :--- | :--- |
 | label | button text | no |
 | url | button link | no |
+| modifier | styling classes | yes |
 
 **Example**
 
