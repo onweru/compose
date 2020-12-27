@@ -6,6 +6,7 @@ html
   --bubble: rgb(36,36,38)
   --accent: var(--haze)
   --bg: var(--light)
+  --code-bg: var(--dark)
   --overlay: var(--light)
   --text: #111
   --font: 'Metropolis', sans-serif
@@ -21,6 +22,7 @@ html
     --accent: var(--bubble)
     --overlay: var(--bubble)
     --border-color: transparent
+    --code-bg: var(--accent)
     *
       box-shadow: none !important
 
@@ -38,3 +40,7 @@ html
 %narrow
   max-width: 750px
   margin: 0 auto
+
+blockquote
+  + .highlight_wrap
+    margin-top: 2.25rem
