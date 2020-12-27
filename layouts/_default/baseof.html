@@ -3,7 +3,21 @@
 <head>
   {{- partial "head" . }}
 </head>
-<body class="page-{{ .Kind }}">
+  {{- $s := .Site.Params }}
+  {{- $p := .Params }}
+  {{- $maxCodeLines := default 100 $s.codeMaxLines }}
+  {{- with $p.codeMaxLines }}
+    {{- $maxCodeLines = . }}
+  {{- end }}
+  {{- $codeLineNumbers := default false $s.codeLineNumbers }}
+  {{ with $p.codeLineNumbers }}
+    {{- $codeLineNumbers = . }}
+  {{ else }}
+    {{ if eq $p.codeLineNumbers false }}
+      {{- $codeLineNumbers = false }}
+    {{ end }}
+  {{ end }}
+<body class="page-{{ .Kind }}"data-code="{{ $maxCodeLines }}" data-lines="{{ $codeLineNumbers }}" >
   <header class="nav_header">
     {{- partial "nav" . }}
   </header>
