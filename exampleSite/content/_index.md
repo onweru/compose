@@ -26,10 +26,10 @@ Note that the theme is built with simplicity in mind. This way, if a suggestion 
 ![diy](/images/scribble.jpg)
 {{< /column >}}
 {{< /block >}}
-{{< column "mt-3" >}}
+{{< column "mt-2" >}}
 ### You can generate graphs, charts and tables from a csv, ~~or a json~~ dataset 
 {{< /column >}}
-{{< grid "3 mt-1" >}}
+{{< grid "3" >}}
   {{< chart "data" "pie, bar, doughnut" >}}
 {{< /grid >}}
 
