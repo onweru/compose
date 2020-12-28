@@ -8,9 +8,9 @@ title = "Compose"
   baseChartOn = 3 # number of column the chart(s) and graph should be drawn from # can be overridden directly via shortcode parameter # it's therefore optional
   title = "Projects"
 +++
-{{< block "grid-2 mt-2" >}}
-{{< column >}}
 
+{{< block "grid-2" >}}
+{{< column >}}
 # Compose your Docs with __Ease__.
 
 Compose is a lean theme for the `Hugo`, inspired by [forestry.io](https://forestry.io). 

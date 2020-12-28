@@ -11,14 +11,14 @@ disableKinds = ["taxonomy", "taxonomyTerm"]
 
 #  menu items
 [[menu.main]]
-    name = "Docs"
-    weight = 2
-    url = "docs/"
+  name = "Docs"
+  weight = 2
+  url = "docs/"
 
 [[menu.main]]
-    name = "Example"
-    weight = 3
-    url = "https://docs.neuralvibes.com"
+  name = "Example"
+  weight = 3
+  url = "https://docs.neuralvibes.com"
 
 [markup]
   [markup.goldmark]
