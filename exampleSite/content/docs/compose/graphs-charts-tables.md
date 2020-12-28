@@ -1,5 +1,5 @@
 +++
-title = "Bar Graphs, Charts & Tables"
+title = "Graphs, charts & dynamic tables"
 weight = 9
 [dataset1]
   fileLink = "content/projects.csv" # path to where csv is stored
@@ -22,8 +22,7 @@ At this point if you want to display data from a json or yaml file, you would ne
 
 Once you have a csv file, you display the charts as follows:
 
-### Example
-#### __Show a pie, doughnut & bar chart at once__
+#### Show a pie, doughnut & bar chart at once
 
 Firstly define the data you want to display from the front matter:
 
@@ -63,8 +62,6 @@ Firstly define the data you want to display from the front matter:
   {{< chart "dataset1" "table" >}}
 {{< /block >}}
 
-### Example 2
-
 Firstly define the data you want to display from the front matter:
 
 ```toml
@@ -81,7 +78,7 @@ Firstly define the data you want to display from the front matter:
   table = false # show table listing the chart data
 ```
 
-#### __Show only a pie and a doughnut chart__
+#### Show only a pie and a doughnut chart
 
 ```markdown
 // from page content

@@ -5,7 +5,7 @@ description: >
   This is how the shortcodes would look like in action
 ---
 
-### Using blocks, columns & buttons
+### Blocks, columns & buttons
 
 ```sh
 {{</* block "grid-2" */>}}

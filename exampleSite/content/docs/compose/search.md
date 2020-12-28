@@ -1,5 +1,5 @@
 +++
-title = "Search"
+title = "Search Function"
 description = ""
 weight = 8
 +++
