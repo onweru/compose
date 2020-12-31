@@ -26,7 +26,7 @@ The [exampleSite](https://github.com/onweru/compose/tree/master/exampleSite) ser
 
 > This guide covers the necessary bits. As the project evolves, the userguide will get more comprehensive
 
-You can use Hugo to generate and serve a local copy of the guide (also useful for testing local theme changes), making sure you have installed all the prerequisites listed above:
+You can use Hugo to generate and serve a local copy of the guide (also useful for testing local theme changes).
 
 ```
 git clone --recurse-submodules --depth 1 https://github.com/onweru/compose.git
