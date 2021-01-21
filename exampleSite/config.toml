@@ -59,12 +59,13 @@ disableKinds = ["taxonomy", "taxonomyTerm"]
 
   # Site logo
   [params.logo]
-    lightMode = "compose.svg"
-    darkMode = "compose-light.svg"
+    lightMode = "images/compose.svg"
+    darkMode = "images/compose-light.svg"
 
   [params.source]
     name = "GitHub"
-    icon = "github.svg"
+    iconLight = "images/GitHubMarkLight.svg"
+    iconDark = "images/GitHubMarkDark.svg"
     url = "https://github.com/onweru/compose/"
 
   # optional

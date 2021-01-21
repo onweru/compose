@@ -3,8 +3,8 @@
 <nav class="wrap nav menu">
 	<a href="{{ $s.BaseURL }}" class="nav_brand">
 		{{- $logos := $sp.logo }}
-		{{- $litPath := absURL (printf "images/%s" $logos.lightMode) }}
-		{{- $darkPath := absURL (printf "images/%s" $logos.darkMode) }}
+		{{- $litPath := absURL ($logos.lightMode) }}
+		{{- $darkPath := absURL ($logos.darkMode) }}
 		<picture data-lit="{{ $litPath }}" data-dark="{{ $darkPath }}">
 			{{ with $sp.enableDarkMode }}
 			<source srcset = '{{ $darkPath }}' media="(prefers-color-scheme: dark)">
@@ -34,8 +34,21 @@
 		</li>
 		{{- end }}
 		{{ $repo := $sp.source }}
-		<li class="nav-item">
-			<a class="nav-link" href="{{ $repo.url }}" target="_blank">{{ $repo.name }}</a>
+		<li class="nav-item nav_repo">
+			<a class="nav-link" href="{{ $repo.url }}" target="_blank">
+				{{ if $repo.iconLight }}
+					{{- $litPath := absURL ($repo.iconLight) }}
+					{{- $darkPath := absURL ($repo.iconDark) }}
+					<picture data-lit="{{ $litPath }}" data-dark="{{ $darkPath }}">
+						{{ with $sp.enableDarkMode }}
+							<source srcset = '{{ $darkPath }}' media="(prefers-color-scheme: dark)">
+						{{ end }}
+						<img srcset = '{{ $litPath }}' alt = '{{ $repo.name }} Repo'>
+					</picture>
+				{{ else }}
+					{{ $repo.name }}
+				{{ end }}
+			</a>
 		</li>
 		<li class="nav-item">{{ partial "mode" . }}</li>
 	</ul>
