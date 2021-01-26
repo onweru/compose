@@ -246,6 +246,9 @@ function loadActions() {
     return mode.join('');
   }
 
+  /**
+   * @param isDarkMode true means from dark to light, false means from light to dark
+   */
   function changeMode(isDarkMode) {
     if(isDarkMode) {
       bank.setItem(storageKey, light)
@@ -301,6 +304,7 @@ function loadActions() {
   function setUserColorMode(mode = false) {
     const isDarkMode = currentMode() == dark;
     const storedMode = bank.getItem(storageKey);
+    const sysMode = systemMode();
     if(storedMode) {
       if(mode) {
         changeMode(isDarkMode);
@@ -310,9 +314,10 @@ function loadActions() {
     } else {
       if(mode === true) {
         changeMode(isDarkMode)
+      } else {
+        changeMode(sysMode!==dark);
       }
     }
-    const sysMode = systemMode();
     const userMode = doc.dataset.mode;
     doc.dataset.systemmode = sysMode;
     if(userMode) {
