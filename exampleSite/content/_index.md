@@ -1,10 +1,16 @@
 +++
 title = "Compose"
-
+# define chart data here
+[data]
+  fileLink = "content/projects.csv" # path to where csv is stored
+  colors = ["#627c62", "#11819b", "#ef7f1a", "#4e1154"] # chart colors
+  columnTitles = ["Section", "Status", "Author"] # optional if no table will be displayed from dataset
+  baseChartOn = 3 # number of column the chart(s) and graph should be drawn from # can be overridden directly via shortcode parameter # it's therefore optional
+  title = "Projects"
 +++
-{{< block "grid-2 mt-2" >}}
-{{< column >}}
 
+{{< block "grid-2" >}}
+{{< column >}}
 # Compose your Docs with __Ease__.
 
 Compose is a lean theme for the `Hugo`, inspired by [forestry.io](https://forestry.io). 
@@ -13,10 +19,18 @@ We do a [Pull Request](https://github.com/onweru/compose/pulls) contributions wo
 
 Note that the theme is built with simplicity in mind. This way, if a suggestion complicates the usability of the theme, it may be declined. New users are always welcome!
 
-{{< button "docs/" "Read the Docs" >}} {{< button "https://github.com/onweru/compose" "Download Theme" >}}
-
+{{< button "docs/compose/" "Read the Docs" >}}{{< button "https://github.com/onweru/compose" "Download Theme" >}}
 {{< /column >}}
+
 {{< column >}}
 ![diy](/images/scribble.jpg)
 {{< /column >}}
 {{< /block >}}
+{{< column "mt-2" >}}
+### You can generate graphs, charts and tables from a csv, ~~or a json~~ dataset 
+{{< /column >}}
+{{< grid "3" >}}
+  {{< chart "data" "pie, bar, doughnut" >}}
+{{< /grid >}}
+
+{{< button "docs/compose/graphs-charts-tables/" "Learn more" "mt-2" >}}

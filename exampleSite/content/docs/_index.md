@@ -12,6 +12,7 @@ Please note that the features listed under each theme are independent of each ot
 
 <!-- That content is better than dummy lorem ipsum 2) That content serves a good real-world demo for this theme 3) Publish more structured docs for each theme which are better than long blocky READMEs -->
 
-{{< button "./compose/" "Compose Theme Docs" >}}
+{{< button "./compose/" "Compose Theme Docs" "mb-1" >}}
 
 {{< button "./clarity/" "Clarity Theme Docs" >}}
+

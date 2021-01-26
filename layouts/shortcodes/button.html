@@ -1,18 +1,4 @@
 {{- $link := .Get 0 -}}
-{{- $label := .Get 1 }}
-{{- $icon := .Get 2 }}
-{{- $modifier := "" }}
-{{- if in $label "translucent" }}
-  {{ $modifier = "translucent" }}
-{{- end }}
-{{- if in $label "," }}
-  {{- $details := split $label "," }}
-  {{- $label = index $details 0 }}
-  {{- $modifier = printf "button_%s" (trim (index $details 1) " ") }}
-{{- end -}}
-<a href="{{ $link }}" class="button {{ $modifier }}">
-  {{- with $icon -}}
-  <img src="/images/{{ . }}" alt="icon">
-  {{- end }}
-  {{- $label -}}
-</a>
+{{- $label := .Get 1 -}}
+{{- $modifier := .Get 2 -}}
+<a href="{{ $link }}" class="button{{ with $modifier }} {{ . }}{{ end }}">{{- $label -}}</a>

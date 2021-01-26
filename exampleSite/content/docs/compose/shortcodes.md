@@ -1,13 +1,14 @@
----
-title: "Shortcodes"
-weight: 5
-description: >
-  Use hugo shortcodes to quickly compose site pages.
----
++++
+title = "Shortcodes"
+weight = 5
+description = "Use hugo shortcodes to quickly compose your documentation pages."
++++
+
+Instead of writing all your site pages from scratch, Hugo lets you define and use [shortcodes](https://gohugo.io/content-management/shortcodes/).
 
 Why shortcodes? While markdown is sufficient to produce simple pages, it's insufficient where complex page structures are needed. Thusly, whenever we need special styling, shortcodes compliment the shortcomings of markdown.
 
-This way, you can side step complex html and css boilerplate in your content files. 
+This way, you can side step complex html and css boilerplate in your content files.
 
 Sometimes, the shortcode will wrap content, sometimes it won't. When content is wrapped, a closing shortcode tag is needed. Please see the link I provided above and the markdown files for examples. You'll get the gist pretty quickly.
 
@@ -56,6 +57,7 @@ This adds a styled link (styled like a button). It takes two no-optional paramet
 | :---  | :--- | :--- |
 | label | button text | no |
 | url | button link | no |
+| modifier | styling classes | yes |
 
 **Example**
 

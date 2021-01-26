@@ -1,13 +1,13 @@
 ---
-title: "Getting Started"
+title: "Install theme"
 weight: 2
 description: >
-  This page tells you how to get started with the Compose theme, including installation and basic configuration.
+  This page tells you how to get started with the Compose theme.
 ---
 
-## Prerequisites and installation
+### Prerequisites
 
-### Install Hugo
+First ensure that you have hugo installed.
 
 You need a [recent **extended** version](https://github.com/gohugoio/hugo/releases) (we recommend version 0.61 or later) of [Hugo](https://gohugo.io/) to do local builds and previews of sites (like this one) that uses this theme.
 
