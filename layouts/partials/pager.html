@@ -1,20 +1,20 @@
-<div class="pager{{ if .Next }}{{ else }} pager_lean{{ end }}">
-  {{ with .Site.RegularPages.Next . }}
-  <div class="pager_item prev">
-    <!-- <span class="pager_meta">PREVIOUS</span> -->
-    <a href="{{ .Permalink }}" class="pager_link button" title="{{ .Title }}">
-      <span class="pager_label">{{ .Title }}</span>
-    </a>
-  </div>
-  {{ end }}
+<div class="pager{{ if .NextInSection }}{{ else }} pager_lean{{ end }}">
+    <div class="pager_item prev">
+        {{ with .NextInSection }}
+        <a href="{{ .Permalink }}" class="pager_link button" title="{{ .Title }}">
+            <span class="pager_label">{{ .Title }}</span>
+        </a>
+        {{ end }}
 
-  {{ with .Site.RegularPages.Prev . }}
-  <div class="pager_item next">
-    <!-- <span class="pager_meta">NEXT</span> -->
-    <a href="{{ .Permalink }}" class="pager_link button" title="{{ .Title }}">
-      <span class="pager_label">{{ .Title }}</span>
-    </a>
-  </div>
-  {{ end }}
+    </div>
+    <div class="pager_item next">
+
+        {{ with .PrevInSection }}
+        <a href="{{ .Permalink }}" class="pager_link button" title="{{ .Title }}">
+            <span class="pager_label">{{ .Title }}</span>
+        </a>
+        {{ end }}
+    </div>
+
 </div>
 {{ partial "sprites" . }}

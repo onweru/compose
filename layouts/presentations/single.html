@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="{{ .Site.Language.Lang }}">
+<head>
+    <title>{{ .Title }} - Presentation</title>
+    <style>
+        @import url('//fonts.googleapis.com/css2?family=Quicksand:wght@400');
+
+        .remark-container {
+            background: hsl(0, 0%, 15%);
+        }
+
+        .remark-slide-scaler {
+            box-shadow: none;
+        }
+
+        body, h1, h2, h3 {
+            font-family: 'Quicksand';
+        }
+
+        h1, h2, h3 {
+            font-weight: normal;
+            font-weight: 400;
+            margin-bottom: 0;
+        }
+
+        .inverse {
+            background: hsl(0, 0%, 15%);
+            color: hsl(0, 5%, 75%);
+        }
+
+        h1 {
+            text-align: center;
+            line-height: 0.8em;
+        }
+
+        .inverse h1 {
+            color: hsl(0, 5%, 95%);
+        }
+
+        h2 {
+            line-height: 0.8em;
+
+        }
+
+        .inverse h2 {
+            color: hsl(0, 5%, 90%);
+        }
+        a{
+            text-decoration: none;
+            color: orangered;
+        }
+        .inverse a {
+            color: hsl(330, 75%, 50%);
+        }
+
+        .inverse code {
+            color: hsl(330, 75%, 100%);
+        }
+
+        /* custom styles for inline span notation */
+        span.red {
+            color: hsl(0, 90%, 50%);
+        }
+
+        /* print filling whole paper */
+        @media print {
+            .remark-slide-scaler {
+                left: 5vw !important;
+                width: 90vw !important;
+                top: 5vh !important;
+                height: 90vh !important;
+                transform: scale(1) !important;
+            }
+        }
+
+        .first-slide {
+            padding-top: 20vh;
+            box-sizing: border-box;
+        }
+
+        .first-slide h1 {
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .first-slide p {
+            text-align: center;
+        }
+
+
+        .img-list p {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 10px;
+        }
+
+        .img-list img {
+            width: 100%;
+        }
+        .img-margins img{
+            margin-right: 16px;
+        }
+    </style>
+    <meta charset="utf-8"/>
+</head>
+
+<body class="page-{{ .Kind }}">
+<textarea id="source">
+class: {{ if not .Params.light }}inverse {{ end }}{{.Params.class}}
+layout: true
+---
+class: first-slide
+count: false
+
+# {{ .Title }}
+
+{{ .Params.Description }}
+---
+{{ .RawContent }}
+
+</textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script>
+    var slideshow = remark.create({ratio: "16:9"});
+</script>
+</body>
+</html>

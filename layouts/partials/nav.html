@@ -3,13 +3,13 @@
 <nav class="wrap nav menu">
 	<a href="{{ $s.BaseURL }}" class="nav_brand">
 		{{- $logos := $sp.logo }}
-		{{- $litPath := absURL (printf "images/%s" $logos.lightMode) }}
-		{{- $darkPath := absURL (printf "images/%s" $logos.darkMode) }}
+		{{- $litPath := absURL (printf "/images/%s" $logos.lightMode) }}
+		{{- $darkPath := absURL (printf "/images/%s" $logos.darkMode) }}
 		<picture data-lit="{{ $litPath }}" data-dark="{{ $darkPath }}">
 			{{ with $sp.enableDarkMode }}
 			<source srcset = '{{ $darkPath }}' media="(prefers-color-scheme: dark)">
 			{{ end }}
-			<img srcset = '{{ $litPath }}' alt = '{{ $s.Title }} Logo'>
+			<img srcset = '{{ $litPath }}' alt = '{{ $s.Title }} Logo' style='height:35px;'>
 		</picture>
 		<label class="nav_toggle toggle" title='{{ T "site_menu" }}' role="button">
 			{{ partial "sprite" (dict "icon" "harmburger") }}

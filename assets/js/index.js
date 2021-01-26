@@ -103,10 +103,12 @@ function loadActions() {
         const pageIds = pageInternalLinks.map(function(link){
           return link.hash;
         });
+        console.log(pageIds)
 
         const linkPositions = pageIds.map(function(id){
-          const heading = document.getElementById(id.replace('#',''));
-          const position = heading.offsetTop;
+
+          const heading = document.querySelector(decodeURI(id));
+          const position = heading?.offsetTop;
           return position;
         });
 
@@ -172,7 +174,7 @@ function loadActions() {
   headingNodes.forEach(function(node){
     link = createEl('a');
     icon = createEl('img');
-    icon.src = '{{ absURL "icons/link.svg" }}';
+    icon.src = '{{ absURL "/icons/link.svg" }}';
     link.className = 'link icon';
     link.appendChild(icon);
     id = node.getAttribute('id');

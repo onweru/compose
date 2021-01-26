@@ -29,12 +29,28 @@ body
 a
   text-decoration: none
   color: inherit
+
+  &:hover
+    text-decoration: none
+    font-weight: bolder
+
+.links
+  a
+    text-decoration: underline
+    font-weight: bolder
+
+    &:hover
+      text-decoration: none
+
 p
   padding: 1rem 0
+
 li
   padding: 0.25rem 0
+
   p
     padding: 0.5rem 0
+
 blockquote
   opacity: 0.8
   padding: 1rem
@@ -47,6 +63,7 @@ blockquote
   background-size: 5rem
   background-position: 50% 50%
   position: relative
+
   &::before
     content: ""
     padding: 1px
@@ -63,7 +80,7 @@ blockquote
     font-weight: 300
     font-style: italic
 
-h1,h2,h3,h4,h5
+h1, h2, h3, h4, h5
   font-family: inherit
   font-weight: 500
   padding: 0.33rem 0
@@ -72,24 +89,51 @@ h1,h2,h3,h4,h5
 
 h1
   font-size: 200%
+
 h2
   font-size: 175%
+
 h3
   font-size: 150%
+
 h4
   font-size: 125%
+
 h5
   font-size: 120%
+
 h6
   font-size: 100%
 
 img, svg, figure
   max-width: 100%
   vertical-align: middle
+
 img
   height: auto
   margin: 1rem auto
   padding: 0
+
+
+.page-page, .page-section
+  img
+    -webkit-box-shadow: 0 0 2.5rem rgba(0, 0, 0, 0.12)
+    -moz-box-shadow: 0 0 2.5rem rgba(0, 0, 0, 0.12)
+    box-shadow: 0 0 2.5rem rgba(0, 0, 0, 0.12)
+    display: block
+
+  img, svg, figure
+    text-align: center
+
+  nav
+    img
+      -webkit-box-shadow: unset
+      -moz-box-shadow: unset
+      box-shadow: unset
+      display: inline
+
+    img, svg, figure
+      text-align: none
 
 main
   flex: 1
@@ -109,6 +153,7 @@ hr
   opacity: 0.5
   margin: 1rem 0
 
+
 .aside
   overflow-y: auto
   background: var(--accent)
@@ -122,14 +167,17 @@ hr
   top: 0.25rem
   @media screen and (min-width: 42rem)
     top: 2.5rem
+
   &_inner
     height: 0
     overflow: hidden
     @media screen and (min-width: 42rem)
       height: initial
+
   &.show &_inner
     height: initial
     overflow: visible
+
   &_toggle
     // position: absolute
     // right: 2.5rem
@@ -140,8 +188,10 @@ hr
     justify-content: space-between
     @media screen and (min-width: 42rem)
       display: none
+
   h3
     position: relative
+
   ul
     padding: 0
     list-style: none
@@ -149,6 +199,7 @@ hr
 th, td
   padding: 0.5rem
   font-weight: 400 !important
+
   &:not(:first-child)
     padding-left: 1.5rem
 
@@ -162,11 +213,11 @@ tbody
   tr
     &:nth-child(even)
       background-color: var(--accent) !important
-      box-shadow: 0 1rem 0.75rem -0.75rem rgba(0,0,0,0.07)
+      box-shadow: 0 1rem 0.75rem -0.75rem rgba(0, 0, 0, 0.07)
 
 table
   margin: 1.5rem 0
-  width:  100%
+  width: 100%
 
 .main
   flex: 1
@@ -179,12 +230,36 @@ table
 .content
   ul, ol
     padding-left: 1.1rem
+
   ul
     list-style: initial
+
   ol
     list-style: decimal
+
   a:not(.button)
     color: var(--theme)
 
 ::placeholder
   font-size: 1rem
+
+section
+  &.important
+    font-weight: bolder
+    font-size: 20px
+    //color: var(--theme)
+    border: 1px solid rgba(155, 155, 155, 0.2)
+    text-align: center
+    padding: 28px
+    margin: 28px
+
+  &.alert
+    color: red
+
+@media print
+  *
+    font-size: 100%
+  header
+    display: none
+  .aside
+    display: none

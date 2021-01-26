@@ -1,8 +1,13 @@
 <div class="grid-auto">
   {{- partial "sidebar" . }}
   <main class="content">
+
+
     <h1>{{ .Title }}</h1>
-    {{- .Content }}
+    {{ with .Params.presentation }}
+    <a target="_blank"  href="{{  printf "/%s/%s" "presentations"  .  }}">Presentation</a>
+    {{ end }}
+    {{- .Content|markdownify }}
     {{ partial "pager" . }}
   </main>
 </div>
