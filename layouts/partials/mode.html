@@ -1,4 +1,16 @@
+{{- $s := .Site }}
+{{- $sp := $s.Params }}
+{{- $iconsPath := "icons/" }}
 <div class = 'color_mode'>
-  <label for = 'mode'></label>
+  <label for = 'mode'>
+    {{- $litPath := absURL (printf "%ssun.svg" $iconsPath) }}
+    {{- $darkPath := absURL (printf "%smoon.svg" $iconsPath) }}
+    <picture data-lit="{{ $litPath }}" data-dark="{{ $darkPath }}">
+      {{ with $sp.enableDarkMode }}
+        <source srcset = '{{ $darkPath }}' media="(prefers-color-scheme: dark)">
+      {{ end }}
+      <img srcset = '{{ $litPath }}' alt = 'Light/Dark Mode Icon' class="color_icon">
+    </picture>
+  </label>
   <input type = 'checkbox' class = 'color_choice' id = 'mode' title="Toggle Dark Mode">
 </div>
