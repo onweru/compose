@@ -131,8 +131,9 @@ function loadActions() {
     if(links) {
       Array.from(links).forEach(function(link, index){
         let target, rel, blank, noopener, attr1, attr2, url, isExternal;
-        url = elemAttribute(link, 'href');
-        isExternal = (url && typeof url == 'string' && url.startsWith('http')) && !url.startsWith(rootURL) && link.closest(contentWrapperClass);
+        url = new URL(elemAttribute(link, 'href'));
+        // definition of same origin: RFC 6454, section 4 (https://tools.ietf.org/html/rfc6454#section-4)
+        isExternal = url.host !== location.host || url.protocol !== location.protocol || url.port !== location.port;
         if(isExternal) {
           target = 'target';
           rel = 'rel';
