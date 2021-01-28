@@ -32,5 +32,5 @@
 {{ else if .IsPage }}
   <meta name="description" content="{{ .Summary | plainify }}">
 {{ else if .Site.Params.Description }}
-  <meta name="descripion" content="{{.}}">
+  <meta name="descripion" content="{{.Site.Params.Description }}">
 {{ end }}
