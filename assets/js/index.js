@@ -132,7 +132,7 @@ function loadActions() {
       Array.from(links).forEach(function(link, index){
         let target, rel, blank, noopener, attr1, attr2, url, isExternal;
         url = elemAttribute(link, 'href');
-        isExternal = (url && typeof url == 'string' && url.startsWith('http')) && !url.startsWith(parentURL) && link.closest(contentWrapperClass);
+        isExternal = (url && typeof url == 'string' && url.startsWith('http')) && !url.startsWith(rootURL) && link.closest(contentWrapperClass);
         if(isExternal) {
           target = 'target';
           rel = 'rel';
