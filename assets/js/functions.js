@@ -91,10 +91,9 @@ function isMatch(element, selectors) {
 }
 
 function closestInt(goal, collection) {
-  const closest = collection.reduce(function(prev, curr) {
+  return collection.reduce(function (prev, curr) {
     return (Math.abs(curr - goal) < Math.abs(prev - goal) ? curr : prev);
   });
-  return closest;
 }
 
 function hasClasses(el) {
@@ -147,14 +146,12 @@ function wrapText(text, context, wrapper = 'mark') {
   const hyperLinks = elems('a');
   if(hyperLinks) {
     hyperLinks.forEach(function(link){
-      const href = link.href.replaceAll(encodeURI(open), "").replaceAll(encodeURI(close), "");
-      link.href = href;
+      link.href = link.href.replaceAll(encodeURI(open), "").replaceAll(encodeURI(close), "");
     });
   }
 }
 
 function parseBoolean(string) {
-  let bool;
   string = string.trim().toLowerCase();
   switch (string) {
     case 'true':
@@ -164,10 +161,10 @@ function parseBoolean(string) {
     default:
       return undefined;
   }
-};
+}
 
 function loadSvg(file, parent, path = 'icons/') {
-  const link = `${parentURL}${path}${file}.svg`;
+  const link = new URL(`${path}${file}.svg`, rootURL).href;
   fetch(link)
   .then((response) => {
     return response.text();
