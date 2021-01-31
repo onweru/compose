@@ -195,7 +195,7 @@ function initializeSearch(index) {
 }
 
 window.addEventListener('load', function() { 
-  fetch("/index.json")
+  fetch(`${rootURL}index.json`)
   .then(response => response.json())
   .then(function(data) {
     data = data.length ? data : [];
