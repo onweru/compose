@@ -1,205 +1,205 @@
-const idx = [
-  {{- range .Site.Pages }}
-  {
-    "link": "{{ .Permalink }}",
-    "title": "{{ .Title }}",
-    "body": `{{ .PlainWords }}`.toLowerCase() // @TODO: move this definition to an index.json file.
-  },
-  {{- end }}
-];
-
-const searchKeys = ['title', 'link', 'body', 'id'];
-
-const searchPageElement = elem('#searchpage');
-
-const searchOptions = {
-  ignoreLocation: true,
-  findAllMatches: true,
-  includeScore: true,
-  shouldSort: true,
-  keys: searchKeys,
-  threshold: 0.0
-};
-
-const index = new Fuse(idx, searchOptions);
-
-function minQueryLen(query) {
-  query = query.trim();
-  const queryIsFloat = parseFloat(query);
-  const minimumQueryLength = queryIsFloat ? 1 : 2;
-  return minimumQueryLength;
-}
-
-function searchResults(results=[], query="", passive = false) {
-  let resultsFragment = new DocumentFragment();
-  let showResults = elem('.search_results');
-  if(passive) {
-    showResults = searchPageElement;
+function initializeSearch(index) {
+  const searchKeys = ['title', 'link', 'body', 'id'];
+  
+  const searchPageElement = elem('#searchpage');
+  
+  const searchOptions = {
+    ignoreLocation: true,
+    findAllMatches: true,
+    includeScore: true,
+    shouldSort: true,
+    keys: searchKeys,
+    threshold: 0.0
+  };
+  
+  index = new Fuse(index, searchOptions);
+  
+  function minQueryLen(query) {
+    query = query.trim();
+    const queryIsFloat = parseFloat(query);
+    const minimumQueryLength = queryIsFloat ? 1 : 2;
+    return minimumQueryLength;
   }
-  emptyEl(showResults);
-
-  const queryLen = query.length;
-  const requiredQueryLen = minQueryLen(query);
-
-  if(results.length && queryLen >= requiredQueryLen) {
-    let resultsTitle = createEl('h3');
-    resultsTitle.className = 'search_title';
-    resultsTitle.innerText = quickLinks;
+  
+  function searchResults(results=[], query="", passive = false) {
+    let resultsFragment = new DocumentFragment();
+    let showResults = elem('.search_results');
     if(passive) {
-      resultsTitle.innerText = searchResultsLabel;
+      showResults = searchPageElement;
     }
-    resultsFragment.appendChild(resultsTitle);
-    if(!searchPageElement) {
-      results = results.slice(0,8);
-    } else {
-      results = results.slice(0,12);
-    }
-    results.forEach(function(result){
-      let item = createEl('a');
-      item.href = `${result.link}?query=${query}`;
-      item.className = 'search_result';
-      item.style.order = result.score;
+    emptyEl(showResults);
+  
+    const queryLen = query.length;
+    const requiredQueryLen = minQueryLen(query);
+  
+    if(results.length && queryLen >= requiredQueryLen) {
+      let resultsTitle = createEl('h3');
+      resultsTitle.className = 'search_title';
+      resultsTitle.innerText = quickLinks;
       if(passive) {
-        pushClass(item, 'passive');
-        let itemTitle = createEl('h3');
-        itemTitle.textContent = result.title;
-        item.appendChild(itemTitle);
-
-        let itemDescription = createEl('p');
-        // position of first search term instance
-        let queryInstance = result.body.indexOf(query);
-        itemDescription.textContent = `... ${result.body.substring(queryInstance, queryInstance + 200)} ...`;
-        item.appendChild(itemDescription);
-      } else {
-        item.textContent = result.title;
+        resultsTitle.innerText = searchResultsLabel;
       }
-      resultsFragment.appendChild(item);
-    });
-  }
-
-  if(queryLen >= requiredQueryLen) {
-    if (!results.length) {
-      showResults.innerHTML = `<span class="search_result">${noMatchesFound}</span>`;
-    }
-  } else {
-    if (queryLen > 1) {
-      showResults.innerHTML = `<label for="find" class="search_result">${shortSearchQuery}</label>`;
-    } else {
-      showResults.innerHTML = `<label for="find" class="search_result">${typeToSearch}</label>`;
-    }
-  }
-
-  showResults.appendChild(resultsFragment);
-}
-
-function search(searchTerm, passive = false) {
-  if(searchTerm.length) {
-    let rawResults = index.search(searchTerm);
-    rawResults = rawResults.map(function(result){
-      const score = result.score;
-      const resultItem = result.item;
-      resultItem.score = (parseFloat(score) * 50).toFixed(0);
-      return resultItem;
-    });
-
-    passive ? searchResults(rawResults, searchTerm, true) : searchResults(rawResults, searchTerm);
-
-  } else {
-    passive ? searchResults([], "", true) : searchResults();
-  }
-}
-
-function liveSearch() {
-  const searchField = elem('.search_field');
-
-  if (searchField) {
-    searchField.addEventListener('input', function() {
-      const searchTerm = searchField.value.trim().toLowerCase();
-      search(searchTerm);
-    });
-
-    if(!searchPageElement) {
-      searchField.addEventListener('search', function(){
-        const searchTerm = searchField.value.trim().toLowerCase();
-        if(searchTerm.length)  {
-          window.location.href = new URL(`search/?query=${searchTerm}`, rootURL).href;
+      resultsFragment.appendChild(resultsTitle);
+      if(!searchPageElement) {
+        results = results.slice(0,8);
+      } else {
+        results = results.slice(0,12);
+      }
+      results.forEach(function(result){
+        let item = createEl('a');
+        item.href = `${result.link}?query=${query}`;
+        item.className = 'search_result';
+        item.style.order = result.score;
+        if(passive) {
+          pushClass(item, 'passive');
+          let itemTitle = createEl('h3');
+          itemTitle.textContent = result.title;
+          item.appendChild(itemTitle);
+  
+          let itemDescription = createEl('p');
+          // position of first search term instance
+          let queryInstance = result.body.indexOf(query);
+          itemDescription.textContent = `... ${result.body.substring(queryInstance, queryInstance + 200)} ...`;
+          item.appendChild(itemDescription);
+        } else {
+          item.textContent = result.title;
         }
+        resultsFragment.appendChild(item);
       });
     }
+  
+    if(queryLen >= requiredQueryLen) {
+      if (!results.length) {
+        showResults.innerHTML = `<span class="search_result">${noMatchesFound}</span>`;
+      }
+    } else {
+      if (queryLen > 1) {
+        showResults.innerHTML = `<label for="find" class="search_result">${shortSearchQuery}</label>`;
+      } else {
+        showResults.innerHTML = `<label for="find" class="search_result">${typeToSearch}</label>`;
+      }
+    }
+  
+    showResults.appendChild(resultsFragment);
   }
-}
-
-function findQuery(query = 'query') {
-  const urlParams = new URLSearchParams(window.location.search);
-  if(urlParams.has(query)){
-    let c = urlParams.get(query);
-    return c;
+  
+  function search(searchTerm, passive = false) {
+    if(searchTerm.length) {
+      let rawResults = index.search(searchTerm);
+      rawResults = rawResults.map(function(result){
+        const score = result.score;
+        const resultItem = result.item;
+        resultItem.score = (parseFloat(score) * 50).toFixed(0);
+        return resultItem;
+      });
+  
+      passive ? searchResults(rawResults, searchTerm, true) : searchResults(rawResults, searchTerm);
+  
+    } else {
+      passive ? searchResults([], "", true) : searchResults();
+    }
   }
-  return "";
-}
-
-function passiveSearch() {
-  if(searchPageElement) {
-    const searchTerm = findQuery();
-    search(searchTerm, true);
-
-    // search actively after search page has loaded
+  
+  function liveSearch() {
     const searchField = elem('.search_field');
-
-    if(searchField) {
+  
+    if (searchField) {
       searchField.addEventListener('input', function() {
         const searchTerm = searchField.value.trim().toLowerCase();
-        search(searchTerm, true);
-        wrapText(searchTerm, main);
+        search(searchTerm);
       });
+  
+      if(!searchPageElement) {
+        searchField.addEventListener('search', function(){
+          const searchTerm = searchField.value.trim().toLowerCase();
+          if(searchTerm.length)  {
+            window.location.href = new URL(`search/?query=${searchTerm}`, rootURL).href;
+          }
+        });
+      }
     }
   }
-}
-
-function hasSearchResults() {
-  const searchResults = elem('.results');
-  const body = searchResults.innerHTML.length;
-  return [searchResults, body]
-}
-
-function clearSearchResults() {
-  let searchResults = hasSearchResults();
-  let actionable = searchResults[1];
-  if(actionable) {
-    searchResults = searchResults[0];
-    searchResults.innerHTML = "";
-    // clear search field
-    const searchField = elem('.search_field');
-    searchField.value = "";
-  }
-}
-
-function onEscape(fn){
-  window.addEventListener('keydown', function(event){
-    if(event.code === "Escape") {
-      fn();
+  
+  function findQuery(query = 'query') {
+    const urlParams = new URLSearchParams(window.location.search);
+    if(urlParams.has(query)){
+      let c = urlParams.get(query);
+      return c;
     }
-  });
-}
+    return "";
+  }
+  
+  function passiveSearch() {
+    if(searchPageElement) {
+      const searchTerm = findQuery();
+      search(searchTerm, true);
+  
+      // search actively after search page has loaded
+      const searchField = elem('.search_field');
+  
+      if(searchField) {
+        searchField.addEventListener('input', function() {
+          const searchTerm = searchField.value.trim().toLowerCase();
+          search(searchTerm, true);
+          wrapText(searchTerm, main);
+        });
+      }
+    }
+  }
+  
+  function hasSearchResults() {
+    const searchResults = elem('.results');
+    const body = searchResults.innerHTML.length;
+    return [searchResults, body]
+  }
+  
+  function clearSearchResults() {
+    let searchResults = hasSearchResults();
+    let actionable = searchResults[1];
+    if(actionable) {
+      searchResults = searchResults[0];
+      searchResults.innerHTML = "";
+      // clear search field
+      const searchField = elem('.search_field');
+      searchField.value = "";
+    }
+  }
+  
+  function onEscape(fn){
+    window.addEventListener('keydown', function(event){
+      if(event.code === "Escape") {
+        fn();
+      }
+    });
+  }
+  
+  let main = elem('main');
+  if(!main) {
+    main = elem('.main');
+  }
 
-let main = elem('main');
-if(!main) {
-  main = elem('.main');
-}
-
-window.addEventListener('load', function() {
   searchPageElement ? false : liveSearch();
   passiveSearch();
 
   wrapText(findQuery(), main);
 
   onEscape(clearSearchResults);
-});
+  
+  window.addEventListener('click', function(event){
+    const target = event.target;
+    const isSearch = target.closest('.search') || target.matches('.search');
+    if(!isSearch && !searchPageElement) {
+      clearSearchResults();
+    }
+  });
+}
 
-window.addEventListener('click', function(event){
-  const target = event.target;
-  const isSearch = target.closest('.search') || target.matches('.search');
-  if(!isSearch && !searchPageElement) {
-    clearSearchResults();
-  }
+window.addEventListener('load', function() { 
+  fetch("/index.json")
+  .then(response => response.json())
+  .then(function(data) {
+    data = data.length ? data : [];
+    initializeSearch(data);
+  })
+  .catch((error) => console.error(error));
 });
