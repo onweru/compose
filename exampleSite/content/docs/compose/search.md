@@ -1,16 +1,15 @@
 +++
-title = "Search Function"
 description = ""
+title = "Search Function"
 weight = 8
-+++
 
++++
 Firstly, ensure you have these lines inside your config.toml file
 
 ```toml
 [outputs]
    home = ["HTML", "RSS","JSON"]
 ```
-
 
 Compose implements `fuse.js` to enable search functionality. At the time of this writing, search on these theme takes either of this forms:
 
@@ -24,16 +23,18 @@ This behaviour will be obvious as the user types a search query on the search fi
 
 > Please note that the results under quick links will be a truncated list of the most relevant results. Only a maximum of 8 items will be returned. This number is pragmatic at best if not arbitrary. On the search page, the number is set to 12.
 
-Note that live search on the search page will behave differently than on the other pages. Nonetheles, the pages applies the same live search principle.
+Note that live search on the search page will behave differently than on the other pages. Nonetheles, the pages apply the same live search principle.
 
-> Hitting enter while typing on the search page will be moot.
+> Hitting enter while typing on the search page will be moot as that page’s content will live update as you type in the search word / phrase.
 
 ### Customize search feedback labels
 
 Use the `i18n` files to do so.
 
 <!-- ### scoped search
+
 #### Searching within a specific/current page
+
 I think the other 3 are not only related, but can be for the most part be achieved using the good old-fashioned CTRL/CMD + F.
 
 (1) multilingual sites
