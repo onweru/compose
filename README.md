@@ -23,7 +23,7 @@ Compose is a [Hugo](https://gohugo.io/) theme for documentation websites, inspir
 
 ## ExampleSite
 
-The [exampleSite](https://github.com/onweru/compose/tree/master/exampleSite) serves as this theme's [user guide]((https://docs.neuralvibes.com/docs/compose/getting-started/)) .
+The [exampleSite](https://github.com/onweru/compose/tree/master/exampleSite) serves as this theme's [user guide](https://docs.neuralvibes.com/docs/compose/getting-started/) .
 
 > This guide covers the necessary bits. As the project evolves, the userguide will get more comprehensive
 
