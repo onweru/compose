@@ -3,7 +3,7 @@ const idx = [
   {
     "link": "{{ .Permalink }}",
     "title": "{{ .Title }}",
-    "body": `{{ .PlainWords }}`.toLowerCase(),
+    "body": `{{ .PlainWords }}`.toLowerCase() // @TODO: move this definition to an index.json file.
   },
   {{- end }}
 ];
