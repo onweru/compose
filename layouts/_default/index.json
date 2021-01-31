@@ -4,4 +4,4 @@
     {{- $.Scratch.Add "index" (dict "title" .Title "body" .Plain "link" .Permalink) -}}
   {{- end -}}
 {{- end -}}
-{{- jsonify ($.Scratch.Get "index") -}}
+{{- jsonify (uniq ($.Scratch.Get "index")) -}}
