@@ -39,3 +39,14 @@ These modifiers are classes you can use with shortcodes to customize the look an
 Under `params` add `enableDarkMode = false` to your `config.toml` file. If your site is based on the exampleSite, the value is already included; you only need to uncomment it.
 
 > The user will still have the option to activate dark mode, if they so wish through the UI
+
+### How do I change the theme color?
+If the theme is a git submodule, you can copy the file `assets/sass/_variables.sass` from the theme into your own site.  
+The location must be exactly the same as in the theme, so put it in `YourFancySite/assets/sass/`.
+You can then edit the file to customize the theme color in your site without having to modify the theme itself.
+
+### How can I change the address bar color on mobile devices?
+Just put the following line in the `[params]` section in your `config.toml` file (and of course change the color):
+````toml
+metaThemeColor = "#123456"
+````

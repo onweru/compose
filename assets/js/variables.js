@@ -5,7 +5,7 @@ const showId = 'show';
 const menu = 'menu';
 
 // defined in config.toml
-const parentURL = '{{ absURL "" }}';
+const rootURL = '{{ absURL "" }}';
 
 // defined in i18n / translation files
 const quickLinks = '{{ T "quick_links" }}';

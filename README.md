@@ -19,6 +19,7 @@ Compose is a [Hugo](https://gohugo.io/) theme for documentation websites, inspir
 - [Install compose theme](https://docs.neuralvibes.com/docs/compose/install-theme/)
 - [Use forestry](https://docs.neuralvibes.com/docs/compose/use-forestry-cms/)
 - [Customize your site](https://docs.neuralvibes.com/docs/compose/customize/)
+- [Configure search](https://docs.neuralvibes.com/docs/compose/search/)
 
 ## ExampleSite
 

@@ -9,6 +9,9 @@ enableGitInfo = true
 
 disableKinds = ["taxonomy", "taxonomyTerm"]
 
+[outputs]
+  home = ["HTML", "RSS","JSON"]
+
 #  menu items
 [[menu.main]]
   name = "Docs"

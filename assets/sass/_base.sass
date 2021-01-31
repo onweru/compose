@@ -13,7 +13,7 @@ body
   font-family: var(--font)
   background-color: var(--bg)
   color: var(--text)
-  font-size: 16px
+  font-size: 18px
   line-height: 1.5
   max-width: 1440px
   margin: 0 auto
@@ -31,6 +31,7 @@ a
   color: inherit
 p
   padding: 1rem 0
+  // opacity: 0.9
   &:empty
     display: none
 li
@@ -49,9 +50,12 @@ blockquote
   background-size: 5rem
   background-position: 50% 50%
   position: relative
+  background-color: var(--accent)
+  border-radius: 0.25rem
+  overflow: hidden
   &::before
     content: ""
-    padding: 1px
+    padding: 2px
     position: absolute
     top: 0
     bottom: 0
@@ -59,10 +63,9 @@ blockquote
     background: var(--theme)
 
   p
-    padding-left: 0.5rem 0 !important
+    padding-left: 0.5rem !important
     font-size: 1.1rem !important
     width: 100%
-    font-weight: 300
     font-style: italic
 
 h1,h2,h3,h4,h5
