@@ -3,7 +3,7 @@ const idx = [
   {
     "link": "{{ .Permalink }}",
     "title": "{{ .Title }}",
-    "body": "{{ .PlainWords }}".toLowerCase(),
+    "body": `{{ .PlainWords }}`.toLowerCase(),
   },
   {{- end }}
 ];
