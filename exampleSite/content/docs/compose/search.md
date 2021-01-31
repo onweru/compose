@@ -4,6 +4,14 @@ description = ""
 weight = 8
 +++
 
+Firstly, ensure you have these lines inside your config.toml file
+
+```toml
+[outputs]
+   home = ["HTML", "RSS","JSON"]
+```
+
+
 Compose implements `fuse.js` to enable search functionality. At the time of this writing, search on these theme takes either of this forms:
 
 ### 1. Passive search
