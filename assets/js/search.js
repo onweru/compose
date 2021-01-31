@@ -27,7 +27,6 @@ function minQueryLen(query) {
   query = query.trim();
   const queryIsFloat = parseFloat(query);
   const minimumQueryLength = queryIsFloat ? 1 : 2;
-  console.log(query, queryIsFloat, minimumQueryLength);
   return minimumQueryLength;
 }
 
@@ -43,7 +42,6 @@ function searchResults(results=[], query="", passive = false) {
   const requiredQueryLen = minQueryLen(query);
 
   if(results.length && queryLen >= requiredQueryLen) {
-    console.log('hmm');
     let resultsTitle = createEl('h3');
     resultsTitle.className = 'search_title';
     resultsTitle.innerText = quickLinks;
