@@ -105,7 +105,7 @@ function loadActions() {
         });
 
         const linkPositions = pageIds.map(function(id){
-          const heading = document.getElementById(id.replace('#',''));
+          const heading = document.getElementById(decodeURIComponent(id.replace('#','')));
           const position = heading.offsetTop;
           return position;
         });
