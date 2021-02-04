@@ -114,3 +114,5 @@ github.com/onweru/compose v0.0.0-20210131043449-7335477f0054 h1:4smUEiMOxdZCoESz
 github.com/onweru/compose v0.0.0-20210131043449-7335477f0054/go.mod h1:tf1kQIBUcwJ/3mRFU5eiMrMvsDScVTK2IEFsZE3hZOc=
 github.com/onweru/compose v0.0.0-20210131052009-18d57dd16bb0 h1:XC6lxuOoDiQhIXHPXfKRosyNNBTG4/wlOc6QSj7RAno=
 github.com/onweru/compose v0.0.0-20210131052009-18d57dd16bb0/go.mod h1:tf1kQIBUcwJ/3mRFU5eiMrMvsDScVTK2IEFsZE3hZOc=
+github.com/onweru/compose v0.0.0-20210204153750-9331e4f50b68 h1:/mt7RWz6xOhtymUz7sWooh+RRxT4645YFICEywVeDpQ=
+github.com/onweru/compose v0.0.0-20210204153750-9331e4f50b68/go.mod h1:tf1kQIBUcwJ/3mRFU5eiMrMvsDScVTK2IEFsZE3hZOc=

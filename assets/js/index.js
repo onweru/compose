@@ -123,6 +123,14 @@ function loadActions() {
         });
       }
     }
+
+    const paragraphs = elems('p');
+    paragraphs.forEach(function(p){
+      const buttons = elems('.button', p);
+      if(buttons.length > 1) {
+        pushClass(p, 'button_grid');
+      }
+    });
   })();
 
   (function markExternalLinks(){
