@@ -28,11 +28,10 @@ Note that the theme is built with simplicity in mind. [This way](/), if a sugges
 ![diy](/images/scribble.jpg)
 {{< /column >}}
 {{< /block >}}
-{{< column "mt-2" >}}
-### You can generate graphs, charts and tables from a csv, ~~or a json~~ dataset 
-{{< /column >}}
-{{< grid "3" >}}
-  {{< chart "data" "pie, bar, doughnut" >}}
-{{< /grid >}}
 
-{{< button "docs/compose/graphs-charts-tables/" "Learn more" "mt-2" >}}
+
+{{< column "mt-2" >}}
+### You can generate graphs, charts and tables from a csv, ~~or a json~~ dataset
+
+{{< button "docs/compose/graphs-charts-tables/#show-a-pie-doughnut--bar-chart-at-once" "Learn more" >}}
+{{< /column >}}
