@@ -22,4 +22,4 @@ Weight: 13
 
     To put it all in context, here is a preview showing all functionality.
 
-    ![code block functions](https://github.com/chipzoller/hugo-clarity/blob/master/images/syntax-block.gif)
+    ![code block functions](../../../images/clarity/syntax-block.gif)

@@ -41,7 +41,7 @@ numberOfTagsShown = 14 # Applies for all other default & custom taxonomies. e.g 
 
 #### Number of tags example
 
-![Tags](https://github.com/chipzoller/hugo-clarity/blob/master/images/tags.png)
+![Tags](../../../images/clarity/tags.png)
 
 <!-- mark -->
 
@@ -51,4 +51,4 @@ Each article can optionally have a table of contents (TOC) generated for it base
 
 #### Table of contents (TOC) example
 
-![Article table of contents](https://github.com/chipzoller/hugo-clarity/blob/master/images/article-toc.png)
+![Article table of contents](../../../images/clarity/article-toc.png)

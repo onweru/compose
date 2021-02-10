@@ -18,10 +18,10 @@ The number will be automatically calculated and assigned after the `figurePositi
 In this example, `figurePositionLabel` is set to "Figure" in `config.toml` and this is the first image in a given article.
 
 ```markdown
-![Antrea Kubernetes nodes prepared](./images/image-figure.png)
+![Antrea Kubernetes nodes prepared](./images/calrity/image-figure.png)
 ```
 
-![Here is my alt text for this image.](https://github.com/chipzoller/hugo-clarity/blob/master/images/image-figure.png)
+![Here is my alt text for this image.](../../../images/clarity/image-figure.png)
 
 ### Inline images
 
@@ -38,7 +38,7 @@ To make a blog image inline, append `:inline` to its alt text. Typically, inline
 ![some alt text:inline](someOtherImageUrl)
 ```
 
-![Inline image example](https://github.com/chipzoller/hugo-clarity/blob/master/images/image-inline.png)
+![Inline image example](../../../images/clarity/image-inline.png)
 
 ### Float images to the left
 

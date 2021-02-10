@@ -12,7 +12,9 @@ Let's sync your site with forestry CMS.
 
 Obviously you  ought to have __a github account__. This is where your website source will live. Basically, forestry will read from github and write (commmit) to your github repo.
 
-> Gitlab or bitbucket will work too. Just check their [implementation here](https://forestry.io/docs/git-sync/gitlab/). Happy fishing.
+{{< tip "warning" >}}
+Gitlab or bitbucket will work too. Just check their [implementation here](https://forestry.io/docs/git-sync/gitlab/). Happy fishing.
+{{< /tip >}}
 
 ### Requirement 1 : A Forestry account
 
@@ -28,7 +30,9 @@ First we will fork this [bigspring](https://github.com/themefisher/bigspring-hug
 
 ### Step 2 : Add your repository in Forestry
 
-> The exampleSite already comes with prefilled default forestry settings. If you set up your site using [option 2](../getting-started/#option-2-recommended), look for a file `.forestry/settings.yml` and remove all `exampleSite/` strings from it.
+{{< tip >}}
+The exampleSite already comes with prefilled default forestry settings. If you set up your site using [option 2](../getting-started/#option-2-recommended), look for a file `.forestry/settings.yml` and remove all `exampleSite/` strings from it.
+{{< /tip >}}
 
 Go to your [forestry](https://bit.ly/forestry-account)  account and click on `import your site now`.
 

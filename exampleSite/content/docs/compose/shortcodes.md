@@ -38,16 +38,20 @@ It takes positional parameters
   {{</* /column */>}}
 ```
 
-### Video
+### Youtube Video
 
 This allows you to embed a youtube video in you content. You would achieve that using a positional parameter (needs no name )parameter, like so:
 
-**Example:**
+__Syntax__
 
 ```markdown
-  {{</* youtube "xWF59rWSceA" */>}}
+  {{</* youtube "25QyCxVkXwQ" */>}}
   <!-- Use the youtube video id -->
 ```
+
+__Result__
+
+{{< youtube "25QyCxVkXwQ" >}}
 
 ### Button
 
@@ -61,7 +65,7 @@ This adds a styled link (styled like a button). It takes two no-optional paramet
 
 **Example**
 
-```
+```markdown
   {{</* button "/" "doe nu mee" */>}}
 ```
 
@@ -71,11 +75,17 @@ You want to use darkmode images when darkmode is enabled on a device and a regul
 
 Store these images in the `static/images` directory. 
 
-```sh
+__Syntax__
+
+```markdown
 ...
 {{</* picture "lightModeImage.png" "darkModeImage.png" "Image alt text" */>}}
 ...
 ```
+
+__Result__
+
+{{< picture "compose.svg" "compose-light.svg" "Compose Logo" >}}
 
 ### Gallery
 
@@ -85,8 +95,54 @@ The 1st parameter is required. It's a _comma-separated list_ (`,`) of your image
 
 The 2nd parameter is optional. It's a _double-collon-separated list_ (`::`) of your images' alt/description/captions text. It's always a good SEO practice to include alt text for your images.
 
-```sh
+__Syntax__
+
+```markdown
 ...
 {{</* gallery "images/painting.jpg,images/scribble.jpg,images/painting.jpg" "Gallery Image 1::gallery image 2::gallery image 1 copy" */>}}
 ...
 ```
+{{< tip >}}
+> For legibility, you may include a space after the delimiters `,` & `::`
+{{< /tip  >}}
+
+__Result__
+
+{{< gallery "images/painting.jpg,images/scribble.jpg,images/painting.jpg" "Gallery Image 1::gallery image 2::gallery image 1 copy" >}}
+
+
+### Tip
+
+Use this short if you want to publish informational tooltips that look like:
+
+This tooltips may take either of the following forms:
+
+__Syntax__
+
+```markdown
+{{</* tip */>}}
+Something of __interest__ you want to highlight
+{{</* /tip */>}}
+```
+
+__Result__
+
+{{< tip >}}
+Something of __interest__ you want to highlight
+{{< /tip >}}
+
+__OR__
+
+__Syntax__
+
+```markdown
+{{</* tip "warning" */>}}
+Something of __interest__ the user should be careful about
+{{</* /tip */>}}
+```
+
+__Result__
+
+{{< tip "warning" >}}
+Something of __interest__ the user should be careful about
+{{< /tip >}}

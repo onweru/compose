@@ -31,7 +31,9 @@ hugo server
 
 To pull in theme updates, run `hugo mod get -u ./...` from the theme folder. If unsure, [learn how to update hugo modules](https://gohugo.io/hugo-modules/use-modules/#update-modules)
 
-> ⚠️ If you choose __Option 2__ or __Option 3__ below, ensure you edit [these lines in the config.toml file](https://github.com/onweru/compose/blob/b3e30e0816621223224897edc45eeeabd0d9cd16/exampleSite/config.toml#L4-L7) as advised on the comments
+{{< tip >}}
+If you choose __Option 2__ or __Option 3__ below, ensure you edit [these lines in the config.toml file](https://github.com/onweru/compose/blob/b3e30e0816621223224897edc45eeeabd0d9cd16/exampleSite/config.toml#L4-L7) as advised on the comments
+{{< /tip >}}
 
 ### Option 2 (recommended)
 
@@ -63,7 +65,9 @@ cd compose/exampleSite/
 hugo server --themesDir ../..
 ```
 
-> Although, option 3 is great for quick testing, it is somewhat problematic when you want to update your theme. You would need to be careful not to overwrite your changes.
+{{< tip >}}
+Although, option 3 is great for quick testing, it is somewhat problematic when you want to update your theme. You would need to be careful not to overwrite your changes.
+{{< /tip >}}
 
 Once set, jump over to the `config.toml` file and start [configuring](#configuration) your site.
 
