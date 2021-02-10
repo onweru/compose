@@ -21,6 +21,10 @@ We do a [Pull Request](https://github.com/onweru/compose/pulls) contributions wo
 Note that the theme is built with simplicity in mind. [This way](/), if a suggestion complicates the usability of the theme, it may be declined. New users are always welcome!
 {{< /tip >}}
 
+{{< tip >}}
+You can [generate graphs, charts](]("docs/compose/graphs-charts-tables/#show-a-pie-doughnut--bar-chart-at-once")) and tables from a csv, ~~or a json~~ dataset
+{{< /tip >}}
+
 {{< button "docs/compose/" "Read the Docs" >}}{{< button "https://github.com/onweru/compose" "Download Theme" >}}
 {{< /column >}}
 
@@ -28,10 +32,3 @@ Note that the theme is built with simplicity in mind. [This way](/), if a sugges
 ![diy](/images/scribble.jpg)
 {{< /column >}}
 {{< /block >}}
-
-
-{{< column "mt-2" >}}
-### You can generate graphs, charts and tables from a csv, ~~or a json~~ dataset
-
-{{< button "docs/compose/graphs-charts-tables/#show-a-pie-doughnut--bar-chart-at-once" "Learn more" >}}
-{{< /column >}}
