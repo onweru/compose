@@ -287,3 +287,40 @@
     transform: translateY(-50%)
     transition: transform 0.5s cubic-bezier(.19,1,.22,1)
     right: 3.5rem
+
+.tip
+  padding: 1.5rem 1rem 1.5rem 1.5rem
+  margin: 1.5rem 0
+  border-left: 0.2rem solid var(--theme)
+  position: relative
+  background: var(--accent)
+  blockquote
+    padding: 0
+    margin: 0
+    border: none
+    &::before
+      display: none
+  p 
+    &:first-child, ~ p
+      padding-top: 0
+    &:last-child
+      padding-bottom: 0
+  &_warning
+    --theme: var(--inline-color)
+  &_warning::before
+    transform: rotate(180deg)
+  &::before
+    content: ""
+    position: absolute
+    left: -0.875rem
+    top: 1.5rem
+    z-index: 3
+    padding: 0.75rem
+    transform-origin: 50% 50%
+    border-radius: 50%
+    background-color: var(--theme)
+    background-image: url(../icons/info.svg)
+    background-size: 25%
+    background-position: 50% 50%
+    background-repeat: no-repeat
+

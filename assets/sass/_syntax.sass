@@ -14,8 +14,7 @@ code
   font-family: 'Monaco', monospace
   word-break: break-all
   &.noClass
-    --inlineColor: darkgoldenrod
-    color: var(--inlineColor)
+    color: var(--inline-color)
     display: inline
     line-break: anywhere
 .windows .highlight
@@ -51,13 +50,13 @@ code
       text-transform: uppercase
       font-size: 67%
       opacity: 0.5
-      color: var(--light)
+      color: var(--text)
     &:hover .lang
       opacity: 0.1
   & &
     margin: 0
   pre
-    color: var(--light) !important
+    color: var(--text) !important
     border-radius: 4px
     font-family: 'Monaco', monospace
     padding-top: 1.5rem
@@ -90,16 +89,16 @@ code
 
 .err
   color: #a61717
-  background-color: #e3d2d2
 .hl
   width: 100%
-  background-color: rgba(255,255,255,0.25)
+  background: var(--inline-color)
 .ln, .lnt
   margin-right: 0.75rem
   padding: 0
   transition: opacity 0.3s var(--ease)
   &, span
-    color: hsla(0,0%,100%,0.5)
+    color: var(--text)
+    opacity: 0.5
     user-select: none
 
 .k, .kc, .kd, .kn, .kp, .kr, .kt, .nt  
@@ -213,7 +212,7 @@ code
     &.active
       animation: pulse 0.1s linear
     svg
-      fill: var(--light)
+      fill: var(--text)
       width: 1.5rem
       height: 1.5rem
   &_hide
