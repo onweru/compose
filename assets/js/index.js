@@ -46,6 +46,19 @@ function toggleMenu(event) {
   }
 })();
 
+function featureHeading(){
+  // show active heading at top.
+  const parent = elem(".aside");
+  let activeHeading = elem(".section_link.active");
+  activeHeading = activeHeading ? activeHeading : elem(".section_title.active");
+  console.log(parent.offsetTop, parent.children[0].offsetTop, activeHeading.offsetTop);
+  parent.scroll({
+    top: activeHeading.offsetTop,
+    left: 0,
+    // behavior: 'smooth'
+  });
+}
+
 function activeHeading(position, listLinks) {
   let active = 'active';
 
@@ -65,6 +78,10 @@ function activeHeading(position, listLinks) {
     pushClass(linksToModify.new, active);
   }
 };
+
+setTimeout(() => {
+  featureHeading();
+}, 50);
 
 function loadActions() {
   (function updateDate() {
