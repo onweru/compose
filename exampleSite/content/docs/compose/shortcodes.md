@@ -59,8 +59,10 @@ This allows you to embed a youtube video in you content. You would achieve that 
 
 **Syntax**
 
-      <!-- or use full url -->
-      {{</* youtube "https://www.youtube.com/watch?v=MmG2ah5Df4g" */>}}
+```markdown
+<!-- or use full url -->
+{{</* youtube "https://www.youtube.com/watch?v=MmG2ah5Df4g" */>}}
+```
 
 **Result**
 
