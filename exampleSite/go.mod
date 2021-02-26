@@ -2,4 +2,4 @@ module compose-exampleSite
 
 go 1.15
 
-require github.com/onweru/compose v0.0.0-20210224223901-8dbb193ddbe3 // indirect
+require github.com/onweru/compose v0.0.0-20210226153626-1b67f9ccc7f8 // indirect
