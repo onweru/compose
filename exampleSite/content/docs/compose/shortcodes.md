@@ -47,11 +47,15 @@ __Syntax__
 ```markdown
   {{</* youtube "25QyCxVkXwQ" */>}}
   <!-- Use the youtube video id -->
+  <!-- or use full url -->
+  {{</* youtube "https://www.youtube.com/watch?v=MmG2ah5Df4g" */>}}
 ```
 
 __Result__
 
 {{< youtube "25QyCxVkXwQ" >}}
+
+{{< youtube "https://www.youtube.com/watch?v=MmG2ah5Df4g" >}}
 
 ### Button
 
