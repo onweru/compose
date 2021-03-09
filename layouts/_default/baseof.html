@@ -28,8 +28,8 @@
     {{- block "main" . }}{{ end }}
     {{- end }}
   </div>
-  {{- partial "footer" . }}
-  {{- partial "sprites" . }}
-  {{- partial "scripts" . }}
+  {{- partialCached "footer" . }}
+  {{- partialCached "sprites" . }}
+  {{- partialCached "scripts" . }}
 </body>
 </html>
