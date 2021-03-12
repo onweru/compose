@@ -50,3 +50,29 @@ Just put the following line in the `[params]` section in your `config.toml` file
 ````toml
 metaThemeColor = "#123456"
 ````
+
+### How do I add custom styles, scripts, meta tags e.t.c
+
+Use hooks. Ideally, you should not override the them directly.
+
+Instead, you should duplicate [these files](https://github.com/chipzoller/hugo-clarity/tree/master/layouts/partials/hooks) at the root of you site directory.
+
+1. layouts/partials/hooks/head.html
+2. layouts/partials/hooks/scripts.html
+
+The contents of the first file will be attached just before the `</head>` tag.
+
+The contents of the second file will be attached just before the `</body>` tag.
+
+Alternatively, if you want to use the `config.toml` to track your custom styles or scripts, and them in as an array(s) under `[params]` like so:
+
+```toml
+...
+[params]
+customCSS = [styleURL1, styleURL2 ...]
+customJS = [scriptURL1, scriptURL2 ... ]
+...
+```
+
+### I want to add custom sass
+
