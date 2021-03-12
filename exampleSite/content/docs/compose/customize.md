@@ -55,7 +55,7 @@ metaThemeColor = "#123456"
 
 Use hooks. Ideally, you should not override the them directly.
 
-Instead, you should duplicate [these files](https://github.com/chipzoller/hugo-clarity/tree/master/layouts/partials/hooks) at the root of you site directory.
+Instead, you should duplicate [these files](https://github.com/onweru/compose/tree/master/layouts/partials/hooks) at the root of you site directory.
 
 1. layouts/partials/hooks/head.html
 2. layouts/partials/hooks/scripts.html
