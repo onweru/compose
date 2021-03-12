@@ -23,6 +23,12 @@
 <link rel="stylesheet" href="{{ $styles.Permalink }}" integrity="{{ $styles.Data.Integrity }}">
 
 {{- $sp := .Site.Params }}
+{{- with $sp.customCSS }}
+  {{- range . -}}
+  <link rel="stylesheet" href="{{ . }}">
+  {{- end }}
+{{- end }}
+
 {{ with $sp.metaThemeColor }}
   <meta name="theme-color" content="{{.}}">
 {{ end }}
@@ -34,3 +40,4 @@
 {{ else if .Site.Params.Description }}
   <meta name="descripion" content="{{.Site.Params.Description }}">
 {{ end }}
+{{- partialCached "hooks/head" . }}
