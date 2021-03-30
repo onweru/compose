@@ -51,7 +51,6 @@ function featureHeading(){
   const parent = elem(".aside");
   let activeHeading = elem(".section_link.active");
   activeHeading = activeHeading ? activeHeading : elem(".section_title.active");
-  console.log(parent.offsetTop, parent.children[0].offsetTop, activeHeading.offsetTop);
   parent.scroll({
     top: activeHeading.offsetTop,
     left: 0,
