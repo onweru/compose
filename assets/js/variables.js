@@ -3,6 +3,7 @@ const doc = document.documentElement;
 const toggleId = 'toggle';
 const showId = 'show';
 const menu = 'menu';
+const active = 'active';
 const rootURL = window.location.protocol + "//" + window.location.host;
 const searchFieldClass = '.search_field';
 const searchClass = '.search';

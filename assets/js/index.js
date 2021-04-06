@@ -48,19 +48,21 @@ function toggleMenu(event) {
 
 function featureHeading(){
   // show active heading at top.
+  const linkClass = "section_link";
+  const titleClass = "section_title";
   const parent = elem(".aside");
-  let activeHeading = elem(".section_link.active");
-  activeHeading = activeHeading ? activeHeading : elem(".section_title.active");
-  parent.scroll({
-    top: activeHeading.offsetTop,
-    left: 0,
-    // behavior: 'smooth'
-  });
+  if(parent) {
+    let activeHeading = elem(`.${linkClass}.${active}`);
+    activeHeading = activeHeading ? activeHeading : elem(`.${titleClass}.${active}`);
+    parent.scroll({
+      top: activeHeading.offsetTop,
+      left: 0,
+      // behavior: 'smooth'
+    });
+  }
 }
 
 function activeHeading(position, listLinks) {
-  let active = 'active';
-
   let linksToModify = Object.create(null);
   linksToModify.active = listLinks.filter(function(link) {
     return containsClass(link, active);
@@ -102,7 +104,7 @@ function loadActions() {
           const tocItems = Array.from(toc.children[0].children);
 
           const previousHeading = toc.previousElementSibling;
-          previousHeading.matches('.active') ? pushClass(toc, tocActive) : false;
+          previousHeading.matches(`.${active}`) ? pushClass(toc, tocActive) : false;
 
           tocItems.forEach(function(item){
             pushClass(item, 'toc_item');

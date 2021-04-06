@@ -91,7 +91,7 @@ function restrainCodeBlockHeight(lines) {
     if(lastLinePos !== 0) {
       maxCodeBlockHeight = `${lastLinePos}px`;
       const codeBlock = lines[0].parentNode;
-      const outerBlock = codeBlock.closest('.highlight');
+      const outerBlock = codeBlock.closest(`.${highlight}`);
       const isExpanded = containsClass(outerBlock, panelExpanded);
       if(!isExpanded) {
         codeBlock.dataset.height = maxCodeBlockHeight;
@@ -120,7 +120,7 @@ function collapseCodeBlock(block) {
     pushClass(expandDot, panelFrom);
     expandDot.title = "Toggle code block expand";
     expandDot.textContent = "...";
-    const outerBlock = block.closest('.highlight');
+    const outerBlock = block.closest(`.${highlight}`);
     window.setTimeout(function(){
       const expandIcon = outerBlock.nextElementSibling.lastElementChild;
       deleteClass(expandIcon, panelHide);
@@ -220,8 +220,7 @@ function disableCodeLineNumbers(block){
     return target.matches(`.${id}`) || target.closest(`.${id}`);
   }
 
-  function showActive(target, targetClass,activeClass = 'active') {
-    const active = activeClass;
+  function showActive(target, targetClass) {
     const targetElement = target.matches(`.${targetClass}`) ? target : target.closest(`.${targetClass}`);
 
     deleteClass(targetElement, active);
