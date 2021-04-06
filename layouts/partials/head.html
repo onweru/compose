@@ -10,7 +10,7 @@
 <link rel="shortcut icon" href='{{ absURL (printf "%sfavicon.ico" $iconsPath) }}'>
 <meta name="msapplication-config" content='{{ absURL (printf "%sbrowserconfig.xml" $iconsPath) }}'>
 {{- $t := .Title }}
-{{- $s := .Site.Title }}
+{{- $s := site.Title }}
 {{- if in (lower $s) (lower $t) }}
   {{- $t = false }}
 {{- end }}
@@ -22,7 +22,7 @@
 {{- $styles := resources.Get "sass/main.sass" | resources.ExecuteAsTemplate "main.sass" . | resources.ToCSS $options | resources.Fingerprint "sha512" }}
 <link rel="stylesheet" href="{{ $styles.Permalink }}" integrity="{{ $styles.Data.Integrity }}">
 
-{{- $sp := .Site.Params }}
+{{- $sp := site.Params }}
 {{- with $sp.customCSS }}
   {{- range . -}}
   <link rel="stylesheet" href="{{ . }}">
@@ -37,7 +37,7 @@
   <meta name="description" content="{{ .Description }}">
 {{ else if .IsPage }}
   <meta name="description" content="{{ .Summary | plainify }}">
-{{ else if .Site.Params.Description }}
-  <meta name="descripion" content="{{.Site.Params.Description }}">
+{{ else if $sp.Description }}
+  <meta name="descripion" content="{{ $sp.Description }}">
 {{ end }}
 {{- partialCached "hooks/head" . }}
