@@ -26,7 +26,8 @@ const codeActionButtons = [
 ];
 
 const body = elem('body');
-const maxLines = parseInt(body.dataset.code);
+const maxLines = codeBlockConfig.maximum;
+const showLines = codeBlockConfig.show;
 const copyId = 'panel_copy';
 const wrapId = 'panel_wrap';
 const linesId = 'panel_lines';
@@ -196,8 +197,7 @@ function disableCodeLineNumbers(block){
   const highlightWrapId = highlightWrap;
   blocks.forEach(function(block){
     // disable line numbers if disabled globally
-    const showLines = elem('body').dataset.lines;
-    parseBoolean(showLines) === false ? disableCodeLineNumbers(block) : false;
+    showLines === false ? disableCodeLineNumbers(block) : false;
 
     const highlightElement = block.parentNode.parentNode;
     // wrap code block in a div

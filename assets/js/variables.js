@@ -8,6 +8,9 @@ const rootURL = window.location.protocol + "//" + window.location.host;
 const searchFieldClass = '.search_field';
 const searchClass = '.search';
 
+// config defined values
+const codeBlockConfig = JSON.parse('{{ partial "functions/getCodeConfig" . }}');
+
 // defined in i18n / translation files
 const quickLinks = '{{ T "quick_links" }}';
 const searchResultsLabel = '{{ T "search_results_label" }}';
