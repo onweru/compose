@@ -15,14 +15,14 @@ title = "Compose"
 
 Compose is a lean theme for the `Hugo`, inspired by [forestry.io](https://forestry.io). 
 
-We do a [Pull Request](https://github.com/onweru/compose/pulls) contributions workflow on **GitHub**. Also feel free to raise any issues or feature suggestions.
-
 {{< tip "warning" >}}
-Note that the theme is built with simplicity in mind. [This way](/), if a suggestion complicates the usability of the theme, it may be declined. New users are always welcome!
+Feel free to open a [PR](https://github.com/onweru/compose/pulls), raise an issue(s) or request new feature(s).
 {{< /tip >}}
 
-{{< tip >}}
-You can [generate graphs, charts](]("docs/compose/graphs-charts-tables/#show-a-pie-doughnut--bar-chart-at-once")) and tables from a csv, ~~or a json~~ dataset
+{{< tip >}} 
+You can generate diagrams, flowcharts, and piecharts from text in a similar manner as markdown using [mermaid](./docs/compose/mermaid/).
+
+Or, [generate graphs, charts]("./docs/compose/graphs-charts-tables/#show-a-pie-doughnut--bar-chart-at-once") and tables from a csv, ~~or a json~~ file.
 {{< /tip >}}
 
 {{< button "docs/compose/" "Read the Docs" >}}{{< button "https://github.com/onweru/compose" "Download Theme" >}}
