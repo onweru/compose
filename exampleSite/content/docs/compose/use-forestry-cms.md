@@ -26,7 +26,7 @@ If you intend to host with something other than Netlify _e.g github pages_, plea
 
 ### Step 1 : Fork or Clone Compse theme
 
-First we will fork this [bigspring](https://github.com/themefisher/bigspring-hugo-startup-theme) template.
+First we will fork [this theme's](https://github.com/onweru/compose) template.
 
 ### Step 2 : Add your repository in Forestry
 
