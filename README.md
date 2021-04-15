@@ -13,6 +13,7 @@ Compose is a [Hugo](https://gohugo.io/) theme for documentation websites, inspir
 5. Pie, doughnut & bar charts support
 6. Searchable & Sortable tables
 7. Syntax highlighting
+8. Mermaid Support
 
 ## Run your site with compose theme
 
