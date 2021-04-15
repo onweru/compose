@@ -12,10 +12,11 @@
     {{- partial "document" . }}
     {{- else }}
     {{- block "main" . }}{{ end }}
-    {{- end }}
+    {{- end -}}
   </div>
-  {{- partialCached "footer" . }}
-  {{- partialCached "sprites" . }}
-  {{- partialCached "scripts" . }}
+  {{- partialCached "footer" . -}}
+  {{- partialCached "sprites" . -}}
+  {{- partialCached "scripts/bundle" . -}}
+  {{- partial "scripts/other" . -}}
 </body>
 </html>
