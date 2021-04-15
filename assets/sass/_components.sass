@@ -326,3 +326,19 @@
     background-position: 50% 50%
     background-repeat: no-repeat
 
+.mermaid
+  --theme: darkgoldenrod
+  background-color: transparent !important
+  margin-bottom: 2.5rem
+  svg
+    margin: 0 auto
+    display: block
+  .actor, .labelBox
+    fill: var(--theme) !important
+    stroke: var(--theme) !important
+  .messageText, tspan, text
+    fill: var(--text) !important
+    stroke: var(--text) !important
+  .messageLine0, .loopLine
+    stroke: var(--theme) !important
+    fill: var(--theme) !important
