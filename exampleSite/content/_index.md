@@ -13,7 +13,7 @@ title = "Compose"
 {{< column >}}
 # Compose your Docs with __Ease__.
 
-Compose is a lean theme for the `Hugo`, inspired by [forestry.io](https://forestry.io). 
+Compose is a lean `Hugo` domentation theme, inspired by [forestry.io](https://forestry.io). 
 
 {{< tip "warning" >}}
 Feel free to open a [PR](https://github.com/onweru/compose/pulls), raise an issue(s) or request new feature(s).
