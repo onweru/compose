@@ -16,8 +16,7 @@ title = "Projects"
 Compose is a lean `Hugo` domentation theme, inspired by [forestry.io](https://forestry.io).
 
 {{< tip "warning" >}}
-Feel free to open a [PR](https://github.com/onweru/compose/pulls), raise an [issue(s](https://github.com/onweru/compose/issues/new/choose "Open a Github Issue")) or request new feature(s).
-{{< /tip >}}
+Feel free to open a [PR](https://github.com/onweru/compose/pulls), raise an [issue](https://github.com/onweru/compose/issues/new/choose "Open a Github Issue")(s) or request new feature(s). {{< /tip >}}
 
 {{< tip >}}
 You can generate diagrams, flowcharts, and piecharts from text in a similar manner as markdown using [mermaid](./docs/compose/mermaid/).
