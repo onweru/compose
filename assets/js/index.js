@@ -46,9 +46,23 @@ function toggleMenu(event) {
   }
 })();
 
-function activeHeading(position, listLinks) {
-  let active = 'active';
+function featureHeading(){
+  // show active heading at top.
+  const linkClass = "section_link";
+  const titleClass = "section_title";
+  const parent = elem(".aside");
+  if(parent) {
+    let activeHeading = elem(`.${linkClass}.${active}`);
+    activeHeading = activeHeading ? activeHeading : elem(`.${titleClass}.${active}`);
+    parent.scroll({
+      top: activeHeading.offsetTop,
+      left: 0,
+      // behavior: 'smooth'
+    });
+  }
+}
 
+function activeHeading(position, listLinks) {
   let linksToModify = Object.create(null);
   linksToModify.active = listLinks.filter(function(link) {
     return containsClass(link, active);
@@ -65,6 +79,10 @@ function activeHeading(position, listLinks) {
     pushClass(linksToModify.new, active);
   }
 };
+
+setTimeout(() => {
+  featureHeading();
+}, 50);
 
 function loadActions() {
   (function updateDate() {
@@ -86,7 +104,7 @@ function loadActions() {
           const tocItems = Array.from(toc.children[0].children);
 
           const previousHeading = toc.previousElementSibling;
-          previousHeading.matches('.active') ? pushClass(toc, tocActive) : false;
+          previousHeading.matches(`.${active}`) ? pushClass(toc, tocActive) : false;
 
           tocItems.forEach(function(item){
             pushClass(item, 'toc_item');
@@ -105,7 +123,7 @@ function loadActions() {
         });
 
         const linkPositions = pageIds.map(function(id){
-          const heading = document.getElementById(id.replace('#',''));
+          const heading = document.getElementById(decodeURIComponent(id.replace('#','')));
           const position = heading.offsetTop;
           return position;
         });
@@ -123,6 +141,14 @@ function loadActions() {
         });
       }
     }
+
+    const paragraphs = elems('p');
+    paragraphs.forEach(function(p){
+      const buttons = elems('.button', p);
+      if(buttons.length > 1) {
+        pushClass(p, 'button_grid');
+      }
+    });
   })();
 
   (function markExternalLinks(){

@@ -1,7 +1,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {{- hugo.Generator }}
-{{- $iconsPath := "/favicons/" }}
+{{- $iconsPath := "favicons/" }}
 <link rel="apple-touch-icon" sizes="180x180" href='{{ absURL (printf "%sapple-touch-icon.png" $iconsPath) }}'>
 <link rel="icon" type="image/png" sizes="32x32" href='{{ absURL (printf "%sfavicon-32x32.png" $iconsPath) }}'>
 <link rel="icon" type="image/png" sizes="16x16" href='{{ absURL (printf "%sfavicon-16x16.png" $iconsPath) }}'>
@@ -10,7 +10,7 @@
 <link rel="shortcut icon" href='{{ absURL (printf "%sfavicon.ico" $iconsPath) }}'>
 <meta name="msapplication-config" content='{{ absURL (printf "%sbrowserconfig.xml" $iconsPath) }}'>
 {{- $t := .Title }}
-{{- $s := .Site.Title }}
+{{- $s := site.Title }}
 {{- if in (lower $s) (lower $t) }}
   {{- $t = false }}
 {{- end }}
@@ -22,7 +22,13 @@
 {{- $styles := resources.Get "sass/main.sass" | resources.ExecuteAsTemplate "main.sass" . | resources.ToCSS $options | resources.Fingerprint "sha512" }}
 <link rel="stylesheet" href="{{ $styles.Permalink }}" integrity="{{ $styles.Data.Integrity }}">
 
-{{- $sp := .Site.Params }}
+{{- $sp := site.Params }}
+{{- with $sp.customCSS }}
+  {{- range . -}}
+  <link rel="stylesheet" href="{{ . }}">
+  {{- end }}
+{{- end }}
+
 {{ with $sp.metaThemeColor }}
   <meta name="theme-color" content="{{.}}">
 {{ end }}
@@ -31,6 +37,7 @@
   <meta name="description" content="{{ .Description }}">
 {{ else if .IsPage }}
   <meta name="description" content="{{ .Summary | plainify }}">
-{{ else if .Site.Params.Description }}
-  <meta name="descripion" content="{{.Site.Params.Description }}">
+{{ else if $sp.Description }}
+  <meta name="descripion" content="{{ $sp.Description }}">
 {{ end }}
+{{- partialCached "hooks/head" . }}

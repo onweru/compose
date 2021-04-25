@@ -16,6 +16,8 @@
   height: 0
   overflow: hidden
   filter: opacity(0.87)
+  &_item
+    font-size: 0.9rem
   &_active
     height: initial
 .search
@@ -75,16 +77,21 @@
   background-color: var(--theme)
   color: var(--light)
   border-radius: 0.25rem
-  display: inline-flex
-  padding: 0.75rem 1.5rem
+  display: inline-block
+  padding: 0.75rem 1.25rem
   text-align: center
   &:hover
     opacity: 0.84
   & + &
     background-color: var(--haze)
     color: var(--dark)
-    @media screen and (min-width: 20rem)
-      margin-left: 0.5rem
+  &_grid
+    display: grid
+    max-width: 15rem
+    grid-gap: 1rem
+    grid-template-columns: repeat( auto-fit, minmax(12rem, 1fr) )
+    @media  screen and (min-width: 557px)
+      max-width: 25rem
 
 .video
   overflow: hidden
@@ -281,3 +288,57 @@
     position: absolute
     transform: translateY(-50%)
     transition: transform 0.5s cubic-bezier(.19,1,.22,1)
+    right: 3.5rem
+
+.tip
+  padding: 1.5rem 1rem 1.5rem 1.5rem
+  margin: 1.5rem 0
+  border-left: 0.2rem solid var(--theme)
+  position: relative
+  background: var(--accent)
+  blockquote
+    padding: 0
+    margin: 0
+    border: none
+    &::before
+      display: none
+  p 
+    &:first-child, ~ p
+      padding-top: 0
+    &:last-child
+      padding-bottom: 0
+  &_warning
+    --theme: var(--inline-color)
+  &_warning::before
+    transform: rotate(180deg)
+  &::before
+    content: ""
+    position: absolute
+    left: -0.85rem
+    top: 1.5rem
+    z-index: 3
+    padding: 0.75rem
+    transform-origin: 50% 50%
+    border-radius: 50%
+    background-color: var(--theme)
+    background-image: url(../icons/info.svg)
+    background-size: 12%
+    background-position: 50% 50%
+    background-repeat: no-repeat
+
+.mermaid
+  --theme: darkgoldenrod
+  background-color: transparent !important
+  margin-bottom: 2.5rem
+  svg
+    margin: 0 auto
+    display: block
+  .actor, .labelBox, .classGroup rect
+    fill: var(--theme) !important
+    stroke: var(--theme) !important
+  .messageText, tspan, text
+    fill: var(--text) !important
+    stroke: var(--text) !important
+  .messageLine0, .loopLine
+    stroke: var(--theme) !important
+    fill: var(--theme) !important

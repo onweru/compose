@@ -7,25 +7,28 @@ Compose is a [Hugo](https://gohugo.io/) theme for documentation websites, inspir
 ## Features
 
 1. Documentation
-2. Gallery Support (via shortcode)
+2. Gallery Support
 3. Native lazy loading of images
 4. Live search
-5. Pie, doughnut & bar charts support
+5. Flowcharts, Piecharts, doughnut & bar charts support
 6. Searchable & Sortable tables
 7. Syntax highlighting
+8. Mermaid Support
 
-## Run your site with compose theme
+## Documentation
 
 - [Install compose theme](https://docs.neuralvibes.com/docs/compose/install-theme/)
-- [Use forestry](https://docs.neuralvibes.com/docs/compose/use-forestry-cms/)
+- [Use forestry CMS](https://docs.neuralvibes.com/docs/compose/use-forestry-cms/)
 - [Customize your site](https://docs.neuralvibes.com/docs/compose/customize/)
 - [Configure search](https://docs.neuralvibes.com/docs/compose/search/)
+- [Shortcodes](https://docs.neuralvibes.com/docs/compose/shortcodes/)
+- [Mermaid](https://docs.neuralvibes.com/docs/compose/mermaid/)
 
 ## ExampleSite
 
-The [exampleSite](https://github.com/onweru/compose/tree/master/exampleSite) serves as this theme's [user guide]((https://docs.neuralvibes.com/docs/compose/getting-started/)) .
+The [exampleSite](https://github.com/onweru/compose/tree/master/exampleSite) serves as this theme's [user guide](https://docs.neuralvibes.com/docs/compose/getting-started/) .
 
-> This guide covers the necessary bits. As the project evolves, the userguide will get more comprehensive
+This guide covers the necessary bits. As the project evolves, the user-guide will get more comprehensive
 
 You can use Hugo to generate and serve a local copy of the guide (also useful for testing local theme changes).
 
@@ -35,9 +38,7 @@ cd compose/exampleSite/
 hugo server --themesDir ../..
 ```
 
-Note that you need the `themesDir` flag when running Hugo because the site files are inside the theme repo.
-
-## From the same creator
+### Also built by Weru
 
 1. [Clarity Theme](https://github.com/chipzoller/hugo-clarity)
 2. [Newsroom Theme](https://github.com/onweru/newsroom)

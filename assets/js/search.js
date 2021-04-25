@@ -101,7 +101,7 @@ function initializeSearch(index) {
   }
   
   function liveSearch() {
-    const searchField = elem('.search_field');
+    const searchField = elem(searchFieldClass);
   
     if (searchField) {
       searchField.addEventListener('input', function() {
@@ -135,7 +135,7 @@ function initializeSearch(index) {
       search(searchTerm, true);
   
       // search actively after search page has loaded
-      const searchField = elem('.search_field');
+      const searchField = elem(searchFieldClass);
   
       if(searchField) {
         searchField.addEventListener('input', function() {
@@ -160,7 +160,7 @@ function initializeSearch(index) {
       searchResults = searchResults[0];
       searchResults.innerHTML = "";
       // clear search field
-      const searchField = elem('.search_field');
+      const searchField = elem(searchFieldClass);
       searchField.value = "";
     }
   }
@@ -187,7 +187,7 @@ function initializeSearch(index) {
   
   window.addEventListener('click', function(event){
     const target = event.target;
-    const isSearch = target.closest('.search') || target.matches('.search');
+    const isSearch = target.closest(searchClass) || target.matches(searchClass);
     if(!isSearch && !searchPageElement) {
       clearSearchResults();
     }
@@ -195,7 +195,7 @@ function initializeSearch(index) {
 }
 
 window.addEventListener('load', function() { 
-  fetch(`${rootURL}index.json`)
+  fetch(new URL("index.json", rootURL).href)
   .then(response => response.json())
   .then(function(data) {
     data = data.length ? data : [];

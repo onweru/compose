@@ -26,7 +26,7 @@ Once you have a csv file, you display the charts as follows:
 
 Firstly define the data you want to display from the front matter:
 
-```toml
+```markdown
 # from front matter
 ...
 [dataset1] # this key will in the chart shortcode
@@ -40,10 +40,7 @@ Firstly define the data you want to display from the front matter:
   bargraph = true
   title = "Projects"
   table = true # show table listing the chart data
-...
-```
 
-```markdown
 // from page content
 ...
 {{</* grid " mt-2" */>}}

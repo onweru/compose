@@ -94,7 +94,9 @@ enforceLightMode = true # Force the site to always load in light mode.
 
 Please note that you cannot enforce both modes at the same time. It wouldn't make sense, would it?
 
-> ⚠️ Please also note that the mode toggle UI will remain in place. That way, if a user prefers dark mode, they can have their way. The best of both worlds.
+{{< tip "warning" >}}
+> Please also note that the mode toggle UI will remain in place. That way, if a user prefers dark mode, they can have their way. The best of both worlds.
+{{< /tip >}}
 
 ### I18N
 
@@ -124,6 +126,8 @@ sed '/^\[pt]$/,$d' -i config/_default/languages.toml   &&   rm config/_default/m
 
 Clarity supports Hugo built-in Disqus partial, you can enable Disqus simply by setting [`disqusShortname`](https://gohugo.io/templates/internal/#configure-disqus) in your configuration file.
 
-> ⚠️ `disqusShortname` should be placed in root level of configuration.
+{{< tip >}}
+> `disqusShortname` should be placed in root level of configuration.
+{{< /tip >}}
 
 You can also create a file named `layouts/partials/comments.html` for customizing the comments, checkout [Comments Alternatives](https://gohugo.io/content-management/comments/#comments-alternatives) for details.

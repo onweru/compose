@@ -8,12 +8,12 @@ body, html
   scroll-behavior: smooth
   font-kerning: normal
   -webkit-text-size-adjust: 100%
+  font-size: 18px
 
 body
   font-family: var(--font)
   background-color: var(--bg)
   color: var(--text)
-  font-size: 18px
   line-height: 1.5
   max-width: 1440px
   margin: 0 auto
@@ -30,14 +30,13 @@ a
   text-decoration: none
   color: inherit
 p
-  padding: 1rem 0
+  padding: 0.75rem 0
   // opacity: 0.9
   &:empty
     display: none
 li
-  padding: 0.25rem 0
-  p
-    padding: 0.5rem 0
+  &, p
+    padding: 0.25rem 0
 blockquote
   opacity: 0.8
   padding: 1rem
@@ -116,17 +115,18 @@ hr
 
 .aside
   overflow-y: auto
-  background: var(--accent)
+  background: var(--bg)
   padding: 1rem 1.5rem
-  // padding-bottom: 2rem
   border-radius: 0.25rem
   align-self: start
   max-height: 80vh
   position: sticky
-  z-index: 3
+  z-index: 9999
   top: 0.25rem
   @media screen and (min-width: 42rem)
     top: 2.5rem
+    margin-top: 1rem
+    padding-top: 0
   &_inner
     height: 0
     overflow: hidden
@@ -136,9 +136,6 @@ hr
     height: initial
     overflow: visible
   &_toggle
-    // position: absolute
-    // right: 2.5rem
-    // opacity: 0
     padding: 1.5rem 0
     margin: -1.5rem -0.5rem -1.5rem 0
     display: flex

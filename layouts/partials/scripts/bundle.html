@@ -18,3 +18,12 @@
 
 {{- $bundle := slice $variables $functions $code $main $fuse $search | resources.Concat "js/bundle.js" | resources.Minify | resources.Fingerprint "sha512" }}
 <script src="{{ $bundle.Permalink }}"></script>
+
+{{- partialCached "hooks/scripts" . -}}
+
+{{- $sp := .Site.Params }}
+{{- with $sp.customJS }}
+  {{- range . -}}
+    <script src="{{ . }}"></script>
+  {{- end }}
+{{- end -}}
