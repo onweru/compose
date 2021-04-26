@@ -2,28 +2,31 @@
   <div>
     <label class="aside_toggle toggle" title='{{ T "docs_menu" }}' role="button">{{ T "docs_menu" }} {{ partial "sprite" (dict "icon" "harmburger") }}</label>
   </div>
-  {{- template "tree" (dict "page" . "section" .FirstSection)  }}
+  {{- template "tree" (dict "page" . "section" .FirstSection "nestDepth" 0)  }}
   {{- define "tree" }}
   {{- $section := .section }}
   {{- $page := .page }}
   {{- $permalink := $page.RelPermalink }}
+  {{- $nestDepth := .nestDepth }}
+  {{- $pageIndent := mul $nestDepth 1}}
+  {{- $titleIndent := cond (eq $nestDepth 0) 0 (mul (sub $nestDepth 1) 1) }}
   <section class="section aside_inner">
-    <h2 class="section_title{{ if eq $section.RelPermalink $permalink }} active{{ end }}"><a  href="{{ $section.Permalink }}" class="group">{{ $section.Title }}</a></h2>
-      {{- $pages := $section.Pages }}
-      {{- with $pages }}
+    <h2 class="section_title{{ if eq $section.RelPermalink $permalink }} active{{ end }}"><a class="section_anchor" href="{{ $section.Permalink }}" class="group" style="margin-left: {{ $titleIndent }}rem;">{{ $section.Title }}</a></h2>
+    {{- $pages := $section.Pages }}
+    {{- with $pages }}
       <section class="" id="docs-{{ anchorize $section.Title }}">
         {{- range . }}
-        {{- if .IsPage }}
-        <h3 class="section_link{{ if eq .RelPermalink $permalink }} active{{ end }}"><a id="docs-{{ anchorize .Title }}" href="{{ .Permalink }}">{{ .Title }}</a></h3>
-        {{- if ne (print .TableOfContents) ""}}
-          {{- .TableOfContents }}
-        {{- end }}
-        {{- else }}
-        {{- template "tree" (dict "page" $page "section" .) }}
-        {{- end }}
+          {{- if .IsPage }}
+            <h3 class="section_link{{ if eq .RelPermalink $permalink }} active{{ end }}"><a class="section_anchor" id="docs-{{ anchorize .Title }}" href="{{ .Permalink }}" style="margin-left: {{ $pageIndent }}rem;">{{ .Title }}</a></h3>
+            {{- if ne (print .TableOfContents) ""}}
+              {{- .TableOfContents }}
+            {{- end }}
+          {{- else }}
+            {{- template "tree" (dict "page" $page "section" . "nestDepth" (add $nestDepth 1)) }}
+          {{- end }}
         {{- end }}
       </section>
-      {{- end }}
+    {{- end }}
   </section>
   {{- end }}
 </aside>
