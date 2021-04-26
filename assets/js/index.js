@@ -106,6 +106,11 @@ function loadActions() {
           const previousHeading = toc.previousElementSibling;
           previousHeading.matches(`.${active}`) ? pushClass(toc, tocActive) : false;
 
+          const anchorsInPreviousHeading = previousHeading.getElementsByTagName("a");
+          if (anchorsInPreviousHeading.length > 0) {
+            toc.style.marginLeft = anchorsInPreviousHeading[0].style.marginLeft;
+          }
+
           tocItems.forEach(function(item){
             pushClass(item, 'toc_item');
             pushClass(item.firstElementChild, 'toc_link');
