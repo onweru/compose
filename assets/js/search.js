@@ -149,14 +149,16 @@ function initializeSearch(index) {
   
   function hasSearchResults() {
     const searchResults = elem('.results');
-    const body = searchResults.innerHTML.length;
-    return [searchResults, body]
+    if(searchResults) {
+        const body = searchResults.innerHTML.length;
+        return [searchResults, body];
+    }
+    return false
   }
   
   function clearSearchResults() {
     let searchResults = hasSearchResults();
-    let actionable = searchResults[1];
-    if(actionable) {
+    if(searchResults) {
       searchResults = searchResults[0];
       searchResults.innerHTML = "";
       // clear search field
