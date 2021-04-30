@@ -237,11 +237,8 @@
 
 .color
   &_mode
-    height: 1.5rem
-    display: grid
-    grid-template-columns: 1fr 3rem
-    align-items: center
-    margin: 0 1.5rem
+    height: 1rem
+    margin-left: 1.5rem
 
   &_choice
     outline: none
@@ -249,36 +246,32 @@
     -webkit-appearance: none
     height: 1rem
     position: relative
-    &::before, &::after
+    width: 1rem
+    border-radius: 1rem
+    cursor: pointer
+    z-index: 2
+    right: 0
+    filter: contrast(0.8)
+
+    &::after
       content: ""
-      top: 0
+      top: 0.1rem
       bottom: 0
       left: 0
       position: absolute
-      height: 1rem
+      height: 0.8rem
       background: var(--theme)
-
-    &, &::before
-      width: 2.75rem
-      border-radius: 1rem
-      cursor: pointer
-      transition: transform 0.5s cubic-bezier(0.075, 0.82, 0.165, 1)
-      box-shadow: 0 0.25rem 1rem rgba(0,0,0,0.15)
-
-    &::before
-      box-shadow: 0 1rem 2rem rgba(0,0,0,0.17)
-      z-index: 2
-      right: 0
-      filter: brightness(0.75)
-
-    &::after
-      width: 1rem
+      width: 0.8rem
       border-radius: 50%
       z-index: 3
       transform: scale(1.67)
       transform-origin: 50% 50%
       transition: transform 0.5s cubic-bezier(.19,1,.22,1)
       will-change: transform
+      background-image: url(/icons/moon.svg)
+      background-size: 60%
+      background-repeat: no-repeat
+      background-position: center 
 
   &_icon
     height: 1rem
