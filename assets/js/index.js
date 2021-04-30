@@ -153,9 +153,8 @@ function loadActions() {
 
   (function markExternalLinks(){
     let links = elems('a');
-    const contentWrapperClass = '.content';
     if(links) {
-      Array.from(links).forEach(function(link, index){
+      Array.from(links).forEach(function(link){
         let target, rel, blank, noopener, attr1, attr2, url, isExternal;
         url = new URL(link.href);
         // definition of same origin: RFC 6454, section 4 (https://tools.ietf.org/html/rfc6454#section-4)
