@@ -48,6 +48,8 @@ disableKinds = ["taxonomy", "taxonomyTerm"]
 
 [params]
 
+  uniqueHomePage = true # change to false to add sidebar to homepage
+
   repo = "https://github.com/onweru/compose"
 
   time_format_blog = "Monday, January 02, 2006"
