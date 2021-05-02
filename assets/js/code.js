@@ -158,11 +158,13 @@ function actionPanel() {
 }
 
 function toggleLineNumbers(elems) {
-  elems.forEach(function (elem, index) {
-    // mark the code element when there are no lines
-    modifyClass(elem, 'pre_nolines')
-  });
-  restrainCodeBlockHeight(elems);
+  if(elems) {
+    elems.forEach(function (elem, index) {
+      // mark the code element when there are no lines
+      modifyClass(elem, 'pre_nolines')
+    });
+    restrainCodeBlockHeight(elems);
+  }
 }
 
 function toggleLineWrap(elem) {
