@@ -363,6 +363,24 @@ function loadActions() {
     toggleMenu(event);
   });
 
+  (function backToTop(){
+    const toTop = elem("#toTop");
+    window.addEventListener("scroll", function(e) {
+      const lastKnownScrollPosition = window.scrollY;
+      if(lastKnownScrollPosition >= 200) {
+        toTop.style.display = "flex";
+        const viewPort = window.innerWidth;
+        const maxBodyWidth = 1240;
+        // if(viewPort > maxBodyWidth) {
+        //   toTop.style.right = `${((viewPort - maxBodyWidth) / 2)}px`;
+        // }
+        pushClass(toTop, active);
+      } else {
+        deleteClass(toTop, active);
+      }
+    })
+  })();
+
 }
 
 window.addEventListener('load', loadActions());
