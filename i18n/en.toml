@@ -12,5 +12,7 @@
   other = "Query is too short"
 [site_menu]
   other = "Site Menu"
+[to_top]
+  other = "Back to top"
 [type_to_search]
   other = "Type to search"
