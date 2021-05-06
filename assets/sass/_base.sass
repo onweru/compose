@@ -210,3 +210,37 @@ footer
 
 del
   opacity: 0.5
+
+#toTop
+  background: transparent
+  outline: 0.5rem solid transparent
+  height: 2rem
+  width: 2rem
+  cursor: pointer
+  padding: 0.5rem
+  display: flex
+  align-items: center
+  justify-content: center
+  position: fixed
+  right: 0
+  bottom: 2.25rem
+  transform: rotate(45deg) translate(5rem) 
+  opacity: 0
+  transition: opacity 0.5s var(--ease), transform 0.25s var(--ease)
+  z-index: 5
+  &.active
+    right: 1.5rem
+    opacity: 1
+    transform: rotate(45deg) translate(0)
+  &::after, &::before
+    position: absolute
+    display: block
+    width: 1rem
+    height: 1rem
+    content: ""
+    border-left: 1px solid var(--text)
+    border-top: 1px solid var(--text)
+  &::after
+    width: 0.67rem
+    height: 0.67rem
+    transform: translate(0.1rem, 0.1rem)
