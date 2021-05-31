@@ -2,7 +2,7 @@
   {{ with .Site.RegularPages.Next . }}
   <div class="pager_item prev">
     <!-- <span class="pager_meta">PREVIOUS</span> -->
-    <a href="{{ .Permalink }}" class="pager_link button" title="{{ .Title }}">
+    <a href="{{ .Permalink }}" class="pager_link button" title="{{ .Title }}" rel="prev">
       <span class="pager_label">{{ .Title }}</span>
     </a>
   </div>
@@ -11,7 +11,7 @@
   {{ with .Site.RegularPages.Prev . }}
   <div class="pager_item next">
     <!-- <span class="pager_meta">NEXT</span> -->
-    <a href="{{ .Permalink }}" class="pager_link button" title="{{ .Title }}">
+    <a href="{{ .Permalink }}" class="pager_link button" title="{{ .Title }}" rel="next">
       <span class="pager_label">{{ .Title }}</span>
     </a>
   </div>
