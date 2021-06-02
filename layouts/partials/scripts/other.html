@@ -1,5 +1,5 @@
 
-{{ if in .Plain "mermaid" }}
+{{ if in .Content "mermaid" }}
 <script defer src={{  absURL "js/mermaid.min.js"  }}></script>
 <script>
   document.addEventListener("DOMContentLoaded", function(event) {
