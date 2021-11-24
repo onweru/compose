@@ -73,11 +73,7 @@ function initializeSearch(index) {
         showResults.innerHTML = `<span class="search_result">${noMatchesFound}</span>`;
       }
     } else {
-      if (queryLen > 1) {
-        showResults.innerHTML = `<label for="find" class="search_result">${shortSearchQuery}</label>`;
-      } else {
-        showResults.innerHTML = `<label for="find" class="search_result">${typeToSearch}</label>`;
-      }
+      showResults.innerHTML = `<label for="find" class="search_result">${ queryLen > 1 ? shortSearchQuery : typeToSearch }</label>`
     }
   
     showResults.appendChild(resultsFragment);
