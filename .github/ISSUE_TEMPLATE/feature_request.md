@@ -1,8 +1,8 @@
 ---
 name: Feature Request
 about: Request a feature to Compose.
-title: ''
-labels: ''
+title: '[FEATURE]'
+labels: 'enhancement'
 assignees: ''
 ---
 
