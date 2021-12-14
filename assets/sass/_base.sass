@@ -16,7 +16,6 @@ body
   background-color: var(--bg)
   color: var(--text)
   line-height: 1.5
-  max-width: 1440px
   margin: 0 auto
   position: relative
   font-kerning: normal
@@ -26,6 +25,9 @@ body
   min-height: 100vh
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
+  max-width: 1440px
+  @media screen and (min-width: 1640px)
+    max-width: 1600px
 
 a
   text-decoration: none
