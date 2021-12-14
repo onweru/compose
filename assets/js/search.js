@@ -1,8 +1,8 @@
 function initializeSearch(index) {
   const searchKeys = ['title', 'link', 'body', 'id'];
-  
+
   const searchPageElement = elem('#searchpage');
-  
+
   const searchOptions = {
     ignoreLocation: true,
     findAllMatches: true,
@@ -11,16 +11,16 @@ function initializeSearch(index) {
     keys: searchKeys,
     threshold: 0.0
   };
-  
+
   index = new Fuse(index, searchOptions);
-  
+
   function minQueryLen(query) {
     query = query.trim();
     const queryIsFloat = parseFloat(query);
     const minimumQueryLength = queryIsFloat ? 1 : 2;
     return minimumQueryLength;
   }
-  
+
   function searchResults(results=[], query="", passive = false) {
     let resultsFragment = new DocumentFragment();
     let showResults = elem('.search_results');
@@ -28,10 +28,10 @@ function initializeSearch(index) {
       showResults = searchPageElement;
     }
     emptyEl(showResults);
-  
+
     const queryLen = query.length;
     const requiredQueryLen = minQueryLen(query);
-  
+
     if(results.length && queryLen >= requiredQueryLen) {
       let resultsTitle = createEl('h3');
       resultsTitle.className = 'search_title';
@@ -55,7 +55,7 @@ function initializeSearch(index) {
           let itemTitle = createEl('h3');
           itemTitle.textContent = result.title;
           item.appendChild(itemTitle);
-  
+
           let itemDescription = createEl('p');
           // position of first search term instance
           let queryInstance = result.body.indexOf(query);
@@ -67,7 +67,7 @@ function initializeSearch(index) {
         resultsFragment.appendChild(item);
       });
     }
-  
+
     if(queryLen >= requiredQueryLen) {
       if (!results.length) {
         showResults.innerHTML = `<span class="search_result">${noMatchesFound}</span>`;
@@ -75,10 +75,10 @@ function initializeSearch(index) {
     } else {
       showResults.innerHTML = `<label for="find" class="search_result">${ queryLen > 1 ? shortSearchQuery : typeToSearch }</label>`
     }
-  
+
     showResults.appendChild(resultsFragment);
   }
-  
+
   function search(searchTerm, passive = false) {
     if(searchTerm.length) {
       let rawResults = index.search(searchTerm);
@@ -88,23 +88,23 @@ function initializeSearch(index) {
         resultItem.score = (parseFloat(score) * 50).toFixed(0);
         return resultItem;
       });
-  
+
       passive ? searchResults(rawResults, searchTerm, true) : searchResults(rawResults, searchTerm);
-  
+
     } else {
       passive ? searchResults([], "", true) : searchResults();
     }
   }
-  
+
   function liveSearch() {
     const searchField = elem(searchFieldClass);
-  
+
     if (searchField) {
       searchField.addEventListener('input', function() {
         const searchTerm = searchField.value.trim().toLowerCase();
         search(searchTerm);
       });
-  
+
       if(!searchPageElement) {
         searchField.addEventListener('search', function(){
           const searchTerm = searchField.value.trim().toLowerCase();
@@ -115,7 +115,7 @@ function initializeSearch(index) {
       }
     }
   }
-  
+
   function findQuery(query = 'query') {
     const urlParams = new URLSearchParams(window.location.search);
     if(urlParams.has(query)){
@@ -124,15 +124,15 @@ function initializeSearch(index) {
     }
     return "";
   }
-  
+
   function passiveSearch() {
     if(searchPageElement) {
       const searchTerm = findQuery();
       search(searchTerm, true);
-  
+
       // search actively after search page has loaded
       const searchField = elem(searchFieldClass);
-  
+
       if(searchField) {
         searchField.addEventListener('input', function() {
           const searchTerm = searchField.value.trim().toLowerCase();
@@ -142,7 +142,7 @@ function initializeSearch(index) {
       }
     }
   }
-  
+
   function hasSearchResults() {
     const searchResults = elem('.results');
     if(searchResults) {
@@ -151,7 +151,7 @@ function initializeSearch(index) {
     }
     return false
   }
-  
+
   function clearSearchResults() {
     let searchResults = hasSearchResults();
     if(searchResults) {
@@ -162,7 +162,7 @@ function initializeSearch(index) {
       searchField.value = "";
     }
   }
-  
+
   function onEscape(fn){
     window.addEventListener('keydown', function(event){
       if(event.code === "Escape") {
@@ -170,7 +170,7 @@ function initializeSearch(index) {
       }
     });
   }
-  
+
   let main = elem('main');
   if(!main) {
     main = elem('.main');
@@ -182,7 +182,7 @@ function initializeSearch(index) {
   wrapText(findQuery(), main);
 
   onEscape(clearSearchResults);
-  
+
   window.addEventListener('click', function(event){
     const target = event.target;
     const isSearch = target.closest(searchClass) || target.matches(searchClass);
@@ -192,7 +192,7 @@ function initializeSearch(index) {
   });
 }
 
-window.addEventListener('load', function() { 
+window.addEventListener('load', function() {
   fetch(new URL("index.json", rootURL).href)
   .then(response => response.json())
   .then(function(data) {

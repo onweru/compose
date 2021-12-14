@@ -1,6 +1,6 @@
-{{ $datasetKey := .Get 0 }}
-{{ $charts := .Get 1 }}
-{{ $data := index $.Page.Params $datasetKey }}
+{{- $datasetKey := .Get 0 }}
+{{- $charts := .Get 1 }}
+{{- $data := index $.Page.Params $datasetKey }}
 {{- $dataURL := $data.fileLink }}
 {{- $separator := "," }}
 {{- $dataFile := getCSV $separator $dataURL }}
