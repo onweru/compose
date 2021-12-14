@@ -1,19 +1,22 @@
 <div class="pager{{ if .Next }}{{ else }} pager_lean{{ end }}">
+  {{- $searchURL := "/search/" }}
   {{ with .Site.RegularPages.Next . }}
-  <div class="pager_item prev">
-    <!-- <span class="pager_meta">PREVIOUS</span> -->
-    <a href="{{ .Permalink }}" class="pager_link button" title="{{ .Title }}" rel="prev">
-      <span class="pager_label">{{ .Title }}</span>
-    </a>
-  </div>
+    {{ if ne .RelPermalink $searchURL }}
+    <div class="pager_item prev">
+      <a href="{{ .Permalink }}" class="pager_link button" title="{{ .Title }}" rel="prev">
+        <span class="pager_label">{{ .Title }}</span>
+      </a>
+    </div>
+    {{ end }}
   {{ end }}
 
   {{ with .Site.RegularPages.Prev . }}
-  <div class="pager_item next">
-    <!-- <span class="pager_meta">NEXT</span> -->
-    <a href="{{ .Permalink }}" class="pager_link button" title="{{ .Title }}" rel="next">
-      <span class="pager_label">{{ .Title }}</span>
-    </a>
-  </div>
+    {{ if ne .RelPermalink $searchURL }}
+    <div class="pager_item next">
+      <a href="{{ .Permalink }}" class="pager_link button" title="{{ .Title }}" rel="next">
+        <span class="pager_label">{{ .Title }}</span>
+      </a>
+    </div>
+    {{ end }}
   {{ end }}
 </div>
