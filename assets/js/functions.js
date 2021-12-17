@@ -111,6 +111,8 @@ function wrapEl(el, wrapper) {
 function wrapText(text, context, wrapper = 'mark') {
   let open = `<${wrapper}>`;
   let close = `</${wrapper}>`;
+  let escapedOpen = `%3C${wrapper}%3E`;
+  let escapedClose = `%3C/${wrapper}%3E`;
   function wrap(context) {
     let c = context.innerHTML;
     let pattern = new RegExp(text, "gi");
@@ -121,6 +123,14 @@ function wrapText(text, context, wrapper = 'mark') {
         c = c.replaceAll(matchStr, `${open}${matchStr}${close}`);
         context.innerHTML = c;
       });
+
+      const images = elems('img', context);
+
+      if(images) {
+        images.forEach(image => {
+          image.src = image.src.replaceAll(open, '').replaceAll(close, '').replaceAll(escapedOpen, '').replaceAll(escapedClose, '');
+        });
+      }
     }
   }
 
