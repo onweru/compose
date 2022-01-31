@@ -8,10 +8,15 @@
     {{- partial "nav" . }}
   </header>
   <div class="main wrap pt-4">
-    {{- if or (eq .Section "docs") (and (ne site.Params.uniqueHomepage true) .IsHome) }}
-    {{- partial "document" . }}
+    {{ $docSections := site.Params.docSections }}
+    {{- with $docSections }}{{- else }}
+      {{- $docSections = "docs" }}
+    {{- end }}
+    {{- if or (in $docSections .Section) (and (ne site.Params.uniqueHomepage true) .IsHome) }}
+      {{- partial "document" . }}
     {{- else }}
-    {{- block "main" . }}{{ end }}
+      <h1>False {{ .Section }}</h1>
+      {{- block "main" . }}{{ end }}
     {{- end -}}
   </div>
   {{- partialCached "footer" . -}}
