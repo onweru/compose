@@ -16,6 +16,9 @@ codeMaxLines = 7
 # disable showing line numbers by default. Switch to `true` if you'd rather have them on.
 codeLineNumbers = false
 
+# By default the template will look for icons under the icons directory. In some situations you might wanna change that. edit the line below
+# iconsPath = 'icons/'
+
 # Site logo
 [logo]
   lightMode = "images/compose.svg"

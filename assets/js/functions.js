@@ -173,7 +173,7 @@ function parseBoolean(string) {
   }
 }
 
-function loadSvg(file, parent, path = 'icons/') {
+function loadSvg(file, parent, path = iconsPath) {
   const link = new URL(`${path}${file}.svg`, rootURL).href;
   fetch(link)
   .then((response) => {

@@ -10,6 +10,7 @@ const searchClass = '.search';
 
 // config defined values
 const codeBlockConfig = JSON.parse('{{ partial "functions/getCodeConfig" . }}');
+const iconsPath = `{{ partialCached "functions/getIconPath" . }}`;
 
 // defined in i18n / translation files
 const quickLinks = '{{ T "quick_links" }}';
