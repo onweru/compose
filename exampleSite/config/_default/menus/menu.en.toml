@@ -5,6 +5,11 @@
   url = "docs/"
 
 [[main]]
+  name = "Tutorials"
+  weight = 2
+  url = "tutorials/"
+
+[[main]]
   name = "Example"
   weight = 3
   url = "https://docs.neuralvibes.com"

@@ -15,7 +15,6 @@
     {{- if or (in $docSections .Section) (and (ne site.Params.uniqueHomepage true) .IsHome) }}
       {{- partial "document" . }}
     {{- else }}
-      <h1>False {{ .Section }}</h1>
       {{- block "main" . }}{{ end }}
     {{- end -}}
   </div>
