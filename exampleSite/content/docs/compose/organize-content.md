@@ -27,7 +27,7 @@ At the root level there's an `_index.md` page which is the homepage. Feel free t
 
 You can also add as many regular pages as you like e.g `about.md`, `contact.md`...
 
-Take advantage of [shortcodes](./shortcodes) to customize the layouts of these pages and any other.
+Take advantage of [shortcodes](../shortcodes) to customize the layouts of these pages and any other.
 
 #### Does this theme support blogging function?
 
