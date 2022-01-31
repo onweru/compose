@@ -12,10 +12,20 @@
     {{- with $docSections }}{{- else }}
       {{- $docSections = "docs" }}
     {{- end }}
-    {{- if or (in $docSections .Section) (and (ne site.Params.uniqueHomepage true) .IsHome) }}
+    {{ $uniqueHomepage := .IsHome }}
+    {{ if site.Params.uniqueHomepage }}
+      {{ if .IsHome }}
+        {{ $uniqueHomepage = true }}
+      {{ end }}
+    {{ else }}
+      {{ $uniqueHomepage = false }}
+    {{ end }}
+    {{- if and (in $docSections .Section) (ne $uniqueHomepage true) }}
       {{- partial "document" . }}
     {{- else }}
-      {{- block "main" . }}{{ end }}
+      <div class="content">
+        {{- block "main" . }}{{ end }}
+      </div>
     {{- end -}}
   </div>
   {{- partialCached "footer" . -}}
