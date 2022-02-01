@@ -1,7 +1,7 @@
 +++
 description = "basic configuration"
 title = "Customize layouts & components"
-
+weight = 10
 +++
 ### Shortcodes modifiers
 

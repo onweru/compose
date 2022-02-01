@@ -1,5 +1,6 @@
 +++
 title = "Syntax Highlighting"
+weight=17
 +++
 
 ### Code

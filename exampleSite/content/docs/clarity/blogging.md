@@ -1,5 +1,6 @@
 +++
 title="Blogging"
+weight=16
 +++
 
 ### Blog directory
