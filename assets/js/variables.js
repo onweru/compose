@@ -4,7 +4,8 @@ const toggleId = 'toggle';
 const showId = 'show';
 const menu = 'menu';
 const active = 'active';
-const rootURL = window.location.protocol + "//" + window.location.host;
+// rootURL must end with '/' for relative URLs to work properly
+const rootURL = '{{ strings.TrimSuffix "/" .Site.BaseURL }}/';
 const searchFieldClass = '.search_field';
 const searchClass = '.search';
 
