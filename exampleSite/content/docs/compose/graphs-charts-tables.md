@@ -90,8 +90,14 @@ Firstly define the data you want to display from the front matter:
   {{< chart "dataset2" "pie,doughnut" "1" >}}
 {{< /grid >}}
 
-#### Show table only
+#### Show table with filter
 
 {{< grid "3" >}}
   {{< chart "dataset2" "table" >}}
+{{< /grid >}}
+
+#### Show table only
+
+{{< grid "3" >}}
+  {{< chart "dataset2" "table,noFilter" >}}
 {{< /grid >}}
