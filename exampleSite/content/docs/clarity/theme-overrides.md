@@ -7,7 +7,7 @@ weight=18
 
 To minimize HTTP requests per page, we would recommend loading CSS styles and JavaScript helpers in single bundles. That is to say, one CSS file and one JavaScript file. Using Hugo minify functions, these files will be minified to optimize the size.
 
-Going by the above 👆🏻 reason, we recommend adding custom CSS and JS via [this custom SASS file](https://github.com/chipzoller/hugo-clarity/blob/master/assets/sass/_custom.sass) and [custom JavaScript file](https://github.com/chipzoller/hugo-clarity/blob/master/assets/js/custom.js).
+Going by the above 👆🏻 reason, we recommend adding custom CSS and JS via the custom SASS file ([Compose](https://github.com/onweru/compose/blob/master/assets/sass/_custom.sass), [Clarity](https://github.com/chipzoller/hugo-clarity/blob/master/assets/sass/_custom.sass)) and the custom JS file ([Compose](https://github.com/onweru/compose/hugo-compose/blob/master/assets/js/custom.js), [Clarity](https://github.com/chipzoller/hugo-clarity/blob/master/assets/js/custom.js)).
 
 However, sometimes you may need to load additional style or script files. In such cases, you can add custom `.css` and `.js` files by listing them in the `config.toml` file (see the snippet below). Similar to images, these paths should be relative to the `static` directory.
 
