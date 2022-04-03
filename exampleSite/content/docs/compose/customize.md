@@ -3,6 +3,7 @@ description = "basic configuration"
 title = "Customize layouts & components"
 weight = 10
 +++
+
 ### Shortcodes modifiers
 
 These modifiers are classes you can use with shortcodes to customize the look and feel of your layouts and components.
@@ -43,7 +44,7 @@ Under `params` add `enableDarkMode = false` to your `config.toml` file. If your 
 
 ### How do I change the theme color?
 
-If the theme is a git submodule, you can copy the file `assets/sass/_variables.sass` from the theme into your own site.  
+If the theme is a git submodule, you can copy the file `assets/sass/_variables.sass` from the theme into your own site.
 The location must be exactly the same as in the theme, so put it in `YourFancySite/assets/sass/`.
 You can then edit the file to customize the theme color in your site without having to modify the theme itself.
 
@@ -78,4 +79,6 @@ customJS = [scriptURL1, scriptURL2 ... ]
 ...
 ```
 
-### I want to add custom sass
+### I want to add custom SASS or JS
+
+Add custom SASS and JS via [this custom SASS file](https://github.com/onweru/compose/blob/master/assets/sass/_custom.sass) and [this custom JavaScript file](https://github.com/onweru/compose/hugo-compose/blob/master/assets/js/custom.js).

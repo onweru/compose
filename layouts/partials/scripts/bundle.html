@@ -16,7 +16,13 @@
 {{- $mainScriptPath := "js/index.js" }}
 {{- $main := resources.Get $mainScriptPath | resources.ExecuteAsTemplate $mainScriptPath . }}
 
-{{- $bundle := slice $variables $functions $code $main $fuse $search | resources.Concat "js/bundle.js" | resources.Minify | resources.Fingerprint "sha512" }}
+{{- $customScriptPath := "js/custom.js" }}
+{{ if (fileExists "../../assets/js/custom.js") }}
+  {{ $customScriptPath := "../../assets/js/custom.js" }}
+{{ end }}
+{{- $custom := resources.Get $customScriptPath | resources.ExecuteAsTemplate $customScriptPath . }}
+
+{{- $bundle := slice $variables $functions $code $main $fuse $search $custom | resources.Concat "js/bundle.js" | resources.Minify | resources.Fingerprint "sha512" }}
 <script src="{{ $bundle.Permalink }}"></script>
 
 {{- partialCached "hooks/scripts" . -}}
