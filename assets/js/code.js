@@ -1,6 +1,6 @@
 const codeActionButtons = [
   {
-    icon: 'copy', 
+    icon: 'copy',
     id: 'copy',
     title: 'Copy Code',
     show: true
@@ -9,7 +9,7 @@ const codeActionButtons = [
     icon: 'order',
     id: 'lines',
     title: 'Toggle Line Numbers',
-    show: true 
+    show: true
   },
   {
     icon: 'carly',
@@ -21,7 +21,7 @@ const codeActionButtons = [
     icon: 'expand',
     id: 'expand',
     title: 'Toggle code block expand',
-    show: false 
+    show: false
   }
 ];
 
@@ -175,7 +175,13 @@ function toggleLineWrap(elem) {
 }
 
 function copyCode(codeElement) {
-  lineNumbers = elems('.ln', codeElement);
+  const codeElementClone = codeElement.cloneNode(true);
+  const copyBtn = codeElement.parentNode.parentNode.querySelector(`.${copyId}`);
+  const originalTitle = copyBtn.title;
+  loadSvg('check', copyBtn);
+  copyBtn.title = 'Code Copied';
+
+  lineNumbers = elems('.ln', codeElementClone);
   // remove line numbers before copying
   if(lineNumbers.length) {
     lineNumbers.forEach(function(line){
@@ -183,9 +189,13 @@ function copyCode(codeElement) {
     });
   }
 
-  const codeToCopy = codeElement.textContent;
   // copy code
-  copyToClipboard(codeToCopy);
+  copyToClipboard(codeElementClone.textContent);
+
+  setTimeout(function() {
+    copyBtn.title = originalTitle;
+    loadSvg('copy', copyBtn);
+  }, 2250);
 }
 
 function disableCodeLineNumbers(block){
@@ -213,7 +223,7 @@ function disableCodeLineNumbers(block){
     const wrapIcon = elem(`.${wrapId}`, panel);
     codeBlockFits(block) ? false : deleteClass(wrapIcon, panelHide);
 
-    // append buttons 
+    // append buttons
     highlightWrapper.appendChild(panel);
   });
 
@@ -264,11 +274,7 @@ function disableCodeLineNumbers(block){
         }
       }
 
-      if(isCopyIcon) {
-        // clone code element
-        const codeElementClone = codeElement.cloneNode(true);
-        copyCode(codeElementClone);
-      }
+      if(isCopyIcon) copyCode(codeElement);
     }
   });
 

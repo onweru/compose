@@ -217,9 +217,13 @@ function loadActions() {
     copyText.classList.add(yanked);
     copyText.innerText = 'Link Copied';
     if(!elem(`.${yanked}`, parent)) {
+      const icon = parent.getElementsByTagName('img')[0];
+      const originalSrc = icon.src;
+      icon.src = '{{ absURL "icons/check.svg" }}';
       parent.appendChild(copyText);
       setTimeout(function() {
         parent.removeChild(copyText)
+        icon.src = originalSrc;
       }, 2250);
     }
   }
