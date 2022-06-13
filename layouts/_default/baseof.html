@@ -7,6 +7,9 @@
   <header class="nav_header">
     {{- partial "nav" . }}
   </header>
+  {{ if or (eq .Section site.Params.blogDir) (eq .Type "search" ) }}
+    {{- block "main" . }}{{ end }}
+  {{ else }}
   <div class="main wrap pt-4">
     {{ $docSections := site.Params.docSections }}
     {{- with $docSections }}{{- else }}
@@ -28,6 +31,7 @@
       </div>
     {{- end -}}
   </div>
+  {{ end }}
   {{- partialCached "footer" . -}}
   {{- partialCached "sprites" . -}}
   {{- partialCached "scripts/bundle" . -}}
