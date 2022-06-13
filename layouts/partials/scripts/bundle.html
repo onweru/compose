@@ -22,7 +22,7 @@
 {{ end }}
 {{- $custom := resources.Get $customScriptPath | resources.ExecuteAsTemplate $customScriptPath . }}
 
-{{- $bundle := slice $variables $functions $code $main $fuse $search $custom | resources.Concat "js/bundle.js" | resources.Minify | resources.Fingerprint "sha512" }}
+{{- $bundle := slice $variables $functions $code $main $fuse $search $custom | resources.Concat "js/bundle.js" | resources.Fingerprint "sha512" }}
 <script src="{{ $bundle.Permalink }}"></script>
 
 {{- partialCached "hooks/scripts" . -}}

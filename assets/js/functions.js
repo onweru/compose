@@ -161,7 +161,7 @@ function wrapText(text, context, wrapper = 'mark') {
   }
 }
 
-function parseBoolean(string) {
+function parseBoolean(string = "") {
   string = string.trim().toLowerCase();
   switch (string) {
     case 'true':

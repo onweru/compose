@@ -1,5 +1,5 @@
 function initializeSearch(index) {
-  const searchKeys = ['title', 'link', 'body', 'id'];
+  const searchKeys = ['title', 'link', 'body', 'id', 'section', 'tags'];
 
   const searchPageElement = elem('#searchpage');
 
@@ -36,15 +36,21 @@ function initializeSearch(index) {
       let resultsTitle = createEl('h3');
       resultsTitle.className = 'search_title';
       resultsTitle.innerText = quickLinks;
+
+      let goBackButton = createEl('button');
+      goBackButton.textContent = 'Go Back';
+      goBackButton.className = goBackClass;
       if(passive) {
         resultsTitle.innerText = searchResultsLabel;
       }
-      resultsFragment.appendChild(resultsTitle);
       if(!searchPageElement) {
         results = results.slice(0,8);
       } else {
+        resultsFragment.appendChild(goBackButton);
         results = results.slice(0,12);
       }
+      resultsFragment.appendChild(resultsTitle);
+
       results.forEach(function(result){
         let item = createEl('a');
         item.href = `${result.link}?query=${query}`;
@@ -59,7 +65,7 @@ function initializeSearch(index) {
           let itemDescription = createEl('p');
           // position of first search term instance
           let queryInstance = result.body.indexOf(query);
-          itemDescription.textContent = `... ${result.body.substring(queryInstance, queryInstance + 200)} ...`;
+          itemDescription.textContent = `${result.body.substring(queryInstance, queryInstance + 200)}`;
           item.appendChild(itemDescription);
         } else {
           item.textContent = result.title;
@@ -79,15 +85,21 @@ function initializeSearch(index) {
     showResults.appendChild(resultsFragment);
   }
 
-  function search(searchTerm, passive = false) {
+  function search(searchTerm, scope = null, passive = false) {
     if(searchTerm.length) {
       let rawResults = index.search(searchTerm);
       rawResults = rawResults.map(function(result){
         const score = result.score;
         const resultItem = result.item;
         resultItem.score = (parseFloat(score) * 50).toFixed(0);
-        return resultItem;
-      });
+        return resultItem ;
+      })
+
+      if(scope) {
+        rawResults = rawResults.filter(resultItem => {
+          return resultItem.section == scope;
+        });
+      }
 
       passive ? searchResults(rawResults, searchTerm, true) : searchResults(rawResults, searchTerm);
 
@@ -100,16 +112,19 @@ function initializeSearch(index) {
     const searchField = elem(searchFieldClass);
 
     if (searchField) {
+      const searchScope = searchField.dataset.scope;
       searchField.addEventListener('input', function() {
         const searchTerm = searchField.value.trim().toLowerCase();
-        search(searchTerm);
+        search(searchTerm, searchScope);
+        // console.log(searchTerm);
       });
 
       if(!searchPageElement) {
         searchField.addEventListener('search', function(){
           const searchTerm = searchField.value.trim().toLowerCase();
           if(searchTerm.length)  {
-            window.location.href = new URL(`search/?query=${searchTerm}`, rootURL).href;
+            const scopeParameter = searchScope ? `&scope=${searchScope}` : '';
+            window.location.href = new URL(`search/?query=${searchTerm}${ scopeParameter }`, rootURL).href;
           }
         });
       }
@@ -128,10 +143,11 @@ function initializeSearch(index) {
   function passiveSearch() {
     if(searchPageElement) {
       const searchTerm = findQuery();
-      search(searchTerm, true);
-
+      const searchScope = findQuery('scope');
       // search actively after search page has loaded
       const searchField = elem(searchFieldClass);
+
+      search(searchTerm, searchScope, true);
 
       if(searchField) {
         searchField.addEventListener('input', function() {
@@ -193,7 +209,9 @@ function initializeSearch(index) {
 }
 
 window.addEventListener('load', function() {
-  fetch(new URL("index.json", rootURL).href)
+  const pageLanguage = document.documentElement.lang;
+  const searchIndex = `${ pageLanguage === 'en' ? '': pageLanguage}/index.json`;
+  fetch(new URL(searchIndex, rootURL).href)
   .then(response => response.json())
   .then(function(data) {
     data = data.length ? data : [];

@@ -7,6 +7,8 @@ const active = 'active';
 const rootURL = window.location.protocol + "//" + window.location.host;
 const searchFieldClass = '.search_field';
 const searchClass = '.search';
+const goBackClass = 'button_back';
+const lineClass = '.line';
 
 // config defined values
 const codeBlockConfig = JSON.parse('{{ partial "functions/getCodeConfig" . }}');
