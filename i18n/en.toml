@@ -5,11 +5,13 @@
 [quick_links]
   other = "Quick links"
 [search_field_placeholder]
-  other = "Search the docs"
+  other = "Search {{ .section }}"
 [search_results_label]
   other = "Search Results"
 [short_search_query]
   other = "Query is too short"
+[site]
+  other = "site"
 [site_menu]
   other = "Site Menu"
 [to_top]
