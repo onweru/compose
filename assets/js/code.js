@@ -105,23 +105,15 @@ function restrainCodeBlockHeight(lines) {
 const blocks = codeBlocks();
 
 function collapseCodeBlock(block) {
-  const lines = elems('.ln', block);
+  const lines = elems(lineClass, block);
   const codeLines = lines.length;
-  if(!lines) {
-    // hide lines toggle button for blocks that have no lines.
-    setTimeout(() => {
-      let panelLinesParentEl = block.closest(`.${highlightWrap}`);
-      let panelLinesEl = elem(`.${linesId}`, panelLinesParentEl);
-      pushClass(panelLinesEl, panelHide);
-    }, 2000)
-  }
   if (codeLines > maxLines) {
     const expandDot = createEl()
     pushClass(expandDot, panelExpand);
     pushClass(expandDot, panelFrom);
     expandDot.title = "Toggle code block expand";
     expandDot.textContent = "...";
-    const outerBlock = block.closest(`.${highlight}`);
+    const outerBlock = block.closest('.highlight');
     window.setTimeout(function(){
       const expandIcon = outerBlock.nextElementSibling.lastElementChild;
       deleteClass(expandIcon, panelHide);
