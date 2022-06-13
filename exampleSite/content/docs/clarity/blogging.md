@@ -5,12 +5,12 @@ weight=16
 
 ### Blog directory
 
-Edit the `config.toml` file and change the `mainSections` key. Values will be directories where the blogs reside.
+Edit the `config.toml` file and change the `blogDir` key. Value will be name of the folder where the blog articles reside.
 
 ```yaml
 [params]
 ...
-mainSections = ["posts", "docs", "blogs"]
+blogDir = "blog"
 ...
 ```
 
