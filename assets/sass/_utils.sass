@@ -78,3 +78,19 @@
   grid-gap: 1.5rem
   max-width: 98vw !important
   max-height: 98vw !important
+
+
+.link
+  display: inline-flex
+  align-items: center
+  width: 2.5rem
+  margin: 0 0.25rem
+  padding: 0 0.25rem
+  opacity: 0
+  transition: opacity 0.3s cubic-bezier(0.39, 0.575, 0.565, 1)
+  svg, img
+    width: 1.5rem
+    height: 1.5rem
+    fill: var(--theme)
+  &_owner:hover &
+    opacity: 0.9
