@@ -1,8 +1,9 @@
-mainSections = ["posts"] # use it for blog page section
 # use the setting below to set multiple docs directories.
 # docSections = ["docs", "tutorials"]
 
 uniqueHomePage = true # change to false to add sidebar to homepage
+
+blogDir = "blog" # can be posts, blog e.t.c
 
 repo = "https://github.com/onweru/compose"
 
