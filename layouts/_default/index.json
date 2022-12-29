@@ -1,7 +1,22 @@
 {{- $.Scratch.Add "index" slice -}}
-{{- range .Site.Pages -}}
+{{- $searchableExtras := site.Params.otherSearchableFields }}
+{{- range site.Pages -}}
+  {{ $params := .Params }}
   {{- if ne .Type "search" -}}
-    {{- $.Scratch.Add "index" (dict "title" .Title "body" .Plain "link" .Permalink "section" .Section) -}}
+    {{- $searchEntry := dict "title" .Title "body" .Plain "link" .Permalink "section" .Section }}
+    {{- range $index, $value := $searchableExtras }}
+      {{- $extraFieldValue := index $params $value }}
+      {{- $extraFieldValues := dict }}
+      {{- with $extraFieldValue }}
+        {{- $v := . }}
+        {{- if reflect.IsSlice . }}
+          {{- $v = delimit . "," }}
+        {{- end }}
+        {{- $extraFieldValues = dict (lower $value) $v }}
+      {{- end }}
+      {{- $searchEntry = merge $searchEntry $extraFieldValues }}
+    {{- end }}
+    {{- $.Scratch.Add "index" $searchEntry -}}
   {{- end -}}
 {{- end -}}
 {{- jsonify (uniq ($.Scratch.Get "index")) -}}

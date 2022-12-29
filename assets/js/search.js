@@ -1,5 +1,8 @@
 function initializeSearch(index) {
-  const searchKeys = ['title', 'link', 'body', 'id', 'section', 'tags'];
+  let searchKeys = ['title', 'id', 'link', 'body', 'section'];
+  searchKeys = searchKeys.concat(otherSearchableFields);
+
+  console.log(searchKeys);
 
   const searchPageElement = elem('#searchpage');
 
@@ -9,7 +12,7 @@ function initializeSearch(index) {
     includeScore: true,
     shouldSort: true,
     keys: searchKeys,
-    threshold: 0.0
+    threshold: 0.5
   };
 
   index = new Fuse(index, searchOptions);

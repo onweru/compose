@@ -14,6 +14,19 @@ const lineClass = '.line';
 const codeBlockConfig = JSON.parse('{{ partial "functions/getCodeConfig" . }}');
 const iconsPath = `{{ partialCached "functions/getIconPath" . }}`;
 
+// values defined under config/_default/params.toml
+let otherSearchableFields = '{{ delimit (default slice site.Params.otherSearchableFields) ", " }}'
+
+if(otherSearchableFields.length > 2) {
+  otherSearchableFields = otherSearchableFields
+    .split(",")
+    .map(search_value => search_value.toLowerCase().trim());
+} else {
+  otherSearchableFields = [];
+}
+
+console.log(otherSearchableFields);
+
 // defined in i18n / translation files
 const quickLinks = '{{ T "quick_links" }}';
 const searchResultsLabel = '{{ T "search_results_label" }}';
