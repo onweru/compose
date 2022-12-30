@@ -26,8 +26,6 @@ if(otherSearchableFields.length > 2) {
   otherSearchableFields = [];
 }
 
-console.log(otherSearchableFields);
-
 // defined in i18n / translation files
 const quickLinks = '{{ T "quick_links" }}';
 const searchResultsLabel = '{{ T "search_results_label" }}';

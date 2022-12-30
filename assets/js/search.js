@@ -2,8 +2,6 @@ function initializeSearch(index) {
   let searchKeys = ['title', 'id', 'link', 'body', 'section'];
   searchKeys = searchKeys.concat(otherSearchableFields);
 
-  console.log(searchKeys);
-
   const searchPageElement = elem('#searchpage');
 
   const searchOptions = {
@@ -119,7 +117,6 @@ function initializeSearch(index) {
       searchField.addEventListener('input', function() {
         const searchTerm = searchField.value.trim().toLowerCase();
         search(searchTerm, searchScope);
-        // console.log(searchTerm);
       });
 
       if(!searchPageElement) {
