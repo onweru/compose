@@ -271,10 +271,20 @@ function disableCodeLineNumbers(block){
   });
 
   (function addLangLabel() {
+    const shell_based = ['sh', 'shell', 'zsh', 'bash'];
     const blocks = codeBlocks();
-    blocks.forEach(function(block){
+
+    blocks.forEach(block => {
       let label = block.dataset.lang;
-      label = label === 'sh' ? 'bash' : label;
+      const is_shell_based = shell_based.includes(label);
+      if(is_shell_based) {
+        const lines = elems(lineClass, block);
+        Array.from(lines).forEach(line => {
+          pushClass(line, 'shell');
+        });
+      }
+
+      label = label === 'sh' ? 'shell' : label;
       if(label !== "fallback") {
         const labelEl = createEl();
         labelEl.textContent = label;
