@@ -190,10 +190,8 @@ code
 .panel
   &_box
     display: inline-flex
-    // grid-template-columns: repeat(3, 1fr)
-    // max-width: 10rem
     perspective: 300px
-    grid-gap: 0.5rem
+    grid-gap: 1rem
     transition: opacity 0.3s var(--easing)
     background: var(--code-bg)
     padding: 0.5rem 1.5rem
@@ -208,10 +206,9 @@ code
     align-items: center
     justify-content: center
     cursor: pointer
-    // transition: opacity 0.3s var(--easing)
     padding: 0.1rem
     transform-origin: 50% 50%
-    // opacity: 0.7
+    margin: 0
     &.active
       animation: pulse 0.1s linear
     svg
@@ -236,9 +233,14 @@ code
 
 .shell
   position: relative
-  display: flex
-  align-items: center
-  gap: 0.5rem
+  // display: flex
+  // align-items: center
+  // gap: 0.5rem
   &::before
     content: "$"
     position: relative
+    margin-right: 0.36rem
+
+.line
+  &-flex
+    display: flex

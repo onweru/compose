@@ -140,8 +140,10 @@ hr
     height: initial
     overflow: visible
   &_toggle
-    padding: 1.5rem 0
-    margin: -1.5rem 0
+    padding: 0.5rem 1.5rem
+    border-radius: 0.5rem
+    background: var(--accent)
+    transform: translateY(-1rem)
     display: flex
     justify-content: space-between
     @media screen and (min-width: 42rem)
@@ -176,6 +178,9 @@ table
 
 .main
   flex: 1
+  > .grid-auto
+    @media screen and (max-width: 667px)
+      grid-gap: 0
 
 .page
   &-home
