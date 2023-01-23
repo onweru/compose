@@ -31,15 +31,6 @@ Note that live search on the search page will behave differently than on the oth
 
 Use the `i18n` files to do so.
 
-<!-- ### scoped search
-
-#### Searching within a specific/current page
-
-I think the other 3 are not only related, but can be for the most part be achieved using the good old-fashioned CTRL/CMD + F.
-
-(1) multilingual sites
-(2) blog/events sections that are separate from the docs section -->
-
 ### What is a valid search query
 
 A valid search query must be long enough. If the search query can be cast as a float, then it only need contain one or more characters.

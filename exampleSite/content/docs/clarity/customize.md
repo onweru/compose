@@ -118,7 +118,7 @@ Things to consider in multilingual:
 **note:** if you do NOT want any translations (thus removing the translations menu entry), then you must not have any translations.
 In the exampleSite that's as easy as removing the extra translations from the `config/_default/...` or executing this onliner:
 
-```
+```shell
 sed '/^\[pt]$/,$d' -i config/_default/languages.toml   &&   rm config/_default/menus/menu.pt.toml
 ```
 

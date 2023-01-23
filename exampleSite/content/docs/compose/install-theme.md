@@ -23,8 +23,8 @@ You could go with the options right below.
 
 This option enables you to load compose theme as a hugo module. First things first, ensure you have `go` binary [installed on your machine](https://golang.org/doc/install).
 
-```bash
-git clone https://github.com/onweru/compose/
+```shell
+$ git clone https://github.com/onweru/compose/
 cd compose/exampleSite/
 hugo server
 ```
