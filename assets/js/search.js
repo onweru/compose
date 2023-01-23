@@ -1,56 +1,56 @@
 function initializeSearch(index) {
-  let searchKeys = ['title', 'id', 'link', 'body', 'section'];
-  searchKeys = searchKeys.concat(otherSearchableFields);
+  let search_keys = ['title', 'id', 'link', 'body', 'section'];
+  search_keys = search_keys.concat(other_searchable_fields);
 
-  const searchPageElement = elem('#searchpage');
+  const search_page_element = elem('#searchpage');
 
-  const searchOptions = {
+  const search_options = {
     ignoreLocation: true,
     findAllMatches: true,
     includeScore: true,
     shouldSort: true,
-    keys: searchKeys,
+    keys: search_keys,
     threshold: 0.5
   };
 
-  index = new Fuse(index, searchOptions);
+  index = new Fuse(index, search_options);
 
   function minQueryLen(query) {
     query = query.trim();
-    const queryIsFloat = parseFloat(query);
-    const minimumQueryLength = queryIsFloat ? 1 : 2;
-    return minimumQueryLength;
+    const query_is_float = parseFloat(query);
+    const min_query_length = query_is_float ? 1 : 2;
+    return min_query_length;
   }
 
   function searchResults(results=[], query="", passive = false) {
-    let resultsFragment = new DocumentFragment();
-    let showResults = elem('.search_results');
+    let results_fragment = new DocumentFragment();
+    let show_results = elem('.search_results');
     if(passive) {
-      showResults = searchPageElement;
+      show_results = search_page_element;
     }
-    emptyEl(showResults);
+    emptyEl(show_results);
 
-    const queryLen = query.length;
-    const requiredQueryLen = minQueryLen(query);
+    const query_len = query.length;
+    const required_query_len = minQueryLen(query);
 
-    if(results.length && queryLen >= requiredQueryLen) {
-      let resultsTitle = createEl('h3');
-      resultsTitle.className = 'search_title';
-      resultsTitle.innerText = quickLinks;
+    if(results.length && query_len >= required_query_len) {
+      let results_title = createEl('h3');
+      results_title.className = 'search_title';
+      results_title.innerText = quick_links;
 
-      let goBackButton = createEl('button');
-      goBackButton.textContent = 'Go Back';
-      goBackButton.className = goBackClass;
+      let go_back_button = createEl('button');
+      go_back_button.textContent = 'Go Back';
+      go_back_button.className = go_back_class;
       if(passive) {
-        resultsTitle.innerText = searchResultsLabel;
+        results_title.innerText = search_results_label;
       }
-      if(!searchPageElement) {
+      if(!search_page_element) {
         results = results.slice(0,8);
       } else {
-        resultsFragment.appendChild(goBackButton);
+        results_fragment.appendChild(go_back_button);
         results = results.slice(0,12);
       }
-      resultsFragment.appendChild(resultsTitle);
+      results_fragment.appendChild(results_title);
 
       results.forEach(function(result){
         let item = createEl('a');
@@ -59,50 +59,50 @@ function initializeSearch(index) {
         item.style.order = result.score;
         if(passive) {
           pushClass(item, 'passive');
-          let itemTitle = createEl('h3');
-          itemTitle.textContent = result.title;
-          item.appendChild(itemTitle);
+          let item_title = createEl('h3');
+          item_title.textContent = result.title;
+          item.appendChild(item_title);
 
-          let itemDescription = createEl('p');
+          let item_description = createEl('p');
           // position of first search term instance
-          let queryInstance = result.body.indexOf(query);
-          itemDescription.textContent = `${result.body.substring(queryInstance, queryInstance + 200)}`;
-          item.appendChild(itemDescription);
+          let query_instance = result.body.indexOf(query);
+          item_description.textContent = `${result.body.substring(query_instance, query_instance + 200)}`;
+          item.appendChild(item_description);
         } else {
           item.textContent = result.title;
         }
-        resultsFragment.appendChild(item);
+        results_fragment.appendChild(item);
       });
     }
 
-    if(queryLen >= requiredQueryLen) {
+    if(query_len >= required_query_len) {
       if (!results.length) {
-        showResults.innerHTML = `<span class="search_result">${noMatchesFound}</span>`;
+        show_results.innerHTML = `<span class="search_result">${no_matches_found}</span>`;
       }
     } else {
-      showResults.innerHTML = `<label for="find" class="search_result">${ queryLen > 1 ? shortSearchQuery : typeToSearch }</label>`
+      show_results.innerHTML = `<label for="find" class="search_result">${ query_len > 1 ? short_search_query : type_to_search }</label>`
     }
 
-    showResults.appendChild(resultsFragment);
+    show_results.appendChild(results_fragment);
   }
 
-  function search(searchTerm, scope = null, passive = false) {
-    if(searchTerm.length) {
-      let rawResults = index.search(searchTerm);
-      rawResults = rawResults.map(function(result){
+  function search(search_term, scope = null, passive = false) {
+    if(search_term.length) {
+      let raw_results = index.search(search_term);
+      raw_results = raw_results.map(function(result){
         const score = result.score;
-        const resultItem = result.item;
-        resultItem.score = (parseFloat(score) * 50).toFixed(0);
-        return resultItem ;
+        const result_item = result.item;
+        result_item.score = (parseFloat(score) * 50).toFixed(0);
+        return result_item;
       })
 
       if(scope) {
-        rawResults = rawResults.filter(resultItem => {
-          return resultItem.section == scope;
+        raw_results = raw_results.filter(result_item => {
+          return result_item.section == scope;
         });
       }
 
-      passive ? searchResults(rawResults, searchTerm, true) : searchResults(rawResults, searchTerm);
+      passive ? searchResults(raw_results, search_term, true) : searchResults(raw_results, search_term);
 
     } else {
       passive ? searchResults([], "", true) : searchResults();
@@ -110,21 +110,21 @@ function initializeSearch(index) {
   }
 
   function liveSearch() {
-    const searchField = elem(searchFieldClass);
+    const search_field = elem(search_field_class);
 
-    if (searchField) {
-      const searchScope = searchField.dataset.scope;
-      searchField.addEventListener('input', function() {
-        const searchTerm = searchField.value.trim().toLowerCase();
-        search(searchTerm, searchScope);
+    if (search_field) {
+      const search_scope = search_field.dataset.scope;
+      search_field.addEventListener('input', function() {
+        const search_term = search_field.value.trim().toLowerCase();
+        search(search_term, search_scope);
       });
 
-      if(!searchPageElement) {
-        searchField.addEventListener('search', function(){
-          const searchTerm = searchField.value.trim().toLowerCase();
-          if(searchTerm.length)  {
-            const scopeParameter = searchScope ? `&scope=${searchScope}` : '';
-            window.location.href = new URL(`search/?query=${searchTerm}${ scopeParameter }`, rootURL).href;
+      if(!search_page_element) {
+        search_field.addEventListener('search', function(){
+          const search_term = search_field.value.trim().toLowerCase();
+          if(search_term.length)  {
+            const scope_parameter = search_scope ? `&scope=${search_scope}` : '';
+            window.location.href = new URL(`search/?query=${search_term}${ scope_parameter }`, root_url).href;
           }
         });
       }
@@ -132,67 +132,57 @@ function initializeSearch(index) {
   }
 
   function findQuery(query = 'query') {
-    const urlParams = new URLSearchParams(window.location.search);
-    if(urlParams.has(query)){
-      let c = urlParams.get(query);
-      return c;
-    }
-    return "";
+    const url_params = new URLSearchParams(window.location.search);
+    return url_params.has(query) ? url_params.get(query) : "";
   }
 
   function passiveSearch() {
-    if(searchPageElement) {
-      const searchTerm = findQuery();
-      const searchScope = findQuery('scope');
+    if(search_page_element) {
+      const search_term = findQuery();
+      const search_scope = findQuery('scope');
       // search actively after search page has loaded
-      const searchField = elem(searchFieldClass);
+      const search_field = elem(search_field_class);
 
-      search(searchTerm, searchScope, true);
+      search(search_term, search_scope, true);
 
-      if(searchField) {
-        searchField.addEventListener('input', function() {
-          const searchTerm = searchField.value.trim().toLowerCase();
-          search(searchTerm, true);
-          wrapText(searchTerm, main);
+      if(search_field) {
+        search_field.addEventListener('input', function() {
+          const search_term = search_field.value.trim().toLowerCase();
+          search(search_term, true);
+          wrapText(search_term, main);
         });
       }
     }
   }
 
   function hasSearchResults() {
-    const searchResults = elem('.results');
-    if(searchResults) {
-        const body = searchResults.innerHTML.length;
-        return [searchResults, body];
+    const search_results = elem('.results');
+    if(search_results) {
+        const body = search_results.innerHTML.length;
+        return [search_results, body];
     }
     return false
   }
 
   function clearSearchResults() {
-    let searchResults = hasSearchResults();
-    if(searchResults) {
-      searchResults = searchResults[0];
-      searchResults.innerHTML = "";
+    let search_results = hasSearchResults();
+    if(search_results) {
+      search_results = search_results[0];
+      search_results.innerHTML = "";
       // clear search field
-      const searchField = elem(searchFieldClass);
-      searchField.value = "";
+      const search_field = elem(search_field_class);
+      search_field.value = "";
     }
   }
 
   function onEscape(fn){
-    window.addEventListener('keydown', function(event){
-      if(event.code === "Escape") {
-        fn();
-      }
-    });
+    window.addEventListener('keydown', event => event.code === "Escape" ? fn() : false);
   }
 
   let main = elem('main');
-  if(!main) {
-    main = elem('.main');
-  }
+  main = main ? main : elem('.main');
 
-  searchPageElement ? false : liveSearch();
+  search_page_element ? false : liveSearch();
   passiveSearch();
 
   wrapText(findQuery(), main);
@@ -201,21 +191,19 @@ function initializeSearch(index) {
 
   window.addEventListener('click', function(event){
     const target = event.target;
-    const isSearch = target.closest(searchClass) || target.matches(searchClass);
-    if(!isSearch && !searchPageElement) {
-      clearSearchResults();
-    }
+    const is_search = target.closest(search_class) || target.matches(search_class);
+    !is_search && !search_page_element ? clearSearchResults() : false;
   });
 }
 
 window.addEventListener('load', function() {
-  const pageLanguage = document.documentElement.lang;
-  const searchIndex = `${ pageLanguage === 'en' ? '': pageLanguage}/index.json`;
-  fetch(new URL(searchIndex, rootURL).href)
+  const page_language = document.documentElement.lang;
+  const search_index = `${ page_language === 'en' ? '': page_language}/index.json`;
+  fetch(new URL(search_index, root_url).href)
   .then(response => response.json())
-  .then(function(data) {
-    data = data.length ? data : [];
-    initializeSearch(data);
+  .then(function(search_data) {
+    search_data = search_data.length ? search_data : [];
+    initializeSearch(search_data);
   })
   .catch((error) => console.error(error));
 });

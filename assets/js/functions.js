@@ -17,8 +17,7 @@ function elem(selector, parent = document){
 }
 
 function elems(selector, parent = document) {
-  let elems = isObj(parent) ? parent.querySelectorAll(selector) : [];
-  return elems.length ? elems : false;
+  return isObj(parent) ? parent.querySelectorAll(selector) : [];
 }
 
 function pushClass(el, targetClass) {
@@ -174,13 +173,13 @@ function parseBoolean(string = "") {
 }
 
 function loadSvg(file, parent, path = iconsPath) {
-  const link = new URL(`${path}${file}.svg`, rootURL).href;
+  const link = new URL(`${path}${file}.svg`, root_url).href;
   fetch(link)
   .then((response) => {
     return response.text();
   })
-  .then((data) => {
-    parent.innerHTML = data;
+  .then((svg_data) => {
+    parent.innerHTML = svg_data;
   });
 }
 

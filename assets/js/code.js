@@ -1,57 +1,66 @@
-const codeActionButtons = [
+const snippet_actions = [
   {
     icon: 'copy',
     id: 'copy',
-    title: 'Copy Code',
+    title: copy_text,
     show: true
   },
   {
     icon: 'order',
     id: 'lines',
-    title: 'Toggle Line Numbers',
+    title: toggle_line_numbers_text,
     show: true
   },
   {
     icon: 'carly',
     id: 'wrap',
-    title: 'Toggle Line Wrap',
+    title: toggle_line_wrap_text,
     show: false
   },
   {
     icon: 'expand',
     id: 'expand',
-    title: 'Toggle code block expand',
+    title: resize_snippet,
     show: false
   }
 ];
 
-const body = elem('body');
-const maxLines = codeBlockConfig.maximum;
-const showLines = codeBlockConfig.show;
-const copyId = 'panel_copy';
-const wrapId = 'panel_wrap';
-const linesId = 'panel_lines';
-const panelExpand = 'panel_expand';
-const panelExpanded = 'panel_expanded';
-const panelHide = 'panel_hide';
-const panelFrom = 'panel_from';
-const panelBox = 'panel_box';
-const fullHeight = 'initial';
-const highlightWrap = 'highlight_wrap'
-const highlight = 'highlight';
+function addLines(block) {
+  let text = block.textContent;
+  const snippet_fragment = [];
+  if (text.includes('\n') && block.closest('pre') && !block.children.length) {
+    text = text.split('\n');
+    text.forEach((text_node, index) => {
+      if(text_node.trim().length) {
+        const new_node = `
+        <span class="line line-flex">
+          <span class="ln">${index + 1}</span>
+          <span class="cl">${text_node.trim()}</span>
+        </span>`.trim();
+        // snippet_fragment.push(':;:');
+        snippet_fragment.push(new_node);
+        block.closest('pre').className = 'chroma';
+        pushClass(block, 'language-unknown');
+        block.dataset.lang = not_set;
+      }
+    });
+
+    block.innerHTML = snippet_fragment.join('').trim(' ');
+  }
+}
 
 function wrapOrphanedPreElements() {
   const pres = elems('pre');
   Array.from(pres).forEach(function(pre){
     const parent = pre.parentNode;
-    const isOrpaned = !containsClass(parent, highlight) ;
-    if(isOrpaned) {
-      const preWrapper = createEl();
-      preWrapper.className = highlight;
-      const outerWrapper = createEl();
-      outerWrapper.className = highlightWrap;
-      wrapEl(pre, preWrapper);
-      wrapEl(preWrapper, outerWrapper);
+    const is_orpaned = !containsClass(parent, highlight);
+    if(is_orpaned) {
+      const pre_wrapper = createEl();
+      pre_wrapper.className = highlight;
+      const outer_wrapper = createEl();
+      outer_wrapper.className = highlight_wrap;
+      wrapEl(pre, pre_wrapper);
+      wrapEl(pre_wrapper, outer_wrapper);
     }
   })
   /*
@@ -63,8 +72,9 @@ function wrapOrphanedPreElements() {
 wrapOrphanedPreElements();
 
 function codeBlocks() {
-  const markedCodeBlocks = elems('code');
-  const blocks = Array.from(markedCodeBlocks).filter(function(block){
+  const marked_code_blocks = elems('code');
+  const blocks = Array.from(marked_code_blocks).filter(function(block){
+    addLines(block);
     return block.closest("pre") && !Array.from(block.classList).includes('noClass');
   }).map(function(block){
     return block
@@ -74,29 +84,29 @@ function codeBlocks() {
 
 function codeBlockFits(block) {
   // return false if codeblock overflows
-  const blockWidth = block.offsetWidth;
-  const highlightBlockWidth = block.closest(`.${highlight}`).offsetWidth;
-  return blockWidth <= highlightBlockWidth ? true : false;
+  const block_width = block.offsetWidth;
+  const highlight_block_width = block.closest(`.${highlight}`).offsetWidth;
+  return block_width <= highlight_block_width ? true : false;
 }
 
 function maxHeightIsSet(elem) {
-  let maxHeight = elem.style.maxHeight;
-  return maxHeight.includes('px')
+  let max_height = elem.style.maxHeight;
+  return max_height.includes('px')
 }
 
 function restrainCodeBlockHeight(lines) {
-  const lastLine = lines[maxLines-1];
-  let maxCodeBlockHeight = fullHeight;
-  if(lastLine) {
-    const lastLinePos = lastLine.offsetTop;
-    if(lastLinePos !== 0) {
-      maxCodeBlockHeight = `${lastLinePos}px`;
+  const last_line = lines[max_lines-1];
+  let max_code_block_height = full_height;
+  if(last_line) {
+    const last_line_pos = last_line.offsetTop;
+    if(last_line_pos !== 0) {
+      max_code_block_height = `${last_line_pos}px`;
       const codeBlock = lines[0].parentNode;
-      const outerBlock = codeBlock.closest(`.${highlight}`);
-      const isExpanded = containsClass(outerBlock, panelExpanded);
-      if(!isExpanded) {
-        codeBlock.dataset.height = maxCodeBlockHeight;
-        codeBlock.style.maxHeight = maxCodeBlockHeight;
+      const outer_block = codeBlock.closest(`.${highlight}`);
+      const is_expanded = containsClass(outer_block, panel_expanded);
+      if(!is_expanded) {
+        codeBlock.dataset.height = max_code_block_height;
+        codeBlock.style.maxHeight = max_code_block_height;
       }
     }
   }
@@ -105,23 +115,23 @@ function restrainCodeBlockHeight(lines) {
 const blocks = codeBlocks();
 
 function collapseCodeBlock(block) {
-  const lines = elems(lineClass, block);
-  const codeLines = lines.length;
-  if (codeLines > maxLines) {
-    const expandDot = createEl()
-    pushClass(expandDot, panelExpand);
-    pushClass(expandDot, panelFrom);
-    expandDot.title = "Toggle code block expand";
-    expandDot.textContent = "...";
-    const outerBlock = block.closest('.highlight');
+  const lines = elems(line_class, block);
+  const code_lines = lines.length;
+  if (code_lines > max_lines) {
+    const expand_dot = createEl()
+    pushClass(expand_dot, panel_expand);
+    pushClass(expand_dot, panel_from);
+    expand_dot.title = "Toggle snippet";
+    expand_dot.textContent = "...";
+    const outer_block = block.closest('.highlight');
     window.setTimeout(function(){
-      const expandIcon = outerBlock.nextElementSibling.lastElementChild;
-      deleteClass(expandIcon, panelHide);
+      const expand_icon = outer_block.nextElementSibling.lastElementChild;
+      deleteClass(expand_icon, panel_hide);
     }, 150)
 
     restrainCodeBlockHeight(lines);
-    const highlightElement = block.parentNode.parentNode;
-    highlightElement.appendChild(expandDot);
+    const highlight_element = block.parentNode.parentNode;
+    highlight_element.appendChild(expand_dot);
   }
 }
 
@@ -131,15 +141,15 @@ blocks.forEach(function(block){
 
 function actionPanel() {
   const panel = createEl();
-  panel.className = panelBox;
+  panel.className = panel_box;
 
-  codeActionButtons.forEach(function(button) {
+  snippet_actions.forEach(function(button) {
     // create button
     const btn = createEl('a');
     btn.href = '#';
     btn.title = button.title;
     btn.className = `icon panel_icon panel_${button.id}`;
-    button.show ? false : pushClass(btn, panelHide);
+    button.show ? false : pushClass(btn, panel_hide);
     // load icon inside button
     loadSvg(button.icon, btn);
     // append button on panel
@@ -151,10 +161,8 @@ function actionPanel() {
 
 function toggleLineNumbers(elems) {
   if(elems) {
-    elems.forEach(function (elem, index) {
-      // mark the code element when there are no lines
-      modifyClass(elem, 'pre_nolines')
-    });
+    // mark the code element when there are no lines
+    elems.forEach(elem => modifyClass(elem, 'pre_nolines'));
     restrainCodeBlockHeight(elems);
   }
 }
@@ -166,57 +174,56 @@ function toggleLineWrap(elem) {
   restrainCodeBlockHeight(lines);
 }
 
-function copyCode(codeElement) {
-  const codeElementClone = codeElement.cloneNode(true);
-  const copyBtn = codeElement.parentNode.parentNode.querySelector(`.${copyId}`);
-  const originalTitle = copyBtn.title;
-  loadSvg('check', copyBtn);
-  copyBtn.title = 'Code Copied';
+function copyCode(code_element) {
 
-  lineNumbers = elems('.ln', codeElementClone);
+  const copy_btn = code_element.parentNode.parentNode.querySelector(`.${copy_id}`);
+  const original_title = copy_btn.title;
+  loadSvg('check', copy_btn);
+  copy_btn.title = copied_text;
+
   // remove line numbers before copying
-  if(lineNumbers.length) {
-    lineNumbers.forEach(function(line){
-      line.remove();
-    });
-  }
+  code_element = code_element.cloneNode(true);
+  const line_numbers = elems('.ln', code_element);
+  line_numbers.length ? line_numbers.forEach(line => line.remove()) : false;
 
+  // remove leading '$' from all shell snippets
+  let lines = elems('span', code_element);
+  lines.forEach(line => {
+    const text = line.textContent.trim(' ');
+    if(text.indexOf('$') === 0) {
+      line.textContent = line.textContent.replace('$ ', '');
+    }
+  })
+  const snippet = code_element.textContent.trim(' ');
   // copy code
-  copyToClipboard(codeElementClone.textContent);
+  copyToClipboard(snippet);
 
   setTimeout(function() {
-    copyBtn.title = originalTitle;
-    loadSvg('copy', copyBtn);
+    copy_btn.title = original_title;
+    loadSvg('copy', copy_btn);
   }, 2250);
 }
 
-function disableCodeLineNumbers(block){
-  const lines = elems('.ln', block)
-  toggleLineNumbers(lines);
-}
-
 (function codeActions(){
-  const blocks = codeBlocks();
-
-  const highlightWrapId = highlightWrap;
+  const highlight_wrap_id = highlight_wrap;
   blocks.forEach(function(block){
     // disable line numbers if disabled globally
-    showLines === false ? disableCodeLineNumbers(block) : false;
+    show_lines === false ? toggleLineNumbers(elems('.ln', block)) : false;
 
-    const highlightElement = block.parentNode.parentNode;
+    const highlight_element = block.parentNode.parentNode;
     // wrap code block in a div
-    const highlightWrapper = createEl();
-    highlightWrapper.className = highlightWrapId;
+    const highlight_wrapper = createEl();
+    highlight_wrapper.className = highlight_wrap_id;
 
-    wrapEl(highlightElement, highlightWrapper);
+    wrapEl(highlight_element, highlight_wrapper);
 
     const panel = actionPanel();
     // show wrap icon only if the code block needs wrapping
-    const wrapIcon = elem(`.${wrapId}`, panel);
-    codeBlockFits(block) ? false : deleteClass(wrapIcon, panelHide);
+    const wrap_icon = elem(`.${wrap_id}`, panel);
+    codeBlockFits(block) ? false : deleteClass(wrap_icon, panel_hide);
 
     // append buttons
-    highlightWrapper.appendChild(panel);
+    highlight_wrapper.appendChild(panel);
   });
 
   function isItem(target, id) {
@@ -225,71 +232,69 @@ function disableCodeLineNumbers(block){
   }
 
   function showActive(target, targetClass) {
-    const targetElement = target.matches(`.${targetClass}`) ? target : target.closest(`.${targetClass}`);
+    const target_element = target.matches(`.${targetClass}`) ? target : target.closest(`.${targetClass}`);
 
-    deleteClass(targetElement, active);
+    deleteClass(target_element, active);
     setTimeout(function() {
-      modifyClass(targetElement, active)
+      modifyClass(target_element, active)
     }, 50)
   }
 
   doc.addEventListener('click', function(event){
     // copy code block
     const target = event.target;
-    const isCopyIcon = isItem(target, copyId);
-    const isWrapIcon = isItem(target, wrapId);
-    const isLinesIcon = isItem(target, linesId);
-    const isExpandIcon = isItem(target, panelExpand);
-    const isActionable = isCopyIcon || isWrapIcon || isLinesIcon || isExpandIcon;
+    const is_copy_icon = isItem(target, copy_id);
+    const is_wrap_icon = isItem(target, wrap_id);
+    const is_lines_icon = isItem(target, lines_id);
+    const is_expand_icon = isItem(target, panel_expand);
+    const is_actionable = is_copy_icon || is_wrap_icon || is_lines_icon || is_expand_icon;
 
-    if(isActionable) {
+    if(is_actionable) {
       event.preventDefault();
       showActive(target, 'icon');
-      const codeElement = target.closest(`.${highlightWrapId}`).firstElementChild.firstElementChild;
-      let lineNumbers = elems('.ln', codeElement);
+      const code_element = target.closest(`.${highlight_wrap_id}`).firstElementChild.firstElementChild;
+      let lineNumbers = elems('.ln', code_element);
 
-      isWrapIcon ? toggleLineWrap(codeElement) : false;
+      is_wrap_icon ? toggleLineWrap(code_element) : false;
+      is_lines_icon ? toggleLineNumbers(lineNumbers) : false;
 
-      isLinesIcon ? toggleLineNumbers(lineNumbers) : false;
-
-      if (isExpandIcon) {
-        let thisCodeBlock = codeElement.firstElementChild;
-        const outerBlock = thisCodeBlock.closest('.highlight');
-        if(maxHeightIsSet(thisCodeBlock)) {
-          thisCodeBlock.style.maxHeight = fullHeight;
+      if (is_expand_icon) {
+        let this_code_block = code_element.firstElementChild;
+        const outer_block = this_code_block.closest('.highlight');
+        if(maxHeightIsSet(this_code_block)) {
+          this_code_block.style.maxHeight = full_height;
           // mark code block as expanded
-          pushClass(outerBlock, panelExpanded)
+          pushClass(outer_block, panel_expanded)
         } else {
-          thisCodeBlock.style.maxHeight = thisCodeBlock.dataset.height;
+          this_code_block.style.maxHeight = this_code_block.dataset.height;
           // unmark code block as expanded
-          deleteClass(outerBlock, panelExpanded)
+          deleteClass(outer_block, panel_expanded)
         }
       }
 
-      if(isCopyIcon) copyCode(codeElement);
+      is_copy_icon ? copyCode(code_element) : false;
     }
   });
 
   (function addLangLabel() {
-    const shell_based = ['sh', 'shell', 'zsh', 'bash'];
-    const blocks = codeBlocks();
-
     blocks.forEach(block => {
       let label = block.dataset.lang;
       const is_shell_based = shell_based.includes(label);
       if(is_shell_based) {
-        const lines = elems(lineClass, block);
+        const lines = elems(line_class, block);
         Array.from(lines).forEach(line => {
-          pushClass(line, 'shell');
+          line = line.lastElementChild;
+          let line_contents = line.textContent.trim(' ');
+          line_contents.indexOf('$') !== 0 ? pushClass(line, 'shell') : false;
         });
       }
 
       label = label === 'sh' ? 'shell' : label;
       if(label !== "fallback") {
-        const labelEl = createEl();
-        labelEl.textContent = label;
-        pushClass(labelEl, 'lang');
-        block.closest(`.${highlightWrap}`).appendChild(labelEl);
+        const label_el = createEl();
+        label_el.textContent = label;
+        pushClass(label_el, 'lang');
+        block.closest(`.${highlight_wrap}`).appendChild(label_el);
       }
     });
   })();

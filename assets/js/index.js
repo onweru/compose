@@ -1,46 +1,36 @@
 (function calcNavHeight(){
-  const nav = elem('.nav_header');
-  const navHeight = nav.offsetHeight + 25;
-  return navHeight;
+  return (elem('.nav_header').offsetHeight + 25);
 })();
 
 function toggleMenu(event) {
   const target = event.target;
-  const isToggleControl = target.matches(`.${toggleId}`);
-  const isWithToggleControl = target.closest(`.${toggleId}`);
-  const showInstances = elems(`.${showId}`) ? Array.from(elems(`.${showId}`)) : [];
-  const menuInstance = target.closest(`.${menu}`);
+  const is_toggle_control = target.matches(`.${toggle_id}`);
+  const is_with_toggle_control = target.closest(`.${toggle_id}`);
+  const show_instances = elems(`.${show_id}`) ? Array.from(elems(`.${show_id}`)) : [];
+  const menu_instance = target.closest(`.${menu}`);
 
   function showOff(target, self = false) {
-    showInstances.forEach(function(showInstance){
-      if(!self) {
-        deleteClass(showInstance, showId);
-      }
-      if(showInstance !== target.closest(`.${menu}`)) {
-        deleteClass(showInstance, showId);
-      }
+    show_instances.forEach(function(show_instance){
+      !self ? deleteClass(show_instance, show_id) : false;
+      show_instance !== target.closest(`.${menu}`) ? deleteClass(show_instance, show_id) : false;
     });
   }
 
-  if(isToggleControl || isWithToggleControl) {
-    const menu = isWithToggleControl ? isWithToggleControl.parentNode.parentNode : target.parentNode.parentNode;
+  if(is_toggle_control || is_with_toggle_control) {
+    const menu = is_with_toggle_control ? is_with_toggle_control.parentNode.parentNode : target.parentNode.parentNode;
     event.preventDefault();
-    modifyClass(menu, showId);
+    modifyClass(menu, show_id);
   } else {
-    if(!menuInstance) {
-      showOff(target);
-    } else {
-      showOff(target, true);
-    }
+    !menu_instance ? showOff(target) : showOff(target, true);
   }
 }
 
 (function markInlineCodeTags(){
-  const codeBlocks = elems('code');
-  if(codeBlocks) {
-    codeBlocks.forEach(function(codeBlock){
-      if(!hasClasses(codeBlock)) {
-        codeBlock.children.length ? false : pushClass(codeBlock, 'noClass');
+  const code_blocks = elems('code');
+  if(code_blocks) {
+    code_blocks.forEach(function(code_block){
+      if(!hasClasses(code_block)) {
+        code_block.children.length ? false : pushClass(code_block, 'noClass');
       }
     });
   }
@@ -48,35 +38,35 @@ function toggleMenu(event) {
 
 function featureHeading(){
   // show active heading at top.
-  const linkClass = "section_link";
-  const titleClass = "section_title";
+  const link_class = "section_link";
+  const title_class = "section_title";
   const parent = elem(".aside");
   if(parent) {
-    let activeHeading = elem(`.${linkClass}.${active}`);
-    activeHeading = activeHeading ? activeHeading : elem(`.${titleClass}.${active}`);
+    let active_heading = elem(`.${link_class}.${active}`);
+    active_heading = active_heading ? active_heading : elem(`.${title_class}.${active}`);
     parent.scroll({
-      top: activeHeading.offsetTop,
+      top: active_heading.offsetTop,
       left: 0,
       // behavior: 'smooth'
     });
   }
 }
 
-function activeHeading(position, listLinks) {
-  let linksToModify = Object.create(null);
-  linksToModify.active = listLinks.filter(function(link) {
+function activeHeading(position, list_links) {
+  let links_to_modify = Object.create(null);
+  links_to_modify.active = list_links.filter(function(link) {
     return containsClass(link, active);
   })[0];
 
   // activeTocLink ? deleteClass
 
-  linksToModify.new = listLinks.filter(function(link){
+  links_to_modify.new = list_links.filter(function(link){
     return parseInt(link.dataset.position) === position
   })[0];
 
-  if (linksToModify.active != linksToModify.new) {
-    linksToModify.active ? deleteClass(linksToModify.active, active): false;
-    pushClass(linksToModify.new, active);
+  if (links_to_modify.active != links_to_modify.new) {
+    links_to_modify.active ? deleteClass(links_to_modify.active, active): false;
+    pushClass(links_to_modify.new, active);
   }
 };
 
@@ -84,120 +74,122 @@ setTimeout(() => {
   featureHeading();
 }, 50);
 
-function loadActions() {
-  (function updateDate() {
-    const date = new Date();
-    const year = date.getFullYear();
-    const yearEl = elem('.year');
-    yearEl ? year.innerHTML = year : false;
-  })();
+function updateDate() {
+  const date = new Date();
+  const year = date.getFullYear().toString;
+  const year_el = elem('.year');
+  year_el ? year.textContent = year : false;
+}
 
-  (function customizeSidebar(){
-    const tocActive = 'toc_active';
-    const aside = elem('aside');
-    const tocs = elems('nav', aside);
-    if(tocs) {
-      tocs.forEach(function(toc){
-        toc.id = "";
-        pushClass(toc, 'toc');
-        if(toc.children.length >= 1) {
-          const tocItems = Array.from(toc.children[0].children);
+function customizeSidebar() {
+  const tocActive = 'toc_active';
+  const aside = elem('aside');
+  const tocs = elems('nav', aside);
+  if(tocs) {
+    tocs.forEach(function(toc){
+      toc.id = "";
+      pushClass(toc, 'toc');
+      if(toc.children.length >= 1) {
+        const toc_items = Array.from(toc.children[0].children);
 
-          const previousHeading = toc.previousElementSibling;
-          previousHeading.matches(`.${active}`) ? pushClass(toc, tocActive) : false;
+        const previous_heading = toc.previousElementSibling;
+        previous_heading.matches(`.${active}`) ? pushClass(toc, tocActive) : false;
 
-          tocItems.forEach(function(item){
-            pushClass(item, 'toc_item');
-            pushClass(item.firstElementChild, 'toc_link');
-          });
-        }
-      });
-
-      const currentToc = elem(`.${tocActive}`);
-
-      if(currentToc) {
-        const pageInternalLinks = Array.from(elems('a', currentToc));
-
-        const pageIds = pageInternalLinks.map(function(link){
-          return link.hash;
-        });
-
-        const linkPositions = pageIds.map(function(id){
-          const heading = document.getElementById(decodeURIComponent(id.replace('#','')));
-          const position = heading.offsetTop;
-          return position;
-        });
-
-        pageInternalLinks.forEach(function(link, index){
-          link.dataset.position = linkPositions[index]
-        });
-
-        window.addEventListener('scroll', function(e) {
-          // this.setTimeout(function(){
-          let position = window.scrollY;
-          let active = closestInt(position, linkPositions);
-          activeHeading(active, pageInternalLinks);
-          // }, 1500)
+        toc_items.forEach(function(item){
+          pushClass(item, 'toc_item');
+          pushClass(item.firstElementChild, 'toc_link');
         });
       }
-    }
+    });
 
-    const paragraphs = elems('p');
-    if (paragraphs) {
-      paragraphs.forEach(function(p){
-        const buttons = elems('.button', p);
-        if(buttons.length > 1) {
-          pushClass(p, 'button_grid');
-        }
+    const current_toc = elem(`.${tocActive}`);
+
+    if(current_toc) {
+      const page_internal_links = Array.from(elems('a', current_toc));
+
+      const page_ids = page_internal_links.map(function(link){
+        return link.hash;
+      });
+
+      const link_positions = page_ids.map(function(id){
+        const heading = document.getElementById(decodeURIComponent(id.replace('#','')));
+        const position = heading.offsetTop;
+        return position;
+      });
+
+      page_internal_links.forEach(function(link, index){
+        link.dataset.position = link_positions[index]
+      });
+
+      window.addEventListener('scroll', function(e) {
+        // this.setTimeout(function(){
+        let position = window.scrollY;
+        let active = closestInt(position, link_positions);
+        activeHeading(active, page_internal_links);
+        // }, 1500)
       });
     }
-  })();
+  }
 
-  (function markExternalLinks(){
-    let links = elems('a');
-    if(links) {
-      Array.from(links).forEach(function(link){
-        let target, rel, blank, noopener, attr1, attr2, url, isExternal;
-        url = new URL(link.href);
-        // definition of same origin: RFC 6454, section 4 (https://tools.ietf.org/html/rfc6454#section-4)
-        isExternal = url.host !== location.host || url.protocol !== location.protocol || url.port !== location.port;
-        if(isExternal) {
-          target = 'target';
-          rel = 'rel';
-          blank = '_blank';
-          noopener = 'noopener';
-          attr1 = elemAttribute(link, target);
-          attr2 = elemAttribute(link, noopener);
+  const paragraphs = elems('p');
+  if (paragraphs) {
+    paragraphs.forEach(function(p){
+      const buttons = elems('.button', p);
+      buttons.length > 1 ? pushClass(p, 'button_grid') : false;
+    });
+  }
+}
 
-          attr1 ? false : elemAttribute(link, target, blank);
-          attr2 ? false : elemAttribute(link, rel, noopener);
-        }
-      });
-    }
-  })();
+function markExternalLinks() {
+  let links = elems('a');
+  if(links) {
+    Array.from(links).forEach(function(link){
+      let target, rel, blank, noopener, attr1, attr2, url, is_external;
+      url = new URL(link.href);
+      // definition of same origin: RFC 6454, section 4 (https://tools.ietf.org/html/rfc6454#section-4)
+      is_external = url.host !== location.host || url.protocol !== location.protocol || url.port !== location.port;
+      if(is_external) {
+        target = 'target';
+        rel = 'rel';
+        blank = '_blank';
+        noopener = 'noopener';
+        attr1 = elemAttribute(link, target);
+        attr2 = elemAttribute(link, noopener);
 
-  let headingNodes = [], results, link, icon, current, id,
+        attr1 ? false : elemAttribute(link, target, blank);
+        attr2 ? false : elemAttribute(link, rel, noopener);
+      }
+    });
+  }
+}
+
+function loadActions() {
+  updateDate();
+  customizeSidebar();
+  markExternalLinks();
+
+  let heading_nodes = [], results, link, icon, current, id,
   tags = ['h2', 'h3', 'h4', 'h5', 'h6'];
 
   current = document.URL;
 
   tags.forEach(function(tag){
     results = document.getElementsByTagName(tag);
-    Array.prototype.push.apply(headingNodes, results);
+    Array.prototype.push.apply(heading_nodes, results);
   });
 
   function sanitizeURL(url) {
     // removes any existing id on url
     const hash = '#';
-    const positionOfHash = url.indexOf(hash);
-    if(positionOfHash > -1 ) {
-      const id = url.substr(positionOfHash, url.length - 1);
+    const position_of_hash = url.indexOf(hash);
+    if(position_of_hash > -1 ) {
+      const id = url.substr(position_of_hash, url.length - 1);
       url = url.replace(id, '');
     }
     return url
   }
 
-  headingNodes.forEach(function(node){
+  heading_nodes.forEach(function(node){
     link = createEl('a');
     icon = createEl('img');
     icon.src = '{{ absURL "icons/link.svg" }}';
@@ -212,24 +204,24 @@ function loadActions() {
   });
 
   function copyFeedback(parent) {
-    const copyText = document.createElement('div');
+    const copy_txt = document.createElement('div');
     const yanked = 'link_yanked';
-    copyText.classList.add(yanked);
-    copyText.innerText = 'Link Copied';
+    copy_txt.classList.add(yanked);
+    copy_txt.innerText = copied_text;
     if(!elem(`.${yanked}`, parent)) {
       const icon = parent.getElementsByTagName('img')[0];
-      const originalSrc = icon.src;
+      const original_src = icon.src;
       icon.src = '{{ absURL "icons/check.svg" }}';
-      parent.appendChild(copyText);
+      parent.appendChild(copy_txt);
       setTimeout(function() {
-        parent.removeChild(copyText)
-        icon.src = originalSrc;
+        parent.removeChild(copy_txt)
+        icon.src = original_src;
       }, 2250);
     }
   }
 
   (function copyHeadingLink() {
-    let deeplink, deeplinks, newLink, parent, target;
+    let deeplink, deeplinks, new_link, parent, target;
     deeplink = 'link';
     deeplinks = elems(`.${deeplink}`);
     if(deeplinks) {
@@ -239,20 +231,13 @@ function loadActions() {
         parent = target.parentNode;
         if (target && containsClass(target, deeplink) || containsClass(parent, deeplink)) {
           event.preventDefault();
-          newLink = target.href != undefined ? target.href : target.parentNode.href;
-          copyToClipboard(newLink);
+          new_link = target.href != undefined ? target.href : target.parentNode.href;
+          copyToClipboard(new_link);
           target.href != undefined ?  copyFeedback(target) : copyFeedback(target.parentNode);
         }
       });
     }
   })();
-
-  const light = 'light';
-  const dark = 'dark';
-  const storageKey = 'colorMode';
-  const key = '--color-mode';
-  const data = 'data-mode';
-  const bank = window.localStorage;
 
   function prefersColor(mode){
     return `(prefers-color-scheme: ${mode})`;
@@ -267,35 +252,32 @@ function loadActions() {
   }
 
   function currentMode() {
-    let acceptableChars = light + dark;
-    acceptableChars = [...acceptableChars];
+    let acceptable_chars = light + dark;
+    acceptable_chars = [...acceptable_chars];
     let mode = getComputedStyle(doc).getPropertyValue(key).replace(/\"/g, '').trim();
 
     mode = [...mode].filter(function(letter){
-      return acceptableChars.includes(letter);
+      return acceptable_chars.includes(letter);
     });
 
     return mode.join('');
   }
 
-  /**
-   * @param isDarkMode true means from dark to light, false means from light to dark
-   */
-  function changeMode(isDarkMode) {
-    if(isDarkMode) {
+  function changeMode(is_dark_mode) {
+    if(is_dark_mode) {
       bank.setItem(storageKey, light)
-      elemAttribute(doc, data, light);
+      elemAttribute(doc, mode_data, light);
     } else {
       bank.setItem(storageKey, dark);
-      elemAttribute(doc, data, dark);
+      elemAttribute(doc, mode_data, dark);
     }
   }
 
   (function lazy() {
     function lazyLoadMedia(element) {
-      let mediaItems = elems(element);
-      if(mediaItems) {
-        Array.from(mediaItems).forEach(function(item) {
+      let media_items = elems(element);
+      if(media_items) {
+        Array.from(media_items).forEach(function(item) {
           item.loading = "lazy";
         });
       }
@@ -308,9 +290,9 @@ function loadActions() {
     const tables = elems('table');
     if (tables) {
       tables.forEach(function(table){
-        const tableWrapper = createEl();
-        pushClass(tableWrapper, 'scrollable');
-        wrapEl(table, tableWrapper);
+        const table_wrapper = createEl();
+        pushClass(table_wrapper, 'scrollable');
+        wrapEl(table, table_wrapper);
       });
     }
   })();
@@ -334,59 +316,41 @@ function loadActions() {
   }
 
   function setUserColorMode(mode = false) {
-    const isDarkMode = currentMode() == dark;
-    const storedMode = bank.getItem(storageKey);
-    const sysMode = systemMode();
-    if(storedMode) {
-      if(mode) {
-        changeMode(isDarkMode);
-      } else {
-        elemAttribute(doc, data, storedMode);
-      }
+    const is_dark_mode = currentMode() == dark;
+    const stored_mode = bank.getItem(storageKey);
+    const sys_mode = systemMode();
+    if(stored_mode) {
+      mode ? changeMode(is_dark_mode) : elemAttribute(doc, mode_data, stored_mode);
     } else {
-      if(mode === true) {
-        changeMode(isDarkMode)
-      } else {
-        changeMode(sysMode!==dark);
-      }
+      mode === true ? changeMode(is_dark_mode) : changeMode(sys_mode!==dark);
     }
-    const userMode = doc.dataset.mode;
-    doc.dataset.systemmode = sysMode;
-    if(userMode) {
-      pickModePicture(userMode,sysMode,mode);
-    }
+    const user_mode = doc.dataset.mode;
+    doc.dataset.systemmode = sys_mode;
+    user_mode ? pickModePicture(user_mode,sys_mode,mode) : false;
   }
 
   setUserColorMode();
 
   doc.addEventListener('click', function(event) {
     let target = event.target;
-    let modeClass = 'color_choice';
-    let isModeToggle = containsClass(target, modeClass);
-    if(isModeToggle) {
-      setUserColorMode(true);
-    }
+    let mode_class = 'color_choice';
+    let is_mode_toggle = containsClass(target, mode_class);
+    is_mode_toggle ? setUserColorMode(true) : false;
     toggleMenu(event);
   });
 
   (function backToTop(){
     const toTop = elem("#toTop");
-    window.addEventListener("scroll", function(e) {
-      const lastKnownScrollPosition = window.scrollY;
-      if(lastKnownScrollPosition >= 200) {
+    window.addEventListener("scroll", () => {
+      const last_known_scroll_pos = window.scrollY;
+      if(last_known_scroll_pos >= 200) {
         toTop.style.display = "flex";
-        const viewPort = window.innerWidth;
-        const maxBodyWidth = 1240;
-        // if(viewPort > maxBodyWidth) {
-        //   toTop.style.right = `${((viewPort - maxBodyWidth) / 2)}px`;
-        // }
         pushClass(toTop, active);
       } else {
         deleteClass(toTop, active);
       }
     });
   })();
-
 }
 
 window.addEventListener('load', loadActions());
