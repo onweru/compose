@@ -1,8 +1,3 @@
-$font-path: "../fonts/"
-$prev-icon-path: "../images/icons/previous.svg"
-$next-icon-path: "../images/icons/double-arrow.svg"
-$never-icon-path: "../images/sitting.svg"
-
 html
   --color-mode: "light"
   --light: #fff
@@ -20,6 +15,8 @@ html
   --theme: rgb(52,199,89)
   --ease: ease
   --search-border-color: transparent
+  --next-icon-path: url(../images/icons/double-arrow.svg)
+  --never-icon-path: url(../images/sitting.svg)
 
   @mixin darkmode
     --color-mode: "dark"
@@ -39,7 +36,7 @@ html
     .color
       &_choice
         &::after
-          background-image: var(--moonIcon)
+          background-image: var(--moon-icon)
 
   &.dark:not([data-mode="light"])
     @media (prefers-color-scheme: dark)
