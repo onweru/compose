@@ -297,22 +297,13 @@ function loadActions() {
     }
   })();
 
-  function pickModePicture(user, system, context) {
-    const pictures = elems('picture');
-    if(pictures) {
-      pictures.forEach(function(picture){
-        let source = picture.firstElementChild;
-        if(user == system) {
-          context ? source.media = prefersColor(dark) : false;
-        } else {
-          if(system == light) {
-            source.media = (user === dark) ? prefersColor(light) : prefersColor(dark) ;
-          } else {
-            source.media = (user === dark) ? prefersColor(dark) : prefersColor(light) ;
-          }
-        }
-      });
-    }
+  function pickModePicture(mode) {
+    elems('picture').forEach(function(picture){
+      let source = picture.firstElementChild;
+      const picture_data = picture.dataset;
+      const images = [picture_data.lit, picture_data.dark];
+      source.src = mode == 'dark' ? images[1] : images[0];
+    });
   }
 
   function setUserColorMode(mode = false) {
@@ -326,7 +317,7 @@ function loadActions() {
     }
     const user_mode = doc.dataset.mode;
     doc.dataset.systemmode = sys_mode;
-    user_mode ? pickModePicture(user_mode,sys_mode,mode) : false;
+    user_mode ? pickModePicture(user_mode) : false;
   }
 
   setUserColorMode();
