@@ -7,7 +7,9 @@ const show_id = 'show';
 const menu = 'menu';
 const active = 'active';
 // root_url must end with '/' for relative URLs to work properly
-const root_url = '{{ strings.TrimSuffix "/" .Site.BaseURL }}/';
+let root_url = '{{ strings.TrimSuffix "/" .Site.BaseURL }}/';
+root_url = root_url.startsWith('http') ? root_url : window.location.origin;
+
 const search_field_class = '.search_field';
 const search_class = '.search';
 const go_back_class = 'button_back';
