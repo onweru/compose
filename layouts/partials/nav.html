@@ -1,7 +1,7 @@
 {{- $s := .Site }}
 {{- $sp := $s.Params }}
 <nav class="wrap nav menu">
-	<a href="{{ $s.BaseURL }}" class="nav_brand">
+	<a href='{{ relLangURL "" }}' class="nav_brand">
 		{{- $logos := $sp.logo }}
 		{{- $litPath := absURL ($logos.lightMode) }}
 		{{- $darkPath := absURL ($logos.darkMode) }}
@@ -23,11 +23,11 @@
 			{{- with .Page }}
 			{{- $active = or $active ( $.IsDescendant .)  }}
 			{{- end }}
-			{{- $url := absURL .URL }}
+			{{- $url := relLangURL .URL }}
 			{{- if or (hasPrefix .URL "http") (hasPrefix .URL "www.") }}
 				{{- $url = .URL }}
 			{{- end }}
-			<a class="nav-link{{if $active }} active{{end}}" href="{{ $url }}"><span{{if $active }} class="active"{{end}}>{{ .Name }}</span></a>
+			<a class="nav-link{{if $active }} active{{end}}" href="{{ $url }}"><span{{if $active }} class="active"{{end}}>{{ T .Identifier | default .Name }}</span></a>
 		</li>
 		{{- end }}
 		{{ $repo := $sp.source }}
