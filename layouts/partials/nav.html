@@ -1,7 +1,7 @@
 {{- $s := .Site }}
 {{- $sp := $s.Params }}
 <nav class="wrap nav menu">
-	<a href='{{ relLangURL "" }}' class="nav_brand">
+	<a href='{{ absLangURL "" }}' class="nav_brand">
 		{{- $logos := $sp.logo }}
 		{{- $litPath := absURL ($logos.lightMode) }}
 		{{- $darkPath := absURL ($logos.darkMode) }}
@@ -23,7 +23,7 @@
 			{{- with .Page }}
 			{{- $active = or $active ( $.IsDescendant .)  }}
 			{{- end }}
-			{{- $url := relLangURL .URL }}
+			{{- $url := absLangURL .URL }}
 			{{- if or (hasPrefix .URL "http") (hasPrefix .URL "www.") }}
 				{{- $url = .URL }}
 			{{- end }}
