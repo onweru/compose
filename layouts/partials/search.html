@@ -8,7 +8,7 @@
   {{ else }}
     {{ $placeholder =  printf "%s%s" $placeholder (T "site") }}
   {{ end }}
-  <input type="search" class="search_field" placeholder='{{ $placeholder }}' id="find" autocomplete="off"  data-scope='{{ .Section }}'>
+  <input type="search" class="search_field  standardize-input" placeholder="{{ $placeholder }}" id="find" autocomplete="off"  data-scope='{{ .Section }}'>
   {{- if ne .Params.searchPage true }}
   <div class="search_results results"></div>
   {{- end }}
