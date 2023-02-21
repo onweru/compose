@@ -1,5 +1,9 @@
+{{ $config := site.Params }}
+{{ $context := . }}
 <!doctype html>
-<html lang="{{ site.Language.Lang }}"{{ with site.Params.enableDarkMode }} class="dark"{{ end }}>
+<html lang="{{ site.Language.Lang }}"{{ with $config.enableDarkMode }} class="dark"{{ end }}{{ with $config.defaultLightingMode }}
+  data-mode="{{ . }}"
+{{ end }}>
 <head>
   {{- partial "head" . }}
 </head>
@@ -34,7 +38,11 @@
   {{ end }}
   {{- partialCached "footer" . -}}
   {{- partialCached "sprites" . -}}
-  {{- partialCached "scripts/bundle" . -}}
+  {{- with .Translations }}
+    {{- partial "scripts/bundle" $context -}}
+  {{- else }}
+    {{- partialCached "scripts/bundle" . -}}
+  {{- end }}
   {{- partial "scripts/other" . -}}
 </body>
 </html>
