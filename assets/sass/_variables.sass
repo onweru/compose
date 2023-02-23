@@ -38,7 +38,7 @@ html
         &::after
           background-image: var(--moon-icon)
 
-  &.dark:not([data-mode="light"])
+  &[data-mode="auto"]
     @media (prefers-color-scheme: dark)
       @include darkmode
 
