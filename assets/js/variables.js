@@ -59,6 +59,7 @@ const panel_from = 'panel_from';
 const full_height = 'initial';
 const highlight = 'highlight';
 const highlight_wrap = 'highlight_wrap'
+const hash = '#';
 
 const light = 'light';
 const dark = 'dark';

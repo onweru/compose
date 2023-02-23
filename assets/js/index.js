@@ -131,13 +131,10 @@ function customizeSidebar() {
     }
   }
 
-  const paragraphs = elems('p');
-  if (paragraphs) {
-    paragraphs.forEach(function(p){
-      const buttons = elems('.button', p);
-      buttons.length > 1 ? pushClass(p, 'button_grid') : false;
-    });
-  }
+  elems('p').forEach(function(p){
+    const buttons = elems('.button', p);
+    buttons.length > 1 ? pushClass(p, 'button_grid') : false;
+  });
 }
 
 function markExternalLinks() {
@@ -163,185 +160,127 @@ function markExternalLinks() {
   }
 }
 
-function loadActions() {
-  updateDate();
-  customizeSidebar();
-  markExternalLinks();
+function sanitizeURL(url) {
+  // removes any existing id on url
+  const position_of_hash = url.indexOf(hash);
+  if(position_of_hash > -1 ) {
+    const id = url.substr(position_of_hash, url.length - 1);
+    url = url.replace(id, '');
+  }
+  return url
+}
 
-  let heading_nodes = [], results, link, icon, current, id,
-  tags = ['h2', 'h3', 'h4', 'h5', 'h6'];
+function createDeepLinks() {
+  let heading_nodes = [];
 
-  current = document.URL;
-
-  tags.forEach(function(tag){
-    results = document.getElementsByTagName(tag);
-    Array.prototype.push.apply(heading_nodes, results);
+  [...Array(6).keys()].forEach(function(i){
+    Array.prototype.push.apply(heading_nodes, document.getElementsByTagName(`h${i+1}`));
   });
 
-  function sanitizeURL(url) {
-    // removes any existing id on url
-    const hash = '#';
-    const position_of_hash = url.indexOf(hash);
-    if(position_of_hash > -1 ) {
-      const id = url.substr(position_of_hash, url.length - 1);
-      url = url.replace(id, '');
-    }
-    return url
-  }
-
   heading_nodes.forEach(function(node){
-    link = createEl('a');
-    icon = createEl('img');
+    let link = createEl('a');
+    let icon = createEl('img');
     icon.src = '{{ absURL "icons/link.svg" }}';
     link.className = 'link icon';
     link.appendChild(icon);
-    id = node.getAttribute('id');
+    let id = node.getAttribute('id');
     if(id) {
-      link.href = `${sanitizeURL(current)}#${id}`;
+      link.href = `${sanitizeURL(document.URL)}#${id}`;
       node.appendChild(link);
       pushClass(node, 'link_owner');
     }
   });
+}
 
-  function copyFeedback(parent) {
-    const copy_txt = document.createElement('div');
-    const yanked = 'link_yanked';
-    copy_txt.classList.add(yanked);
-    copy_txt.innerText = copied_text;
-    if(!elem(`.${yanked}`, parent)) {
-      const icon = parent.getElementsByTagName('img')[0];
-      const original_src = icon.src;
-      icon.src = '{{ absURL "icons/check.svg" }}';
-      parent.appendChild(copy_txt);
-      setTimeout(function() {
-        parent.removeChild(copy_txt)
-        icon.src = original_src;
-      }, 2250);
-    }
+function copyFeedback(parent) {
+  const copy_txt = document.createElement('div');
+  const yanked = 'link_yanked';
+  copy_txt.classList.add(yanked);
+  copy_txt.innerText = copied_text;
+  if(!elem(`.${yanked}`, parent)) {
+    const icon = parent.getElementsByTagName('img')[0];
+    const original_src = icon.src;
+    icon.src = '{{ absURL "icons/check.svg" }}';
+    parent.appendChild(copy_txt);
+    setTimeout(function() {
+      parent.removeChild(copy_txt)
+      icon.src = original_src;
+    }, 2250);
   }
+}
 
-  (function copyHeadingLink() {
-    let deeplink, deeplinks, new_link, parent, target;
-    deeplink = 'link';
-    deeplinks = elems(`.${deeplink}`);
-    if(deeplinks) {
-      document.addEventListener('click', function(event)
-      {
-        target = event.target;
-        parent = target.parentNode;
-        if (target && containsClass(target, deeplink) || containsClass(parent, deeplink)) {
-          event.preventDefault();
-          new_link = target.href != undefined ? target.href : target.parentNode.href;
-          copyToClipboard(new_link);
-          target.href != undefined ?  copyFeedback(target) : copyFeedback(target.parentNode);
-        }
-      });
-    }
-  })();
-
-  function prefersColor(mode){
-    return `(prefers-color-scheme: ${mode})`;
-  }
-
-  function systemMode() {
-    if (window.matchMedia) {
-      const prefers = prefersColor(dark);
-      return window.matchMedia(prefers).matches ? dark : light;
-    }
-    return light;
-  }
-
-  function currentMode() {
-    let acceptable_chars = light + dark;
-    acceptable_chars = [...acceptable_chars];
-    let mode = getComputedStyle(doc).getPropertyValue(key).replace(/\"/g, '').trim();
-
-    mode = [...mode].filter(function(letter){
-      return acceptable_chars.includes(letter);
-    });
-
-    return mode.join('');
-  }
-
-  function changeMode(is_dark_mode) {
-    if(is_dark_mode) {
-      bank.setItem(storageKey, light)
-      elemAttribute(doc, mode_data, light);
-    } else {
-      bank.setItem(storageKey, dark);
-      elemAttribute(doc, mode_data, dark);
-    }
-  }
-
-  (function lazy() {
-    function lazyLoadMedia(element) {
-      let media_items = elems(element);
-      if(media_items) {
-        Array.from(media_items).forEach(function(item) {
-          item.loading = "lazy";
-        });
+function copyHeadingLink() {
+  let deeplink, deeplinks, new_link, parent, target;
+  deeplink = 'link';
+  deeplinks = elems(`.${deeplink}`);
+  if(deeplinks) {
+    document.addEventListener('click', function(event)
+    {
+      target = event.target;
+      parent = target.parentNode;
+      if (target && containsClass(target, deeplink) || containsClass(parent, deeplink)) {
+        event.preventDefault();
+        new_link = target.href != undefined ? target.href : target.parentNode.href;
+        copyToClipboard(new_link);
+        target.href != undefined ?  copyFeedback(target) : copyFeedback(target.parentNode);
       }
-    }
-    lazyLoadMedia('iframe');
-    lazyLoadMedia('img');
-  })();
-
-  (function makeTablesResponsive(){
-    const tables = elems('table');
-    if (tables) {
-      tables.forEach(function(table){
-        const table_wrapper = createEl();
-        pushClass(table_wrapper, 'scrollable');
-        wrapEl(table, table_wrapper);
-      });
-    }
-  })();
-
-  function pickModePicture(mode) {
-    elems('picture').forEach(function(picture){
-      let source = picture.firstElementChild;
-      const picture_data = picture.dataset;
-      const images = [picture_data.lit, picture_data.dark];
-      source.src = mode == 'dark' ? images[1] : images[0];
     });
   }
+}
 
-  function setUserColorMode(mode = false) {
-    const is_dark_mode = currentMode() == dark;
-    const stored_mode = bank.getItem(storageKey);
-    const sys_mode = systemMode();
-    if(stored_mode) {
-      mode ? changeMode(is_dark_mode) : elemAttribute(doc, mode_data, stored_mode);
-    } else {
-      mode === true ? changeMode(is_dark_mode) : changeMode(sys_mode!==dark);
-    }
-    const user_mode = doc.dataset.mode;
-    doc.dataset.systemmode = sys_mode;
-    user_mode ? pickModePicture(user_mode) : false;
+function makeTablesResponsive() {
+  const tables = elems('table');
+  if (tables) {
+    tables.forEach(function(table){
+      const table_wrapper = createEl();
+      pushClass(table_wrapper, 'scrollable');
+      wrapEl(table, table_wrapper);
+    });
   }
+}
 
-  setUserColorMode();
+function backToTop(){
+  const toTop = elem("#toTop");
+  window.addEventListener("scroll", () => {
+    const last_known_scroll_pos = window.scrollY;
+    if(last_known_scroll_pos >= 200) {
+      toTop.style.display = "flex";
+      pushClass(toTop, active);
+    } else {
+      deleteClass(toTop, active);
+    }
+  });
+}
 
-  doc.addEventListener('click', function(event) {
+function lazyLoadMedia(elements = []) {
+  elements.forEach(element => {
+    let media_items = elems(element);
+    if(media_items) {
+      Array.from(media_items).forEach(function(item) {
+        item.loading = "lazy";
+      });
+    }
+  })
+}
+
+function loadActions() {
+  updateDate();
+  customizeSidebar();
+  markExternalLinks();
+  createDeepLinks();
+  copyHeadingLink();
+  makeTablesResponsive();
+  backToTop();
+
+  lazyLoadMedia(['iframe', 'img']);
+
+  doc.addEventListener('click', event => {
     let target = event.target;
     let mode_class = 'color_choice';
     let is_mode_toggle = containsClass(target, mode_class);
     is_mode_toggle ? setUserColorMode(true) : false;
     toggleMenu(event);
   });
-
-  (function backToTop(){
-    const toTop = elem("#toTop");
-    window.addEventListener("scroll", () => {
-      const last_known_scroll_pos = window.scrollY;
-      if(last_known_scroll_pos >= 200) {
-        toTop.style.display = "flex";
-        pushClass(toTop, active);
-      } else {
-        deleteClass(toTop, active);
-      }
-    });
-  })();
 }
 
 window.addEventListener('load', loadActions());
