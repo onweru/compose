@@ -2,6 +2,15 @@
   box-sizing: border-box
   margin: 0
   padding: 0
+  scrollbar-color: var(--scroll-thumb) transparent
+  scrollbar-width: thin
+
+::-webkit-scrollbar
+  width: .5rem
+
+::-webkit-scrollbar-thumb
+  background: var(--scroll-thumb)
+  border-radius: .25rem
 
 body, html
   scroll-behavior: smooth
