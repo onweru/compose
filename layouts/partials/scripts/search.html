@@ -1,0 +1,11 @@
+{{- $fuse := partial "functions/getScript" (dict "slug" "search/fuse") }}
+{{- $variables := partial "functions/getScript" (dict "slug" "search/variables") }}
+{{- $algolia := partial "functions/getScript" (dict "slug" "search/algolia") }}
+{{- $search := partial "functions/getScript" (dict "slug" "search/index") }}
+
+{{- $searchLib := $fuse }}
+{{- if site.Params.search.algolia.enable }}
+  {{- $searchLib = $algolia }}
+{{- end }}
+
+{{- partial "scripts/getJsBundle" (dict "scripts" (slice $searchLib $variables $search) "slug" "search") }}

@@ -1,0 +1,4 @@
+{{- $defaults := (dict "id" "#" "key" "#") }}
+{{- $config := default $defaults site.Params.search.algolia }}
+
+{{- return (jsonify (dict "on" $config.enable "id" $config.id "key" $config.key "index" $config.index)) }}

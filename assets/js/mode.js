@@ -15,11 +15,9 @@ function currentMode() {
   acceptable_chars = [...acceptable_chars];
   let mode = getComputedStyle(doc).getPropertyValue(key).replace(/\"/g, '').trim();
 
-  mode = [...mode].filter(function(letter){
-    return acceptable_chars.includes(letter);
-  });
-
-  return mode.join('');
+  return [...mode]
+    .filter(letter => acceptable_chars.includes(letter))
+    .join('');
 }
 
 function changeMode(is_dark_mode) {

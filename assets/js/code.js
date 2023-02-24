@@ -285,7 +285,7 @@ function copyCode(code_element) {
         Array.from(lines).forEach(line => {
           line = line.lastElementChild;
           let line_contents = line.textContent.trim(' ');
-          line_contents.indexOf('$') !== 0 ? pushClass(line, 'shell') : false;
+          line_contents.indexOf('$') !== 0 && line_contents.trim(' ').length ? pushClass(line, 'shell') : false;
         });
       }
 

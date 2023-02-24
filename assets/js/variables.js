@@ -10,8 +10,6 @@ const active = 'active';
 let root_url = '{{ strings.TrimSuffix "/" .Site.BaseURL }}/';
 root_url = root_url.startsWith('http') ? root_url : window.location.origin;
 
-const search_field_class = '.search_field';
-const search_class = '.search';
 const go_back_class = 'button_back';
 const line_class = '.line';
 
@@ -19,23 +17,7 @@ const line_class = '.line';
 const code_block_config = JSON.parse('{{ partial "functions/getCodeConfig" . }}');
 const iconsPath = `{{ partialCached "functions/getIconPath" . }}`;
 
-// values defined under config/_default/params.toml
-let other_searchable_fields = '{{ delimit (default slice site.Params.otherSearchableFields) ", " }}'
-
-if(other_searchable_fields.length > 2) {
-  other_searchable_fields = other_searchable_fields
-    .split(",")
-    .map(search_value => search_value.toLowerCase().trim());
-} else {
-  other_searchable_fields = [];
-}
-
 // defined in i18n / translation files
-const quick_links = '{{ T "quick_links" }}';
-const search_results_label = '{{ T "search_results_label" }}';
-const short_search_query = '{{ T "short_search_query" }}'
-const type_to_search = '{{ T "type_to_search" }}';
-const no_matches_found = '{{ T "no_matches" }}';
 const copy_text = '{{ T "copy" }}';
 const copied_text = '{{ T "copied" }}';
 const toggle_line_numbers_text = '{{ T "toggle_line_numbers" }}';

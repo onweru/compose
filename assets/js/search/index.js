@@ -1,6 +1,3 @@
-const search_result_class = 'search_result';
-const empty_string = '';
-
 function initializeSearch(index) {
   let search_keys = ['title', 'id', 'link', 'body', 'section'];
   search_keys = search_keys.concat(other_searchable_fields);
@@ -198,13 +195,18 @@ function initializeSearch(index) {
 }
 
 window.addEventListener('load', function() {
-  const page_language = document.documentElement.lang;
-  const search_index = `${ page_language === 'en' ? empty_string : page_language}/index.json`;
-  fetch(new URL(search_index, root_url).href)
-  .then(response => response.json())
-  .then(function(search_data) {
-    search_data = search_data.length ? search_data : [];
-    initializeSearch(search_data);
-  })
-  .catch((error) => console.error(error));
+  console.log(algolia_config, 'enabled', algolia_config.id);
+  if(algolia_config.on) {
+    initAlgoliaSearch();
+  } else {
+    const page_language = document.documentElement.lang;
+    const search_index = `${ page_language === 'en' ? empty_string : page_language}/index.json`;
+    fetch(new URL(search_index, root_url).href)
+    .then(response => response.json())
+    .then(function(search_data) {
+      search_data = search_data.length ? search_data : [];
+      initializeSearch(search_data);
+    })
+    .catch((error) => console.error(error));
+  }
 });

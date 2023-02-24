@@ -1,0 +1,2 @@
+{{ $scriptPath := printf "js/%s.js" .slug }}
+{{ return (resources.Get $scriptPath | resources.ExecuteAsTemplate $scriptPath .) }}

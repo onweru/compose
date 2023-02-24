@@ -1,0 +1,2 @@
+{{- $bundle := .scripts | resources.Concat (printf "js/%s.js" .slug) | resources.Fingerprint "sha512" }}
+<script src="{{ $bundle.Permalink }}" async></script>
