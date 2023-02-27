@@ -1,2 +1,4 @@
 github.com/onweru/compose v0.0.0-20230227161459-202a5a6f8622 h1:7X9jqnJv8pMmoeOvh9nbz9AiG9a8yAhbpZOmhuirgcs=
 github.com/onweru/compose v0.0.0-20230227161459-202a5a6f8622/go.mod h1:tf1kQIBUcwJ/3mRFU5eiMrMvsDScVTK2IEFsZE3hZOc=
+github.com/onweru/compose v0.0.0-20230227162209-f2a7a2cf4e89 h1:EeqMUW5Hq0DSVsHiYVuxcoDSsa5OmVrIGkAA63bdBG0=
+github.com/onweru/compose v0.0.0-20230227162209-f2a7a2cf4e89/go.mod h1:tf1kQIBUcwJ/3mRFU5eiMrMvsDScVTK2IEFsZE3hZOc=
