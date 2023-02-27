@@ -64,9 +64,10 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add -A dist/
-        commit_message=$(git commit -m "Publish generated Hugo site." -a | tr -d '\n' || true)
+        git add -A exampleSite/dist/index.json
+        commit_message=$(git commit -m "Build search index." -a | tr -d '\n' || true)
         echo "commit_message=$commxit_message >> $GITHUB_OUTPUT"
+
     # Checks if previous stage had any valid commit.
     - name: Nothing to commit
       id: nothing_committed

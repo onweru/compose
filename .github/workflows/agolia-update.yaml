@@ -1,6 +1,6 @@
-name: Update Algolia Search Index
+name: UPDATE ALGOLIA INDEX
 
-off: # change to `on:` to turn on
+on:
   workflow_dispatch:
     branches:
     - main
@@ -31,7 +31,7 @@ jobs:
         extended: true
 
     - name: Build
-      run: hugo -e "production" -d "dist" --minify
+      run: hugo -e "production" -d "dist" -s "exampleSite" --minify
     # If build succeeds, store the dist/ dir as an artifact to be used in subsequent phases.
     - name: Upload output dist dir as artifact
       uses: actions/upload-artifact@v1
@@ -63,9 +63,10 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add -A dist/
-        commit_message=$(git commit -m "Publish generated Hugo site." -a | tr -d '\n' || true)
+        git add -A dist/index.json
+        commit_message=$(git commit -m "Build search index." -a | tr -d '\n' || true)
         echo "commit_message=$commxit_message >> $GITHUB_OUTPUT"
+
     # Checks if previous stage had any valid commit.
     - name: Nothing to commit
       id: nothing_committed

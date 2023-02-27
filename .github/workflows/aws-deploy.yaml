@@ -5,14 +5,14 @@
 # AWS_S3_BUCKET_NAME
 # AWS_SECRET_ACCESS_KEY
 
-name: CI
-off: # change to `on:` to turn on
+name: AWS DEPLOY CI
+on: # change to `on:` to turn on
   workflow_dispatch:
     branches:
-    - main
+    - production # change to 'main' to automate
   push:
     paths:
-      - exampleSite/content/**/*
+      # - exampleSite/content/**/*
       - exampleSite/config.toml
   # pull_request:
   #   branches:
@@ -42,15 +42,15 @@ jobs:
         extended: true
 
     - name: Build
-      run: hugo -e "production" --minify
-    # If build succeeds, store the public/ dir as an artifact to be used in subsequent phases.
+      run: hugo -e "production" -d "dist" -s "exampleSite" --minify
+    # If build succeeds, store the dist/ dir as an artifact to be used in subsequent phases.
     - name: Upload output public dir as artifact
       uses: actions/upload-artifact@v1
       with:
         name: public
-        path: public/
+        path: dist/
   publish:
-  # In the publish phase, the site is pushed up to a different branch which only stores the public/ folder ("site" branch) and is also delta synchronized to the S3 bucket. CloudFront invalidation happens last.
+  # In the publish phase, the site is pushed up to a different branch which only stores the dist/ folder ("site" branch) and is also delta synchronized to the S3 bucket. CloudFront invalidation happens last.
     runs-on: ubuntu-20.04
     needs: build
     steps:
@@ -61,12 +61,12 @@ jobs:
         submodules: true
         fetch-depth: 0
         ref: ${{ env.SITE-BRANCH }}
-    # Download the artifact containing the newly built site. This overwrites the public/ dir from the check out above.
+    # Download the artifact containing the newly built site. This overwrites the dist/ dir from the check out above.
     - name: Download artifact from build stage
       uses: actions/download-artifact@v1
       with:
         name: public
-    # Add all the files/changes in public/ that were pulled down from the build stage and then commit them.
+    # Add all the files/changes in dist/ that were pulled down from the build stage and then commit them.
     # The final line sets a GitHub Action output value that can be read by other steps.
     # This function cannot store mult-line values so newline chars must be stripped.
     - name: Commit files
@@ -74,7 +74,7 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add -A public/
+        git add -A dist/
         commit_message=$(git commit -m "Publish generated Hugo site." -a | tr -d '\n' || true)
         echo "commit_message=$commit_message >> $GITHUB_OUTPUT"
     # Checks if previous stage had any valid commit.
@@ -99,7 +99,7 @@ jobs:
         aws-region: ${{ env.AWS-DEFAULT-REGION }}
     - name: Delta sync site to S3 with aws cli
       if: steps.nothing_committed.conclusion == 'skipped'
-      run: aws s3 sync --size-only --delete --exclude "/authors/*/page/*" --cache-control max-age=2592000 public/ s3://${{ secrets.AWS_S3_BUCKET_NAME }}
+      run: aws s3 sync --size-only --delete --exclude "/authors/*/page/*" --cache-control max-age=2592000 dist/ s3://${{ secrets.AWS_S3_BUCKET_NAME }}
     # Use s5cmd to perform only a delta sync to the destination S3 bucket. This minimizes transfer traffic since it only uploads changed files.
     # - name: Delta sync site to S3 bucket
     #   if: steps.nothing_committed.conclusion == 'skipped'
@@ -111,7 +111,7 @@ jobs:
     #     echo "****Showing working dir and listing files.****"
     #     pwd && ls -lah
     #     echo "****Running delta sync against S3.****"
-    #     s5cmd cp -s -n -u public/ s3://${{ secrets.AWS_S3_BUCKET_NAME }}
+    #     s5cmd cp -s -n -u dist/ s3://${{ secrets.AWS_S3_BUCKET_NAME }}
     # Use the aws cli tool to perform a glob invalidation of the entire site against CloudFront.
     - name: Invalidate cache on CloudFront
       if: steps.nothing_committed.conclusion == 'skipped'
