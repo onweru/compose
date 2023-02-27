@@ -11,7 +11,25 @@ Firstly, ensure you have these lines inside your config.toml file
    home = ["HTML", "RSS","JSON"]
 ```
 
-Compose implements `fuse.js` to enable search functionality. At the time of this writing, search on these theme takes either of this forms:
+Compose implements [Fuse js](https://fusejs.io/) or [Algolia](https://www.algolia.com/doc/rest-api/search/) to enable search functionality. By default Fuse is applied. Algolia can be enabled by adding this settings to `config/_default/params.toml` file
+
+```toml
+# search
+[search]
+on = true
+# Site logo
+[search.algolia]
+enable = false # if false search will default to fusejs
+id = "Q40WQQX84U" # Application ID
+index = "compose" # Index name
+key = "da87401a458102ec6bbd6cc5e5cf8d95" # Search-Only API Key
+```
+
+Both search engines will display results using the same UI. By choosing the default (.ie fuse js),  you will be opting for local search. This way, no additional setup is needed.
+
+Algolia will require you to build and host your index. For those using Github, this theme ships with an [algolia github action](/docs/compose/github-actions/#algolia-ci).
+
+At the time of this writing, search on these theme takes either of this forms:
 
 ### 1. Passive search
 
