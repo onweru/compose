@@ -12,8 +12,8 @@ off: # change to `on:` to turn on
     - main
   push:
     paths:
-      - content/**/*
-      - config.toml
+      - exampleSite/content/**/*
+      - exampleSite/config.toml
   # pull_request:
   #   branches:
   #   - production

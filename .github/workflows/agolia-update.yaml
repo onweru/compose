@@ -1,0 +1,98 @@
+name: Update Algolia Search Index
+
+off: # change to `on:` to turn on
+  workflow_dispatch:
+    branches:
+    - main
+  push:
+    paths:
+      - exampleSite/content/**/*
+
+env:
+  # Name of the branch in your repository which will store your generated site.
+  SITE-BRANCH: master
+
+jobs:
+  build:
+  # In this phase, the code is pulled from main and the site rendered in Hugo. The built site is stored as an artifact for other stages. # deploy:
+    runs-on: ubuntu-20.04
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: true  # Fetch Hugo themes (true OR recursive)
+        fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+
+    - name: Setup Hugo
+      uses: peaceiris/actions-hugo@v2
+      with:
+        hugo-version: 'latest'
+        extended: true
+
+    - name: Build
+      run: hugo -e "production" -d "dist" --minify
+    # If build succeeds, store the dist/ dir as an artifact to be used in subsequent phases.
+    - name: Upload output dist dir as artifact
+      uses: actions/upload-artifact@v1
+      with:
+        name: dist
+        path: dist/
+  publish:
+  # In the publish phase, the site is pushed up to a different branch which only stores the dist/ folder ("site" branch) and is also delta synchronized to the S3 bucket. CloudFront invalidation happens last.
+    runs-on: ubuntu-20.04
+    needs: build
+    steps:
+    # Check out the site branch this time since we have to ultimately commit those changes there.
+    - name: Checkout site branch
+      uses: actions/checkout@v3
+      with:
+        submodules: true
+        fetch-depth: 0
+        ref: ${{ env.SITE-BRANCH }}
+    # Download the artifact containing the newly built site. This overwrites the dist/ dir from the check out above.
+    - name: Download artifact from build stage
+      uses: actions/download-artifact@v1
+      with:
+        name: dist
+    # Add all the files/changes in dist/ that were pulled down from the build stage and then commit them.
+    # The final line sets a GitHub Action output value that can be read by other steps.
+    # This function cannot store mult-line values so newline chars must be stripped.
+    - name: Commit files
+      id: can_commit
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add -A dist/
+        commit_message=$(git commit -m "Publish generated Hugo site." -a | tr -d '\n' || true)
+        echo "commit_message=$commxit_message >> $GITHUB_OUTPUT"
+    # Checks if previous stage had any valid commit.
+    - name: Nothing to commit
+      id: nothing_committed
+      if: contains(steps.can_commit.outputs.commit_message, 'nothing to commit')
+      run: echo "Saw that no changes were made to Hugo site."
+    # Push those changes back to the site branch.
+    - name: Push to site branch
+      if: steps.nothing_committed.conclusion == 'skipped'
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: ${{ env.SITE-BRANCH }}
+  index:
+    runs-on: ubuntu-latest
+    needs: publish
+    name: Upload Algolia Index
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - uses: wangchucheng/algolia-uploader@master
+      with:
+        # Such as `Z0U0ACGBN8`
+        app_id: ${{ secrets.AGOLIA_INDEX_ID }}
+        # Go to https://github.com/dimi365/website/settings/secrets/actions and set an AGOLIA_ADMIN_KEY secret key
+        admin_key: ${{ secrets.AGOLIA_ADMIN_KEY }}
+        # The index name.
+        index_name: dimi_site
+        # The index file path relative to repo root. no leading forward slash
+        index_file_path: dist/index.json
