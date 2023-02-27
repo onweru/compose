@@ -2,6 +2,8 @@ const search_result_class = 'search_result';
 const empty_string = '';
 const search_field_class = '.search_field';
 const search_class = '.search';
+let search_term = empty_string;
+const search_field = elem(search_field_class);
 
 // defined in i18n / translation files
 const quick_links = '{{ T "quick_links" }}';
@@ -21,26 +23,20 @@ if(other_searchable_fields.length > 2) {
   other_searchable_fields = [];
 }
 
+const search_page_element = elem('#searchpage');
+
+// Fuse specific
+let search_keys = ['body', 'title', 'link', 'section', 'id',];
+search_keys = search_keys.concat(other_searchable_fields);
+
+const search_options = {
+  ignoreLocation: true,
+  findAllMatches: true,
+  includeScore: true,
+  shouldSort: true,
+  keys: search_keys,
+  threshold: 0.1
+};
+
 // Algolia specific
 const algolia_config = JSON.parse(`{{ partialCached "functions/getAlgoliaConfig" . }}`);
-
-function initAlgoliaSearch() {
-  const algolia_client = algoliasearch(algolia_config.id, algolia_config.key);
-  const algolia_index = algolia_client.initIndex(algolia_config.index);
-
-  // Fuse specific
-
-  // Search for "query string" in the index "contacts"
-  algolia_index.search('custom css').then(({ hits }) => {
-    console.log(hits);
-  });
-
-  // Perform the same search, but only retrieve 50 results
-  // Return only the attributes "firstname" and "lastname"
-  algolia_index.search('query string', {
-    attributesToRetrieve: ['firstname', 'lastname'],
-    hitsPerPage: 50,
-  }).then(({ hits }) => {
-    console.log(hits);
-  });
-}

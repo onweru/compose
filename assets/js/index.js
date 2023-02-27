@@ -174,10 +174,12 @@ function createDeepLinks() {
   let heading_nodes = [];
 
   [...Array(6).keys()].forEach(function(i){
-    Array.prototype.push.apply(heading_nodes, document.getElementsByTagName(`h${i+1}`));
+    if(i) {
+      Array.prototype.push.apply(heading_nodes, document.getElementsByTagName(`h${i+1}`));
+    }
   });
 
-  heading_nodes.forEach(function(node){
+  heading_nodes.forEach(node => {
     let link = createEl('a');
     let icon = createEl('img');
     icon.src = '{{ absURL "icons/link.svg" }}';
