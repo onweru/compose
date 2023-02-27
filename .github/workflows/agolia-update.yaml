@@ -63,7 +63,8 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add -A dist/index.json
+        cp exampleSite/dist/index.json index.json
+        git add -A index.json
         commit_message=$(git commit -m "Build search index." -a | tr -d '\n' || true)
         echo "commit_message=$commxit_message >> $GITHUB_OUTPUT"
 
@@ -93,7 +94,7 @@ jobs:
         app_id: ${{ secrets.AGOLIA_INDEX_ID }}
         # Go to https://github.com/dimi365/website/settings/secrets/actions and set an AGOLIA_ADMIN_KEY secret key
         admin_key: ${{ secrets.AGOLIA_ADMIN_KEY }}
-        # The index name.
-        index_name: dimi_site
+        # The algolia search index name.
+        index_name: compose # edit appropriately
         # The index file path relative to repo root. no leading forward slash
-        index_file_path: dist/index.json
+        index_file_path: index.json
