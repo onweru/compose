@@ -8,3 +8,5 @@ github.com/onweru/compose v0.0.0-20230228151044-bf9588061a3f h1:U1TNuLgxtmNjIA3b
 github.com/onweru/compose v0.0.0-20230228151044-bf9588061a3f/go.mod h1:tf1kQIBUcwJ/3mRFU5eiMrMvsDScVTK2IEFsZE3hZOc=
 github.com/onweru/compose v0.0.0-20230228152327-64b50b6403d8 h1:+/zK9SJLb5bCvJi6joHp5JFDQB20NMuIpah9bJqAEII=
 github.com/onweru/compose v0.0.0-20230228152327-64b50b6403d8/go.mod h1:tf1kQIBUcwJ/3mRFU5eiMrMvsDScVTK2IEFsZE3hZOc=
+github.com/onweru/compose v0.0.0-20230228154211-8ae26d6bdbe7 h1:yoOchdcUGh9Zd4c+SE+Wet5jlC49l0VES9hQDpYkPsc=
+github.com/onweru/compose v0.0.0-20230228154211-8ae26d6bdbe7/go.mod h1:tf1kQIBUcwJ/3mRFU5eiMrMvsDScVTK2IEFsZE3hZOc=
