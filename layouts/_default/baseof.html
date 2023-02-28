@@ -38,11 +38,7 @@
   {{ end }}
   {{- partialCached "footer" . -}}
   {{- partialCached "sprites" . -}}
-  {{- with .Translations }}
-    {{- partial "scripts/bundle" $context -}}
-  {{- else }}
-    {{- partialCached "scripts/bundle" . -}}
-  {{- end }}
+  {{- partial "scripts/bundle" . -}}
   {{- partial "scripts/other" . -}}
 </body>
 </html>
