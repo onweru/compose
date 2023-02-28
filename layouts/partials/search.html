@@ -1,4 +1,5 @@
-{{ if .Site.Params.enableSearch | default true }}
+{{ $searchEnabled := partialCached "functions/getSearchConfig" . }}
+{{ if $searchEnabled }}
 <div class="search">
   <label for="find" class="search_label">
     {{- partial "sprite" (dict "icon" "search") }}

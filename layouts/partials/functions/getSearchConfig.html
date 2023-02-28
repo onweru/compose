@@ -1,0 +1,6 @@
+{{ $config := site.Params }}
+{{ $enableSearch := default true $config.enableSearch }}
+{{ if eq $config.search.on false }}
+  {{ $enableSearch = false }}
+{{ end }}
+{{ return $enableSearch }}
