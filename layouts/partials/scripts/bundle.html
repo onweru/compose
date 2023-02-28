@@ -5,9 +5,10 @@
 {{- $main := partial "functions/getScript" (dict "slug" "index") }}
 
 {{- $customScriptPath := "js/custom.js" }}
-{{ if (fileExists "../../assets/js/custom.js") }}
-  {{ $customScriptPath := "../../assets/js/custom.js" }}
-{{ end }}
+{{- $customScriptRelPath := "../../assets/js/custom.js" }}
+{{- if (fileExists $customScriptRelPath) }}
+  {{- $customScriptPath = $customScriptRelPath }}
+{{- end }}
 {{- $custom := resources.Get $customScriptPath | resources.ExecuteAsTemplate $customScriptPath . }}
 
 {{- partial "scripts/getJsBundle" (dict "scripts" (slice $variables $functions $code $mode $main $custom) "slug" "bundle") }}
@@ -15,8 +16,7 @@
 {{- partialCached "scripts/search" . -}}
 {{- partialCached "hooks/scripts" . -}}
 
-{{- $sp := .Site.Params }}
-{{- with $sp.customJS }}
+{{- with site.Params.customJS }}
   {{- range . -}}
     <script src="{{ . }}" async></script>
   {{- end }}
