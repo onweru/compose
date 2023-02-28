@@ -3,10 +3,11 @@ name: UPDATE ALGOLIA INDEX
 on:
   workflow_dispatch:
     branches:
-    - main
+    - production
   push:
     paths:
-      - exampleSite/content/**/*
+      - content/**/*
+      # - config.toml
 
 env:
   # Name of the branch in your repository which will store your generated site.
@@ -31,7 +32,7 @@ jobs:
         extended: true
 
     - name: Build
-      run: hugo -e "production" -d "dist" -s "exampleSite" --minify
+      run: hugo -e "production" -s "exampleSite" -d "dist" --minify
     # If build succeeds, store the dist/ dir as an artifact to be used in subsequent phases.
     - name: Upload output dist dir as artifact
       uses: actions/upload-artifact@v1
@@ -63,11 +64,10 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        cp exampleSite/dist/index.json index.json
+        cp dist/index.json index.json
         git add -A index.json
         commit_message=$(git commit -m "Build search index." -a | tr -d '\n' || true)
         echo "commit_message=$commxit_message >> $GITHUB_OUTPUT"
-
     # Checks if previous stage had any valid commit.
     - name: Nothing to commit
       id: nothing_committed
@@ -85,16 +85,27 @@ jobs:
     needs: publish
     name: Upload Algolia Index
     steps:
+    - uses: algolia/setup-algolia-cli@master
+      with:
+        version:
+          1.2.0
+    - name: clean index
+      id: clean_up_index
+      env:
+        ALGOLIA_APPLICATION_ID: ${{ secrets.ALGOLIA_APP_ID }}
+        ALGOLIA_ADMIN_API_KEY: ${{ secrets.ALGOLIA_ADMIN_KEY }}
+      run: |
+        algolia index clear dimi_site --confirm
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0
     - uses: wangchucheng/algolia-uploader@master
       with:
         # Such as `Z0U0ACGBN8`
-        app_id: ${{ secrets.AGOLIA_INDEX_ID }}
-        # Go to https://github.com/dimi365/website/settings/secrets/actions and set an AGOLIA_ADMIN_KEY secret key
-        admin_key: ${{ secrets.AGOLIA_ADMIN_KEY }}
-        # The algolia search index name.
-        index_name: compose # edit appropriately
+        app_id: EG0M7UVCD9
+        # Go to https://github.com/dimi365/website/settings/secrets/actions and set an ALGOLIA_ADMIN_KEY secret key
+        admin_key: ${{ secrets.ALGOLIA_ADMIN_KEY }}
+        # The index name.
+        index_name: ${{ secrets.ALGOLIA_APP_NAME }}
         # The index file path relative to repo root. no leading forward slash
         index_file_path: index.json
