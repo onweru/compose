@@ -1,4 +1,8 @@
 {{- $bundle := .scripts | resources.Concat (printf "js/%s.js" .slug) | resources.Minify | resources.Fingerprint "sha512" }}
+{{- if .inline }}
 <script>
   {{ safeJS $bundle.Content }}
 </script>
+{{- else }}
+<script src="{{ $bundle.Permalink }}" async></script>
+{{ end }}

@@ -11,7 +11,7 @@
 {{- end }}
 {{- $custom := resources.Get $customScriptPath | resources.ExecuteAsTemplate $customScriptPath . }}
 
-{{- partial "scripts/getJsBundle" (dict "scripts" (slice $variables $functions $code $mode $main $custom) "slug" "bundle") }}
+{{- partial "scripts/getJsBundle" (dict "scripts" (slice $variables $functions $code $mode $main $custom) "slug" "bundle" "inline" true) }}
 
 {{- partialCached "scripts/search" . -}}
 {{- partialCached "hooks/scripts" . -}}
