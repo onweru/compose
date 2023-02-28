@@ -39,7 +39,6 @@ global = false # turn to `true` to enable global search
 ...
 ```
 
-
 At the time of this writing, search on these theme takes either of this forms:
 
 ### 1. Passive search
