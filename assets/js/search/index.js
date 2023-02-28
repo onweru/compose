@@ -11,6 +11,7 @@ function findQuery(query = 'query') {
 }
 
 function search(index, scope = null, passive = false) {
+  scope = search_scope_global ? null : scope;
   if(search_term.length) {
     let raw_results = index;
     if(!algolia_config.on) {
@@ -38,8 +39,9 @@ function search(index, scope = null, passive = false) {
 
 function liveSearch(index) {
   if (search_field) {
-    const search_scope = search_field.dataset.scope;
+    let search_scope = search_field.dataset.scope;
     search(index, search_scope);
+    search_scope = search_scope_global ? null : search_scope;
     if(!search_page_element) {
       search_field.addEventListener('search', function(){
         search_term = search_field.value.trim().toLowerCase();

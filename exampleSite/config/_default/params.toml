@@ -26,13 +26,14 @@ otherSearchableFields = ["Tags", "Categories", "CustomField"] # As they appear i
 # search
 [search]
 on = true
-# Site logo
+global = false # turn to `true` to enable global search
 [search.algolia]
 enable = false # if false search will default to fusejs
 id = "Q40WQQX84U" # Application ID
 index = "compose" # Index name
 key = "da87401a458102ec6bbd6cc5e5cf8d95" # Search-Only API Key
 
+# Site logo
 [logo]
   lightMode = "images/compose.svg"
   darkMode = "images/compose-light.svg"

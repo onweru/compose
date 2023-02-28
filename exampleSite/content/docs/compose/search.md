@@ -17,7 +17,7 @@ Compose implements [Fuse js](https://fusejs.io/) or [Algolia](https://www.algoli
 # search
 [search]
 on = true
-# Site logo
+global = false
 [search.algolia]
 enable = false # if false search will default to fusejs
 id = "Q40WQQX84U" # Application ID
@@ -28,6 +28,17 @@ key = "da87401a458102ec6bbd6cc5e5cf8d95" # Search-Only API Key
 Both search engines will display results using the same UI. By choosing the default (.ie fuse js),  you will be opting for local search. This way, no additional setup is needed.
 
 Algolia will require you to build and host your index. For those using Github, this theme ships with an [algolia github action](/docs/compose/github-actions/#algolia-ci).
+
+By default, search will return results from the current content section. Searches from the top level section e.g the homepage, will return global results. This way, the results are scoped. You can override this behaviour using this setting
+
+```toml
+...
+[search]
+...
+global = false # turn to `true` to enable global search
+...
+```
+
 
 At the time of this writing, search on these theme takes either of this forms:
 

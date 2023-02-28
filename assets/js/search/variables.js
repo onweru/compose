@@ -24,6 +24,8 @@ if(other_searchable_fields.length > 2) {
 }
 
 const search_page_element = elem('#searchpage');
+let search_scope_global = `{{ trim site.Params.search.global " " }}`;
+search_scope_global = search_scope_global == 'true' ? true : false;
 
 // Fuse specific
 let search_keys = ['body', 'title', 'link', 'section', 'id',];
