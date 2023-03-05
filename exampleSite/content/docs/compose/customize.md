@@ -82,3 +82,22 @@ customJS = [scriptURL1, scriptURL2 ... ]
 ### I want to add custom SASS or JS
 
 Add custom SASS and JS via [this custom SASS file](https://github.com/onweru/compose/blob/master/assets/sass/_custom.sass) and [this custom JavaScript file](https://github.com/onweru/compose/hugo-compose/blob/master/assets/js/custom.js).
+
+### How to change site favicon
+
+Your favicons should be stored inside `static/favicons` directory.
+
+Here are some of the favicon files that you should have in that folder:
+
+```
+.
+├── android-chrome-192x192.png
+├── android-chrome-512x512.png
+├── apple-touch-icon.png
+├── favicon-16x16.png
+├── favicon-32x32.png
+├── favicon.ico
+└── site.webmanifest
+```
+
+We recommend you consider using this [tool](https://realfavicongenerator.net/) while generating your favicons.
