@@ -4,8 +4,7 @@ function prefersColor(mode){
 
 function systemMode() {
   if (window.matchMedia) {
-    const prefers = prefersColor(dark);
-    return window.matchMedia(prefers).matches ? dark : light;
+    return window.matchMedia(prefersColor(dark)).matches ? dark : light;
   }
   return light;
 }
