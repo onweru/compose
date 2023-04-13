@@ -13,7 +13,7 @@
 [quick_links]
   other = "Quick links"
 [search_field_placeholder]
-  other = "Search {{ .section }}"
+  other = "Search"
 [search_results_label]
   other = "Search Results"
 [short_search_query]

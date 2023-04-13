@@ -1,18 +1,20 @@
-{{ $searchEnabled := partialCached "functions/getSearchConfig" . }}
-{{ if $searchEnabled }}
-<div class="search">
-  <label for="find" class="search_label">
-    {{- partial "sprite" (dict "icon" "search") }}
-  </label>
-  {{ $placeholder := T "search_field_placeholder" (dict "section" .Section) }}
-  {{ if .Section }}
-  {{ else }}
-    {{ $placeholder =  printf "%s%s" $placeholder (T "site") }}
-  {{ end }}
-  <input type="search" class="search_field  standardize-input" placeholder="{{ $placeholder }}" id="find" autocomplete="off"  data-scope='{{ .Section }}'>
-  {{- if ne .Params.searchPage true }}
-  <div class="search_results results"></div>
+{{- $searchEnabled := partialCached "functions/getSearchConfig" . }}
+{{- if $searchEnabled }}
+  {{- $section := .Section }}
+  {{- $config := site.Params }}
+  {{- $default := T "search_field_placeholder" }}
+  {{- $scope := T "site" }}
+  {{- if and $section (eq $config.search.global false) }}
+    {{- $scope = $section }}
   {{- end }}
-</div>
-{{ end }}
-
+  <div class="search">
+    <label for="find" class="search_label">
+      {{- partial "sprite" (dict "icon" "search") }}
+    </label>
+    {{ $placeholder := printf "%s %s" $default $scope }}
+    <input type="search" class="search_field  standardize-input" placeholder="{{ $placeholder }}" id="find" autocomplete="off" data-scope='{{ $section }}'>
+    {{- if ne .Params.searchPage true }}
+    <div class="search_results results"></div>
+    {{- end }}
+  </div>
+{{- end }}
