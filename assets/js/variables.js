@@ -17,14 +17,6 @@ const line_class = '.line';
 const code_block_config = JSON.parse('{{ partial "functions/getCodeConfig" . }}');
 const iconsPath = `{{ partialCached "functions/getIconPath" . }}`;
 
-// defined in i18n / translation files
-const copy_text = '{{ T "copy" }}';
-const copied_text = '{{ T "copied" }}';
-const toggle_line_numbers_text = '{{ T "toggle_line_numbers" }}';
-const toggle_line_wrap_text = '{{ T "toggle_line_wrap" }}';
-const resize_snippet = '{{ T "resize_snippet" }}';
-const not_set = '{{ T "not_set" }}';
-
 const shell_based = ['sh', 'shell', 'zsh', 'bash'];
 
 const body = elem('body');

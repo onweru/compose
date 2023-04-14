@@ -5,13 +5,6 @@ const search_class = '.search';
 let search_term = empty_string;
 const search_field = elem(search_field_class);
 
-// defined in i18n / translation files
-const quick_links = '{{ T "quick_links" }}';
-const search_results_label = '{{ T "search_results_label" }}';
-const short_search_query = '{{ T "short_search_query" }}'
-const type_to_search = '{{ T "type_to_search" }}';
-const no_matches_found = '{{ T "no_matches" }}';
-
 // values defined under config/_default/params.toml
 let other_searchable_fields = '{{ delimit (default slice site.Params.otherSearchableFields) ", " }}'
 
