@@ -2,7 +2,7 @@
 {{- if $searchEnabled }}
   {{- $section := .Section }}
   {{- $config := site.Params }}
-  {{- $default := T "search_field_placeholder" }}
+  {{- $default := T "search_field_placeholder" (dict "section" "") }}
   {{- $scope := T "site" }}
   {{- if and $section (eq $config.search.global false) }}
     {{- $scope = $section }}
