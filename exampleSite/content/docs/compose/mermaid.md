@@ -10,7 +10,7 @@ With compose theme, you can use mermaid using a custom shortcode as follows:
 
 ### Sequence Diagrams
 
-**Syntax**
+**Snippet**
 
 ```tpl
 {{</* mermaid */>}}
@@ -46,7 +46,7 @@ sequenceDiagram
 
 ### Flow Charts
 
-**Syntax**
+**Snippet**
 
 ```tpl
 {{</* mermaid */>}}
@@ -87,7 +87,7 @@ flowchart TB
 
 ### Graphs
 
-**Syntax**
+**Snippet**
 
 ```tpl
 {{</* mermaid */>}}
@@ -141,7 +141,7 @@ graph TB
     class di orange
 {{< /mermaid >}}
 
-**Syntax**
+**Snippet**
 
 ```tpl
 {{</* mermaid */>}}
@@ -224,7 +224,7 @@ stateDiagram-v2
 
 ### Relationship Diagrams
 
-**Syntax**
+**Snippet**
 
 ```tpl
 {{</* mermaid */>}}
@@ -246,7 +246,7 @@ erDiagram
 
 ### User Journey
 
-**Syntax**
+**Snippet**
 
 ```tpl
 {{</* mermaid */>}}
@@ -279,7 +279,7 @@ journey
 
 ### Gantt
 
-**Syntax**
+**Snippet**
 
 ```tpl
 {{</* mermaid */>}}
@@ -372,4 +372,297 @@ pie
   "Potassium" : 50.05
   "Magnesium" : 10.01
   "Iron" :  5
+{{< /mermaid >}}
+
+
+### Mindmap
+
+__Snippet__
+
+```tpl
+{{</* mermaid */>}}
+mindmap
+  root((mindmap))
+    Origins
+      Long history
+      ::icon(fa fa-book)
+      Popularisation
+        British popular psychology author Tony Buzan
+    Research
+      On effectiveness<br/>and features
+      On Automatic creation
+        Uses
+            Creative techniques
+            Strategic planning
+            Argument mapping
+    Tools
+      Pen and paper
+      Mermaid
+
+{{</* /mermaid */>}}
+```
+
+__Result__
+
+{{< mermaid >}}
+mindmap
+  root((mindmap))
+    Origins
+      Long history
+      ::icon(fa fa-book)
+      Popularisation
+        British popular psychology author Tony Buzan
+    Research
+      On effectiveness<br/>and features
+      On Automatic creation
+        Uses
+            Creative techniques
+            Strategic planning
+            Argument mapping
+    Tools
+      Pen and paper
+      Mermaid
+
+{{< /mermaid >}}
+
+### Timeline
+
+__Snippet I__
+
+```tpl
+{{</* mermaid */>}}
+timeline
+  title History of Social Media Platform
+  2002 : LinkedIn
+  2004 : Facebook : Google
+  2005 : Youtube
+  2006 : Twitter
+{{</* /mermaid */>}}
+```
+
+__Result I__
+
+{{< mermaid >}}
+timeline
+  title History of Social Media Platform
+  2002 : LinkedIn
+  2004 : Facebook : Google
+  2005 : Youtube
+  2006 : Twitter
+{{< /mermaid >}}
+
+__Snippet II__
+
+```tpl
+{{</* mermaid */>}}
+timeline
+  title MermaidChart 2023 Timeline
+  section 2023 Q1 <br> Release Personal Tier
+    Buttet 1 : sub-point 1a : sub-point 1b
+      : sub-point 1c
+    Bullet 2 : sub-point 2a : sub-point 2b
+  section 2023 Q2 <br> Release XYZ Tier
+    Buttet 3 : sub-point <br> 3a : sub-point 3b
+      : sub-point 3c
+    Bullet 4 : sub-point 4a : sub-point 4b
+
+{{</* /mermaid */>}}
+```
+
+__Result II__
+{{< mermaid >}}
+timeline
+  title MermaidChart 2023 Timeline
+  section 2023 Q1 <br> Release Personal Tier
+    Buttet 1 : sub-point 1a : sub-point 1b
+      : sub-point 1c
+    Bullet 2 : sub-point 2a : sub-point 2b
+  section 2023 Q2 <br> Release XYZ Tier
+    Buttet 3 : sub-point <br> 3a : sub-point 3b
+      : sub-point 3c
+    Bullet 4 : sub-point 4a : sub-point 4b
+
+{{< /mermaid >}}
+
+### Gitgraph
+
+__Snippet__
+
+```tpl
+{{</* mermaid */>}}
+---
+title: Example Git diagram
+---
+gitGraph
+   commit
+   commit
+   branch develop
+   checkout develop
+   commit
+   commit
+   checkout main
+   merge develop
+   commit
+   commit
+
+{{</* /mermaid */>}}
+```
+
+__Result__
+
+{{< mermaid >}}
+---
+title: Example Git diagram
+---
+gitGraph
+   commit
+   commit
+   branch develop
+   checkout develop
+   commit
+   commit
+   checkout main
+   merge develop
+   commit
+   commit
+
+{{< /mermaid >}}
+
+### Requirement Diagram
+
+__Snippet__
+
+```tpl
+{{</* mermaid */>}}
+    requirementDiagram
+
+    requirement test_req {
+    id: 1
+    text: the test text.
+    risk: high
+    verifymethod: test
+    }
+
+    element test_entity {
+    type: simulation
+    }
+
+    test_entity - satisfies -> test_req
+{{</* /mermaid */>}}
+```
+
+__Result__
+
+{{< mermaid >}}
+    requirementDiagram
+
+    requirement test_req {
+    id: 1
+    text: the test text.
+    risk: high
+    verifymethod: test
+    }
+
+    element test_entity {
+    type: simulation
+    }
+
+    test_entity - satisfies -> test_req
+{{< /mermaid >}}
+
+
+### C4C Diagram
+
+```tpl
+{{</* mermaid */>}}
+    C4Context
+      title System Context diagram for Internet Banking System
+      Enterprise_Boundary(b0, "BankBoundary0") {
+        Person(customerA, "Banking Customer A", "A customer of the bank, with personal bank accounts.")
+        Person(customerB, "Banking Customer B")
+        Person_Ext(customerC, "Banking Customer C", "desc")
+
+        Person(customerD, "Banking Customer D", "A customer of the bank, <br/> with personal bank accounts.")
+
+        System(SystemAA, "Internet Banking System", "Allows customers to view information about their bank accounts, and make payments.")
+
+        Enterprise_Boundary(b1, "BankBoundary") {
+
+          SystemDb_Ext(SystemE, "Mainframe Banking System", "Stores all of the core banking information about customers, accounts, transactions, etc.")
+
+          System_Boundary(b2, "BankBoundary2") {
+            System(SystemA, "Banking System A")
+            System(SystemB, "Banking System B", "A system of the bank, with personal bank accounts. next line.")
+          }
+
+          System_Ext(SystemC, "E-mail system", "The internal Microsoft Exchange e-mail system.")
+          SystemDb(SystemD, "Banking System D Database", "A system of the bank, with personal bank accounts.")
+
+          Boundary(b3, "BankBoundary3", "boundary") {
+            SystemQueue(SystemF, "Banking System F Queue", "A system of the bank.")
+            SystemQueue_Ext(SystemG, "Banking System G Queue", "A system of the bank, with personal bank accounts.")
+          }
+        }
+      }
+
+      BiRel(customerA, SystemAA, "Uses")
+      BiRel(SystemAA, SystemE, "Uses")
+      Rel(SystemAA, SystemC, "Sends e-mails", "SMTP")
+      Rel(SystemC, customerA, "Sends e-mails to")
+
+      UpdateElementStyle(customerA, $fontColor="red", $bgColor="grey", $borderColor="red")
+      UpdateRelStyle(customerA, SystemAA, $textColor="blue", $lineColor="blue", $offsetX="5")
+      UpdateRelStyle(SystemAA, SystemE, $textColor="blue", $lineColor="blue", $offsetY="-10")
+      UpdateRelStyle(SystemAA, SystemC, $textColor="blue", $lineColor="blue", $offsetY="-40", $offsetX="-50")
+      UpdateRelStyle(SystemC, customerA, $textColor="red", $lineColor="red", $offsetX="-50", $offsetY="20")
+
+      UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
+{{</* /mermaid */>}}
+```
+
+__Result__
+
+{{< mermaid >}}
+    C4Context
+      title System Context diagram for Internet Banking System
+      Enterprise_Boundary(b0, "BankBoundary0") {
+        Person(customerA, "Banking Customer A", "A customer of the bank, with personal bank accounts.")
+        Person(customerB, "Banking Customer B")
+        Person_Ext(customerC, "Banking Customer C", "desc")
+
+        Person(customerD, "Banking Customer D", "A customer of the bank, <br/> with personal bank accounts.")
+
+        System(SystemAA, "Internet Banking System", "Allows customers to view information about their bank accounts, and make payments.")
+
+        Enterprise_Boundary(b1, "BankBoundary") {
+
+          SystemDb_Ext(SystemE, "Mainframe Banking System", "Stores all of the core banking information about customers, accounts, transactions, etc.")
+
+          System_Boundary(b2, "BankBoundary2") {
+            System(SystemA, "Banking System A")
+            System(SystemB, "Banking System B", "A system of the bank, with personal bank accounts. next line.")
+          }
+
+          System_Ext(SystemC, "E-mail system", "The internal Microsoft Exchange e-mail system.")
+          SystemDb(SystemD, "Banking System D Database", "A system of the bank, with personal bank accounts.")
+
+          Boundary(b3, "BankBoundary3", "boundary") {
+            SystemQueue(SystemF, "Banking System F Queue", "A system of the bank.")
+            SystemQueue_Ext(SystemG, "Banking System G Queue", "A system of the bank, with personal bank accounts.")
+          }
+        }
+      }
+
+      BiRel(customerA, SystemAA, "Uses")
+      BiRel(SystemAA, SystemE, "Uses")
+      Rel(SystemAA, SystemC, "Sends e-mails", "SMTP")
+      Rel(SystemC, customerA, "Sends e-mails to")
+
+      UpdateElementStyle(customerA, $fontColor="red", $bgColor="grey", $borderColor="red")
+      UpdateRelStyle(customerA, SystemAA, $textColor="blue", $lineColor="blue", $offsetX="5")
+      UpdateRelStyle(SystemAA, SystemE, $textColor="blue", $lineColor="blue", $offsetY="-10")
+      UpdateRelStyle(SystemAA, SystemC, $textColor="blue", $lineColor="blue", $offsetY="-40", $offsetX="-50")
+      UpdateRelStyle(SystemC, customerA, $textColor="red", $lineColor="red", $offsetX="-50", $offsetY="20")
+
+      UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
 {{< /mermaid >}}
