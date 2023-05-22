@@ -5,12 +5,19 @@
   svg
     margin: 0 auto
     display: block
-  .actor, .labelBox, .classGroup rect
+  .actor, .labelBox, .classGroup rect, 
     fill: var(--theme) !important
     stroke: var(--theme) !important
-  .messageText, tspan, text
+  .tspan, messageText, text, .taskText, .taskText2, .taskTextOutsideRight, doneCritText0, doneCritText1, doneCritText2
     fill: var(--text) !important
     stroke: var(--text) !important
-  .messageLine0, .loopLine
-    stroke: var(--theme) !important
+
+  .er.entityBox
     fill: var(--theme) !important
+    stroke: #9370DB !important
+    stroke-width: 1px !important
+
+  .loopLine
+    stroke: var(--text) !important
+    stroke-width: 1px !important
+    
