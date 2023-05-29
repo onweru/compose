@@ -1,8 +1,7 @@
 # use the setting below to set multiple docs directories.
 # docSections = ["docs", "tutorials"]
 
-# Enable copyRight
-enableCopyright = false
+
 
 uniqueHomePage = true # change to false to add sidebar to homepage
 
@@ -50,5 +49,9 @@ key = "da87401a458102ec6bbd6cc5e5cf8d95" # Search-Only API Key
 # optional
 # attribution. Feel free to delete this
 [author]
-  name = "Weru"
+  name = "Bleh"
   url = "https://neuralvibes.com/author/"
+
+# Defaults to true if not set
+# Enable copyRight Footer Stamp. Takes in attribution
+enableCopyright = true
