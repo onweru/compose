@@ -1,16 +1,15 @@
 {{- $config := site.Params }}
 {{- $author := $config.author }}
-{{- if ne $config.enableCopyright false }}
 <footer class="pt-2 pb-2">
   <div class="wrap">
-    <p>&copy; <span class="year">{{ now.Year }}</span>{{ with $author }} <a href ="{{ absLangURL .url }}" target="_blank" rel="noopener">{{ .name }}</a>{{ end }}</p>
+    <p>
+      &copy; <span class="year">{{ now.Year }}</span>
+      {{- if $config.enableCopyright  }}
+        {{ with $author }}
+        &nsbp;<a href="{{ absLangURL .url }}" target="_blank" rel="noopener">{{ .name }}</a>
+        {{ end }}
+      {{ end }}
+    </p>
     <a href="#pagetop" id="toTop" title={{ T "to_top" }}></a>
   </div>
 </footer>
-{{ else }}
-<footer class="pt-2 pb-2">
-  <div class="wrap">
-    <a href="#pagetop" id="toTop" title={{ T "to_top" }}></a>
-  </div>
-</footer>
-{{- end }}

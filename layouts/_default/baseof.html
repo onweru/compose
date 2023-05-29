@@ -11,55 +11,35 @@
   <header class="nav_header">
     {{- partial "nav" . }}
   </header>
-  {{ if or (eq .Section site.Params.blogDir) (eq .Type "search" ) }}
+  {{ if or (eq .Section $config.blogDir) (eq .Type "search" ) }}
     {{- block "main" . }}{{ end }}
   {{ else }}
   <div class="main wrap pt-4">
-    {{ $docSections := site.Params.docSections }}
+    {{ $docSections := $config.docSections }}
     {{- with $docSections }}{{- else }}
       {{- $docSections = "docs" }}
     {{- end }}
     {{ $uniqueHomepage := .IsHome }}
-    {{ if site.Params.uniqueHomepage }}
+    {{ if $config.uniqueHomepage }}
       {{ if .IsHome }}
         {{ $uniqueHomepage = true }}
       {{ end }}
-  <head>
-    {{- partial "head" . }}
-  </head>
-  <body class="page-{{ .Kind }}" id="pagetop">
-    <header class="nav_header">
-      {{- partial "nav" . }}
-    </header>
-    {{ if or (eq .Section site.Params.blogDir) (eq .Type "search" ) }}
-      {{- block "main" . }}{{ end }}
     {{ else }}
-    <div class="main wrap pt-4">
-      {{ $docSections := site.Params.docSections }}
-      {{- with $docSections }}{{- else }}
-        {{- $docSections = "docs" }}
-      {{- end }}
-      {{ $uniqueHomepage := .IsHome }}
-      {{ if site.Params.uniqueHomepage }}
-        {{ if .IsHome }}
-          {{ $uniqueHomepage = true }}
-        {{ end }}
-      {{ else }}
-        {{ $uniqueHomepage = false }}
-      {{ end }}
-      {{- if and (in $docSections .Section) (ne $uniqueHomepage true) }}
-        {{- partial "document" . }}
-      {{- else }}
-        <div class="content">
-          {{- block "main" . }}{{ end }}
-        </div>
-      {{- end -}}
-    </div>
+      {{ $uniqueHomepage = false }}
     {{ end }}
-    {{- partial "scripts/translations" . -}}
-    {{- partialCached "footer" . -}}
-    {{- partialCached "sprites" . -}}
-    {{- partial "scripts/bundle" . -}}
-    {{- partial "scripts/mermaid" . -}}
-  </body>
+    {{- if and (in $docSections .Section) (ne $uniqueHomepage true) }}
+      {{- partial "document" . }}
+    {{- else }}
+      <div class="content">
+        {{- block "main" . }}{{ end }}
+      </div>
+    {{- end -}}
+  </div>
+  {{ end }}
+  {{- partial "scripts/translations" . -}}
+  {{- partialCached "footer" . -}}
+  {{- partialCached "sprites" . -}}
+  {{- partial "scripts/bundle" . -}}
+  {{- partial "scripts/mermaid" . -}}
+</body>
 </html>
