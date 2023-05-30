@@ -2,5 +2,5 @@
 {{- template "_internal/schema.html" . -}}
 {{- template "_internal/twitter_cards.html" . -}}
 {{- if eq (getenv "HUGO_ENV") "production" }}
-{{- template "_internal/google_analytics_async.html" . }}
+  {{- template "_internal/google_analytics.html" . }}
 {{- end }}
