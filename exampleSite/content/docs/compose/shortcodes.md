@@ -55,7 +55,24 @@ This allows you to embed a youtube video in you content. You would achieve that 
 
 {{< liteyoutube "25QyCxVkXwQ" >}}
 
-**OR**
+#### YouTube Video - Specific Section and Controls Disabled
+
+If you wanted to only play a specific section of a video (in seconds), disable all controls, and enable the JavaScript API ([See other parameter options here](https://developers.google.com/youtube/player_parameters#Parameters)):
+
+**Syntax**
+
+```markdown
+  {{</* liteyoutube videoid="25QyCxVkXwQ" params="controls=0&start=10&end=30&modestbranding=2&rel=0&enablejsapi=1" */>}}
+  <!-- Use the youtube video id -->
+```
+
+**Result**
+
+{{< liteyoutube videoid="25QyCxVkXwQ" params="controls=0&start=10&end=30&modestbranding=2&rel=0&enablejsapi=1" >}}
+
+#### Built-in YouTube ShortCode
+
+While this method does have a slower load time, it allows you to enter the full URL.
 
 **Syntax**
 
