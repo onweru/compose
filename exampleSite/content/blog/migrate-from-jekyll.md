@@ -24,7 +24,7 @@ Additionally, you'll want any files that should reside at the root (such as `CNA
 ## Create your Hugo configuration file
 Hugo can read your configuration as JSON, YAML or TOML. Hugo supports parameters custom configuration too. Refer to the [Hugo configuration documentation](/overview/configuration/) for details.
 
-{{< youtube "https://www.youtube.com/watch?v=eW7Twd85m2g" >}}
+{{< liteyoutube videoid="eW7Twd85m2g" >}}
 
 ## Set your configuration publish folder to `_site`
 The default is for Jekyll to publish to `_site` and for Hugo to publish to `public`. If, like me, you have [`_site` mapped to a git submodule on the `gh-pages` branch](http://blog.blindgaenger.net/generate_github_pages_in_a_submodule.html), you'll want to do one of two alternatives:

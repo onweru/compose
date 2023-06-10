@@ -47,13 +47,13 @@ This allows you to embed a youtube video in you content. You would achieve that 
 **Syntax**
 
 ```markdown
-  {{</* youtube "25QyCxVkXwQ" */>}}
+  {{</* liteyoutube "25QyCxVkXwQ" */>}}
   <!-- Use the youtube video id -->
 ```
 
 **Result**
 
-{{< youtube "25QyCxVkXwQ" >}}
+{{< liteyoutube "25QyCxVkXwQ" >}}
 
 **OR**
 

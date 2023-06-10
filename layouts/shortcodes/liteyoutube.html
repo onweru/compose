@@ -1,0 +1,10 @@
+{{ $videoid := .Get "videoid" }}
+{{ if not $videoid }}
+  {{ $videoid := .Get 0 }}
+  {{ if not $videoid }}
+    {{ errorf "'videoid' parameter required!" }}
+  {{ end }}
+{{ end }}
+
+{{ $params := .Get "params" }} <!-- not required. List of params here: https://developers.google.com/youtube/player_parameters -->
+<lite-youtube videoid="{{ $videoid }}"{{ if $params }} params="{{$params}}"{{ end }}></lite-youtube>
