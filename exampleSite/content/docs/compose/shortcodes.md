@@ -106,6 +106,8 @@ The params string instructs YouTube to play only 20 seconds of the video startin
 
 {{< liteyoutube "MmG2ah5Df4g" "painting.jpg" "controls=0&start=10&end=30&modestbranding=2&rel=0&enablejsapi=1" >}}
 
+{{< liteyoutube videoid="MmG2ah5Df4g" img="painting.jpg" params="controls=0&start=10&end=30&modestbranding=2&rel=0&enablejsapi=1" >}}
+
 {{< tip >}}
 You can browse the full list of YouTube parameters [here](https://developers.google.com/youtube/player_parameters#Parameters)
 {{< /tip >}}
