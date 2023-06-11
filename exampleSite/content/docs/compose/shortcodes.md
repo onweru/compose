@@ -78,13 +78,15 @@ The `liteyoutube` shortcode supports three parameters:
 | params | YouTube parameters | yes |
 | img | Background image from static/images | yes |
 
-##### With only `videoid`
+##### With no Parameters
+
+This example shows only supplying the required `videoid` (without a named parameter). You can also add the `img` and `params` parameters (in that order) without using named parameters.
 
 ```markdown
-{{</* liteyoutube videoid="MmG2ah5Df4g" */>}}
+{{</* liteyoutube "MmG2ah5Df4g" */>}}
 ```
 
-{{< liteyoutube videoid="MmG2ah5Df4g" >}}
+{{< liteyoutube "MmG2ah5Df4g" >}}
 
 ##### With `videoid` and `params`
 
@@ -99,10 +101,10 @@ The params string instructs YouTube to play only 20 seconds of the video startin
 ##### With All Three Parameters
 
 ```markdown
-{{</* liteyoutube videoid="MmG2ah5Df4g" img="painting.jpg" params="controls=0&start=10&end=30&modestbranding=2&rel=0&enablejsapi=1" */>}}
+{{</* liteyoutube "MmG2ah5Df4g" "painting.jpg" "controls=0&start=10&end=30&modestbranding=2&rel=0&enablejsapi=1" */>}}
 ```
 
-{{< liteyoutube videoid="MmG2ah5Df4g" img="painting.jpg" params="controls=0&start=10&end=30&modestbranding=2&rel=0&enablejsapi=1" >}}
+{{< liteyoutube "MmG2ah5Df4g" "painting.jpg" "controls=0&start=10&end=30&modestbranding=2&rel=0&enablejsapi=1" >}}
 
 {{< tip >}}
 You can browse the full list of YouTube parameters [here](https://developers.google.com/youtube/player_parameters#Parameters)
