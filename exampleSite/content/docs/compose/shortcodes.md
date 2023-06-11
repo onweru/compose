@@ -70,18 +70,21 @@ This allows you to embed a youtube video in you content. You would achieve that 
 
 #### Lite YouTube
 
-The `liteyoutube` shortcode supports two parameters:
+The `liteyoutube` shortcode supports three parameters:
 
-- videoid: the `videoid` parameter **is required**. However, you don't have to use it by name--you can just put in a YouTube video ID.
-- params: the `params` parameter is **not** required. If you decide to use it, you must also use the `videoid` parameter.
+| PARAMETER | PURPOSE | OPTIONAL |
+| :--- | :--- | :--- |
+| videoid | YouTube video identifier | no |
+| params | YouTube parameters | yes |
+| img | Background image from static/images | yes |
 
-##### Without `videoid`
+##### With only `videoid`
 
 ```markdown
-{{</* liteyoutube "MmG2ah5Df4g" */>}}
+{{</* liteyoutube videoid="MmG2ah5Df4g" */>}}
 ```
 
-{{< liteyoutube "MmG2ah5Df4g" >}}
+{{< liteyoutube videoid="MmG2ah5Df4g" >}}
 
 ##### With `videoid` and `params`
 
@@ -92,6 +95,15 @@ The params string instructs YouTube to play only 20 seconds of the video startin
 ```
 
 {{< liteyoutube videoid="MmG2ah5Df4g" params="controls=0&start=10&end=30&modestbranding=2&rel=0&enablejsapi=1" >}}
+
+##### With All Three Parameters
+
+```markdown
+{{</* liteyoutube videoid="MmG2ah5Df4g" img="painting.jpg" params="controls=0&start=10&end=30&modestbranding=2&rel=0&enablejsapi=1" */>}}
+```
+
+{{< liteyoutube videoid="MmG2ah5Df4g" img="painting.jpg" params="controls=0&start=10&end=30&modestbranding=2&rel=0&enablejsapi=1" >}}
+
 
 {{< tip >}}
 You can browse the full list of YouTube parameters [here](https://developers.google.com/youtube/player_parameters#Parameters)
