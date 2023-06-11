@@ -4,9 +4,7 @@
   {{ $bkImg := "" }}
   {{ $params := .Get "params" }} <!-- not required. List of params here: https://developers.google.com/youtube/player_parameters -->
   {{ with $img }}
-    {{ $bkImg := absURL (printf "images/%s" $img) }}
-    {{ printf "named img = [%s]" $img }}
-    {{ printf "named bkImg = [%s]" $bkImg}}  
+    {{ $bkImg := absURL (printf "images/%s" .) }}
     <lite-youtube videoid="{{$videoid}}"{{ with $bkImg }} style="background-image: url('{{ . }}')"{{ end }}{{ with $params }} params="{{ . }}"{{ end }}></lite-youtube>
   {{ else }}
     <lite-youtube videoid="{{$videoid}}"{{ with $params }} params="{{ . }}"{{ end }}></lite-youtube>
@@ -17,9 +15,7 @@
   {{- $params := .Get 2 -}} <!-- not required. List of params here: https://developers.google.com/youtube/player_parameters -->
   {{ $bkImg := "" }}
   {{ with $img }}
-    {{ $bkImg := absURL (printf "images/%s" $img) }}
-    {{ printf "pos img = [%s]" $img }}
-    {{ printf "pos bkImg = [%s]" $bkImg}}  
+    {{ $bkImg := absURL (printf "images/%s" .) }}
     <lite-youtube videoid="{{$videoid}}"{{ with $bkImg }} style="background-image: url('{{ . }}')"{{ end }}{{ with $params }} params="{{ . }}"{{ end }}></lite-youtube>
   {{ else }}
     <lite-youtube videoid="{{$videoid}}"{{ with $params }} params="{{ . }}"{{ end }}></lite-youtube>
