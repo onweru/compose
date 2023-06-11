@@ -1,3 +1,17 @@
+{{ $includeLiteYT := false }} <!-- begin search for liteyoutube shortcode. code borrowed from erichc Nov 2020 https://discourse.gohugo.io/t/automagically-loading-suitable-scripts-in-head/29429/8 -->
+{{ if .IsNode }} <!-- list page -->
+  {{ range .Pages }}	<!-- check child pages -->
+    {{ range .Pages }}	<!-- another recursion because of the "/posts/xyz" structure; does work with category lists -->
+      {{ $rawsummary := split .RawContent "<!--more-->" }}	<!-- prepare for checking only the part of the article that will show up on the list page -->
+      {{ if (findRE "{{< liteyoutube" (index $rawsummary 0)) }} <!-- check if this part uses the shortcode -->
+        {{ $includeLiteYT = true }}
+      {{ end }}
+    {{ end }} <!-- second range .Pages -->
+  {{ end }} <!-- first range .Pages -->
+{{ end }} <!-- IsNode -->
+{{ if (.HasShortcode "liteyoutube") }} <!-- check if single page or list page itself use the shortcode -->
+  {{ $includeLiteYT = true }}
+{{ end }} <!-- end liteyoutube shortcode search -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {{- hugo.Generator }}
@@ -9,6 +23,11 @@
 <link rel="mask-icon" href='{{ absURL (printf "%ssafari-pinned-tab.svg" $iconsPath) }}'  color="#004750">
 <link rel="shortcut icon" href='{{ absURL (printf "%sfavicon.ico" $iconsPath) }}'>
 <meta name="msapplication-config" content='{{ absURL (printf "%sbrowserconfig.xml" $iconsPath) }}'>
+{{ if $includeLiteYT }} <!-- if we find the liteyoutube shortcode in the page, insert the stylesheet and the javascript into the header -->
+  <!-- the lite-yt-embed script and css retrieved from https://github.com/paulirish/lite-youtube-embed -->
+  <link rel="stylesheet" href="{{.Site.BaseURL}}/css/lite-yt-embed.css">
+  <script type="text/javascript" src="{{.Site.BaseURL}}/js/lite-yt-embed.js"></script>
+{{ end }}
 {{- $t := .Title }}
 {{- $s := site.Title }}
 {{- if in (lower $s) (lower $t) }}

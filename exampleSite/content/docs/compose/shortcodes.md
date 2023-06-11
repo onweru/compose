@@ -68,6 +68,35 @@ This allows you to embed a youtube video in you content. You would achieve that 
 
 {{< youtube "https://www.youtube.com/watch?v=MmG2ah5Df4g" >}}
 
+#### Lite YouTube
+
+The `liteyoutube` shortcode supports two parameters:
+
+- videoid: the `videoid` parameter **is required**. However, you don't have to use it by name--you can just put in a YouTube video ID.
+- params: the `params` parameter is **not** required. If you decide to use it, you must also use the `videoid` parameter.
+
+##### Without `videoid`
+
+```markdown
+{{</* liteyoutube "MmG2ah5Df4g" */>}}
+```
+
+{{< liteyoutube "MmG2ah5Df4g" >}}
+
+##### With `videoid` and `params`
+
+The params string instructs YouTube to play only 20 seconds of the video starting at ten seconds and ending at 30 seconds. It also disables the player controls and enables the YouTube `JSAPI`.
+
+```markdown
+{{</* liteyoutube videoid="MmG2ah5Df4g" params="controls=0&start=10&end=30&modestbranding=2&rel=0&enablejsapi=1" */>}}
+```
+
+{{< liteyoutube videoid="MmG2ah5Df4g" params="controls=0&start=10&end=30&modestbranding=2&rel=0&enablejsapi=1" >}}
+
+{{< tip >}}
+You can browse the full list of YouTube parameters [here](https://developers.google.com/youtube/player_parameters#Parameters)
+{{< /tip >}}
+
 ### Button
 
 This adds a styled link (styled like a button). It takes two no-optional parameters:
