@@ -48,3 +48,5 @@ github.com/rwstorer/hugo-theme-compose v0.0.0-20230611031132-ddffdf7dde93 h1:Ttz
 github.com/rwstorer/hugo-theme-compose v0.0.0-20230611031132-ddffdf7dde93/go.mod h1:7TS3BoBV/IcLPRT2r7LyTyOqzsS5P5sXKlNpGgxdK/s=
 github.com/rwstorer/hugo-theme-compose v0.0.0-20230611031251-11099f76fce2 h1:tWGK7hU0ptbaehbGSlvGpJQHvSUW6ksvBD5SGKqvFWI=
 github.com/rwstorer/hugo-theme-compose v0.0.0-20230611031251-11099f76fce2/go.mod h1:7TS3BoBV/IcLPRT2r7LyTyOqzsS5P5sXKlNpGgxdK/s=
+github.com/rwstorer/hugo-theme-compose v0.0.0-20230611033347-7c57127c2f46 h1:SXeF48TLLcxOMG2ZFpv2+hu9IhfrMWzPxYWEJ2UnATU=
+github.com/rwstorer/hugo-theme-compose v0.0.0-20230611033347-7c57127c2f46/go.mod h1:7TS3BoBV/IcLPRT2r7LyTyOqzsS5P5sXKlNpGgxdK/s=

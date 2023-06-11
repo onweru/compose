@@ -6,9 +6,9 @@
   {{ with $img }} {{ $bkImg := absURL (printf "images/%s" $img) }} {{ end }}
   <lite-youtube videoid="{{$videoid}}"{{ with $bkImg }} style="background-image: url('{{ . }}')"{{ end }}{{ with $params }} params="{{ . }}"{{ end }}></lite-youtube>
 {{ else }}
-  {{- $videoid := .Get 0 }} <!-- required. -->
-  {{- $img := .Get 1 }} <!-- not required. The initial background image instead of a generated one. -->
-  {{- $params := .Get 2 }} <!-- not required. List of params here: https://developers.google.com/youtube/player_parameters -->
+  {{- $videoid := .Get 0 -}} <!-- required. -->
+  {{- $img := .Get 1 -}} <!-- not required. The initial background image instead of a generated one. -->
+  {{- $params := .Get 2 -}} <!-- not required. List of params here: https://developers.google.com/youtube/player_parameters -->
   {{ $bkImg := "" }}
   {{ with $img }} {{ $bkImg := absURL (printf "images/%s" $img) }} {{ end }}
   <lite-youtube videoid="{{$videoid}}"{{ with $bkImg }} style="background-image: url('{{ . }}')"{{ end }}{{ with $params }} params="{{ . }}"{{ end }}></lite-youtube>
