@@ -1,6 +1,9 @@
 /**
  * A lightweight youtube embed. Still should feel the same to the user, just MUCH faster to initialize and paint.
  *
+ * Author: Paul Irish
+ * https://github.com/paulirish/lite-youtube-embed
+ *
  * Thx to these as the inspiration
  *   https://storage.googleapis.com/amp-vs-non-amp/youtube-lazy.html
  *   https://autoplay-youtube-player.glitch.me/
