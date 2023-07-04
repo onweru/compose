@@ -1,0 +1,32 @@
+[copy]
+  other = "Copiar"
+[copied]
+  other = "Copiado"
+[docs_menu]
+  other = "Menú de documentos"
+[no_matches]
+  other = "No se encontraron coincidencias"
+[not_set]
+  other = "no asignado"
+[resize_snippet]
+  other = "Ajustar la altura del fragmento"
+[quick_links]
+  other = "Enlaces rápidos"
+[search_field_placeholder]
+  other = "Buscar"
+[search_results_label]
+  other = "Buscar resultados"
+[short_search_query]
+  other = "La consulta es demasiado corta"
+[site]
+  other = "sitio web"
+[site_menu]
+  other = "Menú del sitio web"
+[toggle_line_numbers]
+  other = "Alterna números de línea"
+[toggle_line_wrap]
+  other = "Alterna ajuste de línea"
+[to_top]
+  other = "Volver arriba"
+[type_to_search]
+  other = "Escribe para buscar"
