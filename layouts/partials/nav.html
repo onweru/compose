@@ -30,6 +30,7 @@
 			<a class="nav-link{{if $active }} active{{end}}" href="{{ $url }}"><span{{if $active }} class="active"{{end}}>{{ T .Identifier | default .Name }}</span></a>
 		</li>
 		{{- end }}
+		{{ if $sp.source }}
 		{{ $repo := $sp.source }}
 		<li class="nav-item nav_repo">
 			<a class="nav-link" href="{{ $repo.url }}" target="_blank">
@@ -44,6 +45,7 @@
 				{{ end }}
 			</a>
 		</li>
+		{{ end }}
 		<li class="nav-item">{{ partial "mode" . }}</li>
 	</ul>
 </nav>
