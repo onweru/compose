@@ -28,5 +28,10 @@ github.com/onweru/compose v0.0.0-20230522093958-40f93a906ddc h1:Uyve0EvHruYiHVTc
 github.com/onweru/compose v0.0.0-20230522093958-40f93a906ddc/go.mod h1:tf1kQIBUcwJ/3mRFU5eiMrMvsDScVTK2IEFsZE3hZOc=
 github.com/onweru/compose v0.0.0-20230530114506-a2ddf2b32939 h1:XVZlCIf6BUmHReHKp5bt/e4+Vy5NCypqiju/LEcCz4Y=
 github.com/onweru/compose v0.0.0-20230530114506-a2ddf2b32939/go.mod h1:tf1kQIBUcwJ/3mRFU5eiMrMvsDScVTK2IEFsZE3hZOc=
+<<<<<<< Updated upstream
 github.com/onweru/compose v0.0.0-20230709124724-5ebe0b0b8d16 h1:cMfQ9aU/j2yJYbzuytHa3TAnFryZmQtp08nDCxUnnNk=
 github.com/onweru/compose v0.0.0-20230709124724-5ebe0b0b8d16/go.mod h1:tf1kQIBUcwJ/3mRFU5eiMrMvsDScVTK2IEFsZE3hZOc=
+=======
+github.com/onweru/compose v0.0.0-20230615081942-67dad4f6ef90 h1:YtZ28Fg638nbpKbvwEB16c3LBIdDxEAi8E0eWmo+Dw0=
+github.com/onweru/compose v0.0.0-20230615081942-67dad4f6ef90/go.mod h1:tf1kQIBUcwJ/3mRFU5eiMrMvsDScVTK2IEFsZE3hZOc=
+>>>>>>> Stashed changes

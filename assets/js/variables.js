@@ -1,12 +1,11 @@
 'use strict';
 
-// global variables;
 const doc = document.documentElement;
 const toggle_id = 'toggle';
 const show_id = 'show';
 const menu = 'menu';
 const active = 'active';
-// root_url must end with '/' for relative URLs to work properly
+let site_title = `{{ replace (lower site.Title) " " "-" }}`;
 let root_url = '{{ strings.TrimSuffix "/" .Site.BaseURL }}/';
 root_url = root_url.startsWith('http') ? root_url : window.location.origin;
 
@@ -37,7 +36,8 @@ const hash = '#';
 
 const light = 'light';
 const dark = 'dark';
-const storageKey = 'colorMode';
+const storageKey = `${site_title}-color-mode`;
+const mermaidThemeKey = `${site_title}-mermaid`;
 const key = '--color-mode';
 const mode_data = 'data-mode';
 const bank = window.localStorage;

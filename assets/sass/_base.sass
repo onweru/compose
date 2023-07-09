@@ -19,6 +19,14 @@ body, html
   -webkit-text-size-adjust: 100%
   font-size: 18px
 
+@keyframes flash
+  0%
+    opacity: 0
+  75%
+    opacity: 0
+  100%
+    opacity: 1
+
 body
   font-family: var(--font)
   background-color: var(--bg)
@@ -35,6 +43,8 @@ body
   -moz-osx-font-smoothing: grayscale
   -webkit-overflow-scrolling: touch
   max-width: 1440px
+  animation: 0.67s flash ease-in
+
   @media screen and (min-width: 1640px)
     max-width: 1600px
 
