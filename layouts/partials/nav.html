@@ -1,4 +1,4 @@
-{{- $s := .Site }}
+{{- $s := site }}
 {{- $sp := $s.Params }}
 <nav class="wrap nav menu">
 	<a href='{{ absLangURL "" }}' class="nav_brand">
@@ -31,19 +31,19 @@
 		</li>
 		{{- end }}
 		{{ $repo := $sp.source }}
+		{{ with $sp.source }}
 		<li class="nav-item nav_repo">
-			<a class="nav-link" href="{{ $repo.url }}" target="_blank">
-				{{ if $repo.iconLight }}
-					{{- $litPath := absURL ($repo.iconLight) }}
-					{{- $darkPath := absURL ($repo.iconDark) }}
+			<a class="nav-link" href="{{ .url }}" target="_blank">
+				{{ if .iconLight }}
+					{{- $litPath := absURL .iconLight }}
+					{{- $darkPath := absURL .iconDark }}
 					<picture data-lit="{{ $litPath }}" data-dark="{{ $darkPath }}">
-						<img src="{{ $litPath }}" alt="{{ $repo.name }} Repo">
+						<img src="{{ $litPath }}" alt="{{ .name }} Repo">
 					</picture>
-				{{ else }}
-					{{ $repo.name }}
-				{{ end }}
+				{{ else }}{{ .name }}{{ end }}
 			</a>
 		</li>
+		{{ end }}
 		<li class="nav-item">{{ partial "mode" . }}</li>
 	</ul>
 </nav>

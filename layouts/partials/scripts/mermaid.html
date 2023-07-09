@@ -1,0 +1,25 @@
+
+{{ if in .Content "mermaid" }}
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  let theme_input = elem('.color_choice');
+  let key = theme_input.value;
+
+  function getTheme(mode) {
+    return key == 'dark' ? 'dark' : 'base';
+  }
+
+  function initializeMermaid(mode) {
+    mermaid.initialize(
+    { startOnLoad: true, theme: getTheme(mode) }
+  );
+  }
+
+  initializeMermaid(key);
+
+  theme_input.addEventListener('change', e => {
+    location.reload();
+    initializeMermaid(e.target.value);
+  });
+</script>
+{{ end }}

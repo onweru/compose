@@ -39,6 +39,12 @@ function pickModePicture(mode) {
   });
 }
 
+function setMermaidTheme(mode) {
+  bank.setItem(mermaidThemeKey, mode);
+  let theme_input = elem('.color_choice');
+  theme_input.value = mode;
+}
+
 function setUserColorMode(mode = false) {
   const is_dark_mode = currentMode() == dark;
   const stored_mode = bank.getItem(storageKey);
@@ -51,6 +57,8 @@ function setUserColorMode(mode = false) {
   const user_mode = doc.dataset.mode;
   doc.dataset.systemmode = sys_mode;
   user_mode ? pickModePicture(user_mode) : false;
+
+  setMermaidTheme(user_mode);
 }
 
 setUserColorMode();
