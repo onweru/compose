@@ -1,0 +1,24 @@
+{{ $baseurl := absURL "" }}
+{{ $includeLiteYT := false }}
+<!-- begin search for liteyoutube shortcode. code borrowed from erichc Nov 2020 https://discourse.gohugo.io/t/automagically-loading-suitable-scripts-in-head/29429/8 -->
+{{ if .IsNode }}
+  {{ range .Pages }}
+    {{ range .Pages }}
+    <!-- another recursion because of the "/posts/xyz" structure; does work with category lists -->
+      {{ $rawsummary := split .RawContent "<!--more-->" }}
+      <!-- prepare for checking only the part of the article that will show up on the list page -->
+      {{ if (findRE "liteyoutube" (index $rawsummary 0)) }}
+        {{ $includeLiteYT = true }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+{{ if (.HasShortcode "liteyoutube") }}
+  {{ $includeLiteYT = true }}
+{{ end }}
+{{ if $includeLiteYT }}
+  {{ $styles := printf "%s/css/lite-yt-embed.css" $baseurl }}
+  {{ $scripts := printf "%s/js/lite-yt-embed.js" $baseurl }}
+  <link rel="stylesheet" href={{ $styles }}>
+  <script src={{ $scripts }}></script>
+{{ end }}

@@ -1,23 +1,16 @@
-{{ if .IsNamedParams }}
-  {{ $videoid := .Get "videoid" }} <!-- required. -->
-  {{ $img := .Get "img" }} <!-- not required. The initial background image instead of a generated one. -->
+<div class="video">
+  {{- $videoid := .Get 0 -}}
+  {{- $img := .Get 1 -}}
+  {{- $params := .Get 2 -}}
   {{ $bkImg := "" }}
-  {{ $params := .Get "params" }} <!-- not required. List of params here: https://developers.google.com/youtube/player_parameters -->
+  {{ if .IsNamedParams }}
+    {{ $videoid = .Get "videoid" }}
+    {{ $img = .Get "img" }}
+    {{ $bkImg = "" }}
+    {{ $params = .Get "params" }}
+  {{ end }}
   {{ with $img }}
     {{ $bkImg := absURL (printf "images/%s" .) }}
-    <lite-youtube videoid="{{$videoid}}"{{ with $bkImg }} style="background-image: url('{{ . }}')"{{ end }}{{ with $params }} params="{{ . }}"{{ end }}></lite-youtube>
-  {{ else }}
-    <lite-youtube videoid="{{$videoid}}"{{ with $params }} params="{{ . }}"{{ end }}></lite-youtube>
   {{ end }}
-{{ else }}
-  {{- $videoid := .Get 0 -}} <!-- required. -->
-  {{- $img := .Get 1 -}} <!-- not required. The initial background image instead of a generated one. -->
-  {{- $params := .Get 2 -}} <!-- not required. List of params here: https://developers.google.com/youtube/player_parameters -->
-  {{ $bkImg := "" }}
-  {{ with $img }}
-    {{ $bkImg := absURL (printf "images/%s" .) }}
-    <lite-youtube videoid="{{$videoid}}"{{ with $bkImg }} style="background-image: url('{{ . }}')"{{ end }}{{ with $params }} params="{{ . }}"{{ end }}></lite-youtube>
-  {{ else }}
-    <lite-youtube videoid="{{$videoid}}"{{ with $params }} params="{{ . }}"{{ end }}></lite-youtube>
-  {{ end }}
-{{ end }}
+  <lite-youtube videoid="{{ $videoid }}"{{ with $bkImg }} style="background-image: url({{ . }})"{{ end }}{{ with $params }} params="{{ . }}"{{ end }}></lite-youtube>
+</div>
