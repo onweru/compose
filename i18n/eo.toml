@@ -1,0 +1,32 @@
+[copy]
+  other = "Kopii"
+[copied]
+  other = "Kopiita"
+[docs_menu]
+  other = "Dokumentara menuo"
+[no_matches]
+  other = "Ne trovis kongrŭojn"
+[not_set]
+  other = "ne agordita"
+[resize_snippet]
+  other = "Ĝustigi kodaĵan alton"
+[quick_links]
+  other = "Rapidaj ligiloj"
+[search_field_placeholder]
+  other = "Serĉi"
+[search_results_label]
+  other = "Serĉi rezultojn"
+[short_search_query]
+  other = "La serĉoteksto estas tro mallonga"
+[site]
+  other = "retejon"
+[site_menu]
+  other = "Reteja menuo"
+[toggle_line_numbers]
+  other = "Baskuligi liniajn nombrojn"
+[toggle_line_wrap]
+  other = "Baskuligi linifaldon"
+[to_top]
+  other = "Reiri supren"
+[type_to_search]
+  other = "Tajpu por serĉi"
