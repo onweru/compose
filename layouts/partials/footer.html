@@ -6,7 +6,7 @@
       &copy; <span class="year">{{ now.Year }}</span>
       {{- if $config.enableCopyright  }}
         {{ with $author }}
-        &nsbp;<a href="{{ absLangURL .url }}" target="_blank" rel="noopener">{{ .name }}</a>
+        <a href="{{ absLangURL .url }}" target="_blank" rel="noopener">{{ .name }}</a>
         {{ end }}
       {{ end }}
     </p>
