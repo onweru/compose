@@ -2,3 +2,7 @@ github.com/onweru/compose v0.0.0-20230709163331-af3e133abf10 h1:6+OU3YpznL1bAy1s
 github.com/onweru/compose v0.0.0-20230709163331-af3e133abf10/go.mod h1:tf1kQIBUcwJ/3mRFU5eiMrMvsDScVTK2IEFsZE3hZOc=
 github.com/onweru/compose v0.0.0-20230709170553-cdf6b3d268e3 h1:LQ9aw508QrowSWfr8m7Q43AelhGTaNhX+obnkCWefKg=
 github.com/onweru/compose v0.0.0-20230709170553-cdf6b3d268e3/go.mod h1:tf1kQIBUcwJ/3mRFU5eiMrMvsDScVTK2IEFsZE3hZOc=
+github.com/onweru/compose v0.0.0-20230717085020-14357bb3e167 h1:btK2EwB8mRaebaNkvzsEjnxQt6dI9corw9n5kyPQoMk=
+github.com/onweru/compose v0.0.0-20230717085020-14357bb3e167/go.mod h1:tf1kQIBUcwJ/3mRFU5eiMrMvsDScVTK2IEFsZE3hZOc=
+github.com/onweru/compose v0.0.0-20230729163245-27b84dc22eb8 h1:aVItqjRfGwyOZHloHxVY6kEjjR+e8AQVXlpWiQtO0dw=
+github.com/onweru/compose v0.0.0-20230729163245-27b84dc22eb8/go.mod h1:tf1kQIBUcwJ/3mRFU5eiMrMvsDScVTK2IEFsZE3hZOc=
