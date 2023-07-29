@@ -172,6 +172,60 @@ function initAlgoliaSearch(manual = true) {
   });
 }
 
+function tabOverSearchResults() {
+  search_field.addEventListener('keydown', function (e) {
+    // Prevent curet from moving when up or down is pressed
+    if (e.keyCode === 38 || e.keyCode === 40 || e.keyCode === 13) {
+      e.preventDefault();
+      return;
+    }
+  });
+  search_field.addEventListener('keyup', function (e) {
+    if (e.keyCode !== 38 && e.keyCode !== 40 && e.keyCode !== 13) {
+      return
+    }
+    e.preventDefault();
+
+    var results = e.target.parentNode.getElementsByClassName('search_result');
+    if (results.length === 0) {
+      return;
+    }
+
+    // Find the currently selected result and select the next or previous one
+    var selected = -1;
+    for (var i = 0; i < results.length; i++) {
+      if (results[i].classList.contains('active')) {
+        selected = i;
+        results[i].classList.remove('active');
+        break;
+      }
+    }
+
+    if (e.keyCode === 38) {
+      // For up arrow select the previous result
+      selected = selected === -1 ? results.length - 1 : selected - 1;
+      if (selected < 0) {
+        selected = results.length - 1;
+      }
+
+      results[selected].classList.add('active');
+      return;
+    } else if (e.keyCode === 40) {
+      // For down arrow select the next result
+      selected = selected === -1 ? 0 : selected + 1;
+      if (selected === results.length) {
+        selected = 0;
+      }
+
+      results[selected].classList.add('active');
+      return;
+    }
+
+    window.location.href = results[selected === -1 ? 0 : selected].href;
+    return;
+  });
+}
+
 function initializeSearch() {
   let main = elem('main');
   main = main ? main : elem('.main');
@@ -194,6 +248,8 @@ function initializeSearch() {
     const is_search = target.closest(search_class) || target.matches(search_class);
     !is_search && !search_page_element ? clearSearchResults() : false;
   });
+
+  tabOverSearchResults();
 }
 
 window.addEventListener('load', () => initializeSearch());
