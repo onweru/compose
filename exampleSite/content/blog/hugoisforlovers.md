@@ -1,17 +1,9 @@
 +++
 title = "Getting Started with Hugo"
 description = ""
-tags = [
-    "go",
-    "golang",
-    "hugo",
-    "development",
-]
-date = "2014-04-02"
-categories = [
-    "Development",
-    "golang",
-]
+tags = [ "go", "golang", "hugo", "development" ]
+date = 2014-04-02T00:00:00.000Z
+categories = [ "Development", "golang" ]
 image = "/images/stuck.jpg"
 +++
 
@@ -31,10 +23,10 @@ you are reading right now.
 
 Follow the following steps:
 
- 1. Clone the [Hugo repository](http://github.com/spf13/hugo)
- 2. Go into the repo
- 3. Run hugo in server mode and build the docs
- 4. Open your browser to http://localhost:1313
+1. Clone the [Hugo repository](http://github.com/spf13/hugo)
+2. Go into the repo
+3. Run hugo in server mode and build the docs
+4. Open your browser to http://localhost:1313
 
 Corresponding pseudo commands:
 
@@ -91,4 +83,4 @@ Having nearly instant feedback enables you to have your creativity flow without 
 
 ## Step 4. Have fun
 
-The best way to learn something is to play with it.
+The best way to learn something is to play with it...
