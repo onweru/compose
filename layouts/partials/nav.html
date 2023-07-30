@@ -1,12 +1,11 @@
-{{- $s := site }}
-{{- $sp := $s.Params }}
+{{- $config := site.Params }}
 <nav class="wrap nav menu">
 	<a href='{{ absLangURL "" }}' class="nav_brand">
-		{{- $logos := $sp.logo }}
+		{{- $logos := $config.logo }}
 		{{- $litPath := absURL ($logos.lightMode) }}
 		{{- $darkPath := absURL ($logos.darkMode) }}
 		<picture data-lit="{{ $litPath }}" data-dark="{{ $darkPath }}">
-			<img src="{{ $litPath }}" alt="{{ $s.Title }} Logo">
+			<img src="{{ $litPath }}" alt="{{ site.Title }} Logo">
 		</picture>
 		<label class="nav_toggle toggle" title='{{ T "site_menu" }}' role="button">
 			{{ partial "sprite" (dict "icon" "harmburger") }}
@@ -17,7 +16,7 @@
 			{{- partial "search" . }}
 		</li>
 		{{- $p := . }}
-		{{- range $s.Menus.main }}
+		{{- range site.Menus.main }}
 		<li class="nav-item">
 			{{- $active := or ($p.IsMenuCurrent "main" .) ($p.HasMenuCurrent "main" .) }}
 			{{- with .Page }}
@@ -30,8 +29,8 @@
 			<a class="nav-link{{if $active }} active{{end}}" href="{{ $url }}"><span{{if $active }} class="active"{{end}}>{{ T .Identifier | default .Name }}</span></a>
 		</li>
 		{{- end }}
-		{{ $repo := $sp.source }}
-		{{ with $sp.source }}
+		{{ $repo := $config.source }}
+		{{ with $config.source }}
 		<li class="nav-item nav_repo">
 			<a class="nav-link" href="{{ .url }}" target="_blank">
 				{{ if .iconLight }}

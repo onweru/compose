@@ -6,17 +6,21 @@
       <h1 class="post_title">{{ .Title }}</h1>
       <div class="post_body">
         <div class="post_inner">
-        {{ with .Params.image }}
-          {{- $image := absURL (printf "images/%s" .) }}
-          {{ if in . "https://" }}
+        {{- with .Params.image }}
+          {{- $image := . }}
+          {{- if ne (in . "images") true }}
+            {{- $image = printf "images/%s" . }}
+          {{- end }}
+          {{- $image = absURL $image }}
+          {{- if in . "https://" }}
             {{- $image = . }}
-          {{ end }}
+          {{- end }}
           <img src="{{ $image }}" alt="{{ . }}" class="post_thumbnail">
-        {{ end }}
-          {{ .Content }}
+        {{- end }}
+          {{- .Content }}
         </div>
         <div class="post_extra mb-2">
-          {{ partialCached "share" . }}
+          {{- partialCached "share" . }}
         </div>
         <div>
         {{ template "_internal/disqus.html" . }}
