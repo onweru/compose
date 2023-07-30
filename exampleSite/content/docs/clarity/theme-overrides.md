@@ -1,6 +1,6 @@
 +++
 title = "Theme Overrides"
-weight=18
+weight = 18
 +++
 
 ### Custom CSS and JS

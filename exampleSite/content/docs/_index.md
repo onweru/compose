@@ -1,7 +1,7 @@
----
-title: "Themes' Docs"
-weight: 1
----
++++
+title = "Themes' Docs"
+weight = 1
++++
 
 These docs consists of two parts:
 

@@ -12,7 +12,7 @@ categories = [
     "Development",
     "golang",
 ]
-image = "stuck.jpg"
+image = "/images/stuck.jpg"
 +++
 
 ## Step 1. Install Hugo

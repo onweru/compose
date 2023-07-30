@@ -1,8 +1,8 @@
----
-title: "Mermaid"
-weight: 8
-description: "Generate diagrams, flowcharts, and piecharts  from text in a similar manner as markdown."
----
++++
+title = "Mermaid"
+weight = 8
+description = "Generate diagrams, flowcharts, and piecharts  from text in a similar manner as markdown."
++++
 
 [Mermaid](https://mermaidjs.github.io/) is library that helps you generate diagrams, flowcharts, and piecharts  from text in a similar manner as markdown.
 

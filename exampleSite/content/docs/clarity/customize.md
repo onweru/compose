@@ -1,7 +1,7 @@
----
-title: "Customization"
-weight: 14
----
++++
+title = "Customization"
+weight = 14
++++
 
 ## Configuration
 

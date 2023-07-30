@@ -1,7 +1,7 @@
----
-title: Features
-Weight: 13
----
++++
+title = "Features"
+Weight = 13
++++
 
 * Blog with tagging and category options
 * Deeplinks

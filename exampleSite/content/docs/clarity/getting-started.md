@@ -1,7 +1,7 @@
----
-title: Getting started
-weight: 11
----
++++
+title = "Getting started"
+weight = 11
++++
 
 ## Prerequisites
 
