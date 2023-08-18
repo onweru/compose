@@ -169,6 +169,44 @@ The 2nd parameter is optional. It's a _double-collon-separated list_ (`::`) of y
 
 {{< gallery "images/painting.jpg,images/scribble.jpg,images/painting.jpg" "Gallery Image 1::gallery image 2::gallery image 1 copy" >}}
 
+### Tab(s)
+
+Use this short if you want to publish a multiple tabs component.
+
+**Syntax**
+
+```markdown
+{{</* tabs "tabsId" */>}}
+{{</* tab "First" */>}}
+What could such a tab include?
+{{</* /tab >}}
+{{</* tab "Second" */>}}
+- Some *bulletpoints*
+- and more…
+- …
+{{</* /tab >}}
+{{</* tab "Third" */>}}
+> great wise words?
+{{</* /tab */>}}
+{{</* /tabs */>}}
+```
+
+**Result**
+
+{{< tabs "tabsId" >}}
+{{< tab "First" >}}
+What could such a tab include?
+{{< /tab >}}
+{{< tab "Second" >}}
+- Some *bulletpoints*
+- and more…
+- …
+{{< /tab >}}
+{{< tab "Third" >}}
+> great wise words?
+{{< /tab >}}
+{{< /tabs >}}
+
 ### Tip
 
 Use this short if you want to publish informational tooltips that look like:
