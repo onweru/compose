@@ -5,6 +5,8 @@ command = "hugo --gc --minify --baseURL https://docs.neuralvibes.com/"
 
 [context.production.environment]
 HUGO_VERSION = "0.117.0"
+GO_VERSION = "1.21.0"
+NODE_VERSION = "20.5.1"
 HUGO_ENV = "production"
 HUGO_ENABLEGITINFO = "true"
 
@@ -13,6 +15,8 @@ command = "hugo --gc --minify --enableGitInfo"
 
 [context.split1.environment]
 HUGO_VERSION = "0.117.0"
+GO_VERSION = "1.21.0"
+NODE_VERSION = "20.5.1"
 HUGO_ENV = "production"
 
 [context.deploy-preview]
@@ -20,12 +24,16 @@ command = "hugo --gc --minify --buildFuture -b $DEPLOY_PRIME_URL"
 
 [context.deploy-preview.environment]
 HUGO_VERSION = "0.117.0"
+GO_VERSION = "1.21.0"
+NODE_VERSION = "20.5.1"
 
 [context.branch-deploy]
 command = "hugo --gc --minify -b $DEPLOY_PRIME_URL"
 
 [context.branch-deploy.environment]
 HUGO_VERSION = "0.117.0"
+GO_VERSION = "1.21.0"
+NODE_VERSION = "20.5.1"
 
 [context.next.environment]
 HUGO_ENABLEGITINFO = "true"

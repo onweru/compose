@@ -10,7 +10,7 @@ Let's sync your site with Tina CMS.
 
 ## Prerequisites !!
 
-Obviously you ought to have __a github account__. This is where your website source will live. Basically, Tina will read from github and write (commmit) to your github repo.
+Obviously you ought to have __a github account__. This is where your website source will live. Basically, Tina will read from github and write (commit) to your github repo.
 
 {{< tip "warning" >}}
 Gitlab or bitbucket will work too. Just check their [implementation here](https://Tina.io/docs/git-sync/gitlab/). Happy fishing.

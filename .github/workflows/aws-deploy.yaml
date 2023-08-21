@@ -13,7 +13,7 @@ on: # change to `on:` to turn on
   push:
     paths:
       # - exampleSite/content/**/*
-      - exampleSite/config.toml
+      - exampleSite/hugo.toml
   # pull_request:
   #   branches:
   #   - production

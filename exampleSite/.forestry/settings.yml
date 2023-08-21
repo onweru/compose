@@ -7,7 +7,7 @@ sections:
 - type: heading
   label: CONFIG
 - type: document
-  path: exampleSite/config.toml
+  path: exampleSite/hugo.toml
   label: Settings
 - type: heading
   label: PAGES

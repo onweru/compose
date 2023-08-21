@@ -7,7 +7,7 @@ off: # change to `on:` to turn on
   push:
     paths:
       - content/**/*
-      - config.toml
+      - hugo.toml
 
 env:
   # Name of the branch in your repository which will store your generated site.

@@ -38,7 +38,7 @@ These modifiers are classes you can use with shortcodes to customize the look an
 
 ### How do I disable dark mode?
 
-Under `params` add `enableDarkMode = false` to your `config.toml` file. If your site is based on the exampleSite, the value is already included; you only need to uncomment it.
+Under `params` add `enableDarkMode = false` to your `hugo.toml` file. If your site is based on the exampleSite, the value is already included; you only need to uncomment it.
 
 > The user will still have the option to activate dark mode, if they so wish through the UI
 
@@ -50,7 +50,7 @@ You can then edit the file to customize the theme color in your site without hav
 
 ### How can I change the address bar color on mobile devices?
 
-Just put the following line in the `[params]` section in your `config.toml` file (and of course change the color):
+Just put the following line in the `[params]` section in your `hugo.toml` file (and of course change the color):
 
 ```toml
 metaThemeColor = "#123456"
@@ -69,7 +69,7 @@ The contents of the first file will be attached just before the `</head>` tag.
 
 The contents of the second file will be attached just before the `</body>` tag.
 
-Alternatively, if you want to use the `config.toml` to track your custom styles or scripts, declare them as slices under `[params]` like so:
+Alternatively, if you want to use the `hugo.toml` to track your custom styles or scripts, declare them as slices under `[params]` like so:
 
 ```toml
 ...
