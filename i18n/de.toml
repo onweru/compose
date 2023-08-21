@@ -1,0 +1,32 @@
+[copy]
+  other = "Kopieren"
+[copied]
+  other = "Kopiert"
+[docs_menu]
+  other = "Dokumentationsmenü"
+[no_matches]
+  other = "Keine Übereinstimmung gefunden"
+[not_set]
+  other = "undefiniert"
+[resize_snippet]
+  other = "Höhe des Snippets ändern"
+[quick_links]
+  other = "Schnellzugriff"
+[search_field_placeholder]
+  other = "Suche"
+[search_results_label]
+  other = "Suchergebnisse"
+[short_search_query]
+  other = "Anfrage ist zu kurz"
+[site]
+  other = "Webseite"
+[site_menu]
+  other = "Menü der Webseite"
+[toggle_line_numbers]
+  other = "Zeilennummern ein- oder ausblenden"
+[toggle_line_wrap]
+  other = "Zeilenumbruch aktivieren oder deaktivieren"
+[to_top]
+  other = "Zurück zum Anfang"
+[type_to_search]
+  other = "Suchbegriff eingeben"
