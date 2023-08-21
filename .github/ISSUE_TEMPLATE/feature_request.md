@@ -10,7 +10,7 @@ assignees: ''
 
 - [ ] Read the README.md
 - [ ] Have the extended version of Hugo installed
-- [ ] Used the exampleSite's config.toml as a reference
+- [ ] Used the exampleSite's hugo.toml as a reference
 
 **Describe the feature**
 

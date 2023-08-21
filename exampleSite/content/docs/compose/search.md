@@ -4,7 +4,7 @@ title = "Search Function"
 weight = 7
 +++
 
-Firstly, ensure you have these lines inside your config.toml file
+Firstly, ensure you have these lines inside your hugo.toml file
 
 ```toml
 [outputs]

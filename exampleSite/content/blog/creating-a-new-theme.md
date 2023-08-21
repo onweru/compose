@@ -123,7 +123,7 @@ total 8
 drwxr-xr-x  7 quoha  staff  238 Sep 29 16:49 .
 drwxr-xr-x  3 quoha  staff  102 Sep 29 16:49 ..
 drwxr-xr-x  2 quoha  staff   68 Sep 29 16:49 archetypes
--rw-r--r--  1 quoha  staff   82 Sep 29 16:49 config.toml
+-rw-r--r--  1 quoha  staff   82 Sep 29 16:49 hugo.toml
 drwxr-xr-x  2 quoha  staff   68 Sep 29 16:49 content
 drwxr-xr-x  2 quoha  staff   68 Sep 29 16:49 layouts
 drwxr-xr-x  2 quoha  staff   68 Sep 29 16:49 static
@@ -140,7 +140,7 @@ Running the `hugo` command with no options will read all the available content a
 
 ```shell
 $ hugo --verbose
-INFO: 2014/09/29 Using config file: config.toml
+INFO: 2014/09/29 Using config file: hugo.toml
 INFO: 2014/09/29 syncing from /Users/quoha/Sites/zafta/static/ to /Users/quoha/Sites/zafta/public/
 WARN: 2014/09/29 Unable to locate layout: [index.html _default/list.html _default/single.html]
 WARN: 2014/09/29 Unable to locate layout: [404.html]
@@ -161,7 +161,7 @@ We can verify that the command worked by looking at the directory again.
 $ ls -l
 total 8
 drwxr-xr-x  2 quoha  staff   68 Sep 29 16:49 archetypes
--rw-r--r--  1 quoha  staff   82 Sep 29 16:49 config.toml
+-rw-r--r--  1 quoha  staff   82 Sep 29 16:49 hugo.toml
 drwxr-xr-x  2 quoha  staff   68 Sep 29 16:49 content
 drwxr-xr-x  2 quoha  staff   68 Sep 29 16:49 layouts
 drwxr-xr-x  4 quoha  staff  136 Sep 29 17:02 public
@@ -187,7 +187,7 @@ Verify that you can run the built-in web server. It will dramatically shorten yo
 
 ```shell
 $ hugo server --verbose
-INFO: 2014/09/29 Using config file: /Users/quoha/Sites/zafta/config.toml
+INFO: 2014/09/29 Using config file: /Users/quoha/Sites/zafta/hugo.toml
 INFO: 2014/09/29 syncing from /Users/quoha/Sites/zafta/static/ to /Users/quoha/Sites/zafta/public/
 WARN: 2014/09/29 Unable to locate layout: [index.html _default/list.html _default/single.html]
 WARN: 2014/09/29 Unable to locate layout: [404.html]
@@ -240,7 +240,7 @@ Use the hugo "new" command to create the skeleton of a theme. This creates the d
 $ ls -l
 total 8
 drwxr-xr-x  2 quoha  staff   68 Sep 29 16:49 archetypes
--rw-r--r--  1 quoha  staff   82 Sep 29 16:49 config.toml
+-rw-r--r--  1 quoha  staff   82 Sep 29 16:49 hugo.toml
 drwxr-xr-x  2 quoha  staff   68 Sep 29 16:49 content
 drwxr-xr-x  2 quoha  staff   68 Sep 29 16:49 layouts
 drwxr-xr-x  4 quoha  staff  136 Sep 29 17:02 public
@@ -291,7 +291,7 @@ Now that we've got a theme to work with, it's a good idea to add the theme name 
 
 Edit the file to add the theme, add a title for the site, and specify that all of our content will use the TOML format.
 
-    $ vi config.toml
+    $ vi hugo.toml
     theme = "zafta"
     baseurl = ""
     languageCode = "en-us"
@@ -307,7 +307,7 @@ Now that we have an empty theme, let's generate the site again.
 
 ```shell
 $ hugo --verbose
-INFO: 2014/09/29 Using config file: /Users/quoha/Sites/zafta/config.toml
+INFO: 2014/09/29 Using config file: /Users/quoha/Sites/zafta/hugo.toml
 INFO: 2014/09/29 syncing from /Users/quoha/Sites/zafta/themes/zafta/static/ to /Users/quoha/Sites/zafta/public/
 INFO: 2014/09/29 syncing from /Users/quoha/Sites/zafta/static/ to /Users/quoha/Sites/zafta/public/
 WARN: 2014/09/29 Unable to locate layout: [404.html theme/404.html]
@@ -425,7 +425,7 @@ Here's sample output showing Hugo detecting a change to the template for the hom
 
     $ rm -rf public
     $ hugo server --watch --verbose
-    INFO: 2014/09/29 Using config file: /Users/quoha/Sites/zafta/config.toml
+    INFO: 2014/09/29 Using config file: /Users/quoha/Sites/zafta/hugo.toml
     INFO: 2014/09/29 syncing from /Users/quoha/Sites/zafta/themes/zafta/static/ to /Users/quoha/Sites/zafta/public/
     INFO: 2014/09/29 syncing from /Users/quoha/Sites/zafta/static/ to /Users/quoha/Sites/zafta/public/
     WARN: 2014/09/29 Unable to locate layout: [404.html theme/404.html]
@@ -478,7 +478,7 @@ Build the web site and then verify the results.
 
 ```bash
 $ hugo --verbose
-INFO: 2014/09/29 Using config file: /Users/quoha/Sites/zafta/config.toml
+INFO: 2014/09/29 Using config file: /Users/quoha/Sites/zafta/hugo.toml
 INFO: 2014/09/29 syncing from /Users/quoha/Sites/zafta/themes/zafta/static/ to /Users/quoha/Sites/zafta/public/
 INFO: 2014/09/29 syncing from /Users/quoha/Sites/zafta/static/ to /Users/quoha/Sites/zafta/public/
 WARN: 2014/09/29 Unable to locate layout: [404.html theme/404.html]
@@ -530,7 +530,7 @@ Hugo has a command to generate a skeleton post, just like it does for sites and 
 
 ```bash
 $ hugo --verbose new post/first.md
-INFO: 2014/09/29 Using config file: /Users/quoha/Sites/zafta/config.toml
+INFO: 2014/09/29 Using config file: /Users/quoha/Sites/zafta/hugo.toml
 INFO: 2014/09/29 attempting to create  post/first.md of post
 INFO: 2014/09/29 curpath: /Users/quoha/Sites/zafta/themes/zafta/archetypes/default.md
 ERROR: 2014/09/29 Unable to Cast <nil> to map[string]interface{}
@@ -554,14 +554,14 @@ The "new" command uses an archetype to create the post file. Hugo created an emp
     -rw-r--r--  1 quoha  staff  51 Sep 29 21:54 themes/zafta/archetypes/post.md
     
     $ hugo --verbose new post/first.md
-    INFO: 2014/09/29 Using config file: /Users/quoha/Sites/zafta/config.toml
+    INFO: 2014/09/29 Using config file: /Users/quoha/Sites/zafta/hugo.toml
     INFO: 2014/09/29 attempting to create  post/first.md of post
     INFO: 2014/09/29 curpath: /Users/quoha/Sites/zafta/themes/zafta/archetypes/post.md
     INFO: 2014/09/29 creating /Users/quoha/Sites/zafta/content/post/first.md
     /Users/quoha/Sites/zafta/content/post/first.md created
     
     $ hugo --verbose new post/second.md
-    INFO: 2014/09/29 Using config file: /Users/quoha/Sites/zafta/config.toml
+    INFO: 2014/09/29 Using config file: /Users/quoha/Sites/zafta/hugo.toml
     INFO: 2014/09/29 attempting to create  post/second.md of post
     INFO: 2014/09/29 curpath: /Users/quoha/Sites/zafta/themes/zafta/archetypes/post.md
     INFO: 2014/09/29 creating /Users/quoha/Sites/zafta/content/post/second.md
@@ -602,7 +602,7 @@ Build the web site and then verify the results.
 ```bash
 $ rm -rf public
 $ hugo --verbose
-INFO: 2014/09/29 Using config file: /Users/quoha/Sites/zafta/config.toml
+INFO: 2014/09/29 Using config file: /Users/quoha/Sites/zafta/hugo.toml
 INFO: 2014/09/29 syncing from /Users/quoha/Sites/zafta/themes/zafta/static/ to /Users/quoha/Sites/zafta/public/
 INFO: 2014/09/29 syncing from /Users/quoha/Sites/zafta/static/ to /Users/quoha/Sites/zafta/public/
 INFO: 2014/09/29 found taxonomies: map[string]string{"category":"categories", "tag":"tags"}
@@ -673,7 +673,7 @@ Build the web site and then verify the results.
 ```shell
     $ rm -rf public
     $ hugo --verbose
-    INFO: 2014/09/29 Using config file: /Users/quoha/Sites/zafta/config.toml
+    INFO: 2014/09/29 Using config file: /Users/quoha/Sites/zafta/hugo.toml
     INFO: 2014/09/29 syncing from /Users/quoha/Sites/zafta/themes/zafta/static/ to /Users/quoha/Sites/zafta/public/
     INFO: 2014/09/29 syncing from /Users/quoha/Sites/zafta/static/ to /Users/quoha/Sites/zafta/public/
     INFO: 2014/09/29 found taxonomies: map[string]string{"tag":"tags", "category":"categories"}
@@ -747,7 +747,7 @@ Build the web site and verify the results.
 
     $ rm -rf public
     $ hugo --verbose
-    INFO: 2014/09/29 Using config file: /Users/quoha/Sites/zafta/config.toml
+    INFO: 2014/09/29 Using config file: /Users/quoha/Sites/zafta/hugo.toml
     INFO: 2014/09/29 syncing from /Users/quoha/Sites/zafta/themes/zafta/static/ to /Users/quoha/Sites/zafta/public/
     INFO: 2014/09/29 syncing from /Users/quoha/Sites/zafta/static/ to /Users/quoha/Sites/zafta/public/
     INFO: 2014/09/29 found taxonomies: map[string]string{"tag":"tags", "category":"categories"}
@@ -817,7 +817,7 @@ Build the web site and verify the results.
 ```shell
     $ rm -rf public
     $ hugo --verbose
-    INFO: 2014/09/29 Using config file: /Users/quoha/Sites/zafta/config.toml
+    INFO: 2014/09/29 Using config file: /Users/quoha/Sites/zafta/hugo.toml
     INFO: 2014/09/29 syncing from /Users/quoha/Sites/zafta/themes/zafta/static/ to /Users/quoha/Sites/zafta/public/
     INFO: 2014/09/29 syncing from /Users/quoha/Sites/zafta/static/ to /Users/quoha/Sites/zafta/public/
     INFO: 2014/09/29 found taxonomies: map[string]string{"tag":"tags", "category":"categories"}
@@ -952,7 +952,7 @@ But, that about page still renders to about-time/index.html.
 
 Knowing that hugo is using the slug to generate the file name, the simplest solution is to change the slug. Let's do it the hard way and change the permalink in the configuration file.
 
-    $ vi config.toml
+    $ vi hugo.toml
     [permalinks]
       page = "/:title/"
       about = "/:filename/"
@@ -1018,7 +1018,7 @@ Let's change the home page template to use these new partials.
 {{ partial "footer.html" . }}
 ```   
 
-Generate the web site and verify the results. The title on the home page is now "your title here", which comes from the "title" variable in the config.toml file.
+Generate the web site and verify the results. The title on the home page is now "your title here", which comes from the "title" variable in the hugo.toml file.
 
 ### Update the Default Single Template to Use the Partials
 
