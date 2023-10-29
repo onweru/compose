@@ -8,9 +8,9 @@
   },
   "keywords": [],
   "author": "",
-  "license": "MIT",
+  "license": "ISC",
   "dependencies": {
-    "@tinacms/cli": "^1.5.26",
-    "tinacms": "^1.5.17"
+    "@tinacms/cli": "^1.5.31",
+    "tinacms": "^1.5.22"
   }
 }
