@@ -1,7 +1,7 @@
 [build]
 publish = "public"
 #command = "hugo --gc --minify"
-command = "hugo --gc --minify --baseURL https://docs.neuralvibes.com/"
+command = "tinacms build && next build && hugo --gc --minify --baseURL https://docs.neuralvibes.com/"
 
 [context.production.environment]
 HUGO_VERSION = "0.119.0"
