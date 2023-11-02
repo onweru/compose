@@ -10,12 +10,12 @@ export default defineConfig({
 
   build: {
     outputFolder: "admin",
-    publicFolder: "exampleSite/static",
+    publicFolder: "static",
   },
   media: {
     tina: {
       mediaRoot: "images",
-      publicFolder: "exampleSite/static",
+      publicFolder: "static",
     },
   },
   schema: {
@@ -23,7 +23,10 @@ export default defineConfig({
       {
         name: "docs",
         label: "Docs",
-        path: "exampleSite/content/docs",
+        path: "content/docs",
+        frontmatterFormat: "toml",
+        frontmatterDelimiters: "+++",
+        format: "md",
         fields: [
           {
             type: "string",
@@ -53,7 +56,10 @@ export default defineConfig({
       {
         name: "post",
         label: "Posts",
-        path: "exampleSite/content/posts",
+        path: "content/blog",
+        frontmatterFormat: "toml",
+        frontmatterDelimiters: "+++",
+        format: "md",
         fields: [
           {
             type: "string",
@@ -66,6 +72,18 @@ export default defineConfig({
             type: "string",
             name: "author",
             label: "Author",
+          },
+          {
+            type: "string",
+            name: "categories",
+            label: "Categories",
+            list: true
+          },
+          {
+            type: "string",
+            name: "tags",
+            label: "Tags",
+            list: true
           },
           {
             type: "datetime",
@@ -88,7 +106,10 @@ export default defineConfig({
       {
         name: "tutorials",
         label: "Tutorials",
-        path: "exampleSite/content/tutorials",
+        path: "content/tutorials",
+        frontmatterFormat: "toml",
+        frontmatterDelimiters: "+++",
+        format: "md",
         fields: [
           {
             type: "string",
