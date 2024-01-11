@@ -2,7 +2,7 @@
 {{- $descriptions := split (replace (.Get 1) ":: " "::") "::" }}
 <div class="gallery">
   {{- range $index, $image := $images }}
-    {{- if eq ((strings.Contains $image "https://") || (strings.Contains $image "http://")) true }}
+    {{- if eq (or (strings.Contains $image "https://") (strings.Contains $image "http://")) true }}
       {{- $image = absURL $image }}
     {{- end }} 
     <figure class="gallery_item">
