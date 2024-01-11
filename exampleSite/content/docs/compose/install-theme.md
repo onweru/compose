@@ -48,6 +48,7 @@ cd yourSiteName
 git init
 git submodule add https://github.com/onweru/compose/ themes/compose
 cp -a themes/compose/exampleSite/* .
+git commit -m "setup compose theme"
 ```
 
 Then run
