@@ -7,9 +7,9 @@
 		<picture data-lit="{{ $litPath }}" data-dark="{{ $darkPath }}">
 			<img src="{{ $litPath }}" alt="{{ site.Title }} Logo">
 		</picture>
-		<label class="nav_toggle toggle" title='{{ T "site_menu" }}' role="button">
+		<div class="nav_toggle toggle" title='{{ T "site_menu" }}'>
 			{{ partial "sprite" (dict "icon" "harmburger") }}
-		</label>
+		</div>
 	</a>
 	<ul class="nav_body">
 		<li class="nav-item">

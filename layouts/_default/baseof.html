@@ -1,9 +1,11 @@
-{{ $config := site.Params }}
-{{ $context := . }}
+{{- $config := site.Params }}
+{{- $context := . }}
+{{- $item_type := "http://schema.org/WebPage" }}
+{{- $lang := site.Language.Lang }}
+{{- $is_dark := $config.enableDarkMode }}
+{{- $default_mode := $config.defaultLightingMode -}}
 <!doctype html>
-<html lang="{{ site.Language.Lang }}"{{ with $config.enableDarkMode }} class="dark"{{ end }}{{ with $config.defaultLightingMode }}
-  data-mode="{{ . }}"
-{{ end }}>
+<html lang={{ $lang }}{{ with $is_dark }} class=dark{{ end }}{{ with $default_mode }} data-mode={{ . }}{{ end }} itemscope itemtype={{ $item_type }}>
 <head>
   {{- partial "head/index" . }}
 </head>
@@ -11,22 +13,22 @@
   <header class="nav_header">
     {{- partial "nav" . }}
   </header>
-  {{ if or (eq .Section $config.blogDir) (eq .Type "search" ) }}
+  {{- if or (eq .Section $config.blogDir) (eq .Type "search" ) }}
     {{- block "main" . }}{{ end }}
-  {{ else }}
+  {{- else }}
   <div class="main wrap pt-4">
-    {{ $docSections := $config.docSections }}
+    {{- $docSections := $config.docSections }}
     {{- with $docSections }}{{- else }}
       {{- $docSections = "docs" }}
     {{- end }}
-    {{ $uniqueHomepage := .IsHome }}
-    {{ if $config.uniqueHomepage }}
-      {{ if .IsHome }}
-        {{ $uniqueHomepage = true }}
-      {{ end }}
-    {{ else }}
-      {{ $uniqueHomepage = false }}
-    {{ end }}
+    {{- $uniqueHomepage := .IsHome }}
+    {{- if $config.uniqueHomepage }}
+      {{- if .IsHome }}
+        {{- $uniqueHomepage = true }}
+      {{- end }}
+    {{- else }}
+      {{- $uniqueHomepage = false }}
+    {{- end }}
     {{- if and (in $docSections .Section) (ne $uniqueHomepage true) }}
       {{- partial "document" . }}
     {{- else }}
@@ -35,7 +37,7 @@
       </div>
     {{- end -}}
   </div>
-  {{ end }}
+  {{- end }}
   {{- partial "scripts/translations" . -}}
   {{- partialCached "footer" . -}}
   {{- partialCached "sprites" . -}}
