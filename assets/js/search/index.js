@@ -43,9 +43,9 @@ function liveSearch(index) {
     search(index, search_scope);
     search_scope = search_scope_global ? null : search_scope;
     if(!search_page_element) {
-      search_field.addEventListener('search', function(){
+      search_field.addEventListener('keyup', function(event){
         search_term = search_field.value.trim().toLowerCase();
-        if(search_term.length)  {
+        if(search_term.length && event.keyCode === 13)  {
           const scope_parameter = search_scope ? `&scope=${search_scope}` : empty_string;
           window.location.href = new URL(`search/?query=${search_term}${ scope_parameter }`, root_url).href;
         }
