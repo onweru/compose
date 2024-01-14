@@ -5,15 +5,15 @@
   {{- $size := $paginator.PageSize }}
   {{- $scratch := newScratch }}
   {{- range $index, $value := $paginator.Pages }}
-    {{ if isset .Params "image" }}
-      {{ $scratch.Set "image" .Params.image }}
-    {{ else }}
-      {{ $scratch.Set "image" "thumbnail.svg" }}
-    {{ end }}
-    {{ $image := $scratch.Get "image" }}
-    {{ $bg := $image }}
+    {{- if isset .Params "image" }}
+      {{- $scratch.Set "image" .Params.image }}
+    {{- else }}
+      {{- $scratch.Set "image" "thumbnail.svg" }}
+    {{- end }}
+    {{- $image := $scratch.Get "image" }}
+    {{- $bg := $image }}
     {{- if ne (in $image "images") true }}
-      {{ $bg = (absURL (printf "images/%s" $image)) }}
+      {{- $bg = (absURL (printf "images/%s" $image)) }}
     {{- end }}
     {{- if in $image "https://" }}
       {{- $bg = $image }}
@@ -34,6 +34,7 @@
   {{- if and (eq $index (add $size -1)) (gt $size 1) }}</div>{{ end }}
   {{- end }}
 </div>
+</div>
 <!-- <a href='{{ absURL (printf "post/%s" "") }}' class=post_nav>
   <span class=post_next>View Archive
   <svg class="icon icon_scale">
@@ -41,4 +42,4 @@
   </svg>
   </span>
 </a> -->
-{{ end }}
+{{- end }}

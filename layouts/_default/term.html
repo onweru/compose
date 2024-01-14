@@ -1,18 +1,18 @@
 {{ define "main" }}
 {{- $pages := .Data.Pages }}
-{{ .Data.Terms }}
+{{- .Data.Terms }}
 <div class="wrap pt-2 mt-2">
   {{- $paginator := .Paginate $pages -}}
   {{- $size := $paginator.PageSize }}
   {{- $scratch := newScratch }}
   {{- range $index, $value := $paginator.Pages }}
-    {{ if isset .Params "image" }}
-      {{ $scratch.Set "image" .Params.image }}
-    {{ else }}
-      {{ $scratch.Set "image" "thumbnail.svg" }}
-    {{ end }}
-    {{ $image := $scratch.Get "image" }}
-    {{ $bg := (absURL (printf "images/%s" $image)) }}
+    {{- if isset .Params "image" }}
+      {{- $scratch.Set "image" .Params.image }}
+    {{- else }}
+      {{- $scratch.Set "image" "thumbnail.svg" }}
+    {{- end }}
+    {{- $image := $scratch.Get "image" }}
+    {{- $bg := (absURL (printf "images/%s" $image)) }}
     {{- if in $image "https://" }}
       {{- $bg = $image }}
     {{- end }}
@@ -32,4 +32,5 @@
   {{- if and (eq $index (add $size -1)) (gt $size 1) }}</div>{{ end }}
   {{- end }}
 </div>
-{{ end }}
+</div>
+{{- end -}}
