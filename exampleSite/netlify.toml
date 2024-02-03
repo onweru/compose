@@ -1,7 +1,7 @@
 [build]
 publish = "public"
 #command = "hugo --gc --minify"
-command = "tinacms build && hugo --gc --minify --baseURL https://docs.neuralvibes.com/"
+command = "tinacms build && hugo --gc --minify --baseURL https://composedocs.netlify.app/"
 
 [context.production.environment]
 HUGO_VERSION = "0.121.2"
