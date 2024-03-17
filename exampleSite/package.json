@@ -11,6 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "@tinacms/cli": "^1.5.31",
-    "tinacms": "^1.5.22"
+    "tinacms": "^1.5.22",
+    "@tinacms/auth": "^1.0.3",
+    "next-tinacms-cloudinary": "^4.3.0"
   }
 }
