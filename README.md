@@ -17,8 +17,8 @@ Compose is a [Hugo](https://gohugo.io/) theme for documentation websites. The th
 
 ## Documentation
 
-- [Install compose theme](https://composedocs.netlify.app/docs/compose/use-tina-cms/)
-- [Use forestry CMS](https://composedocs.netlify.app/docs/compose/use-forestry-cms/)
+- [Install Compose theme](https://composedocs.netlify.app/docs/compose/install-theme/)
+- [Use Tina CMS](https://composedocs.netlify.app/docs/compose/use-tina-cms/)
 - [Customize your site](https://composedocs.netlify.app/docs/compose/customize/)
 - [Configure search](https://composedocs.netlify.app/docs/compose/search/)
 - [Shortcodes](https://composedocs.netlify.app/docs/compose/shortcodes/)
