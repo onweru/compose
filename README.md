@@ -43,7 +43,7 @@ hugo server --themesDir ../..
 1. [Clarity Theme](https://github.com/chipzoller/hugo-clarity)
 2. [Newsroom Theme](https://github.com/onweru/newsroom)
 3. [Swift Theme](https://github.com/onweru/hugo-swift-theme)
-4. [Browse](https://github.com/onweru/browse)
+4. [Browse Theme](https://github.com/onweru/browse)
 
 ## License
 
