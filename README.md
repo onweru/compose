@@ -2,7 +2,7 @@
 
 Compose is a [Hugo](https://gohugo.io/) theme for documentation websites. The theme provides a simple navigation & structure.
 
-![Hugo Compose Theme](https://github.com/onweru/compose/blob/master/images/tn.png)
+![Hugo Compose Theme](https://raw.githubusercontent.com/onweru/compose/master/images/tn.png)
 
 ## Features
 
