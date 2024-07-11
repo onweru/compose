@@ -170,37 +170,13 @@ function sanitizeURL(url) {
   return url
 }
 
-function createDeepLinks() {
-  let heading_nodes = [];
-
-  [...Array(6).keys()].forEach(function(i){
-    if(i) {
-      Array.prototype.push.apply(heading_nodes, document.getElementsByTagName(`h${i+1}`));
-    }
-  });
-
-  heading_nodes.forEach(node => {
-    let link = createEl('a');
-    let icon = createEl('img');
-    icon.src = '{{ absURL "icons/link.svg" }}';
-    link.className = 'link icon';
-    link.appendChild(icon);
-    let id = node.getAttribute('id');
-    if(id) {
-      link.href = `${sanitizeURL(document.URL)}#${id}`;
-      node.appendChild(link);
-      pushClass(node, 'link_owner');
-    }
-  });
-}
-
 function copyFeedback(parent) {
   const copy_txt = document.createElement('div');
   const yanked = 'link_yanked';
   copy_txt.classList.add(yanked);
   copy_txt.innerText = copied_text;
   if(!elem(`.${yanked}`, parent)) {
-    const icon = parent.getElementsByTagName('img')[0];
+    const icon = parent.getElementsByTagName('svg')[0];
     const original_src = icon.src;
     icon.src = '{{ absURL "icons/check.svg" }}';
     parent.appendChild(copy_txt);
@@ -269,7 +245,6 @@ function loadActions() {
   updateDate();
   customizeSidebar();
   markExternalLinks();
-  createDeepLinks();
   copyHeadingLink();
   makeTablesResponsive();
   backToTop();

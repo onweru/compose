@@ -1,0 +1,8 @@
+<h{{ .Level }} id="{{ .Anchor }}" class=link_owner>
+  {{ .Text | safeHTML }}
+  <a href="#{{ .Anchor }}" class="link icon">
+    <svg>
+      <use xlink:href="#anchor-link"></use>
+    </svg>
+  </a>
+</h{{ .Level }}>

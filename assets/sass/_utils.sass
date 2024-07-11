@@ -85,16 +85,17 @@
   display: inline-flex
   align-items: center
   width: 2.5rem
-  margin: 0 0.25rem
+  margin: 0 0.25rem 0 0
   padding: 0 0.25rem
   opacity: 0
+  transform: translate(-0.33rem, 0.33rem)
   transition: opacity 0.3s cubic-bezier(0.39, 0.575, 0.565, 1)
   svg, img
     width: 1.5rem
     height: 1.5rem
     fill: var(--theme)
   &_owner:hover &
-    opacity: 0.9
+    opacity: 1
 
 .copy
   cursor: pointer
