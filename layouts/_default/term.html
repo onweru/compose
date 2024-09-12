@@ -3,7 +3,7 @@
 {{- .Data.Terms }}
 <div class="wrap pt-2 mt-2">
   {{- $paginator := .Paginate $pages -}}
-  {{- $size := $paginator.PageSize }}
+  {{- $size := $paginator.PagerSize }}
   {{- $scratch := newScratch }}
   {{- range $index, $value := $paginator.Pages }}
     {{- if isset .Params "image" }}
