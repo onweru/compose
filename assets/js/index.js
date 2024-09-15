@@ -52,7 +52,7 @@ function featureHeading(){
   }
 }
 
-function activeHeading(position, list_links) {
+function activeHeading(index, list_links) {
   let links_to_modify = Object.create(null);
   links_to_modify.active = list_links.filter(function(link) {
     return containsClass(link, active);
@@ -60,9 +60,7 @@ function activeHeading(position, list_links) {
 
   // activeTocLink ? deleteClass
 
-  links_to_modify.new = list_links.filter(function(link){
-    return parseInt(link.dataset.position) === position
-  })[0];
+  links_to_modify.new = list_links[index]
 
   if (links_to_modify.active != links_to_modify.new) {
     links_to_modify.active ? deleteClass(links_to_modify.active, active): false;
@@ -107,26 +105,19 @@ function customizeSidebar() {
     if(current_toc) {
       const page_internal_links = Array.from(elems('a', current_toc));
 
-      const page_ids = page_internal_links.map(function(link){
-        return link.hash;
-      });
-
-      const link_positions = page_ids.map(function(id){
-        const heading = document.getElementById(decodeURIComponent(id.replace('#','')));
-        const position = heading.offsetTop;
-        return position;
-      });
-
-      page_internal_links.forEach(function(link, index){
-        link.dataset.position = link_positions[index]
+      const page_links = page_internal_links.map(function(link){
+        return document.getElementById(decodeURIComponent(link.hash.replace('#','')));
       });
 
       window.addEventListener('scroll', function(e) {
-        // this.setTimeout(function(){
-        let position = window.scrollY;
-        let active = closestInt(position, link_positions);
-        activeHeading(active, page_internal_links);
-        // }, 1500)
+        let position = window.scrollY + window.innerHeight/2;
+        let active_index = 0;
+        for (const [index, element] of page_links.entries()) {
+          if(element.offsetTop < position && element.offsetTop > page_links[active_index].offsetTop) {
+            active_index = index;
+          }
+        }
+        activeHeading(active_index, page_internal_links);
       });
     }
   }
