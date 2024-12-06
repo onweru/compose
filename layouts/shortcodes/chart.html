@@ -3,7 +3,8 @@
 {{- $data := index $.Page.Params $datasetKey }}
 {{- $dataURL := $data.fileLink }}
 {{- $separator := "," }}
-{{- $dataFile := getCSV $separator $dataURL }}
+{{- $rawData := resources.Get $dataURL }}
+{{- $dataFile := $rawData | transform.Unmarshal (dict "delimiter" $separator) }}
 
 {{- $dataCompactData := dict -}}
 {{- $activeColumn := sub $data.baseChartOn 1 }}
