@@ -6,39 +6,40 @@
 <link rel="icon" type="image/png" sizes="32x32" href='{{ absURL (printf "%sfavicon-32x32.png" $iconsPath) }}'>
 <link rel="icon" type="image/png" sizes="16x16" href='{{ absURL (printf "%sfavicon-16x16.png" $iconsPath) }}'>
 <link rel="manifest" href='{{ absURL (printf "%ssite.webmanifest" $iconsPath) }}'>
-<link rel="mask-icon" href='{{ absURL (printf "%ssafari-pinned-tab.svg" $iconsPath) }}'  color="#004750">
+<link rel="mask-icon" href='{{ absURL (printf "%ssafari-pinned-tab.svg" $iconsPath) }}' color="#004750">
 <link rel="shortcut icon" href='{{ absURL (printf "%sfavicon.ico" $iconsPath) }}'>
 <meta name="msapplication-config" content='{{ absURL (printf "%sbrowserconfig.xml" $iconsPath) }}'>
 {{- $t := .Title }}
 {{- $s := site.Title }}
 {{- if in (lower $s) (lower $t) }}
-  {{- $t = false }}
+{{- $t = false }}
 {{- end }}
 <title>{{ if and $t (ne (trim (lower $s) "") (trim (lower $t) "")) }}{{ $t }} | {{ end }}{{ $s }}</title>
 
 {{- partial "opengraph" . -}}
 
 {{- $options := (dict "targetPath" "css/styles.css" "outputStyle" "compressed" "enableSourceMap" "true") -}}
-{{- $styles := resources.Get "sass/main.sass" | resources.ExecuteAsTemplate "main.sass" . | css.Sass $options | resources.Fingerprint "sha512" }}
+{{- $styles := resources.Get "sass/main.sass" | resources.ExecuteAsTemplate "main.sass" . | toCSS $options |
+fingerprint "sha512" }}
 <link rel="stylesheet" href="{{ $styles.Permalink }}" integrity="{{ $styles.Data.Integrity }}">
 
 {{- $config := site.Params }}
 {{- with $config.customCSS }}
-  {{- range . -}}
-  <link rel="stylesheet" href="{{ . }}">
-  {{- end }}
+{{- range . -}}
+<link rel="stylesheet" href="{{ . }}">
+{{- end }}
 {{- end }}
 
 {{- with $config.metaThemeColor }}
-  <meta name="theme-color" content="{{ . }}">
+<meta name="theme-color" content="{{ . }}">
 {{- end }}
 
 {{- if .Description }}
-  <meta name="description" content="{{ .Description }}">
+<meta name="description" content="{{ .Description }}">
 {{- else if .IsPage }}
-  <meta name="description" content="{{ plainify .Summary }}">
+<meta name="description" content="{{ plainify .Summary }}">
 {{- else if $config.Description }}
-  <meta name="descripion" content="{{ $config.Description }}">
+<meta name="descripion" content="{{ $config.Description }}">
 {{- end }}
 {{- partial "head/liteyoutube" . }}
 {{- partialCached "hooks/head" . -}}
