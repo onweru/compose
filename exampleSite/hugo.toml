@@ -14,7 +14,7 @@ disableAliases = false
 pagerSize = 10
 path = 'page'
 
-# disableKinds = ["taxonomy", "taxonomyTerm"]
+# disableKinds = ["taxonomy"]
 
 [outputs]
 home = ["HTML", "RSS", "JSON"]
