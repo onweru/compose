@@ -1,3 +1,3 @@
-module github.com/cellebyte/compose
+module github.com/onweru/compose
 
 go 1.20
