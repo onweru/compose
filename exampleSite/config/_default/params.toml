@@ -5,12 +5,12 @@ uniqueHomePage = true # change to false to add sidebar to homepage
 
 blogDir = "blog" # can be posts, blog e.t.c
 
-repo = "https://github.com/cellebyte/compose"
+repo = "https://github.com/onweru/compose"
 
 time_format_blog = "Monday, January 02, 2006"
 time_format_default = "January 2, 2006"
-enableDarkMode = false # set to false to disable darkmode by default # user will still have the option to use dark mode
-defaultLightingMode = "auto" # other possible values: "dark", "light"
+enableDarkMode = false                        # set to false to disable darkmode by default # user will still have the option to use dark mode
+defaultLightingMode = "auto"                  # other possible values: "dark", "light"
 
 # sets the maximum number of lines per codeblock. The codeblock will however be scrollable and expandable.
 codeMaxLines = 10
@@ -21,7 +21,11 @@ showLineNumbers = false
 # By default the template will look for icons under the icons directory. In some situations you might wanna change that. edit the line below
 # iconsPath = 'icons/'
 
-otherSearchableFields = ["Tags", "Categories", "CustomField"] # As they appear in frontmatter
+otherSearchableFields = [
+  "Tags",
+  "Categories",
+  "CustomField",
+] # As they appear in frontmatter
 
 # Defaults to true if not set
 # Enable copyRight Footer Stamp. Takes in attribution
@@ -32,24 +36,24 @@ enableCopyright = false
 on = true
 global = false # turn to `true` to enable global search
 [search.algolia]
-enable = false # if false search will default to fusejs
-id = "Q40WQQX84U" # Application ID
-index = "compose" # Index name
+enable = false                           # if false search will default to fusejs
+id = "Q40WQQX84U"                        # Application ID
+index = "compose"                        # Index name
 key = "da87401a458102ec6bbd6cc5e5cf8d95" # Search-Only API Key
 
 # Site logo
 [logo]
-  lightMode = "images/compose.svg"
-  darkMode = "images/compose-light.svg"
+lightMode = "images/compose.svg"
+darkMode = "images/compose-light.svg"
 
 [source]
-  name = "GitHub"
-  iconLight = "images/GitHubMarkLight.svg"
-  iconDark = "images/GitHubMarkDark.svg"
-  url = "https://github.com/cellebyte/compose/"
+name = "GitHub"
+iconLight = "images/GitHubMarkLight.svg"
+iconDark = "images/GitHubMarkDark.svg"
+url = "https://github.com/onweru/compose/"
 
 # optional
 # attribution. Feel free to delete this
 [author]
-  name = "Weru"
-  url = "https://neuralvibes.com/author/"
+name = "Weru"
+url = "https://neuralvibes.com/author/"
