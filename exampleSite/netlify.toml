@@ -1,3 +1,11 @@
+[build.environment]
+DART_SASS_VERSION = "1.93.2"
+GO_VERSION = "1.25.3"
+HUGO_VERSION = "0.152.2"
+NODE_VERSION = "22.20.0"
+URL = "https://composedocs.netlify.app/"
+# TZ = "Europe/Oslo"
+
 [build]
 publish = "public"
 command = """\
@@ -6,43 +14,5 @@ command = """\
   rm "dart-sass-${DART_SASS_VERSION}-linux-x64.tar.gz" && \
   export PATH="${HOME}/.local/dart-sass:${PATH}" && \
   git config core.quotepath false && \
-  hugo --gc --minify --baseURL "https://composedocs.netlify.app/"
+  hugo --gc --minify --baseURL "${URL}"
   """
-# command = "hugo --gc --minify --baseURL "
-
-[context.production.environment]
-HUGO_VERSION = "0.147.2"
-GO_VERSION = "1.21.0"
-NODE_VERSION = "20.5.1"
-HUGO_ENV = "production"
-HUGO_ENABLEGITINFO = "true"
-
-[context.split1]
-command = "hugo --gc --minify --enableGitInfo"
-
-[context.split1.environment]
-GO_VERSION = "1.25.3"
-HUGO_VERSION = "0.152.2"
-NODE_VERSION = "22.20.0"
-HUGO_ENV = "production"
-DART_SASS_VERSION = "1.93.2"
-# TZ = "Europe/Oslo"
-
-[context.deploy-preview]
-command = "hugo --gc --minify --buildFuture -b $DEPLOY_PRIME_URL"
-
-[context.deploy-preview.environment]
-GO_VERSION = "1.25.3"
-HUGO_VERSION = "0.152.2"
-NODE_VERSION = "22.20.0"
-
-[context.branch-deploy]
-command = "hugo --gc --minify -b $DEPLOY_PRIME_URL"
-
-[context.branch-deploy.environment]
-GO_VERSION = "1.25.3"
-HUGO_VERSION = "0.152.2"
-NODE_VERSION = "22.20.0"
-
-[context.next.environment]
-HUGO_ENABLEGITINFO = "true"
