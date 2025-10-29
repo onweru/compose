@@ -1,7 +1,14 @@
 [build]
 publish = "public"
-#command = "hugo --gc --minify"
-command = "hugo --gc --minify --baseURL https://composedocs.netlify.app/"
+command = """\
+  curl -sLJO "https://github.com/sass/dart-sass/releases/download/${DART_SASS_VERSION}/dart-sass-${DART_SASS_VERSION}-linux-x64.tar.gz" && \
+  tar -C "${HOME}/.local" -xf "dart-sass-${DART_SASS_VERSION}-linux-x64.tar.gz" && \
+  rm "dart-sass-${DART_SASS_VERSION}-linux-x64.tar.gz" && \
+  export PATH="${HOME}/.local/dart-sass:${PATH}" && \
+  git config core.quotepath false && \
+  hugo --gc --minify --baseURL "https://composedocs.netlify.app/"
+  """
+# command = "hugo --gc --minify --baseURL "
 
 [context.production.environment]
 HUGO_VERSION = "0.147.2"
@@ -14,26 +21,28 @@ HUGO_ENABLEGITINFO = "true"
 command = "hugo --gc --minify --enableGitInfo"
 
 [context.split1.environment]
-HUGO_VERSION = "0.147.2"
-GO_VERSION = "1.21.0"
-NODE_VERSION = "20.5.1"
+GO_VERSION = "1.25.3"
+HUGO_VERSION = "0.152.2"
+NODE_VERSION = "22.20.0"
 HUGO_ENV = "production"
+DART_SASS_VERSION = "1.93.2"
+# TZ = "Europe/Oslo"
 
 [context.deploy-preview]
 command = "hugo --gc --minify --buildFuture -b $DEPLOY_PRIME_URL"
 
 [context.deploy-preview.environment]
-HUGO_VERSION = "0.147.2"
-GO_VERSION = "1.21.0"
-NODE_VERSION = "20.5.1"
+GO_VERSION = "1.25.3"
+HUGO_VERSION = "0.152.2"
+NODE_VERSION = "22.20.0"
 
 [context.branch-deploy]
 command = "hugo --gc --minify -b $DEPLOY_PRIME_URL"
 
 [context.branch-deploy.environment]
-HUGO_VERSION = "0.147.2"
-GO_VERSION = "1.21.0"
-NODE_VERSION = "20.5.1"
+GO_VERSION = "1.25.3"
+HUGO_VERSION = "0.152.2"
+NODE_VERSION = "22.20.0"
 
 [context.next.environment]
 HUGO_ENABLEGITINFO = "true"
