@@ -3,5 +3,7 @@ node_modules/
 .DS_Store
 package-lock.json
 yarn.lock
+bun.lock
+pnpm-lock.yaml
 __generated__
 .hugo_build.lock

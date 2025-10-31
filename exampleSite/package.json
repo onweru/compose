@@ -1,18 +1,32 @@
 {
-  "name": "examplesite",
-  "version": "1.0.0",
-  "description": "This guide covers the necessary bits. As the project evolves, it will only become more comprehensive",
+  "name": "sample",
+  "version": "0.0.1",
+  "description": "A starter for TinaCMS with Hugo",
   "main": "index.js",
   "scripts": {
+    "dev": "tinacms dev -c \"hugo server -D\" --port 8080 --datalayer-port 8000",
+    "build": "tinacms build && hugo",
+    "build-local": "tinacms build --local --skip-indexing --skip-cloud-checks && hugo",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tinalabs/vanilla-hugo.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tinalabs/vanilla-hugo/issues"
+  },
+  "homepage": "https://github.com/tinalabs/vanilla-hugo#readme",
   "dependencies": {
-    "@tinacms/cli": "^1.5.31",
-    "tinacms": "^1.5.22",
-    "@tinacms/auth": "^1.0.3",
-    "next-tinacms-cloudinary": "^4.3.0"
+    "@tinacms/auth": "^1.1.0",
+    "@tinacms/cli": "^1.11.0",
+    "@types/node": "^24.9.2",
+    "next-tinacms-cloudinary": "^13.0.10",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "tinacms": "^2.9.0"
   }
 }

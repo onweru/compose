@@ -35,13 +35,9 @@ The exampleSite already comes with prefilled placeholder Tina settings. If you s
 
 {{< /tip >}}
 
-Edit `./static/tina/config.js` and replace tina CMS tokens with values from your own Tina account
+Update `./tina/config.js` & `.env` accordingly
 
 ```json
-...
-  clientId: "6ff9830b-b18a-4d21-b38c-cae1679e335f", // replace
-  token: "2954980a0db18868974dc57a66be9ecdfe6f336b", // replace
-...
 search: {
   ...
     tina: {
@@ -54,3 +50,12 @@ search: {
 ```
 
 Go to your [Tina](https://tina.io/) account
+
+## Use locally
+
+```sh
+# you can use `pnpm, yarn or npm` instead of bun
+bun install && bun dev
+# if dependencies are already installed
+bun dev
+```
