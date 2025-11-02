@@ -11,9 +11,6 @@ const Menu: Collection = {
       delete: false,
     }
   },
-  match: {
-    include: "*menu*",
-  },
   fields: [
     {
       type: "object",
@@ -37,7 +34,7 @@ const Menu: Collection = {
           label: "URL"
         },
         {
-          type: "string",
+          type: "number",
           name: "weight",
           label: "Weight",
           description: "Controls ordering"
