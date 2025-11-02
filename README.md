@@ -7,13 +7,14 @@ Compose is a [Hugo](https://gohugo.io/) theme for documentation websites. The th
 ## Features
 
 1. Documentation
-2. Gallery Support
-3. Native lazy loading of images
-4. Live search
-5. Flowcharts, Piecharts, doughnut & bar charts support
-6. Searchable & Sortable tables
-7. Syntax highlighting
-8. Mermaid Support
+2. Tina CMS support. Ships with configuration
+3. Gallery Support
+4. Native lazy loading of images
+5. Live search
+6. Flowcharts, Piecharts, doughnut & bar charts support
+7. Searchable & Sortable tables
+8. Syntax highlighting
+9. Mermaid Support
 
 ## Documentation
 
