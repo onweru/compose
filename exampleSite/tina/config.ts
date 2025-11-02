@@ -1,6 +1,9 @@
 import { defineConfig } from "tinacms";
+import Config from "./collections/config";
 import Doc from "./collections/doc";
+import Menu from "./collections/menu";
 import Post from "./collections/post";
+import Setting from "./collections/setting";
 import Tutorial from "./collections/tutorial";
 
 export default defineConfig({
@@ -25,6 +28,9 @@ export default defineConfig({
       Doc,
       Post,
       Tutorial,
+      Menu,
+      Config,
+      Setting,
     ],
   },
   search: {

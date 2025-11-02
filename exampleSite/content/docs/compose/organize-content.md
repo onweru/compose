@@ -31,4 +31,4 @@ Take advantage of [shortcodes](../shortcodes) to customize the layouts of these 
 
 #### Does this theme support blogging function?
 
-Currently, no.
+Yes.

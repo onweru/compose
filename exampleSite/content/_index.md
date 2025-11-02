@@ -13,7 +13,9 @@ title = "Projects"
 
 # Compose your Docs with **Ease**.
 
-Compose is a lean `Hugo` documentation theme, inspired by [forestry.io](https://forestry.io/docs/welcome/).
+Compose is a lean `Hugo` documentation theme, inspired by [forestry.io](https://web.archive.org/web/20190331052103/https://forestry.io/docs/welcome/)(now TinaCMS).
+
+Compose ships with tina cms [configuration](docs/compose/use-tina-cms/).
 
 {{< tip "warning" >}}
 Feel free to open a [PR](https://github.com/onweru/compose/pulls), raise an [issue](https://github.com/onweru/compose/issues/new/choose "Open a Github Issue")(s) or request new feature(s). {{< /tip >}}
