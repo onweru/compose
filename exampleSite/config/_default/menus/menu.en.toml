@@ -1,25 +1,20 @@
 #  menu items
 [[main]]
-  name = "Blog"
-  weight = 5
-  url = "blog/"
+name = "Blog"
+weight = 4
+url = "blog/"
 
 [[main]]
-  name = "Docs"
-  weight = 2
-  url = "docs/"
+name = "Docs"
+weight = 2
+url = "docs/"
 
 [[main]]
-  name = "Tutorials"
-  weight = 2
-  url = "tutorials/"
+name = "Tutorials"
+weight = 2
+url = "tutorials/"
 
 [[main]]
-  name = "Example"
-  weight = 3
-  url = "https://docs.neuralvibes.com"
-
-# [[main]]
-#   name = "Blog"
-#   weight = 4
-#   url = "blog/"
+name = "Example"
+weight = 3
+url = "https://composedocs.netlify.app"
