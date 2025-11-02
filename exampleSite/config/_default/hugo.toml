@@ -3,9 +3,8 @@ title = "Compose Docs"
 enableRobotsTXT = true
 # this example loads the theme as hugo module
 # comment out line below, and uncomment the line after it if you prefer to load the theme normally
-theme = [
-  "github.com/onweru/compose",
-] # edit this if you'ld rather use a fork of this repo
+theme = ["github.com/onweru/compose"]
+# uncomment line below if using theme as a non-module. also edit https://github.com/onweru/compose/blob/master/exampleSite/tina/collections/config.ts#L29-L35 
 # theme = "compose"
 enableGitInfo = true
 

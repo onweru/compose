@@ -30,7 +30,7 @@ const Config: Collection = {
       type: "string",
       name: "theme",
       label: "Theme / Template Name",
-      list: true,
+      list: true, // delete this line when using theme as a non module
       description: "references theme as module"
     },
     {
