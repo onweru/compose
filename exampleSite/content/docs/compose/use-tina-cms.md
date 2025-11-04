@@ -13,7 +13,7 @@ Let's sync your site with Tina CMS.
 1. Check the root of your site. If you do not have a `tina` folder. Download it using this command. 
 
     ```
-    curl -L https://github.com/onweru/compose/archive/refs/heads/master.zip -o cms.zip && unzip cms.zip "compose-master/exampleSite/tina/*" -d . && rm cms.zip
+    curl -fsSL https://raw.githubusercontent.com/onweru/compose/master/install-tina-cms.sh | bash
     ```
 
     {{< tip >}}
