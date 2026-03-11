@@ -2,8 +2,6 @@ name: UPDATE ALGOLIA INDEX
 
 on:
   workflow_dispatch:
-    branches:
-    - production
   push:
     paths:
       - content/**/*
@@ -16,17 +14,17 @@ env:
 jobs:
   build:
   # In this phase, the code is pulled from main and the site rendered in Hugo. The built site is stored as an artifact for other stages. # deploy:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         submodules: true  # Fetch Hugo themes (true OR recursive)
         fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
 
     - name: Setup Hugo
-      uses: peaceiris/actions-hugo@v2
+      uses: peaceiris/actions-hugo@v3
       with:
         hugo-version: 'latest'
         extended: true
@@ -35,25 +33,25 @@ jobs:
       run: hugo -e "production" -s "exampleSite" -d "dist" --minify
     # If build succeeds, store the dist/ dir as an artifact to be used in subsequent phases.
     - name: Upload output dist dir as artifact
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v4
       with:
         name: dist
         path: dist/
   publish:
   # In the publish phase, the site is pushed up to a different branch which only stores the dist/ folder ("site" branch) and is also delta synchronized to the S3 bucket. CloudFront invalidation happens last.
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     needs: build
     steps:
     # Check out the site branch this time since we have to ultimately commit those changes there.
     - name: Checkout site branch
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         submodules: true
         fetch-depth: 0
         ref: ${{ env.SITE-BRANCH }}
     # Download the artifact containing the newly built site. This overwrites the dist/ dir from the check out above.
     - name: Download artifact from build stage
-      uses: actions/download-artifact@v1
+      uses: actions/download-artifact@v4
       with:
         name: dist
     # Add all the files/changes in dist/ that were pulled down from the build stage and then commit them.
@@ -67,7 +65,7 @@ jobs:
         cp dist/index.json index.json
         git add -A index.json
         commit_message=$(git commit -m "Build search index." -a | tr -d '\n' || true)
-        echo "commit_message=$commxit_message >> $GITHUB_OUTPUT"
+        echo "commit_message=$commit_message" >> $GITHUB_OUTPUT
     # Checks if previous stage had any valid commit.
     - name: Nothing to commit
       id: nothing_committed
@@ -76,7 +74,7 @@ jobs:
     # Push those changes back to the site branch.
     - name: Push to site branch
       if: steps.nothing_committed.conclusion == 'skipped'
-      uses: ad-m/github-push-action@master
+      uses: ad-m/github-push-action@v1.0.0
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: ${{ env.SITE-BRANCH }}
@@ -85,10 +83,9 @@ jobs:
     needs: publish
     name: Upload Algolia Index
     steps:
-    - uses: algolia/setup-algolia-cli@master
+    - uses: algolia/setup-algolia-cli@v1.1.0
       with:
-        version:
-          1.2.0
+        version: 1.7.3
     - name: clean index
       id: clean_up_index
       env:
@@ -96,10 +93,10 @@ jobs:
         ALGOLIA_ADMIN_API_KEY: ${{ secrets.ALGOLIA_ADMIN_KEY }}
       run: |
         algolia index clear dimi_site --confirm
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
       with:
         fetch-depth: 0
-    - uses: wangchucheng/algolia-uploader@master
+    - uses: wangchucheng/algolia-uploader@v0.1.0
       with:
         # Such as `Z0U0ACGBN8`
         app_id: EG0M7UVCD9

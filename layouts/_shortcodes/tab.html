@@ -1,6 +1,6 @@
-{{- $name := .Get 0 | default "Name Me!" }}
-{{ $group := .Page.Scratch.Get "tabGroupIndex" | default 0 }}
-{{ $index := .Page.Scratch.Get "tabElementIndex" | default 0 }}
+{{- $name := .Get 0 | default "Name Me!" -}}
+{{- $group := .Page.Store.Get "tabGroupIndex" | default 0 -}}
+{{- $index := .Page.Store.Get "tabElementIndex" | default 0 -}}
 
 <style>
   .tabs input#tab-{{ $group }}-{{ $index }}:checked ~ .tab-content-{{ $group }}-{{ $index }} {
@@ -14,4 +14,4 @@
   {{ markdownify .Inner }}
 </div>
 
-{{ .Page.Scratch.Set "tabElementIndex" (add 1 $index) }}
+{{- .Page.Store.Set "tabElementIndex" (add 1 $index) -}}

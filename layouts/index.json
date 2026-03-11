@@ -1,22 +1,23 @@
-{{- $.Scratch.Add "index" slice -}}
-{{- $searchableExtras := site.Params.otherSearchableFields }}
+{{- $index := newScratch -}}
+{{- $index.Add "index" slice -}}
+{{- $searchableExtras := site.Params.otherSearchableFields -}}
 {{- range site.Pages -}}
-  {{ $params := .Params }}
+  {{- $params := .Params -}}
   {{- if ne .Type "search" -}}
-    {{- $searchEntry := dict "title" .Title "body" .Plain "link" .Permalink "section" .Section }}
-    {{- range $index, $value := $searchableExtras }}
-      {{- $extraFieldValue := index $params $value }}
-      {{- $extraFieldValues := dict }}
-      {{- with $extraFieldValue }}
-        {{- $v := . }}
-        {{- if reflect.IsSlice . }}
-          {{- $v = delimit . "," }}
-        {{- end }}
-        {{- $extraFieldValues = dict (lower $value) $v }}
-      {{- end }}
-      {{- $searchEntry = merge $searchEntry $extraFieldValues }}
-    {{- end }}
-    {{- $.Scratch.Add "index" $searchEntry -}}
+    {{- $searchEntry := dict "title" .Title "body" .Plain "link" .Permalink "section" .Section -}}
+    {{- range $i, $value := $searchableExtras -}}
+      {{- $extraFieldValue := index $params $value -}}
+      {{- $extraFieldValues := dict -}}
+      {{- with $extraFieldValue -}}
+        {{- $v := . -}}
+        {{- if reflect.IsSlice . -}}
+          {{- $v = delimit . "," -}}
+        {{- end -}}
+        {{- $extraFieldValues = dict (lower $value) $v -}}
+      {{- end -}}
+      {{- $searchEntry = merge $searchEntry $extraFieldValues -}}
+    {{- end -}}
+    {{- $index.Add "index" $searchEntry -}}
   {{- end -}}
 {{- end -}}
-{{- jsonify (uniq ($.Scratch.Get "index")) -}}
+{{- jsonify (uniq ($index.Get "index")) -}}

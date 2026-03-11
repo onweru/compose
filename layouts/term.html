@@ -1,6 +1,5 @@
 {{ define "main" }}
-{{- $pages := .Data.Pages }}
-{{- .Data.Terms }}
+{{- $pages := .Pages }}
 <div class="wrap pt-2 mt-2">
   {{- $paginator := .Paginate $pages -}}
   {{- $size := $paginator.PagerSize }}
@@ -28,12 +27,12 @@
         </div>
       </a>
     </article>
-    {{- if and (eq $index 0) (gt $size 1) }}
+    {{- if and (eq $index 0) (gt $size 1) -}}
     <div class="grid-2 article_showcase">
-    {{ end }}
-    {{- if and (eq $index (add $size -1)) (gt $size 1) }}
+    {{- end -}}
+    {{- if and (eq $index (add $size -1)) (gt $size 1) -}}
     </div>
-    {{ end }}
+    {{- end -}}
     {{- end }}
   </div>
 </div>

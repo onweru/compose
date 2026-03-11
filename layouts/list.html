@@ -46,15 +46,13 @@
     </a> -->
   {{- else }}
     {{- .Content }}
-    {{ if eq .Kind "taxonomy" }}
+    {{- if eq .Kind "taxonomy" -}}
     <ol>
-      {{ range .Data.Pages }}
+      {{- range .Pages -}}
         <li>
-          <a href="{{ .Permalink }}">
-            {{ .Title }}
-          </a>
+          <a href="{{ .Permalink }}">{{ .Title }}</a>
         </li>
-      {{ end }}
+      {{- end -}}
     </ol>
     {{- end }}
   {{- end }}

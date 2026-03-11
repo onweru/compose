@@ -7,3 +7,5 @@ bun.lock
 pnpm-lock.yaml
 __generated__
 .hugo_build.lock
+.claude/
+CLAUDE.md
