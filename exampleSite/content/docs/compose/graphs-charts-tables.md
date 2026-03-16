@@ -18,7 +18,11 @@ weight = 9
 
 Using [chart js library](https://www.chartjs.org/) you can display data you have stored in a `csv` file as a pie chart, bar graph or doughnut chart.
 
-At this point if you want to display data from a json or yaml file, you would need to [convert it into csv](http://convertcsv.com/json-to-csv.htm) first. Else the template will error out.
+At this point, if you want to display data from a JSON or YAML file, you'll need to convert it to CSV first; otherwise the template will error out.
+
+Online JSON to CSV Converters:
+- [ConvertCSV.com](https://convertcsv.com/json-to-csv.htm)
+- [Data.Page](https://data.page/json/csv)
 
 Once you have a csv file, you display the charts as follows:
 
