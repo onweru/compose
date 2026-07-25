@@ -9,3 +9,9 @@ __generated__
 .hugo_build.lock
 .claude/
 CLAUDE.md
+
+# Secrets — never commit real credentials (.env.example is tracked)
+.env
+
+# Internal audit notes (not for distribution)
+AUDIT-port-and-commercialization.md

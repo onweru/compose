@@ -1,5 +1,4 @@
 [build.environment]
-DART_SASS_VERSION = "1.102.0"
 GO_VERSION = "1.26.5"
 HUGO_VERSION = "0.164.0"
 NODE_VERSION = "22.23.1"
@@ -10,10 +9,6 @@ URL = "https://composedocs.netlify.app/"
 publish = "public"
 command = """\
   tinacms build &&
-  curl -sLJO "https://github.com/sass/dart-sass/releases/download/${DART_SASS_VERSION}/dart-sass-${DART_SASS_VERSION}-linux-x64.tar.gz" && \
-  tar -C "${HOME}/.local" -xf "dart-sass-${DART_SASS_VERSION}-linux-x64.tar.gz" && \
-  rm "dart-sass-${DART_SASS_VERSION}-linux-x64.tar.gz" && \
-  export PATH="${HOME}/.local/dart-sass:${PATH}" && \
   git config core.quotepath false && \
   hugo --gc --minify --baseURL "${URL}"
   """

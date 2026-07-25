@@ -25,18 +25,18 @@
 {{- end }}
 
 {{- if in $charts "table" }}
-<script src='{{ absURL "js/w3.js" }}'></script>
+<script src='{{ absURL "js/table.js" }}'></script>
 <div class="table_wrap">
   {{- if not (in $charts "noFilter") }}
   <p>
-    <input oninput="w3.filterHTML('#chartTable', '.row', this.value)" class="form_search search_field forminput"
+    <input oninput="composeTable.filter('#chartTable', '.row', this.value)" class="form_search search_field forminput"
       placeholder="Filter Table Values">
   </p>
   {{- end }}
   <table id="chartTable">
     <thead>
       {{- range $index, $title := $data.columnTitles }}
-      <th onclick="w3.sortHTML('#chartTable', '.row', 'td:nth-child({{ add $index 1 }})')">{{ $title }} {{ partial
+      <th onclick="composeTable.sort('#chartTable', '.row', 'td:nth-child({{ add $index 1 }})')">{{ $title }} {{ partial
         "sprite" (dict "icon" "sort") . }}</th>
       {{- end }}
     </thead>
