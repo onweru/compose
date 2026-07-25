@@ -1,6 +1,6 @@
 [en]
-  LanguageName = "English"
+  label = "English"
   weight = 2
 # [tr]
-#   LanguageName = "Turkish"
+#   label = "Turkish"
 #   weight = 1
