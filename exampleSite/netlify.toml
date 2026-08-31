@@ -2,7 +2,7 @@
 GO_VERSION = "1.26.5"
 HUGO_VERSION = "0.164.0"
 NODE_VERSION = "22.23.1"
-URL = "https://composedocs.netlify.app/"
+URL = "https://hugo.composetheme.store"
 # TZ = "Europe/Oslo"
 # Raise Node's heap for `tinacms build` indexing (default ~2 GB OOMs).
 # Keep this UNDER the build instance's RAM (~3 GB on non-Enterprise) or the
